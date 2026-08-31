@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-08-30T20:26:40Z",
+  "total_checks": 24,
+  "passed": 24,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "file exists: code/web_application/index.html",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: code/web_application/script.js",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: code/web_application/Dockerfile",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: DOMAIN_SCHEMA.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: code/web_application/agents_demo.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: AGENT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: code/web_application/hw1_client.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: src/model_client.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: reports/hw01/cases/nondeterminism_input.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "file exists: reports/hw01/AI_USE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "index.html <title> starts with HW1-",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "index.html has an <h1> heading",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "index.html has autofocus on an input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "index.html has the exact terms checkbox label",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Dockerfile exposes PORT_BASE 8191",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "agents_demo.py imports cleanly",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "agents_demo.py exposes run_pipeline()",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "agents_demo.py exposes build_llm()",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Part 3 raw CSV present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Part 3 metrics JSON present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Part 4 per-turn token counts CSV present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "AWS ECS public IP reachable (http://3.19.65.182:8191/)",
+      "passed": true,
+      "detail": "http_status=200"
+    },
+    {
+      "name": "local Docker container reachable (http://localhost:8191/)",
+      "passed": true,
+      "detail": "http_status=200"
+    }
+  ]
+}

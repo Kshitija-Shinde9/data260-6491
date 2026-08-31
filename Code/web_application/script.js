@@ -1,4 +1,4 @@
-// keeping a running count of submissions here, this stays private and only the counter can touch it
+
 const submissionCounter = (() => {
     let count = 0;
     return () => {
@@ -7,7 +7,7 @@ const submissionCounter = (() => {
     };
 })();
 
-// two checks in one place, description length and the checkbox. throwing an alert if either one is off
+
 const validateForm = (descriptionValue, isChecked) => {
     const trimmedDescription = descriptionValue.trim();
 
@@ -54,12 +54,12 @@ document.getElementById("recallForm").addEventListener("submit", (event) => {
 
     const parsedData = JSON.parse(jsonString);
 
-    // just pulling out product name and email here, renaming them so it reads a bit clearer
+
     const { productName: reportedProduct, submitterEmail: reportedEmail } = parsedData;
     console.log("product name:", reportedProduct);
     console.log("submitter email:", reportedEmail);
 
-    // copying everything over and tacking on when this actually got submitted
+
     const updatedData = { ...parsedData, submissionDate: new Date().toString() };
     console.log("updated data with submission date:", updatedData);
 
@@ -68,6 +68,6 @@ document.getElementById("recallForm").addEventListener("submit", (event) => {
 
     alert("thanks, your recall report was submitted");
 
-    // clearing everything out so the form is ready to go again
+
     document.getElementById("recallForm").reset();
 });

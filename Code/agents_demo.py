@@ -2,8 +2,6 @@
 agents_demo.py
 
 DATA-260 HW1 Part 2 - Agentic AI
-three calls to the same local ollama model, each with a different job:
-planner comes up with tags + summary, reviewer checks it, finalizer cleans it up.
 
 example run:
     python agents_demo.py --title "Trader Joe's Organic Frozen Blueberries recall" \

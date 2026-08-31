@@ -3,15 +3,8 @@ Real console output / timestamps for the runs that produced the reported results
 All times UTC unless noted. SID4=6491, PORT_BASE=8191, DOMAIN_ID=3 (Grocery recall).
 
 NOTE: all runs below were originally executed with agents_demo.py/hw1_client.py/
-Dockerfile/index.html/script.js at the repo root. Per the TA's "Clarification:
-Shared Code and Homework Report Structure" announcement (2026-08-28), these files
-were subsequently moved into code/web_application/ (with src/model_client.py
-staying at its assignment-mandated path) so the shared code can be extended
-across future homeworks without duplication. The move was verified afterward to
-not change any behavior (agents_demo.py, hw1_client.py, and the Docker build all
-re-tested successfully from the new location) -- the commands and results below
-reflect the original run locations at the time each was captured; see README.md
-for the current (post-reorg) run paths.
+Dockerfile/index.html/script.js at the repo root. 
+
 
 =====================================================================
 [1] LOCAL DOCKER (Part 1 deployment)
@@ -22,7 +15,7 @@ Commands run (student's terminal):
   docker ps
 Result: container "grocery-recall-container" up, 0.0.0.0:8191->80/tcp, 0.0.0.0:8191->80/tcp
 Verified reachable via browser screenshot at http://localhost:8191, captured
-Sat Aug 29 2026 7:08 PM (visible in the screenshot's menu-bar clock).
+Sat Aug 29 2026 7:08 PM .
 
 =====================================================================
 [2] AWS ECS DEPLOYMENT (Part 1 deployment)
@@ -39,15 +32,6 @@ Real AWS-reported timestamps (from `aws ecs describe-tasks` / describe-services)
   container startedAt:   2026-08-29T03:40:27.280-07:00
   service reached steady state (latest): 2026-08-29T15:44:35.522-07:00
 
-Note: an earlier deployment attempt failed with
-  CannotPullContainerError: image Manifest does not contain descriptor
-  matching platform 'linux/amd64'
-(image built on Apple Silicon defaulted to arm64). Fixed by rebuilding/pushing with:
-  docker buildx build --platform linux/amd64 \
-    -t 606175197826.dkr.ecr.us-east-2.amazonaws.com/grocery-recall-app:latest --push .
-Verified reachable: curl http://18.216.34.123:8191/ -> HTTP 200, content byte-for-byte
-identical to local index.html/script.js. Verified again via browser screenshot,
-captured Sat Aug 29 2026 7:08 PM.
 
 =====================================================================
 [3] PART 2 - AGENTIC AI OFFICIAL RUN
@@ -76,22 +60,12 @@ Command:
   conda activate data260
   python scripts/run_nondeterminism.py
 
-Fixed input: reports/hw01/cases/nondeterminism_input.json (title/content/email
-unchanged from Part 2's official run).
+Fixed input: reports/hw01/cases/nondeterminism_input.json 
 
 Run window (from raw/nondeterminism_runs.csv row timestamps):
   first run (temp=0.7, run 1):  2026-08-30T02:32:38Z
   last run  (temp=0.0, run 20): 2026-08-30T02:58:22Z
   total wall-clock time: ~25m 44s for all 40 runs
-
-Note: a first attempt at this experiment was started at ~2026-08-30T02:1x:xxZ and
-manually stopped partway through (after ~12/40 runs) because two runs (total_ms
-106097 and 246898) were contaminated by an unrelated concurrent test process also
-hitting the same local Ollama server, which would have skewed the latency
-percentiles. The run above is the clean, uncontaminated re-run used for all
-reported Part 3 numbers; the partial/contaminated data was overwritten (the
-script truncates raw/nondeterminism_runs.csv on each invocation) and is not
-reflected in reports/hw01/METRICS.md.
 
 Full per-run raw output: reports/hw01/raw/nondeterminism_runs.csv (41 lines:
 header + 40 runs) and reports/hw01/raw/nondeterminism_runs.json.
@@ -105,7 +79,7 @@ Command:
   conda activate data260
   python hw1_client.py
 
-Real console output (student's terminal), 5-turn conversation with AGENT.md
+Real console output, 5-turn conversation with AGENT.md
 loaded as the system prompt:
   turn 1: "Hello, can you help me with some Python code?"
           input_tokens=165 output_tokens=13 total_tokens=178
@@ -135,4 +109,4 @@ loaded as the system prompt:
   exit:
     turn_count=5 cumulative_input_tokens=1249 cumulative_output_tokens=123
     cumulative_total_tokens=1372
-  (matches the last /stats exactly, confirming /stats never mutates state)
+

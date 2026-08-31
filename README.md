@@ -76,6 +76,33 @@ and serialized conversation-history length without altering the history; `exit` 
 final cumulative totals. `AGENT.md` is loaded as the system prompt and asks for strict
 bullet-only responses to any code-review request.
 
+# How to run this project
+
+## Part 1 — Web form (Docker)
+cd code/web_application
+docker build -t grocery-recall-app .
+docker run -d -p 8191:80 --name grocery-recall-container grocery-recall-app
+# open http://localhost:8191
+
+## Part 2 — Agentic AI
+# requires: Ollama running locally with qwen3:8b pulled
+ollama pull qwen3:8b
+cd code/web_application
+python agents_demo.py --title "Trader Joe's Organic Frozen Blueberries, 16oz recall" \
+  --content "Packaging seal failure noticed on the 16oz bag: a small tear near the top seal allowed frost buildup on the berries closest to the opening, discovered after purchase at the Stevens Creek location." \
+  --email kshitija@example.com --temperature 0.0
+
+## Part 3 — Non-determinism experiment (40 runs)
+python scripts/run_nondeterminism.py
+
+## Part 4 — Model client / token accounting CLI
+python hw1_client.py
+# type messages, use /stats to see running token counts, 'exit' to quit
+
+## Verification
+python verify_hw01.py
+# writes reports/hw01/verification.json
+
 ### Conceptual answers (Part 4, Q7)
 
 **Why is prior conversation context resent with every turn?** Because the model doesn't actually 

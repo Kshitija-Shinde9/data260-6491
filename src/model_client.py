@@ -23,8 +23,7 @@ class CompletionResult:
 
 
 class ModelClient:
-    # wraps ollama's chat api behind one complete() method, so callers don't
-    # need to know anything about ollama specifically
+
     def __init__(
         self,
         model: Optional[str] = None,
@@ -41,10 +40,7 @@ class ModelClient:
         messages: List[Dict[str, str]],
         tools: Optional[List[Dict[str, Any]]] = None,
     ) -> CompletionResult:
-        # messages is the full conversation so far (system/user/assistant dicts).
-        # tools just gets passed through to ollama untouched - hw1_client.py never
-        # actually uses it, it's there so this matches a real complete(messages, tools=None)
-        # interface in case something later needs tool calling.
+
         t0 = time.time()
         response = self._client.chat(
             model=self.model,

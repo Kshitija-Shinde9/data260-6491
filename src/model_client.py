@@ -1,7 +1,4 @@
-# src/model_client.py - part 4's model adapter.
-# point of this file: everything that needs to talk to the model goes through
-# complete() instead of calling ollama directly, so if I ever swap the model
-# or how it's served, only this one file has to change.
+# src/model_client.py - part 4's model adapter
 import os
 import time
 from dataclasses import dataclass, field

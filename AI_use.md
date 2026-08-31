@@ -1,7 +1,7 @@
 # AI_USE.md
 
 ## 1. What I used an AI assistant for, and what I did myself
-I mainly used AI for the repetitive and boilerplate stuff in index.html, getting the basic structure of the JavaScript functions right, remembering exact Docker and AWS CLI command syntax, and formatting the JSON output nicely. It also helped me draft parts of DOMAIN_SCHEMA.md faster since that's mostly documentation.
+I mainly used AI for the repetitive and boilerplate stuff, remembering exact Docker and AWS CLI command syntax, and formatting the JSON output nicely. It also helped me draft parts of DOMAIN_SCHEMA.md faster since that's mostly documentation.
 
 ## 2. One AI-produced output that was wrong/unsuitable
 When I first got the Planner/Reviewer/Finalizer pipeline JSON output wasn't reliable. Sometimes it would return the tags and summary as flat keys like "data.tags" and "data.summary" instead of the nested structure. If I just ran 'json.loads()` directly on the raw response, it would either fail to parse or parse into a shape that didn't match what my code expected.

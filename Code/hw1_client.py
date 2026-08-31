@@ -1,17 +1,10 @@
-# hw1_client.py - part 4 CLI demo, sits on top of src/model_client.py.
-# keeps a running conversation (AGENT.md gets loaded in as the system prompt),
-# prints token usage after every reply, and has a /stats command for checking
-# the running totals without touching the actual history.
-#
-# run it with: python hw1_client.py
-# type at the "you>" prompt, /stats for the running totals, exit/quit to leave.
+
 import argparse
 import json
 import os
 import sys
 
-# repo layout: code/web_application/hw1_client.py, with src/model_client.py and
-# AGENT.md two levels up at the repo root.
+
 REPO_ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
 sys.path.insert(0, REPO_ROOT)
 

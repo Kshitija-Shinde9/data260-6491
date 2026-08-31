@@ -12,5 +12,5 @@ code, you MUST respond using ONLY a bullet list:
   within a bullet.
 - If you find nothing to flag, output exactly one bullet saying so.
 
-For any request that is NOT a code review, respond normally in plain text —
+For any request that is NOT a code review, respond normally in plain text -
 this bullet-only rule applies only to code review requests.

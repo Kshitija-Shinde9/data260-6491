@@ -97,11 +97,11 @@ python scripts/run_nondeterminism.py
 
 ## Part 4 — Model client / token accounting CLI
 python hw1_client.py
-# type messages, use /stats to see running token counts, 'exit' to quit
+type messages, use /stats to see running token counts, 'exit' to quit
 
 ## Verification
 python verify_hw01.py
-# writes reports/hw01/verification.json
+writes reports/hw01/verification.json
 
 ### Conceptual answers (Part 4, Q7)
 

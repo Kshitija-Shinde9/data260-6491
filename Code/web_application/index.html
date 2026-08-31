@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HW1-Kshitija Shinde</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2e7d32;
+}
+
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #2e7d32;
+    outline: none;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.checkbox-row input {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.checkbox-row label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+button {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+}
+
+button:hover {
+    background-color: #256428;
+}
+</style>
+</head>
+<body>
+
+<!-- this is the main heading for the page, names the domain entity, using h1 since that renders the biggest font size -->
+<h1>Grocery supply and recall notices</h1>
+
+<!-- form for reporting a grocery recall, fields match DOMAIN_SCHEMA.md -->
+<form id="recallForm">
+
+<!-- primary field, product name, required, autofocus so cursor lands here on page load -->
+<label for="productName">Product Name *</label>
+<input type="text" id="productName" placeholder="e.g. Trader Joe's Organic Frozen Blueberries, 16oz" required autofocus />
+
+<!-- secondary field, supplier or brand, required -->
+<label for="supplierName">Supplier / Brand *</label>
+<input type="text" id="supplierName" placeholder="who made or supplied it" required />
+
+<!-- submitter email, required -->
+<label for="submitterEmail">Your Email *</label>
+<input type="email" id="submitterEmail" placeholder="your email so we can follow up" required />
+
+<!-- content or description field, required textarea, needs more than 25 characters checked in js -->
+<label for="recallDescription">Recall Reason / Description *</label>
+<textarea id="recallDescription" placeholder="what happened, when you noticed it, any batch/lot info" required></textarea>
+
+<!-- category dropdown with 4 domain appropriate options -->
+<label for="recallType">Recall Reason Type *</label>
+<select id="recallType" required>
+    <option value="" disabled selected>Choose a reason</option>
+    <option value="Packaging / Seal Failure">Packaging / Seal Failure</option>
+    <option value="Contamination">Contamination</option>
+    <option value="Undeclared Allergen">Undeclared Allergen</option>
+    <option value="Spoiled or Quality Issue">Spoiled or Quality Issue</option>
+</select>
+
+<!-- checkbox and label for terms and conditions, checked in js before allowing submit -->
+<div class="checkbox-row">
+    <input type="checkbox" id="agreeTerms" />
+    <label for="agreeTerms">I agree to the terms and conditions.</label>
+</div>
+
+<!-- submit button with text that fits the grocery recall domain -->
+<button type="submit">Report This Recall</button>
+
+</form>
+
+<!-- linking the javascript file for part 2, placed at the end of the html file as required -->
+<script src="script.js"></script>
+</body>
+</html>

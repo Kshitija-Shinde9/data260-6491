@@ -78,24 +78,28 @@ bullet-only responses to any code-review request.
 
 ### Conceptual answers (Part 4, Q7)
 
-**Why is prior conversation context resent with every turn?** The model itself is
-stateless between API calls -- it has no memory of earlier turns unless the full
-conversation history is included again in the request. The "memory" of a conversation
-lives entirely on the client side (here, the `history` list in `hw1_client.py`), not on
-the model/server side.
+**Why is prior conversation context resent with every turn?** Because the model doesn't actually 
+remember anything between calls every time I send a message, it's basically like talking to it 
+for the first time again, except I attach the whole conversation so far along with it. All the 
+"memory" is really just my code keeping a list and resending it each time, not the model remembering 
+on its own.
 
-**How is a system prompt different from a user message?** A system prompt sets
-standing, persistent instructions/behavior for the whole conversation (here, `AGENT.md`'s
-bullet-only code-review rule) and is written by the developer, not the end user; it isn't
-something the model treats as a request to respond to. A user message is a single turn's
-actual input, one of potentially many, that the model is expected to respond to directly.
 
-**Why do input tokens grow over a conversation?** Because the entire history (system
-prompt + every prior user and assistant message) is resent as the "input" on every turn,
-input token count only ever grows (or stays flat), even if the newest message itself is
-short -- it's cumulative, not per-message.
+**How is a system prompt different from a user message?** The system prompt is the standing 
+instructions I set once at the start (like AGENT.md's bullet-only rule) it's not something 
+the model treats as a question to answer, it's more like ground rules sitting in the
+background. A user message is the actual thing being asked in that turn, which the
+model responds to directly.
 
-**What eventually limits that growth?** The model's context window (its maximum token
-limit, e.g. `num_ctx` for a locally served model). Once resent history approaches that
-limit, requests either get truncated, get rejected, or the application has to actively
-manage the history (summarizing or dropping older turns) to stay within budget.
+
+**Why do input tokens grow over a conversation?** Because every single turn,
+I'm resending the entire conversation so far  system prompt plus everything
+said before not just the newest message. So even if my new message is one word,
+the input token count keeps climbing because of everything that came before it.
+
+
+**What eventually limits that growth?** The model's context window a hard
+cap on how many tokens it can take in at once. Once the conversation gets 
+close to that limit, the request either gets cut off or rejected, or I'd have 
+to start trimming/summarizing older turns myself to make room.
+

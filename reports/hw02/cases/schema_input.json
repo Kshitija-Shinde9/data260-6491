@@ -1,0 +1,11 @@
+{
+  "note": "Fixed input for the Part 4 schema experiment. Saved before the runs and never changed, so all 30 runs use exactly the same input.",
+  "domain": "Grocery supply and recall notices",
+  "domain_id": 3,
+  "sid4": 6491,
+  "title": "Trader Joe's Organic Frozen Blueberries, 16oz",
+  "content": "Grabbed this from the Trader Joe's on Stevens Creek and did not notice until I got home that the bag had a small tear near the top seal, right where it is supposed to be sealed shut. A lot of the berries at the top were already frosted and clumped together like air had got in. The tear looked like it was there before I picked it up off the shelf.",
+  "email": "kshitija@example.com",
+  "model": "qwen3:8b",
+  "temperature": 0.0
+}

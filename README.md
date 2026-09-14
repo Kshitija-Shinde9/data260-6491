@@ -130,3 +130,104 @@ cap on how many tokens it can take in at once. Once the conversation gets
 close to that limit, the request either gets cut off or rejected, or I'd have 
 to start trimming/summarizing older turns myself to make room.
 
+## Homework 2
+
+HW2 extends the same codebase. The web application gains a FastAPI backend, and a
+new agent graph replaces the sequential pipeline from HW1.
+
+### Repository layout added in HW2
+
+```
+code/web_application/   main.py and static/ added alongside the HW1 files
+code/agent_graph/       state.py, nodes.py, router.py, workflow.py, schema.py, helpers.py
+scripts/run_experiment.py
+scripts/verify_hw02.py
+reports/hw02/           cases/, raw/, METRICS.md, RUN_LOG.txt, AI_USE.md, verification.json
+```
+
+### Requirements
+
+Python 3.11 in a conda environment called `data260`, with fastapi, uvicorn, pydantic
+and langgraph installed. Parts 3 and 4 also need Ollama running locally with the
+`qwen3:8b` model pulled.
+
+```bash
+conda activate data260
+ollama serve          # in a separate terminal, if it is not already running
+ollama pull qwen3:8b  # only needed once
+```
+
+### Part 1 and Part 2 - the web application
+
+```bash
+cd code/web_application
+python main.py
+```
+
+Then open http://localhost:8191
+
+The server must be started from inside `code/web_application`, because `main.py`
+refers to the `static` folder by a relative path. Records live in memory, so
+restarting the server resets them to the three seeded notices.
+
+Endpoints:
+
+| Method | Path | Question |
+|---|---|---|
+| GET | `/api/recalls` | list, and Q4 search through `?search=` |
+| POST | `/api/recalls` | Q1 add a record |
+| PUT | `/api/recalls/{id}` | Q2 update a record |
+| DELETE | `/api/recalls/highest` | Q3 delete the highest ID |
+| GET | `/docs` | FastAPI interactive documentation |
+
+### Part 3 - the agent graph
+
+```bash
+cd code/agent_graph
+python workflow.py                                  # a normal run
+python workflow.py --force_issues --max_turns 5     # the correction loop test
+```
+
+`--force_issues` makes the Reviewer reject every proposal, which is how the
+assignment asks for the correction loop to be demonstrated. It is off by default.
+
+Individual pieces can be checked on their own:
+
+```bash
+python try_nodes.py     # the Planner and Reviewer
+python try_router.py    # every router decision
+python try_schema.py    # the Pydantic rules
+```
+
+### Part 4 - the experiments
+
+Run from the repository root. Each task writes its own CSV to `reports/hw02/raw/`
+as it goes, so stopping one does not lose the runs already finished.
+
+```bash
+python scripts/run_experiment.py --task 3    # 30 runs on the frozen input
+python scripts/run_experiment.py --task 4    # 20 runs at ceiling 2, then 20 at ceiling 10
+python scripts/run_experiment.py --task 5    # 5 runs on the adversarial input
+```
+
+Add `--runs N` to do a shorter test run first.
+
+All 75 runs together take roughly 45 minutes of model time on an Apple M4. Run one
+task at a time, never two at once, or they compete for the model and the latency
+numbers become meaningless.
+
+### Self check
+
+```bash
+python scripts/verify_hw02.py
+```
+
+Writes `reports/hw02/verification.json`. Two of its checks need the web application
+running on port 8191 and Ollama running on port 11434, so start those first if you
+want a clean pass.
+
+### Model configuration used for all reported results
+
+qwen3:8b (8.2B parameters, Q4_K_M) served by Ollama 0.33.2 at temperature 0.0.
+Every model call inside a node goes through `src/model_client.py`, the adapter
+written in HW1, rather than calling Ollama or LangChain directly.

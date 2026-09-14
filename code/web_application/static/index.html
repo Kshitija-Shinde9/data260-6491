@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HW2-Kshitija Shinde</title>
+<link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+
+<!-- The green bar at the top with my title and the three tabs. -->
+<header class="site-header">
+    <div class="brand">
+        <span class="brand-text">
+            <span class="brand-title">Grocery Recall Notices</span>
+            <span class="brand-sub">DATA-260 HW2 &middot; port 8191</span>
+        </span>
+    </div>
+
+    <nav class="tabs" aria-label="Main">
+        <button type="button" class="tab is-active" data-view="home" aria-current="page">
+            Home <span id="navCount" class="pill">0</span>
+        </button>
+        <button type="button" class="tab" data-view="add">Add Notice</button>
+        <button type="button" class="tab" data-view="manage">Manage</button>
+    </nav>
+</header>
+
+
+<main class="page">
+
+<!-- The small message that appears at the bottom of the page. -->
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+
+<!-- HOME PAGE - the search box and the list of my notices. -->
+<section id="view-home" class="view">
+
+    <div class="view-head">
+        <h2>All recall notices</h2>
+        <p class="view-sub">Every notice reported so far. Search by product name or supplier.</p>
+    </div>
+
+    <!-- Q4 - search by product name or supplier. -->
+    <div class="search-bar">
+        <label class="sr-only" for="searchInput">Search by product name or supplier</label>
+        <div class="search-field">
+            <input type="text" id="searchInput" placeholder="Search product name or supplier&hellip;" />
+        </div>
+        <button type="button" class="btn btn-primary" onclick="searchRecalls()">Search</button>
+        <button type="button" class="btn btn-ghost" onclick="clearSearch()">Show All</button>
+    </div>
+
+    <p id="searchNote" class="search-note" hidden></p>
+
+    <!-- The three states that Part 1 asks for. -->
+
+    <!-- Shown while I am waiting for the server to answer. -->
+    <div id="loadingState" hidden>
+        <div class="skeleton-row"></div>
+        <div class="skeleton-row"></div>
+        <div class="skeleton-row"></div>
+        <p class="state-caption"><span class="spinner" aria-hidden="true"></span> Loading recall notices&hellip;</p>
+    </div>
+
+    <!-- Shown when there are no notices, or the search found nothing. -->
+    <div id="emptyState" class="state state-empty" hidden>
+        <h3 id="emptyTitle">No recall notices yet</h3>
+        <p id="emptyText">Nothing has been reported. Use the Add Notice tab to report the first one.</p>
+        <button type="button" class="btn btn-primary" onclick="showView('add')">Report a recall</button>
+    </div>
+
+    <!-- Shown when the server does not answer. -->
+    <div id="errorState" class="state state-error" role="alert" hidden>
+        <h3>Could not load the notices</h3>
+        <p id="errorText">Something went wrong.</p>
+        <button type="button" class="btn btn-primary" onclick="loadRecalls()">Try again</button>
+    </div>
+
+    <!-- The list of notices. -->
+    <div id="tableWrap" class="table-wrap" hidden>
+        <table id="recallTable" class="recall-table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Supplier / Brand</th>
+                    <th scope="col">Reason Type</th>
+                    <th scope="col"><span class="sr-only">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody id="recallTableBody">
+                <!-- The rows are added here by my JavaScript. -->
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+<!-- ADD PAGE - Q1, this is my HW1 form. -->
+<section id="view-add" class="view" hidden>
+
+    <div class="view-head">
+        <h2>Report a new recall</h2>
+        <p class="view-sub">Product name and supplier are the two fields the record is stored under.</p>
+    </div>
+
+    <div class="card">
+        <form id="recallForm">
+
+            <!-- Main field, the cursor starts here when the page opens. -->
+            <label for="productName">Product Name <span class="req">*</span></label>
+            <input type="text" id="productName" placeholder="e.g. Trader Joe's Organic Frozen Blueberries, 16oz" required autofocus />
+            <p class="field-hint">This is the primary field the record is listed under.</p>
+
+            <!-- Second field, who made or supplied the product. -->
+            <label for="supplierName">Supplier / Brand <span class="req">*</span></label>
+            <input type="text" id="supplierName" placeholder="who made or supplied it" required />
+            <p class="field-hint">This is the secondary field. Search matches on this too.</p>
+
+            <!-- The email of the person reporting it. -->
+            <label for="submitterEmail">Your Email <span class="req">*</span></label>
+            <input type="email" id="submitterEmail" placeholder="your email so we can follow up" required />
+
+            <!-- What happened, my JavaScript checks it is more than 25 characters. -->
+            <label for="recallDescription">Recall Reason / Description <span class="req">*</span></label>
+            <textarea id="recallDescription" placeholder="what happened, when you noticed it, any batch/lot info" required></textarea>
+            <p class="field-hint"><span id="charCount">0</span> characters &middot; needs more than 25</p>
+
+            <!-- A dropdown with four reasons to choose from. -->
+            <label for="recallType">Recall Reason Type <span class="req">*</span></label>
+            <select id="recallType" required>
+                <option value="" disabled selected>Choose a reason</option>
+                <option value="Packaging / Seal Failure">Packaging / Seal Failure</option>
+                <option value="Contamination">Contamination</option>
+                <option value="Undeclared Allergen">Undeclared Allergen</option>
+                <option value="Spoiled or Quality Issue">Spoiled or Quality Issue</option>
+            </select>
+
+            <!-- The terms box, my JavaScript checks it is ticked before sending. -->
+            <div class="checkbox-row">
+                <input type="checkbox" id="agreeTerms" />
+                <label for="agreeTerms">I agree to the terms and conditions.</label>
+            </div>
+
+            <!-- The button that sends the form. -->
+            <button type="submit" class="btn btn-primary btn-block">Report This Recall</button>
+
+        </form>
+    </div>
+
+</section>
+
+
+<!-- MANAGE PAGE - Q2 change a notice and Q3 delete the biggest ID. -->
+<section id="view-manage" class="view" hidden>
+
+    <div class="view-head">
+        <h2>Manage notices</h2>
+        <p class="view-sub">Update an existing record, or remove the most recent one.</p>
+    </div>
+
+    <!-- Q2 - change the notice with ID 1. -->
+    <div class="card">
+        <h3 class="card-title">Update a record</h3>
+        <p class="card-sub">Changes the primary and secondary fields of one record.</p>
+
+        <label for="updateId">Record ID</label>
+        <input type="number" id="updateId" value="1" min="1" placeholder="Enter Record ID" />
+        <p class="field-hint">Currently editing: <strong id="updateTarget">&mdash;</strong></p>
+
+        <label for="updateProductName">New Product Name</label>
+        <input type="text" id="updateProductName" placeholder="Enter new product name" />
+
+        <label for="updateSupplierName">New Supplier / Brand</label>
+        <input type="text" id="updateSupplierName" placeholder="Enter new supplier or brand" />
+
+        <button type="button" class="btn btn-primary btn-block" onclick="updateRecall()">Update Record</button>
+    </div>
+
+    <!-- Q3 - delete the notice with the biggest ID. -->
+    <div class="card card-danger">
+        <h3 class="card-title">Delete highest ID</h3>
+        <p class="card-sub">Removes whichever notice currently has the largest ID.</p>
+
+        <div class="danger-preview">
+            About to delete: <strong id="highestPreview">&mdash;</strong>
+        </div>
+
+        <button type="button" class="btn btn-danger btn-block" onclick="deleteHighestRecall()">Delete Highest ID</button>
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- My JavaScript file, linked at the end of the page. -->
+<script src="/static/js/script.js"></script>
+</body>
+</html>

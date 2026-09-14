@@ -1,0 +1,808 @@
+/* This is my HW1 styling moved into its own file, with the new header, tabs and phone layout added. */
+
+
+/* The colours and sizes I use again and again. */
+
+:root {
+    /* My greens, from darkest to lightest. */
+    --green-900: #12372a;
+    --green-800: #1b4332;
+    --green-700: #2d6a4f;
+    --green-600: #40916c;
+    --green-100: #d8e8df;
+    --green-50: #eef5f1;
+
+    --red: #a4343a;
+    --red-dark: #85272c;
+    --red-50: #fbeeee;
+    --red-100: #f0d3d4;
+
+    --ink: #1c2621;
+    --muted: #5f6d66;
+    --faint: #8b978f;
+    --line: #e3e9e5;
+    --card: #ffffff;
+
+    --radius: 14px;
+    --radius-sm: 9px;
+
+    /* My shadows, from small to large. */
+    --shadow-sm: 0 1px 2px rgba(18, 55, 42, 0.06);
+    --shadow: 0 1px 2px rgba(18, 55, 42, 0.05), 0 6px 18px rgba(18, 55, 42, 0.07);
+    --shadow-md: 0 2px 4px rgba(18, 55, 42, 0.06), 0 12px 28px rgba(18, 55, 42, 0.10);
+    --shadow-header: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 6px 24px rgba(18, 55, 42, 0.22);
+}
+
+
+/* Basic settings for the whole page. */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--ink);
+    /* A soft green background that stays still when I scroll. */
+    background: linear-gradient(175deg, #f7faf8 0%, #eef3ef 55%, #e7eee9 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    line-height: 1.25;
+    overflow-wrap: break-word;
+}
+
+/* Hidden on screen but still read out to blind users. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* The green bar at the top with the title and the tabs. */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: linear-gradient(160deg, var(--green-800) 0%, var(--green-900) 100%);
+    color: #ffffff;
+    padding: 26px 16px 16px;
+    box-shadow: var(--shadow-header);
+}
+
+.brand {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+}
+
+.brand-title {
+    /* A serif font makes the title look more formal. */
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* A thin line under the title. */
+.brand-sub {
+    position: relative;
+    padding-top: 11px;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.brand-sub::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    /* If the tabs are too wide they scroll instead of the page. */
+    overflow-x: auto;
+}
+
+.tab {
+    min-height: 42px;
+    padding: 9px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+.tab.is-active {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: var(--green-800);
+    box-shadow: 0 3px 10px rgba(18, 55, 42, 0.25);
+}
+
+.pill {
+    display: inline-block;
+    min-width: 20px;
+    margin-left: 3px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.tab.is-active .pill {
+    background: var(--green-100);
+    color: var(--green-800);
+}
+
+
+/* The main area under the header. */
+
+.page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+}
+
+.view-head {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.view-head h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    color: var(--green-800);
+    margin: 0 0 5px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.view-sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.card {
+    background: var(--card);
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    transition: box-shadow 0.22s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-title {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    margin: 0 0 4px;
+    color: var(--green-800);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card-sub {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.card-danger {
+    border-top: 2px solid var(--red);
+}
+
+.card-danger .card-title {
+    color: var(--red);
+}
+
+.danger-preview {
+    background: var(--red-50);
+    border: 1px solid var(--red-100);
+    color: var(--red-dark);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 0.875rem;
+    overflow-wrap: anywhere;
+}
+
+
+/* The boxes and labels in my forms, kept from HW1. */
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--green-800);
+}
+
+.req {
+    color: var(--red);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    /* 16px stops the iPhone zooming in when I tap a box. */
+    font-size: 16px;
+    margin-bottom: 6px;
+    font-family: inherit;
+    background: #fcfdfc;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm) inset;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--faint);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: #ffffff;
+    border-color: var(--green-600);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.16);
+}
+
+textarea {
+    min-height: 118px;
+    resize: vertical;
+}
+
+.field-hint {
+    margin: 0 0 18px;
+    font-size: 0.8rem;
+    color: var(--faint);
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin: 10px 0 22px;
+}
+
+.checkbox-row input {
+    width: auto;
+    margin: 3px 0 0;
+    flex: 0 0 auto;
+    /* Big enough to tap with a finger. */
+    min-width: 19px;
+    min-height: 19px;
+    box-shadow: none;
+    accent-color: var(--green-700);
+}
+
+.checkbox-row label {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--muted);
+}
+
+
+/* My buttons. */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 44px is big enough to tap easily on a phone. */
+    min-height: 44px;
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(160deg, var(--green-700) 0%, var(--green-800) 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(18, 55, 42, 0.22);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(160deg, var(--green-600) 0%, var(--green-700) 100%);
+    box-shadow: 0 4px 14px rgba(18, 55, 42, 0.28);
+}
+
+.btn-ghost {
+    background: #ffffff;
+    border-color: var(--line);
+    color: var(--muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-ghost:hover {
+    border-color: var(--green-600);
+    color: var(--green-700);
+}
+
+.btn-danger {
+    background: linear-gradient(160deg, var(--red) 0%, var(--red-dark) 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(164, 52, 58, 0.24);
+}
+
+.btn-danger:hover {
+    box-shadow: 0 4px 14px rgba(164, 52, 58, 0.3);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* The search box and its buttons. */
+
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 14px;
+}
+
+.search-field {
+    /* It can grow and shrink so it never makes the page too wide. */
+    flex: 1 1 200px;
+    min-width: 0;
+}
+
+.search-field input {
+    margin-bottom: 0;
+}
+
+.search-note {
+    margin: 0 0 14px;
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+
+/* The loading state, shown while I wait for the server. */
+
+.skeleton-row {
+    height: 56px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 11px;
+    background: linear-gradient(90deg, #e8eeea 25%, #f4f8f6 50%, #e8eeea 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.3s infinite linear;
+}
+
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+.spinner {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 2px solid var(--green-100);
+    border-top-color: var(--green-700);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: -2px;
+    margin-right: 4px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.state-caption {
+    text-align: center;
+    color: var(--green-700);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    margin: 10px 0 0;
+}
+
+/* Turns the movement off for people who do not want animation. */
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-row,
+    .spinner,
+    .toast {
+        animation: none;
+    }
+}
+
+
+/* The empty state and the error state. */
+
+.state {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 52px 24px;
+    text-align: center;
+}
+
+.state h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--green-800);
+}
+
+.state p {
+    margin: 0 auto 22px;
+    max-width: 40ch;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.state-empty {
+    border: 1px dashed var(--green-100);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: none;
+}
+
+.state-error {
+    border-color: var(--red-100);
+    background: var(--red-50);
+}
+
+.state-error h3 {
+    color: var(--red);
+}
+
+.state-error p {
+    color: var(--red-dark);
+    overflow-wrap: anywhere;
+}
+
+
+/* The small message box at the bottom of the page. */
+
+.toast {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 24px;
+    z-index: 40;
+    margin: 0 auto;
+    max-width: 440px;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 34px rgba(18, 55, 42, 0.3);
+    animation: rise 0.24s ease-out;
+    overflow-wrap: anywhere;
+}
+
+.toast.ok {
+    background: linear-gradient(160deg, var(--green-700) 0%, var(--green-900) 100%);
+}
+
+.toast.bad {
+    background: linear-gradient(160deg, var(--red) 0%, var(--red-dark) 100%);
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* The table that shows all my notices. */
+
+.table-wrap {
+    /* If the table is too wide, only the table scrolls. */
+    overflow-x: auto;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.recall-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.recall-table th,
+.recall-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+
+.recall-table th {
+    background: linear-gradient(160deg, var(--green-800) 0%, var(--green-900) 100%);
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+}
+
+.recall-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.recall-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.recall-table tbody tr:hover {
+    background: var(--green-50);
+}
+
+.id-cell {
+    font-weight: 700;
+    color: var(--green-600);
+    font-variant-numeric: tabular-nums;
+}
+
+.product-cell {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+/* The small coloured label for the recall reason. */
+.chip {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    background: #eef1ef;
+    color: var(--muted);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    white-space: normal;
+}
+
+.chip-seal     { background: #e8eff7; color: #2d5580; }
+.chip-contam   { background: #f7e9ec; color: #8a3a4c; }
+.chip-allergen { background: #f9efe2; color: #8a5a25; }
+.chip-spoiled  { background: #efeaf4; color: #5b447a; }
+
+.row-actions {
+    display: flex;
+    gap: 7px;
+}
+
+.icon-btn {
+    min-height: 34px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.icon-btn:hover {
+    border-color: var(--green-600);
+    color: var(--green-700);
+    box-shadow: var(--shadow-sm);
+}
+
+.icon-btn.danger:hover {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+
+/* On a small screen the table turns into cards and each row shows its own labels. */
+
+@media (max-width: 640px) {
+
+    .site-header {
+        padding: 20px 12px 14px;
+    }
+
+    .brand-title {
+        font-size: 1.6rem;
+    }
+
+    .brand-sub {
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+    }
+
+    .page {
+        padding: 24px 12px 52px;
+    }
+
+    .card,
+    .state {
+        padding: 18px;
+    }
+
+    .state {
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+
+    .view-head h2 {
+        font-size: 1.35rem;
+    }
+
+    .tabs {
+        /* On a phone the tabs share the width equally. */
+        justify-content: stretch;
+    }
+
+    .tab {
+        flex: 1 1 0;
+        padding: 9px 8px;
+        font-size: 0.8rem;
+    }
+
+    /* The search box and buttons go one under the other. */
+    .search-bar {
+        flex-direction: column;
+    }
+
+    /* Without this the search box becomes 200px tall instead of 200px wide. */
+    .search-field {
+        flex: 0 0 auto;
+    }
+
+    .search-bar .btn {
+        width: 100%;
+    }
+
+    .table-wrap {
+        background: none;
+        border: none;
+        box-shadow: none;
+        overflow-x: visible;
+    }
+
+    .recall-table thead {
+        /* The column headings are hidden because each cell shows its own. */
+        display: none;
+    }
+
+    .recall-table,
+    .recall-table tbody,
+    .recall-table tr,
+    .recall-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .recall-table tr {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 14px;
+        padding: 6px 2px;
+    }
+
+    .recall-table tr:hover {
+        background: var(--card);
+    }
+
+    .recall-table td {
+        border-bottom: 1px solid #f1f5f2;
+        padding: 10px 14px;
+        display: grid;
+        /* The label on the left and the value on the right. */
+        grid-template-columns: 6.5rem 1fr;
+        gap: 12px;
+        align-items: start;
+        /* Long product names go onto the next line instead of making the page wider. */
+        overflow-wrap: anywhere;
+    }
+
+    .recall-table td::before {
+        content: attr(data-label);
+        font-size: 0.66rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: var(--green-600);
+        padding-top: 3px;
+    }
+
+    /* The buttons row has no label and uses the full width. */
+    .recall-table td.actions-cell {
+        display: block;
+        border-bottom: none;
+    }
+
+    .recall-table td.actions-cell::before {
+        content: none;
+    }
+
+    .row-actions .icon-btn {
+        flex: 1 1 0;
+    }
+}

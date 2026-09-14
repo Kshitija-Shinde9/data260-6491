@@ -1,0 +1,203 @@
+{
+  "homework": "HW2",
+  "generated_at": "2026-09-14T19:44:46Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "domain_id": 3,
+  "commit_hash": "7245c5a2f14e0924c6a59a43f103860230ed5cfb",
+  "tag": "hw1",
+  "model_configuration": {
+    "model": "qwen3:8b",
+    "server": "Ollama 0.33.2 at http://localhost:11434",
+    "temperature": 0.0,
+    "adapter": "src/model_client.py from HW1"
+  },
+  "total_checks": 36,
+  "passed": 36,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "deliverable present: reports/hw02/RUN_LOG.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/METRICS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/AI_USE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/cases/schema_input.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/raw/task3_schema_runs.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/raw/task4_ceiling_2.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/raw/task4_ceiling_10.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw02/raw/task5_adversarial.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "backend responds on PORT_BASE 8191",
+      "passed": true,
+      "detail": "http 200"
+    },
+    {
+      "name": "list endpoint returns a list of records",
+      "passed": true,
+      "detail": "3 records"
+    },
+    {
+      "name": "Q1 add: request succeeded",
+      "passed": true,
+      "detail": "http 201"
+    },
+    {
+      "name": "Q1 add: server assigned an id",
+      "passed": true,
+      "detail": "4"
+    },
+    {
+      "name": "Q1 add: the list grew by one",
+      "passed": true,
+      "detail": "3 -> 4"
+    },
+    {
+      "name": "Q2 update: request succeeded",
+      "passed": true,
+      "detail": "http 200"
+    },
+    {
+      "name": "Q2 update: the record actually changed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Q4 search: matches on the primary field",
+      "passed": true,
+      "detail": "1 result(s)"
+    },
+    {
+      "name": "Q4 search: matches on the secondary field",
+      "passed": true,
+      "detail": "1 result(s)"
+    },
+    {
+      "name": "Q4 search: a term that matches nothing returns nothing",
+      "passed": true,
+      "detail": "0 result(s)"
+    },
+    {
+      "name": "Q3 delete highest: request succeeded",
+      "passed": true,
+      "detail": "http 204"
+    },
+    {
+      "name": "Q3 delete highest: the largest id is gone",
+      "passed": true,
+      "detail": "removed id 4"
+    },
+    {
+      "name": "Q3 delete highest: the list shrank by one",
+      "passed": true,
+      "detail": "4 -> 3"
+    },
+    {
+      "name": "missing record returns an error rather than crashing",
+      "passed": true,
+      "detail": "http 404"
+    },
+    {
+      "name": "schema accepts a valid answer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schema rejects fewer than 3 tags",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schema rejects more than 3 tags",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schema rejects a tag under 3 characters",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schema rejects a tag over 30 characters",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "schema rejects a summary over 25 words",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "router sends the first turn to the planner",
+      "passed": true,
+      "detail": "planner"
+    },
+    {
+      "name": "router routes back to the planner when the reviewer objects",
+      "passed": true,
+      "detail": "planner"
+    },
+    {
+      "name": "router stops the graph at the turn ceiling",
+      "passed": true,
+      "detail": "END"
+    },
+    {
+      "name": "graph finishes instead of hanging",
+      "passed": true,
+      "detail": "37566 ms"
+    },
+    {
+      "name": "graph returned exactly 3 tags",
+      "passed": true,
+      "detail": "3 tags"
+    },
+    {
+      "name": "every tag is a non-empty string",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "graph returned a summary",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "graph respected the turn ceiling",
+      "passed": true,
+      "detail": "3 turns"
+    }
+  ]
+}

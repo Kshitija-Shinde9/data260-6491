@@ -1,0 +1,6 @@
+run,ceiling,attempts,schema_failures,schema_valid,turns_used,latency_ms,outcome,tags,schema_error
+1,10,8,0,True,10,119421,hit turn ceiling,frozen blueberries torn seal | rotisserie chicken lukewarm | trail mix undeclared peanuts,
+2,10,8,0,True,10,102597,hit turn ceiling,frozen blueberries torn seal | rotisserie chicken lukewarm | trail mix undeclared peanuts,
+3,10,8,0,True,10,102033,hit turn ceiling,frozen blueberries torn seal | rotisserie chicken lukewarm | trail mix undeclared peanuts,
+4,10,8,0,True,10,107092,hit turn ceiling,frozen blueberries torn seal | rotisserie chicken lukewarm | trail mix undeclared peanuts,
+5,10,8,0,True,10,103337,hit turn ceiling,frozen blueberries torn seal | rotisserie chicken lukewarm | trail mix undeclared peanuts,

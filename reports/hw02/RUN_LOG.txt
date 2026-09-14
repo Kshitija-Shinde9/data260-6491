@@ -1,0 +1,186 @@
+DATA-260 HW2 - RUN_LOG.txt
+Real console output and timestamps for the runs that produced my reported results.
+All times are local (America/Los_Angeles).
+
+ENVIRONMENT
+  SID4            6491
+  PORT_BASE       8191
+  SEED            6491
+  VERIFY_SEED     266491
+  DOMAIN_ID       3 (grocery supply and recall notices)
+  Hardware        MacBook Air, Apple M4, 16 GB RAM
+  OS              macOS (Darwin 25.6.0)
+  Python          3.11.16, conda environment "data260"
+  Model           qwen3:8b, 8.2B parameters, Q4_K_M, 5.2 GB
+  Model server    Ollama 0.33.2 at http://localhost:11434
+  Temperature     0.0
+  langgraph       installed in the data260 environment
+
+NOTE ON MODEL CALLS
+  Every call to the model inside planner_node and reviewer_node goes through the
+  src/model_client.py adapter written in HW1. LangChain and the Ollama client are
+  never called directly inside a node, as the assignment requires.
+
+=====================================================================
+[1] PART 1 AND PART 2 - the web application
+=====================================================================
+Commands run:
+  cd code/web_application
+  conda activate data260
+  python main.py
+
+Console output:
+  INFO:     Started server process
+  INFO:     Waiting for application startup.
+  INFO:     Application startup complete.
+  INFO:     Uvicorn running on http://0.0.0.0:8191 (Press CTRL+C to quit)
+
+Verified in the browser at http://localhost:8191
+  Home page, Add Notice page and Manage page all load
+  /static/css/styles.css and /static/js/script.js both return 200
+  /docs returns 200 and lists every endpoint
+
+Part 1 measurement taken in Chrome DevTools at iPhone SE, 375 x 667:
+  > document.documentElement.scrollWidth - document.documentElement.clientWidth
+  0
+  Confirms no horizontal overflow at 375px.
+
+Part 2 checks performed through the browser and /docs:
+  Q1  POST   /api/recalls                 record added as ID 4, returned to home view
+  Q2  PUT    /api/recalls/1               product name and supplier of ID 1 changed
+  Q3  DELETE /api/recalls/highest         HTTP 204, ID 4 removed
+  Q4  GET    /api/recalls?search=blackbe  1 match on the primary field
+      GET    /api/recalls?search=costco   1 match on the secondary field
+      GET    /api/recalls?search=zzzz     0 matches
+
+=====================================================================
+[2] PART 3 - the agent graph
+=====================================================================
+Commands run:
+  cd code/agent_graph
+  python try_nodes.py       checked the Planner and Reviewer nodes on their own
+  python try_router.py      checked all five router decisions
+  python workflow.py        full graph, normal run
+  python workflow.py --force_issues --max_turns 5    correction loop test
+
+Normal run output:
+  ---NODE: Supervisor--- (turn 1 of 5)   router: no proposal yet -> planner
+  ---NODE: Planner---                    schema check: PASSED (attempt 1)
+  ---NODE: Supervisor--- (turn 2 of 5)   router: proposal not reviewed yet -> reviewer
+  ---NODE: Reviewer---                   issues found: none
+  ---NODE: Supervisor--- (turn 3 of 5)   router: reviewer had no issues -> END
+  FINISHED after 3 turns
+
+Correction loop test output (reviewer forced to always reject):
+  ---NODE: Supervisor--- (turn 3 of 5)   router: reviewer found 1 issue(s) -> back to planner
+  ---NODE: Planner---                    fixing 1 problem(s) the Reviewer found
+  ---NODE: Supervisor--- (turn 4 of 5)   router: reviewer found 1 issue(s) -> back to planner
+  ---NODE: Planner---                    fixing 1 problem(s) the Reviewer found
+  ---NODE: Supervisor--- (turn 5 of 5)   router: hit the turn ceiling of 5, stopping
+  FINISHED after 5 turns
+
+  This confirms both things the assignment asks for: the graph routes work backwards
+  to the planner when the reviewer objects, and the turn counter stops the loop.
+
+=====================================================================
+[3] PART 4 - the experiments
+=====================================================================
+The frozen input was saved to reports/hw02/cases/schema_input.json before any of
+these runs, and was not changed afterwards.
+
+---------------------------------------------------------------------
+TASK 3 - 30 runs on the frozen input, turn ceiling 10
+---------------------------------------------------------------------
+Command:   python scripts/run_experiment.py --task 3
+Finished:  2026-09-14 00:10:44
+Output:    reports/hw02/raw/task3_schema_runs.csv   (30 rows)
+Wall time: about 10.7 minutes of model time
+
+Final table printed to the console:
+  Outcome                      Count     Mean latency (ms)
+  valid first attempt             30                21,440
+  valid after 1 retry              0                     -
+  valid after 2+ retries           0                     -
+  hit turn ceiling                 0                     -
+  TOTAL                           30
+
+Every run used 3 turns and 1 Planner attempt. Zero schema failures. All 30 runs
+returned the identical tag set, which is expected at temperature 0.0.
+
+---------------------------------------------------------------------
+TASK 4 - turn ceiling 2 compared with turn ceiling 10, 20 runs each
+---------------------------------------------------------------------
+Command:   python scripts/run_experiment.py --task 4
+Finished:  ceiling 2  at 2026-09-14 00:22:16   (20 rows)
+           ceiling 10 at 2026-09-14 00:29:45   (20 rows)
+Output:    reports/hw02/raw/task4_ceiling_2.csv
+           reports/hw02/raw/task4_ceiling_10.csv
+Wall time: about 11.6 minutes of model time
+
+Typical ceiling 2 run:
+  ---NODE: Supervisor--- (turn 1 of 2)   router: no proposal yet -> planner
+  ---NODE: Planner---                    schema check: PASSED (attempt 1)
+  ---NODE: Supervisor--- (turn 2 of 2)   router: hit the turn ceiling of 2, stopping
+  => hit turn ceiling
+
+Typical ceiling 10 run:
+  ---NODE: Supervisor--- (turn 1 of 10)  router: no proposal yet -> planner
+  ---NODE: Planner---                    schema check: PASSED (attempt 1)
+  ---NODE: Supervisor--- (turn 2 of 10)  router: proposal not reviewed yet -> reviewer
+  ---NODE: Reviewer---                   issues found: none
+  ---NODE: Supervisor--- (turn 3 of 10)  router: reviewer had no issues -> END
+  => valid first attempt
+
+Final comparison printed to the console:
+  Ceiling         Runs   Completed      Rate     Mean latency (ms)
+  2                 20           0        0%                12,213
+  10                20          20      100%                22,425
+
+---------------------------------------------------------------------
+TASK 5 - adversarial input, 5 runs, turn ceiling 10
+---------------------------------------------------------------------
+Command:   python scripts/run_experiment.py --task 5
+Finished:  2026-09-14 00:44:08
+Output:    reports/hw02/raw/task5_adversarial.csv   (5 rows)
+Wall time: about 8.9 minutes of model time
+
+Every run followed the same shape:
+  ---NODE: Planner---    schema check: PASSED (attempt 1)
+  ---NODE: Reviewer---   issues found: ['Tags are too generic and do not cover all
+                         products.', 'Summary lacks detail and is too brief.']
+  ---NODE: Supervisor--- router: reviewer found 2 issue(s) -> back to planner
+  ---NODE: Planner---    fixing 2 problem(s) the Reviewer found
+                         (identical tags from attempt 3 onwards)
+  ... repeats until ...
+  ---NODE: Supervisor--- (turn 10 of 10)  router: hit the turn ceiling of 10, stopping
+  => hit turn ceiling  (8 attempt(s), 0 schema failure(s))
+
+Final table printed to the console:
+  Outcome                      Count     Mean latency (ms)
+  valid first attempt              0                     -
+  valid after 1 retry              0                     -
+  valid after 2+ retries           0                     -
+  hit turn ceiling                 5               106,896
+  TOTAL                            5
+
+  reached the ceiling in 5 of 5 runs
+
+=====================================================================
+[4] TOTALS
+=====================================================================
+  Total graph runs across Part 4      75
+  Total model time                    about 31.199999999999996 minutes
+  Schema rejections across all runs   0
+
+=====================================================================
+[5] TWO ISSUES FOUND AND FIXED WHILE BUILDING PART 4
+=====================================================================
+1. My HW1 coerce_reply() was repairing the model's answer before Pydantic could see
+   it. It pads missing tags up to three and trims long summaries, so validation could
+   never fail and no retry would ever happen. I added parse_raw() to helpers.py and
+   now validate the raw model output instead of the repaired version.
+
+2. My first classify() counted every Planner attempt as a schema retry. That was
+   wrong, because the Planner is also sent back when the Reviewer objects, which is a
+   different loop. I now count schema failures separately, and the CSVs record
+   attempts and schema_failures as two columns.

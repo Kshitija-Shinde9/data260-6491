@@ -2,8 +2,7 @@ import argparse
 import os
 import sys
 
-# src/model_client.py lives at the repo root, two levels up from this file.
-# Same pattern I used in HW1 hw1_client.py.
+
 REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 sys.path.insert(0, REPO_ROOT)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +15,7 @@ from src.model_client import ModelClient
 from state import AgentState
 
 
-# wires my 3 nodes together into one graph
+
 def build_workflow():
     workflow = StateGraph(AgentState)
 

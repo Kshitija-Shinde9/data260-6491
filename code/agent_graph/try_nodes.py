@@ -5,8 +5,7 @@ REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 sys.path.insert(0, REPO_ROOT)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# A small script just to show my two nodes working on their own,
-# before I wire them into the graph.
+
 
 from src.model_client import ModelClient
 from nodes import planner_node, reviewer_node

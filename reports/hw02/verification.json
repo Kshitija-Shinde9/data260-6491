@@ -1,13 +1,13 @@
 {
   "homework": "HW2",
-  "generated_at": "2026-09-14T19:44:46Z",
+  "generated_at": "2026-09-14T20:01:01Z",
   "sid4": 6491,
   "port_base": 8191,
   "prefix": "s6491",
   "seed": 6491,
   "verify_seed": 266491,
   "domain_id": 3,
-  "commit_hash": "7245c5a2f14e0924c6a59a43f103860230ed5cfb",
+  "commit_hash": "fe4cb27e81b2cf726f43ead18036a6a1a7c9fb4c",
   "tag": "hw1",
   "model_configuration": {
     "model": "qwen3:8b",
@@ -177,7 +177,7 @@
     {
       "name": "graph finishes instead of hanging",
       "passed": true,
-      "detail": "37566 ms"
+      "detail": "36672 ms"
     },
     {
       "name": "graph returned exactly 3 tags",

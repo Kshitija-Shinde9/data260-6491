@@ -19,7 +19,7 @@ ENVIRONMENT
 NOTE ON MODEL CALLS
   Every call to the model inside planner_node and reviewer_node goes through the
   src/model_client.py adapter written in HW1. LangChain and the Ollama client are
-  never called directly inside a node, as the assignment requires.
+  never called directly inside a node
 
 =====================================================================
 [1] PART 1 AND PART 2 - the web application
@@ -79,8 +79,6 @@ Correction loop test output (reviewer forced to always reject):
   ---NODE: Supervisor--- (turn 5 of 5)   router: hit the turn ceiling of 5, stopping
   FINISHED after 5 turns
 
-  This confirms both things the assignment asks for: the graph routes work backwards
-  to the planner when the reviewer objects, and the turn counter stops the loop.
 
 =====================================================================
 [3] PART 4 - the experiments
@@ -171,16 +169,3 @@ Final table printed to the console:
   Total graph runs across Part 4      75
   Total model time                    about 31.199999999999996 minutes
   Schema rejections across all runs   0
-
-=====================================================================
-[5] TWO ISSUES FOUND AND FIXED WHILE BUILDING PART 4
-=====================================================================
-1. My HW1 coerce_reply() was repairing the model's answer before Pydantic could see
-   it. It pads missing tags up to three and trims long summaries, so validation could
-   never fail and no retry would ever happen. I added parse_raw() to helpers.py and
-   now validate the raw model output instead of the repaired version.
-
-2. My first classify() counted every Planner attempt as a schema retry. That was
-   wrong, because the Planner is also sent back when the Reviewer objects, which is a
-   different loop. I now count schema failures separately, and the CSVs record
-   attempts and schema_failures as two columns.

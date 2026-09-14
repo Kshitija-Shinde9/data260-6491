@@ -1,5 +1,3 @@
-# small script to show my router making every decision it can make
-# and prints which node it picks each time.
 
 from nodes import supervisor_node
 from router import router_logic

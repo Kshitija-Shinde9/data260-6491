@@ -1,0 +1,54 @@
+Foodborne illness (commonly known as food poisoning) is often caused by consuming food contaminated by bacteria and/or their toxins, parasites, viruses, chemicals, or other agents. While the American food supply is among the safest in the world, the federal government estimates that there are about 48 million cases of foodborne illness each year. This estimate is equivalent to 1 in 6 Americans becoming sick from contaminated food, which results in an estimated 128,000 hospitalizations and 3,000 deaths.
+Foodborne illness occurs when people eat or drink food or beverages contaminated with pathogens, chemicals, or toxins. There are several factors that can contribute to the symptoms and severity of food poisoning, including a weakened immune system and age. When the FDA learns of an outbreak, the agency’s Coordinated Outbreak Response and Evaluation (CORE) Network works closely with state and local partners and the Centers for Disease Control to identify the cause and prevent additional illnesses.
+When necessary, the FDA works with food producers to facilitate voluntary recalls of potentially contaminated products; the agency also has mandatory recall authorities under the FDA Food Safety Modernization Act (FSMA).
+Foodborne Pathogens
+While every outbreak of foodborne illness is different, below is some general information about some key foodborne pathogens.
+E. coli
+E. coli
+FoodSafety.gov: Food Poisoning - E. coli
+CDC: E. coli
+Salmonella
+Salmonella
+FoodSafety.gov: Food Poisoning - Salmonella
+CDC: Salmonella
+Listeria
+Listeria
+FoodSafety.gov: Food Poisoning - Listeria
+CDC: Listeria
+Cyclospora
+Cyclospora
+Cyclosporiasis and Fresh Produce
+CDC: Cyclosporiasis
+Hepatitis A
+Hepatitis A
+FoodSafety.gov: Food Poisoning - Hepatitis A
+CDC: Hepatitis A
+Cronobacter sakazakii
+Cronobacter sakazakii
+Cronobacter Infection and Infants
+CDC: Cronobacter
+Bad Bug Book
+The Bad Bug Book 2nd Edition , released in 2012, provides current information about the major known agents that cause foodborne illness.
+Resources for Consumers
+2020 Leafy Greens STEC Action Plan
+Education Resource Library offers educational materials related to food safety, nutrition and cosmetics
+Foodborne Illnesses: What You Need to Know
+Safe Food Handling: What You Need to Know
+Outbreak Investigations
+Food Allergens
+Resources for Industry and Health Professionals
+FDA Food Code - A model that assists food control jurisdictions at all levels of government by providing them with a scientifically sound technical and legal basis for regulating the retail and food service segment of the industry (restaurants and grocery stores and institutions such as nursing homes)
+Healthy People Initiative - Healthy People provides science-based, 10-year national objectives for improving the health of all Americans
+FSMA Final Rules for Preventive Controls
+Current Good Manufacturing Practice and Hazard Analysis and Risk-Based Preventive Controls for Human Food
+FSMA Final Rule for Preventive Controls for Animal Food
+Whole Genome Sequencing (WGS) Program - Whole genome sequencing reveals the complete DNA make-up of an organism, enabling us to better understand variations both within and between species. This in turn allows us to differentiate between organisms with a precision that other technologies do not allow. FDA is using this technology to perform basic foodborne pathogen identification during foodborne illness outbreaks and applying it in novel ways that have the potential to help reduce foodborne illnesses and deaths over the long term both in the U.S and abroad.
+Good Manufacturing Practices (GMPs) for the 21st Century - Food Processing
+Microbiological Methods & Bacteriological Analytical Manual (BAM)
+Pesticide Analytical Manual (PAM)
+Content current as of:
+05/03/2023
+Regulated Product(s)
+Food & Beverages
+Topic(s)
+Foodborne Illness

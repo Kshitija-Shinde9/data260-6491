@@ -1,0 +1,36 @@
+When food safety incidents occur, it is important for both industry and regulators to understand why and how those problems originated. Food safety incidents can result from certain conditions, practices, or contamination events, whether biological, chemical, physical, or radiological, that may render food unsafe for consumption and pose a risk to public health. The findings from a Root Cause Analysis (RCA) can help firms improve their own food safety interventions, inform industry-wide best practices, and also help FDA develop guidance and enhanced oversight, all of which can help prevent recurrence.
+What is a root cause analysis?
+A RCA is a structured, analytical approach used to identify the underlying cause of a food safety incident. Rather than simply identifying causes or outcomes, an RCA helps to understand why an incident occurred so that targeted interventions can be developed to prevent similar problems in the future.
+Why Do RCAs Matter for Food Safety?
+RCAs strengthen the entire food safety system in several ways:
+Prevention-focused: Insights from RCAs inform preventive action plans, consistent with the proactive approach of the Food Safety Modernization Act (FSMA) Final Rule on Preventive Controls for Human Food
+Standardized approach: Consistent RCA protocols improve the quality and reliability of the analyses
+Transparency: Sharing findings builds stakeholder confidence and can help to ensure compliance with regulatory requirements
+System-wide improvement: RCA findings can help strengthen the entire food supply chain by contributing to continuous improvement through identification of possible causes that may lead to food safety incidents
+What is the process for an RCA?
+The following are widely held general best practices for an RCA in the food industry:
+Establishing a qualified RCA team : Establish a team of relevant staff and subject matter experts.
+Describing the Problem : Gather information about what happened, when, and where. This may include traceback information, incident summaries, manufacturing and production records, SOPs, environmental monitoring records, cleaning records, laboratory data, interviews with staff, and any other relevant data.
+Analyzing the data : Analyze the data to identify possible causes and how they may be associated with the triggering of a food safety incident. If applicable, start with a risk assessment or hazard analysis (suitable for the event) and use appropriate analytical tools to complete the analysis. Use process maps, flow charts, cause-and-effect diagrams (ie. Ishikawa diagrams) and other visual tools to identify the possible causes that may have resulted in the food safety incident.
+Identifying Root Cause(s) : Fully analyze each possible cause and document the analysis and determination. The analysis may lead to one or multiple possible causes, but an RCA involves additional steps because identification alone will not prevent recurrence.
+Taking Action and Verifying Actions Worked : Identified possible, intermediate or actual root causes may be used as an opportunity to make improvements to food safety management practices or to identify solutions. Solutions may include both immediate corrective actions to rectify a situation and long-term actions to ensure similar future incidents don’t occur. FSMA regulations require verification of certain corrective actions. From a regulatory perspective, FDA may follow up with firms after an incident to ensure that corrective actions were taken.
+The FDA's Use of RCA
+Regulatory bodies, including the FDA, can also use RCAs to better understand how food safety incidents happen, and the information obtained through them can be used to inform guidance development and other necessary actions to improve food safety more broadly.
+FDA’s Activities to Strengthen Root Cause Analysis Processes
+The FDA is committed to:
+Collaborating with federal, state, industry, consumer, and academic partners to advance and coordinate RCA protocols across the food industry;
+Strengthening FDA’s own procedures for conducting RCAs to include standardizing reporting formats, and communications processes for sharing finding and recommendation actions.
+The FDA is working to meet this commitment through a number of activities:
+Global best practices review : FDA conducted and reviewed a third-party analysis of RCA practices used by industry and regulators worldwide in order to determine how and when an RCA was used and the extent to which it was used.
+Pilot testing : FDA conducted retrospective analyses of past incidents using the new SOP and associated electronic tools between 2024-2025.
+Industry engagement : In June 2024, FDA participated in an International Association for Food Protection webinar on RCAs, featuring insights from experts across the food industry and regulatory bodies.
+Updated guidance : The FDA's Investigations Operations Manual now includes specific sections on conducting Root Cause Investigations. Section 8.2.2.5.5 guides the systematic identification of possible causes in foodborne illness outbreaks, emphasizing comprehensive data gathering, facility evaluations, and detailed documentation.
+Additional Information
+Food Safety Modernization Act (FSMA)
+FSMA Final Rule for Preventive Controls for Human Food
+Microbiological Safety: The FDA's Role in Preventing Foodborne Illness
+Outbreak Investigation Reports
+Content current as of:
+05/13/2026
+Regulated Product(s)
+Food & Beverages

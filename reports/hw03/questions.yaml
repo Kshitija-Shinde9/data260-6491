@@ -1,0 +1,53 @@
+questions:
+
+  - id: q1
+    question: "Which allergen was undeclared in the J. HIGGS Loaded Bacon and Cheddar potato chips, and which supermarket chain sold them?"
+    expected_answer: >-
+      Soy. Saratoga Potato Chips of Fort Wayne, Indiana recalled two Best-if-Used-By codes
+      of the 7.75-ounce bags, which were sold in Save A Lot stores across Indiana,
+      Kentucky, Ohio, Tennessee and Maryland.
+    expected_source: "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt"
+    single_source: true
+    answer_keywords: ["J. HIGGS", "soy", "Save A Lot"]
+
+  - id: q2
+    question: "Why did Whole Foods Market recall Cabricharme cheese?"
+    expected_answer: >-
+      The cheese contains egg lysozyme, an egg white protein, which was not declared on
+      the label. It was sold in the specialty cheese department of 18 Whole Foods Market
+      stores across Arizona, California, Connecticut, Massachusetts, New Jersey, New York
+      and Rhode Island.
+    expected_source: "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt"
+    single_source: true
+    answer_keywords: ["Cabricharme", "egg lysozyme", "Whole Foods"]
+
+  - id: q3
+    question: "Which frozen pasta product sold at Walmart was recalled for possible Listeria contamination, and what size was the package?"
+    expected_answer: >-
+      bettergoods Authentic Italian Lemon Alfredo Fettuccine, recalled by Gias Foods of
+      New York in a 22 oz yellow plastic package, distributed nationwide at Walmart
+      stores. Two lots were affected and no illnesses were reported.
+    expected_source: "gias_foods_inc_recalls_bettergoods_authentic_italian_lemon_alfredo_fet.txt"
+    single_source: true
+    answer_keywords: ["bettergoods", "Listeria monocytogenes", "Walmart"]
+
+  - id: q4
+    question: "Which imported spice brands were found to be contaminated with Salmonella, and who distributed them?"
+    expected_answer: >-
+      Everest Garam Masala, Everest Sambhar Masala and Maggi Masala ae Magic, distributed
+      by Amin Trading Agency LLC of Edison, New Jersey. The spices were bought at retail
+      in India, were not labelled for distribution in the United States, and FDA analysis
+      found Salmonella in all three.
+    expected_source: "public_health_alert_concerning_recalled_everest_and_maggi_brand_spices.txt"
+    single_source: true
+    answer_keywords: ["Garam Masala", "Amin Trading", "Salmonella"]
+
+  - id: q5
+    question: "What was wrong with WanaBana apple cinnamon fruit puree pouches, and which other brands were recalled for the same problem?"
+    expected_answer: >-
+      They may contain elevated levels of lead. WanaBana voluntarily recalled all pouches
+      regardless of expiration date, and certain Schnucks cinnamon-flavoured applesauce
+      pouches and Weis cinnamon applesauce pouches were also recalled.
+    expected_source: "fda_advises_parents_and_caregivers_not_buy_or_feed_wanabana_apple_cinn.txt"
+    single_source: false
+    answer_keywords: ["WanaBana", "lead", "applesauce"]

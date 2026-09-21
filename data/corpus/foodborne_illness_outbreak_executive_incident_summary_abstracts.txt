@@ -1,0 +1,55 @@
+Executive Incident Summary (EIS) abstracts are written following the closure of outbreak and adverse event investigations primarily managed by  FDA’s Coordinated Outbreak Response & Evaluation (CORE) Response Teams . These abstracts are generated for each outbreak that is suspected to be linked to an FDA-regulated human food product and has been transferred to a CORE Response Team for additional coordination. Response Teams work directly with FDA field offices, FDA subject-matter experts, the CDC, FSIS, and our state, local, tribal, and territorial partners on a response strategy. The team coordinates investigations, inspections, sampling, and traces product distribution through the supply chain with the ultimate goal of stopping an outbreak.
+Close coordination among the FDA, CDC, and state and local regulatory, public health and agriculture departments is crucial to stopping an outbreak. This collaborative process is documented for historical and evidence-based purposes and often includes a high-level overview of the traceback, laboratory, and epidemiological information collected during the course of the investigation.
+EIS abstracts are a post-response deliverable, meaning the outbreak or adverse event series has ended and there is no longer an ongoing risk to the public. These reports are redacted in a way that complies with disclosure laws, including the Trade Secrets Act, and FDA’s regulations to protect commercial confidential information (CCI), personally identifiable information (PII), and other information exempt from public disclosure under the Freedom of Information Act.
+CORE Executive Incident Summary Abstracts
+2026 Investigations
+Salmonella Typhimurium/Moringa Leaf/2026 (ref #1377)
+E. coli O157:H7/Raw Cheddar Cheese; Raw Milk/2026 (ref #1369)
+Salmonella Newport and Kentucky/Moringa Leaf/2026 (ref #1365)
+Salmonella Newport/Cantaloupe/2026 (ref #1366)
+Listeria monocytogenes /Soft Cheese/2026 (ref #1380)
+2025 Investigations
+Clostridium botulinum /Infant Formula/Nov 2025 (ref #1350)
+Salmonella Saintpaul/Mango/2025 (ref #1353)
+Salmonella Africana/Not Identified/2025 (ref #1351)
+Listeria monocytogenes /Prepared Pasta Meals/2025 (ref #1290)
+Listeria monocytogenes /Not Identified/2025 (ref #1309)
+Salmonella Richmond/Moringa Leaf/2025 (ref #1345)
+Salmonella Lomalinda/Spring Mix/2025 (ref #1339)
+Listeria monocytogenes /Not Identified/2025 (ref #1334)
+Salmonella Enteritidis/Not Identified/2025 (ref #1329)
+Cyclospora cayetanensis /Parsley/2025 (ref #1325)
+Cyclospora cayetanensis /Not Identified/2025 (ref #1313)
+Salmonella Oranienburg/Sprouts/ 2025 (ref #1328)
+Salmonella Enteritidis/Shell eggs/2025 (ref #1301)
+Salmonella Anatum/Sprouted Beans/2025 (ref #1312)
+Salmonella Enteritidis/Shell Eggs/2025 (ref #1300)
+E. coli O145/Not Identified/2025 (ref #1303)
+Salmonella Montevideo/Cucumber/2025 (ref #1304)
+Listeria monocytogenes /Deli Sandwich (suspect)/2025 (ref #1305)
+Salmonella Oranienburg/Pistachio Cream/2025 (ref #1311)
+Salmonella Oranienburg/Not Identified/2025 (ref #1316)
+Glossary of Terms Commonly Used in Abstracts
+Epidemiologic evidence (or epidemiologic information, epidemiologic data) is one form of data gathered during outbreak investigations. Information collected by investigators about who is getting sick in an outbreak, as well as where and when the illnesses are happening, can help investigators narrow the list of possible sources of contamination.
+Convergence is a point in the supply chain where multiple traceback legs share a commonality. Commonalities can include shared facilities, land, water sources, and/or geographic regions.
+Hypothesis is an estimation about the source of the illnesses based on what information is known.
+Laboratory evidence can refer to microbiological testing, chemical analysis, and other laboratory-based tools used to assess contamination or adulteration of a food or environment.
+Outbreak vehicle is a contaminated food, or an ingredient within a contaminated food, causing illnesses in an outbreak.
+Sample generally consists of portions of foods, ingredients, or environments tested to identify a pathogen or contaminant.
+Traceback is a process of reviewing product supply chain records to identify the origin of food served to cases of illness or sold at a specific point of sale.
+FOIA and Exemptions
+Freedom of Information Act
+The Freedom of Information Act (FOIA) provides the public the right to request access to records from any federal agency. It is often described as the law that keeps citizens in the know about their government. Federal agencies are required to disclose any information requested under the FOIA unless it falls under exemptions, including those which protect interests such as personal privacy, confidential commercial information, and law enforcement. Descriptions of key exemptions include:
+Exemption 4:  Protects trade secrets and confidential commercial or financial information.
+Exemption 5:  Protects certain inter-agency and intra-agency communications.
+Exemption 6:  Protects information about individuals in personnel, medical, and similar files when disclosure would constitute a clearly unwarranted invasion of privacy.
+Exemption 7(A):  Protects records or information compiled for law enforcement purposes when disclosure could reasonably be expected to interfere with enforcement proceedings.
+Useful Links:
+How FDA Investigates Outbreaks
+FDA’s CORE Investigation Table
+Outbreak Advisories
+FDA Traceback Investigation Process
+Content current as of:
+09/16/2026
+Regulated Product(s)
+Food & Beverages

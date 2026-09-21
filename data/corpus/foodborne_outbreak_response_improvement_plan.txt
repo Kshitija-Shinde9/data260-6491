@@ -1,0 +1,152 @@
+Post-Outbreak Response and Prevention Strategies to Enhance Food Safety
+A prevention strategy is an affirmative, deliberate approach undertaken by the FDA and interest holders to address the root cause or likely causal factors of outbreaks linked to certain FDA-regulated foods and help limit or prevent future outbreaks. These strategies are not developed for every outbreak. They generally target scenarios where the likely root cause or contributing factors are more clearly identified and similar operations or historical outbreak patterns suggest a repeated risk.
+Tackling foodborne outbreaks faster and revealing the root cause are essential for the prevention of future outbreaks. We have a plan to do that.
+Foodborne disease remains a significant public health problem in the United States. The FDA’s Foodborne Outbreak Response Improvement Plan (FORIP), described in this document, is an important step that the FDA is taking to enhance the speed, effectiveness, coordination, and communication of outbreak investigations. (Unless stated otherwise, this report focuses exclusively on the response to human food and not animal food.)
+Our ultimate goal is to bend the curve of foodborne illness in this country.
+I. What are the challenges we are facing?
+II. What progress have we made to date?
+III. What was the basis for developing this FORIP?
+IV. What will this FORIP focus on and why?
+V. The FDA FORIP
+A. Product Tracing: Reduce the Time Needed to Identify Contaminated Product
+B. Root Cause Investigation: Gather and share critical investigational findings and recommendations to more quickly and fully prevent future outbreaks
+C. Use and dissemination of data: More quickly identify the source and provide earlier and more open communications with government partners, industry, and the public
+D. FDA Operational Improvements: Measure, Streamline and Improve Performance
+VI. How will we evaluate success?
+VII. How will we engage with stakeholders?
+Summary
+I. What are the challenges we are facing?
+Foodborne pathogens are estimated to sicken one in six Americans each year. This results in an estimated 128,000 hospitalizations and 3,000 deaths. The food system in the United States is large, distributed, and decentralized, with a broad array of widely distributed products. Foodborne outbreaks require multidisciplinary efforts and often multijurisdictional coordination.
+Changes in identifying, investigating, and controlling foodborne disease outbreaks present new challenges and opportunities in the 21st century. Our ability to detect more outbreaks and smaller outbreaks through new technologies and advances in subtyping, such as whole genome sequencing, has likely increased the number of multistate outbreaks identified in recent years.
+While progress has been made, we need faster and more streamlined investigations to identify and remove contaminated food from the market, and more effective investigations to identify deficiencies in the food system to help prevent similar outbreaks in the future. These are serious concerns that we must address.
+II. What progress have we made to date?
+The FDA and its partners have pursued multiple approaches to reducing illnesses attributed to foodborne pathogens. Since the passage of the 2011 FDA Food Safety Modernization Act (FSMA), the Agency has taken many steps to prevent contamination of food by utilizing a modernized approach to identify and control various food safety hazards. The same year that FSMA became law, the FDA established FDA’s Coordinated Outbreak Response and Evaluation (CORE) Network, composed of a dedicated staff of personnel with expertise in medicine, public health, and science, to coordinate the Agency’s efforts to find, reduce, and work to prevent foodborne illness outbreaks in people.
+For more than a decade, the FDA has been at the forefront of working with other federal, state, and local health authorities to implement advanced outbreak investigation tools to more rapidly identify contaminated food and to determine how contamination of the food occurred. During outbreak investigations, restaurant and grocery purchase data voluntarily provided by persons that became ill can provide critical information for both the epidemiological and traceback investigations. This information is often referred to as consumer purchase data. Outbreak investigation tools include the utilization of purchase data voluntarily provided by ill consumers to assist in identifying common foods purchased in an outbreak and the use of whole genome sequencing to provide important information on the genetic make-up of the pathogen.
+CORE efforts have been enhanced by close collaboration with the Office of Regulatory Affairs’ (ORA) emergency response coordinators and state liaisons. Historically, FDA has depended on its many partnerships to advance foodborne outbreak response. Specifically, FDA has been integrally involved with the Council to Improve Foodborne Outbreak Response (CIFOR) since its inception in 2006, as well as the federal Interagency Foodborne Outbreak Response Collaboration (IFORC), formed in 2013. This plan will complement these efforts and will depend on FDA partners for its success. Notably, CIFOR is comprised of federal, state and local officials from health and agriculture, and also includes an industry workgroup.
+Another example of progress is the continuing expansion of Rapid Response Teams (RRTs), state-based teams that train and coordinate with FDA and respond to any food hazard. The RRTs now exist in more than 20 states and are an excellent example of domestic mutual reliance and federal-state coordination and collaboration.
+In 2019, the FDA launched the New Era of Smarter Food Safety, an initiative that builds on the foundations laid by FSMA, with an increased focus on leveraging technology and other tools to create a more digital, traceable food system, and thereby a safer food supply. In 2020, the FDA released the New Era of Smarter Food Safety Blueprint , which outlines specific approaches the FDA and others will take over the next decade to address food safety in the rapidly changing food system. The blueprint contains four “Core Elements,” which address new food safety challenges the food system will face as well as new technologies (e.g., tracing technologies, genomics, advancements in detection methodologies, and advanced analytics) that can be harnessed to improve food safety.
+This Foodborne Outbreak Response Improvement Plan is focused on multi-state outbreaks that require significant engagement coordinated by FDA’s CORE Network. This plan is intended to complement two of the blueprint’s Core Elements: “Tech-Enabled Traceability” and “Smarter Tools and Approaches for Prevention and Outbreak Response.” It is also important to recognize that many foodborne outbreaks occur at the local level and are tied to contamination that occurs in retail settings, which is the focus of separate activities under the Core Element "New Business Models and Retail Modernization."
+III. What was the basis for developing this FORIP?
+The FORIP was developed as an extension of, and in coordination with, the Core Element work described above, which stemmed from the New Era for Smarter Food Safety Blueprint and the stakeholder engagement efforts that informed both the development and the implementation of the blueprint. FDA leadership and staff across the foods program have continually considered ways to improve the FDA’s outbreak response. Their observations and recommendations played a key role in the development of this FORIP.
+In addition, the FDA contracted with the University of Minnesota’s School of Public Health to better inform the outbreak-related work being conducted under the New Era of Smarter Food Safety Blueprint. The resulting independent report [1] was based on interviews with more than 25 senior FDA officials, as well as senior federal officials in the United States Department of Agriculture’s (USDA) Food Safety Inspection Service (FSIS) and the Centers for Disease Control and Prevention (CDC), state health officials, and industry and consumer foodborne outbreak experts. It provides an objective assessment of the FDA’s structural and functional capacity to support, participate in, or lead multistate foodborne illness outbreak investigation activities. The report, which included a series of recommendations, also played a key role in the FDA’s development of this FORIP.
+IV. What will this FORIP focus on and why?
+The independent report examined the FDA’s roles and responsibilities, processes, priorities, decision trees, and procedures for foodborne outbreak response in three specific areas: product tracing, root cause investigations, and the use of CORE data. We believe that improvements in these three areas will play a significant role in improving the speed, accuracy, and effectiveness of the FDA’s overall outbreak response and coordination with relevant federal, state, local, tribal, territorial, and international counterparts, and industry stakeholders. Themes of increased transparency and trust with partners are woven throughout. While the plan focuses heavily on actions FDA pledges to undertake, we acknowledge the interdependencies that exist in outbreak response requiring a true food systems approach for success. In addition, we have added a fourth category to the FORIP, operational improvements, as we recognize that several recommendations fit well into this category.
+Tech-enabled product traceback – The FORIP focuses on smarter ways to digitize and routinize the traceback process. We will improve our utilization of consumer purchase data to better specify critical traceback information we need from industry, which will streamline additional traceback steps. We will facilitate and expedite how FDA will receive the data, and we will use more advanced analytical methods and computational approaches to prioritize the highest value traceback leads to pursue. We will also work to harmonize our efforts with our relevant federal, state, local, tribal, and territorial counterparts so that they too will be able to advance how they request, receive, and analyze traceback data. We will also work with industry and other stakeholders involved in tracebacks to show them new processes and encourage/help them adopt these new techniques for their traceback efforts.
+Root cause investigations (RCIs) – The FORIP focuses on systematizing, expediting, and sharing FDA RCIs. We will adapt and strengthen protocols and procedures for conducting timely RCIs to ensure we can conduct simultaneous investigations, when necessary. We will standardize criteria and formats for producing reports on RCIs of outbreaks. We will expedite the release of investigation findings and their implications directly with the affected industry and to the public. We will determine the most expedited process for disseminating necessary public health information and actions to prevent a reoccurrence. With appropriated funds, we will seek to enhance staff and resources to manage anticipated increases in root cause analyses.
+Analysis and dissemination of outbreak data – The FORIP focuses on ways to strengthen our analysis and dissemination of outbreak data. We will work with CDC, USDA-FSIS, and other health partners to identify reoccurring, emerging, and persistent strains of pathogens. We will facilitate sharing of data with CDC and other regulatory partners. We will increase transparency of outbreak investigations to increase widespread public confidence in results and help facilitate improved collaboration on investigation activities.
+Operational improvements – The FORIP focuses on continuous operational improvements that will enhance product tracing, root cause analysis, and the use and dissemination of outbreak data. We will streamline the internal process used to make field assignments and information requests. We will work to assure that RCI findings result in an actionable prevention strategy and help determine FDA food program priorities. Importantly, we will build in performance measures across the FDA’s foods program to better evaluate the timeliness and effectiveness of outbreak and regulatory investigation activities.
+V. The FDA FORIP
+The actions identified below were developed by the FDA and informed by both internal and external reviews of current outbreak response activities. The chart identifies the key goals and activities the FDA intends to undertake to improve its outbreak response aimed at preventing additional illnesses. The activities listed in this chart will likely necessitate additional internal actions with respect to the FDA’s current procedures. While this FORIP doesn’t provide that level of granularity, the Agency will undertake these internal measures as it works to achieve the goals and milestones identified in the chart. The focus of this plan is on human food; however, some of these activities may be considered and applied to respond to foodborne outbreaks involving animal food.
+A. Product Tracing: Reduce the Time Needed to Identify Contaminated Product
+#
+Target Goals
+Key Activities
+1.
+Get better information upfront. Leverage digital data to narrow the scope of tracebacks and reduce the burden of record review and analysis.
+Develop updated process to expedite requesting and obtaining purchase data voluntarily provided by ill consumers.
+Develop standard data element format to receive these data.
+Determine how to improve digital data requests in coordination with FSMA section 204 requirements.
+2.
+Facilitate and expedite how we receive data.
+Work with industry to define standards and protocols for electronic submission of data elements under the Food Traceability Rule (once it is finalized).
+Create Product Tracing System within the FDA to support the submission of digital traceability records covered by the final Food Traceability Rule.
+Establish a process for entry of traceability records not covered by the final Food Traceability Rule.
+While fully interoperable systems are developed, continue to promote delivery of traceback data in the most readily analyzable formats available.
+3.
+Use more advanced analytics to conduct accelerated tracebacks.
+Establish a system for prioritizing the traceback legs (the pathway from the point of purchase of the suspect food back to the point of its production) with higher probabilities for leading to the source of contaminated food.
+Establish a system for prioritizing lots within a traceback leg with higher probabilities for being a source.
+4.
+Accelerate tracebacks and trace forwards by informing relevant federal, state, local, tribal, territorial, and international partners of new ways of doing this work in a tech-enabled food traceability world.
+Engage with members of CIFOR to inform local and state health authorities of future traceability enhancements and determine application of those enhancements to new or existing protocols.
+Establish table-top exercises, educational videos, and other visual aids to demonstrate the impact of new traceability tools on the outbreak investigation and recalls that result from outbreak investigations and discuss implications for coordinating work across partners.
+Work with USDA-FSIS to sync the data elements requested for outbreak investigations, as part of ongoing work in the IFORC.
+5.
+Harmonize, where possible, traceability work already underway at the agency related to other FDA-regulated products (e.g., drugs and medical devices).
+Collaborate with the FDA’s Center for Drug Evaluation and Research (CDER) on approaches to product traceability.
+Share information with CDER on critical tracking elements and key data elements.
+Coordinate with the FDA’s Center for Veterinary Medicine (CVM) to standardize electronic recall data submissions in response to outbreaks caused by animal foods.
+6.
+Encourage and help stakeholders use new traceback processes in their own traceback investigations.
+Design and execute pilots with stakeholders, including regulatory partners, on concepts needed to scale up to comprehensive tracebacks. Prioritize commodities that have been sources of most recent outbreaks.
+Provide the FDA’s lessons learned from the Leafy Green Action Plan pilot to stakeholders.
+Engage with industry partners and solution architects to share lessons learned from the traceback pilots on the concepts needed for traceability to scale.
+Create a guide to conduct traceability pilots that can be utilized across industry/commodity groups.
+B. Root Cause Investigation: Gather and share critical investigational findings and recommendations to more quickly and fully prevent future outbreaks
+#
+Target Goals
+Key Activities
+1.
+Adapt and strengthen protocols and procedures for conducting timely FDA root cause investigations.
+Prepare and issue benchmark report on best practices used by other agencies, countries to conduct RCI.
+Following an investigation, compare findings with previous investigation findings to identify emerging trends that can be shared with industry partners.
+2.
+Standardize criteria and format for producing reports on RCIs of outbreaks.
+Determine and post FDA glossary of outbreak response terms such as environmental assessment, root cause investigation, root cause analysis.
+Finalize and post FDA Model document for industry about conducting industry root cause analyses of outbreaks.
+3.
+Determine the most expeditious and transparent process necessary for disseminating public health information learned from the investigation in efforts to prevent a reoccurrence.
+Jointly with other government partners, identify criteria setting forth what investigation information needs to be made publicly available.
+Disseminate “lessons learned” from investigational findings or RCIs more widely and more quickly to regulated and affected industries through educational seminars, webinars, and more.
+Benchmark with other agencies how they disseminate action alerts that enable faster and fuller dissemination.
+Explore posting redacted forms of inspectional observations relevant to inspections conducted in response to outbreak investigation to help inform firms producing similar products or using similar processes
+4.
+Expedite the release of investigation findings and implications of the findings directly with the affected industry to help prevent future outbreaks.
+Evaluate the usefulness, timeliness, and feasibility of publishing the new Outbreak Investigation Report within six weeks after the close of an investigation.
+Develop a rapid process to share investigational findings and recommendations with industry experts to facilitate development of important learnings to share with industry more broadly.
+5.
+Enhance staff, training, and resources to manage anticipated increases in root cause analyses.
+Expand the use of FDA-supported Rapid Response Teams to enhance coordination of and expedite investigation activities between the FDA and other relevant federal, state, tribal, territorial, and local partners.
+Provide additional CORE staff to manage the increased data resulting from electronic records requests and whole genome sequencing (WGS) findings.
+Increase investigative capacity of CORE, Office of Human and Animal Food Operations investigative resources, and the Produce Safety Network (both ORA and CFSAN-OFS) and state partners, resources permitting.
+Explore use of alternative mechanisms/models for specialized root cause analysis, “go” teams.
+C. Use and dissemination of data: More quickly identify the source and provide earlier and more open communications with government partners, industry, and the public
+#
+Target Goals
+Key Activities
+1.
+More fully analyze past outbreaks to understand current outbreaks.
+Finalize protocol or algorithm to automate analysis of repeated observations over multiple investigations to provide insights into reoccurrence of specific contributing factors, when necessary.
+2.
+Facilitate greater sharing of data with CDC and state partners.
+In addition to entering WGS data from FDA labs into NIH’s national database, routinely enter it into PulseNet and refine automated search algorithms.
+Increase sharing of information pertinent to outbreak investigations across federal data platforms.
+3.
+Increase transparency of outbreak investigations to increase widespread public confidence in results and help facilitate improved collaboration on investigation activities.
+With CDC and USDA-FSIS, establish a standard set of data elements that can be released publicly for all outbreak investigations.
+Update the existing pilot CORE Investigation Table, in response to a stakeholder and public survey.
+Make outbreak investigation findings public as soon as possible after an outbreak's conclusion.
+4.
+Enhance efforts to work with CDC and USDA-FSIS to identify reoccurring, emerging, and persistent (REP) strains of pathogens.
+Incorporate knowledge of recurring, emerging, persistent strains as a priori hypotheses in outbreak investigations and use to target retail product sampling during outbreaks associated with these strains.
+More effectively coordinate with state partners to increase expeditious sampling of implicated retail product, leftover product from case patients’ homes and/or retail facilities, and environmental sampling to assist in identifying implicated product, whether a REP strain or not.
+D. FDA Operational Improvements: Measure, Streamline and Improve Performance
+#
+Target Goals
+Key Activities
+1.
+Build-in performance measures across the FDA foods program to better evaluate the timeliness and effectiveness of outbreak and regulatory investigation activities.
+Develop meaningful performance measures to systematically evaluate outbreak response activities.
+In consultation with federal partners, develop an agreed-upon set of critical timeline elements that FDA can use to track its performance improvement.
+Establish means to run standard analysis queries on the CORE database to assess performance over time.
+2.
+Streamline the internal process used to make field assignments and information requests.
+Explore expanding the scope of CORE responsibilities for direct interaction with state partners and industry sources, in specific circumstances.
+Evaluate schemes to prioritize clusters based on WGS, cluster size, and density of case distributions over time.
+Work with CDC and state partners to further refine use of early tracebacks to narrow suspect food items in support of the epidemiological evidence in outbreak investigations.
+VI. How will we evaluate success?
+We stated that the goal of this plan is to enhance the speed, effectiveness, coordination, and communication of outbreak investigations . We will use a combination of performance and outcome measures to assess the extent to which we are able to accomplish that. Further, we will measure our progress in accomplishing the actions set forth in this plan, and we remain committed to continuous improvement.
+VII. How will we engage with stakeholders?
+We prioritize transparency and openness in implementing this plan. We will update stakeholders on our progress at various points in the process and engage stakeholders both to solicit their ideas and feedback. In addition, we will publish an annual report detailing the progress made on specific deliverables identified in this plan. Other government agencies at the federal, state, local, territorial, tribal, and international levels, as well as industry and consumers, are critical stakeholders and partners working with the FDA to strengthen outbreak response in the United States. This plan specifically identifies key efforts the FDA will undertake in concert with these partners. In addition, we plan to hold a stakeholder webinar in early 2022 to describe this plan and respond to questions. And we will post updates to our website as we meet our major milestones.
+Summary
+The FDA has set forth in this plan a series of actions we intend to take to respond more quickly and more efficiently to foodborne outbreaks and reduce the number of foodborne outbreaks that go unsolved in the future. Continued investments throughout the FDA and the food safety system will be critical to modernizing and strengthening our response to foodborne outbreaks, as well as to accomplishing the goals stated in this plan. We commit to streamline and expedite our outbreak response, to leverage digital data, to use more sophisticated analytical methods, to work hand-in-hand with our government, industry, and consumer partners, to learn from past outbreaks, and to communicate necessary information, in a timely and effective manner, to help prevent future outbreaks. We are resolute in our commitment and in our belief that this will help achieve our ultimate goal of bending the curve of foodborne illness in the United States.
+[1] An Independent Review of FDA’s Foodborne Outbreak Response Processes , Craig W. Hedberg, PhD, Prepared under FDA Contract FDA Contract No. 75F40119C10153, August 2021.
+Resources
+Download FDA's Foodborne Outbreak Response Improvement Plan (PDF: 902KB)
+Independent Review of FDA’s Foodborne Outbreak Response Processes
+Post-Outbreak Response and Prevention Strategies to Enhance Food Safety
+Webinar on the Foodborne Outbreak Response Improvement Plan (April 13, 2022)
+Content current as of:
+09/26/2022
+Regulated Product(s)
+Food & Beverages

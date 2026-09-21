@@ -1,0 +1,363 @@
+DATA-260 HW3 Part 2 - retrieval comparison
+run started: 2026-09-21 12:35:38 PDT
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7392.42it/s]
+LLM is explicitly disabled. Using MockLLM.
+documents : 57
+questions : 5
+embedding : sentence-transformers/all-MiniLM-L6-v2  top_k=5
+
+==========================================================================================================
+BUILDING: Token
+==========================================================================================================
+  chunks           : 604
+  avg chunk length : 810.3 characters
+  chunking time    : 315 ms
+
+TECHNIQUE: Token   QUESTION: q1
+  Which allergen was undeclared in the J. HIGGS Loaded Bacon and Cheddar potato chips, and which supermarket chain sold them?
+  query embedding dimension : 384
+  first 8 values            : [-0.0993, 0.0474, -0.0477, 0.0067, 0.0713, -0.0301, -0.049, 0.0438]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 10.96 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6858        0.6942       821        Potato Chips because they may contain undeclared soy allergen. People 
+  2     0.6517        0.6924       747        top right corner of the bag. No illnesses or injuries have been report
+  3     0.5365        0.6330       795        More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  4     0.5346        0.5444       567        Additional Product Images Product: Imperial Nougat Co. manufactured th
+  5     0.4904        0.5040       739        to 9/17/2026 To date, no illnesses related to this product have been r
+
+TECHNIQUE: Token   QUESTION: q2
+  Why did Whole Foods Market recall Cabricharme cheese?
+  query embedding dimension : 384
+  first 8 values            : [-0.0492, -0.0184, 0.0163, 0.0813, 0.0253, 0.0515, -0.0169, 0.0665]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 9.58 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6818        0.6972       847        severe sensitivity to eggs run the risk of a serious or life-threateni
+  2     0.5557        0.5538       620        Table 10/15/25 Best Kitchen Supply 413 Morse St., Ne, Washington, D.C.
+  3     0.5493        0.5620       256        a recall, including retailers and distributors, to ensure that affecte
+  4     0.5249        0.6669       844        More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  5     0.5217        0.5091       872        best-by dates on and before April 3, 2028. The recalled product was di
+
+TECHNIQUE: Token   QUESTION: q3
+  Which frozen pasta product sold at Walmart was recalled for possible Listeria contamination, and what size was the package?
+  query embedding dimension : 384
+  first 8 values            : [-0.0954, 0.0005, -0.0091, 0.047, 0.027, 0.085, 0.0156, 0.1258]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 9.33 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.5869        0.5455       815        due to an improperly declared allergen (eggs). People who have an alle
+  2     0.5833        0.4788       872        Custom Smoking of Monroe, Washington, is a processor of a variety of r
+  3     0.5760        0.5184       862        or # L6080C with an expiration date of 09/19/2027 or 09/20/2027 both s
+  4     0.5758        0.5810       911        Produce stored at cold temperatures can be contaminated. For example, 
+  5     0.5715        0.5318       847        severe sensitivity to eggs run the risk of a serious or life-threateni
+
+TECHNIQUE: Token   QUESTION: q4
+  Which imported spice brands were found to be contaminated with Salmonella, and who distributed them?
+  query embedding dimension : 384
+  first 8 values            : [-0.0135, -0.0291, -0.0215, 0.0722, 0.0502, 0.0155, 0.0292, 0.0392]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 8.83 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6522        0.5968       311        Salmonella should contact their health care provider to report their s
+  2     0.6453        0.5948       960        Trading Agency LLC, Edison, NJ, with the lot numbers referenced above.
+  3     0.6168        0.6264       846        Investigation of Salmonella Typhimurium Illnesses in the United States
+  4     0.6121        0.5693       492        - Cucumbers E. coli - Possibly Linked to Certain Farm Rich Products 20
+  5     0.6074        0.6176       817        to Seafood Exposure — United States, 2021 . MMWR. May 12, 2023 * Multi
+
+TECHNIQUE: Token   QUESTION: q5
+  What was wrong with WanaBana apple cinnamon fruit puree pouches, and which other brands were recalled for the same problem?
+  query embedding dimension : 384
+  first 8 values            : [-0.0681, -0.0336, -0.0188, 0.0205, -0.0537, -0.0389, -0.1037, 0.0871]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 9.03 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6525        0.6220       920        apple cinnamon fruit puree pouches. Product WanaBana apple cinnamon fr
+  2     0.6387        0.6058       995        continued risk of serious illness. FDA issued warning letters in Decem
+  3     0.6137        0.5743       921        Constituent Update August 15, 2024 On August 9, 2024, the U.S. Food an
+  4     0.6120        0.6290       955        identified WanaBana apple cinnamon fruit puree pouches as a potential 
+  5     0.5987        0.5057       872        best-by dates on and before April 3, 2028. The recalled product was di
+
+==========================================================================================================
+BUILDING: Semantic
+==========================================================================================================
+  chunks           : 205
+  avg chunk length : 1918.6 characters
+  chunking time    : 6357 ms
+
+TECHNIQUE: Semantic   QUESTION: q1
+  Which allergen was undeclared in the J. HIGGS Loaded Bacon and Cheddar potato chips, and which supermarket chain sold them?
+  query embedding dimension : 384
+  first 8 values            : [-0.0993, 0.0474, -0.0477, 0.0067, 0.0713, -0.0301, -0.049, 0.0438]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 10.09 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6394        0.6737       658        The issue was identified through company review, leading to a recall i
+  2     0.5442        0.6758       1296       More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  3     0.5200        0.4306       1060       Additional Product Images Product: Imperial Nougat Co. manufactured th
+  4     0.4663        0.3869       2758       Firms are required to accurately list ingredients present in their pro
+  5     0.4657        0.4395       1557       More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+
+TECHNIQUE: Semantic   QUESTION: q2
+  Why did Whole Foods Market recall Cabricharme cheese?
+  query embedding dimension : 384
+  first 8 values            : [-0.0492, -0.0184, 0.0163, 0.0813, 0.0253, 0.0515, -0.0169, 0.0665]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 8.17 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.5314        0.6869       1912       More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  2     0.5222        0.5122       3582       Effective recalls depend on every industry member in the supply chain 
+  3     0.5107        0.3781       396        Central Time, Saturday-Sunday. Media Contact – [ amazon-pr@amazon.com 
+  4     0.4953        0.5093       777        December 15, 2025 Dear Industry Leaders, This letter is directed to ma
+  5     0.4802        0.4682       658        The issue was identified through company review, leading to a recall i
+
+TECHNIQUE: Semantic   QUESTION: q3
+  Which frozen pasta product sold at Walmart was recalled for possible Listeria contamination, and what size was the package?
+  query embedding dimension : 384
+  first 8 values            : [-0.0954, 0.0005, -0.0091, 0.047, 0.027, 0.085, 0.0156, 0.1258]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 6.36 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6028        0.5871       1336       stores. The recalled bettergoods brand Authentic Italian Lemon Alfredo
+  2     0.5734        0.5529       895        Conduct regular frequent cleaning and sanitizing of cutting boards and
+  3     0.5536        0.5358       3582       Effective recalls depend on every industry member in the supply chain 
+  4     0.5512        0.5559       940        Determine if cross-contamination with other foods may have happened. D
+  5     0.5429        0.5156       441        Customers with questions about the recall can contact: Hernan Martinez
+
+TECHNIQUE: Semantic   QUESTION: q4
+  Which imported spice brands were found to be contaminated with Salmonella, and who distributed them?
+  query embedding dimension : 384
+  first 8 values            : [-0.0135, -0.0291, -0.0215, 0.0722, 0.0502, 0.0155, 0.0292, 0.0392]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 6.21 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6069        0.6040       887        Listeria - Hispanic-style Cheeses Illnesses - Infused Rice Puffer Fish
+  2     0.5879        0.5620       2498       MMWR. June 30, 2023. Notes from the Field: Multistate Outbreak of Esch
+  3     0.5775        0.5740       1302       April 15, 2025. Attribution of Salmonella enterica to Food Sources by 
+  4     0.5657        0.5492       927        September 7, 2024. * An Investigation of an Outbreak of Salmonella Typ
+  5     0.5637        0.5598       2493       2018 Evaluation of the U.S. Food and Drug Administration Validated Met
+
+TECHNIQUE: Semantic   QUESTION: q5
+  What was wrong with WanaBana apple cinnamon fruit puree pouches, and which other brands were recalled for the same problem?
+  query embedding dimension : 384
+  first 8 values            : [-0.0681, -0.0336, -0.0188, 0.0205, -0.0537, -0.0389, -0.1037, 0.0871]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 6.11 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6335        0.5398       3090       Product WanaBana apple cinnamon fruit puree pouches, all lot codes and
+  2     0.6017        0.5445       5046       Food and Drug Administration issued a Warning Letter to AUSTROFOOD S.A
+  3     0.5693        0.4690       1578       As of September 14, 2026, A&P Creations LLC has not received any repor
+  4     0.5671        0.6073       759        November 3, 2023 Since the first alert was issued this investigation h
+  5     0.5574        0.5457       658        The issue was identified through company review, leading to a recall i
+
+==========================================================================================================
+BUILDING: Sentence-window
+==========================================================================================================
+  chunks           : 2525
+  avg chunk length : 155.8 characters
+  chunking time    : 73 ms
+
+TECHNIQUE: Sentence-window   QUESTION: q1
+  Which allergen was undeclared in the J. HIGGS Loaded Bacon and Cheddar potato chips, and which supermarket chain sold them?
+  query embedding dimension : 384
+  first 8 values            : [-0.0993, 0.0474, -0.0477, 0.0067, 0.0713, -0.0301, -0.049, 0.0438]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 24.73 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.7084        0.6875       174        The recalled J. HIGGS Loaded Bacon and Cheddar Potato Chips were distr
+  2     0.6577        0.5896       254        The product J. HIGGS Loaded Bacon and Cheddar with UPC code 0-51933-31
+  3     0.6073        0.5635       168        Consumers who have purchased 7.75-ounce packages of J. HIGGS Loaded Ba
+  4     0.6039        0.6442       633        More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  5     0.5448        0.4678       863        manufactured the following cookies and candies that contain allergens 
+
+TECHNIQUE: Sentence-window   QUESTION: q2
+  Why did Whole Foods Market recall Cabricharme cheese?
+  query embedding dimension : 384
+  first 8 values            : [-0.0492, -0.0184, 0.0163, 0.0813, 0.0253, 0.0515, -0.0169, 0.0665]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 24.58 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.7071        0.5735       179        The cheese was sold in the Specialty cheese department at 18 Whole Foo
+  2     0.6130        0.6664       506        Recalled product was cut and plastic wrapped by the pound with Whole F
+  3     0.5696        0.6250       595        More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  4     0.5439        0.3315       248        July 9, 2025 Dear Industry Leaders: This letter is directed to manufac
+  5     0.5421        0.4269       341        In one case, recalled product remained available for sale over three w
+
+TECHNIQUE: Sentence-window   QUESTION: q3
+  Which frozen pasta product sold at Walmart was recalled for possible Listeria contamination, and what size was the package?
+  query embedding dimension : 384
+  first 8 values            : [-0.0954, 0.0005, -0.0091, 0.047, 0.027, 0.085, 0.0156, 0.1258]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 23.33 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6429        0.5834       277        The recalled bettergoods brand Authentic Italian Lemon Alfredo Fettucc
+  2     0.6262        0.5279       137        Lawrence Wholesale, LLC of Vernon, CA also recalled a limited quantity
+  3     0.6160        0.5414       329        More Recalls, Market Withdrawals, & Safety Alerts Summary Company Anno
+  4     0.6114        0.4439       116        August 29, 2025 AquaStar (USA) Corp of Seattle, WA, recalled approxima
+  5     0.6103        0.5138       274        On June 15, 2021, Interstate Food Products indicated to the FDA that t
+
+TECHNIQUE: Sentence-window   QUESTION: q4
+  Which imported spice brands were found to be contaminated with Salmonella, and who distributed them?
+  query embedding dimension : 384
+  first 8 values            : [-0.0135, -0.0291, -0.0215, 0.0722, 0.0502, 0.0155, 0.0292, 0.0392]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 23.61 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.6508        0.6035       173        Additionally, the FDA has subjected the products to "Detention Without
+  2     0.6403        0.3978       138        Children younger than five, the elderly, and people with weakened immu
+  3     0.6318        0.4155       130        Symptoms of Salmonella Salmonella  is a group of bacteria that can cau
+  4     0.6169        0.3973       162        More severe cases of salmonellosis may include a high fever, aches, he
+  5     0.6156        0.5059       281        Purpose The US Food and Drug Administration (FDA) is advising consumer
+
+TECHNIQUE: Sentence-window   QUESTION: q5
+  What was wrong with WanaBana apple cinnamon fruit puree pouches, and which other brands were recalled for the same problem?
+  query embedding dimension : 384
+  first 8 values            : [-0.0681, -0.0336, -0.0188, 0.0205, -0.0537, -0.0389, -0.1037, 0.0871]
+  query vector shape        : (384,)
+  stacked doc vector shape  : (5, 384)
+  retrieval latency         : 26.15 ms
+
+  rank  store_score   cosine_sim   chunk_len  preview
+  ----------------------------------------------------------------------------------------------------
+  1     0.7387        0.6984       116        WanaBana has agreed to voluntarily recall all WanaBana apple cinnamon 
+  2     0.7237        0.7412       208        The FDA has shared the results with the firm whose representatives are
+  3     0.6591        0.6296       350        In late 2023, after a recall of Apple Cinnamon Fruit Puree pouches int
+  4     0.6559        0.5103       257        Before the recall, Austrofood did not appropriately conduct a hazard a
+  5     0.6184        0.6855       172        (Austrofood) , the manufacturer of the apple cinnamon fruit puree pouc
+
+==========================================================================================================
+wrote 75 rows -> reports/hw03/raw/retrieval_results.csv
+wrote 3 rows -> reports/hw03/raw/chunk_stats.csv
+==========================================================================================================
+
+--- summary tables ---
+
+Recomputed from reports/hw03/raw/retrieval_results.csv (75 rows)
+5 questions x 3 techniques x top-5
+
+================================================================================================
+METRIC 1: top-1 cosine (highest similarity among the top-k for that technique)
+================================================================================================
+  Technique           Top-1 cosine    per-question best cosine
+  --------------------------------------------------------------------------------------------
+  Token               0.6456          q1=0.6942  q2=0.6972  q3=0.5810  q4=0.6264  q5=0.6290
+  Semantic            0.6322          q1=0.6758  q2=0.6869  q3=0.5871  q4=0.6040  q5=0.6073
+  Sentence-window     0.6564          q1=0.6875  q2=0.6664  q3=0.5834  q4=0.6035  q5=0.7412
+
+  Reported as the mean across the 5 questions of the highest cosine inside that
+  question's top-5, so it reflects consistency rather than one best case.
+
+================================================================================================
+METRIC 2: mean@k cosine (average of top-k cosines)
+================================================================================================
+  Technique           Mean@k cosine    k    values averaged   min      max
+  --------------------------------------------------------------------------------------------
+  Token               0.5862           5    25                0.4788   0.6972
+  Semantic            0.5386           5    25                0.3781   0.6869
+  Sentence-window     0.5508           5    25                0.3315   0.7412
+
+  Every cosine in every top-5 list is averaged: 5 questions x 5 ranks = 25 values per technique.
+
+================================================================================================
+METRIC 3: #chunks produced by the chunker and the avg chunk length (characters or tokens)
+================================================================================================
+  Technique           Chunks      Avg chunk length      Chunking time (ms)    
+  --------------------------------------------------------------------------------------------
+  Token               604         810.3                 315                   
+  Semantic            205         1918.6                6357                  
+  Sentence-window     2525        155.8                 73                    
+
+  Avg chunk length is measured in CHARACTERS.
+  Chunking time is the cost of building the chunks, separate from search latency.
+
+================================================================================================
+METRIC 4: retrieval latency in milliseconds (time the similarity search took)
+================================================================================================
+  Technique           Mean latency (ms)    Chunks searched    per-question latency (ms)
+  --------------------------------------------------------------------------------------------
+  Token               9.55                 604                10.96  9.58  9.33  8.83  9.04
+  Semantic            7.39                 205                10.09  8.17  6.36  6.21  6.11
+  Sentence-window     24.48                2525               24.73  24.58  23.33  23.61  26.15
+
+  Timed with time.perf_counter() around retriever.retrieve() only, so it measures
+  the similarity search and excludes chunking and index construction.
+
+================================================================================================
+METRIC R: Recall@k  (not defined in the assignment - defined here)
+================================================================================================
+  Technique           Recall@k    questions found   k
+  --------------------------------------------------------------------------------------------
+  Token               100%        5 of 5            5
+  Semantic            80%         4 of 5            5
+  Sentence-window     100%        5 of 5            5
+
+  Recall@k = fraction of questions whose expected_source from questions.yaml
+  appeared anywhere in the top-5 results.
+
+================================================================================================
+COMBINED TABLE (the assignment's format)
+================================================================================================
+
+| Technique | Chunks | Avg chunk length | Top-1 cosine | Mean@k cosine | Recall@k | Mean retrieval latency (ms) |
+|---|---|---|---|---|---|---|
+| Token | 604 | 810.3 | 0.6456 | 0.5862 | 100% | 9.55 |
+| Semantic | 205 | 1918.6 | 0.6322 | 0.5386 | 80% | 7.39 |
+| Sentence-window | 2525 | 155.8 | 0.6564 | 0.5508 | 100% | 24.48 |
+
+================================================================================================
+PER QUESTION: was the expected source found in the top-5?
+================================================================================================
+
+  Question    Token                         Semantic                      Sentence-window               
+  --------------------------------------------------------------------------------------------
+  q1          rank 1, top1 0.694            rank 1, top1 0.676            rank 1, top1 0.687            
+  q2          rank 1, top1 0.697            rank 1, top1 0.687            rank 1, top1 0.666            
+  q3          rank 3, top1 0.581            rank 1, top1 0.587            rank 1, top1 0.583            
+  q4          rank 1, top1 0.626            NOT FOUND, top1 0.604         rank 1, top1 0.603            
+  q5          rank 1, top1 0.629            rank 1, top1 0.607            rank 1, top1 0.741            
+
+run finished: 2026-09-21 12:36:03 PDT

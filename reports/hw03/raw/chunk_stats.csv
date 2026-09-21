@@ -1,0 +1,4 @@
+technique,chunks,avg_chunk_length,chunking_ms
+Token,604,810.27,314.76
+Semantic,205,1918.6,6356.55
+Sentence-window,2525,155.77,73.11

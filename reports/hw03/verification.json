@@ -1,0 +1,185 @@
+{
+  "homework": "HW3",
+  "generated_at": "2026-09-21T19:40:21Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "domain_id": 3,
+  "domain": "Grocery supply and recall notices",
+  "commit_hash": "4ae65583b24bcef66bbe5fccfe1be63df7a6ba45",
+  "tag": "homework2",
+  "configuration": {
+    "part1_model": "none - Part 1 is a FastAPI auth app, no model",
+    "part2_embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "part2_embedding_dimension": 384,
+    "part2_generative_model": "none - retrieval-only, Settings.llm = None",
+    "top_k": 5,
+    "chunkers": {
+      "Token": "TokenTextSplitter(chunk_size=256, chunk_overlap=40)",
+      "Semantic": "SemanticSplitterNodeParser(buffer_size=1, breakpoint_percentile_threshold=95)",
+      "Sentence-window": "SentenceWindowNodeParser(window_size=3)"
+    }
+  },
+  "total_checks": 31,
+  "passed": 31,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "deliverable present: reports/hw03/questions.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/SOURCES.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/CORPUS_MANIFEST.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/METRICS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/AI_USE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/RUN_LOG.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/raw/retrieval_results.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw03/raw/chunk_stats.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/rag/compare_chunking.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/rag/requirements.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: scripts/recompute_tables.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "corpus meets the 200 KB minimum",
+      "passed": true,
+      "detail": "395,149 bytes = 385.9 KB"
+    },
+    {
+      "name": "corpus has more than one document",
+      "passed": true,
+      "detail": "57 documents"
+    },
+    {
+      "name": "manifest lists every corpus file",
+      "passed": true,
+      "detail": "manifest 57, on disk 57"
+    },
+    {
+      "name": "every manifest byte size and SHA-256 matches",
+      "passed": true,
+      "detail": "57/57 verified"
+    },
+    {
+      "name": "questions.yaml parses",
+      "passed": true,
+      "detail": "5 questions"
+    },
+    {
+      "name": "questions.yaml has five questions",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "name": "at least two questions are single-source",
+      "passed": true,
+      "detail": "4 of 5"
+    },
+    {
+      "name": "every question records an expected answer",
+      "passed": true,
+      "detail": "5/5"
+    },
+    {
+      "name": "every expected_source exists in the corpus",
+      "passed": true,
+      "detail": "all present"
+    },
+    {
+      "name": "retrieval results present",
+      "passed": true,
+      "detail": "75 rows"
+    },
+    {
+      "name": "all three chunking techniques produced results",
+      "passed": true,
+      "detail": "Semantic, Sentence-window, Token"
+    },
+    {
+      "name": "rows equal questions x techniques x k",
+      "passed": true,
+      "detail": "5 x 3 x 5 = 75"
+    },
+    {
+      "name": "both a store score and a computed cosine are recorded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "every cosine similarity is within [-1, 1]",
+      "passed": true,
+      "detail": "min 0.3315, max 0.7412"
+    },
+    {
+      "name": "retrieval latency was recorded for every row",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Semantic: expected source found for at least one question",
+      "passed": true,
+      "detail": "4/5 questions"
+    },
+    {
+      "name": "Sentence-window: expected source found for at least one question",
+      "passed": true,
+      "detail": "5/5 questions"
+    },
+    {
+      "name": "Token: expected source found for at least one question",
+      "passed": true,
+      "detail": "5/5 questions"
+    },
+    {
+      "name": "embedding model loads and returns a vector",
+      "passed": true,
+      "detail": "sentence-transformers/all-MiniLM-L6-v2, 3.1s"
+    },
+    {
+      "name": "embedding dimension is 384",
+      "passed": true,
+      "detail": "384"
+    }
+  ]
+}

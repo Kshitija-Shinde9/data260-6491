@@ -1,0 +1,300 @@
+{
+  "homework": "HW3",
+  "sid4": 6491,
+  "domain_id": 3,
+  "domain": "Grocery supply and recall notices",
+  "generated": "2026-09-18",
+  "corpus_dir": "data/corpus/",
+  "document_count": 57,
+  "total_bytes": 395149,
+  "total_kb": 385.9,
+  "minimum_required_kb": 200,
+  "meets_minimum": true,
+  "documents": [
+    {
+      "file": "about_core_network.txt",
+      "bytes": 5425,
+      "sha256": "b96c15641755e749d7e44f427915db3455ab056ca44b9d85d6fb992b312341c0"
+    },
+    {
+      "file": "alerts_advisories_safety_information.txt",
+      "bytes": 16990,
+      "sha256": "5eaf7128d9d98fa9a133480fe72c2dafd63a6fe91bddcffbb33f1aa7448d1b86"
+    },
+    {
+      "file": "ap_creations_llc_issues_nationwide_recall_biq_fel_due_undeclared_silde.txt",
+      "bytes": 3260,
+      "sha256": "ced75a98dae5889afe55dcaa66a930a16e802fad36b386c6db9c2a01797e7fcb"
+    },
+    {
+      "file": "ap_creations_llc_issues_nationwide_recall_x10_natural_enhancement_supp.txt",
+      "bytes": 3692,
+      "sha256": "c4f898b64a643360a7c306e0cada566ccc2f35b290b72e6f52e6e1857918d99d"
+    },
+    {
+      "file": "bmc_medical_co_ltd_recalls_luna_g3_apap_model_lg3600_firmware_g3_20076.txt",
+      "bytes": 4604,
+      "sha256": "49b100be6bbc949e347bcc804d233b1ef4064e3ebc8c1f4368d47864f00ebbcf"
+    },
+    {
+      "file": "buy_store_serve_safe_food.txt",
+      "bytes": 2990,
+      "sha256": "06f8bfa4f81743734d7947f53ddf542c5a5f91846fef077d245d986baf497d89"
+    },
+    {
+      "file": "centric_compounding_issues_nationwide_recall_glutathione_myers_cocktai.txt",
+      "bytes": 3331,
+      "sha256": "3f8a187254b563fc55f4705e76ff11d4d6161399eee85e984f55b30888300c30"
+    },
+    {
+      "file": "core_publications.txt",
+      "bytes": 24723,
+      "sha256": "9bfa8ba543039e6c40238c2ffdd00ddf5d0fe953449e8da5057ed14ded5580f0"
+    },
+    {
+      "file": "evergreen_fresh_sprouts_llc_recalls_broccoli_sprouts_because_possible_.txt",
+      "bytes": 2582,
+      "sha256": "c15773d682e3ab22b8d31b1ad65e5fb8b1695637c0e1539d12bab05ed94856fe"
+    },
+    {
+      "file": "fda_advises_consumers_and_retailers_not_eat_serve_or_sell_certain_impe.txt",
+      "bytes": 3790,
+      "sha256": "c5a143b420745903415e47ca9d945bcbc03315042459c8586a592643671fb4b3"
+    },
+    {
+      "file": "fda_advises_consumers_not_inhale_nitrous_oxide_products.txt",
+      "bytes": 3452,
+      "sha256": "0d113a790a87178e9c2cfa9d9329da3919217a82f996125573fd50a5641ffc77"
+    },
+    {
+      "file": "fda_advises_consumers_not_use_fulvic_care_powder_and_tablets_black_oxy.txt",
+      "bytes": 3398,
+      "sha256": "5a4143e5f3f4befae3920dceaf2bebf25acab7f701e9cbce73a036694ebe8c29"
+    },
+    {
+      "file": "fda_advises_consumers_retailers_and_distributors_not_eat_sell_or_distr.txt",
+      "bytes": 4248,
+      "sha256": "f9438d0ec9a70e2b2b33c6cbd977ce8caccbdfdc76a32c269b089eea30fc3a1e"
+    },
+    {
+      "file": "fda_advises_consumers_retailers_and_distributors_not_eat_sell_or_serve.txt",
+      "bytes": 5681,
+      "sha256": "13a4b3b78c703a440473c3b1509552927c9e33a752c81218c18aa1d1848e3003"
+    },
+    {
+      "file": "fda_advises_consumers_retailers_and_distributors_not_use_eat_sell_or_s.txt",
+      "bytes": 11231,
+      "sha256": "57e1a96c4ff0834a5118ed8892633a397774dca424bea14d5d6c30b8beeaf206"
+    },
+    {
+      "file": "fda_advises_parents_and_caregivers_not_buy_or_feed_wanabana_apple_cinn.txt",
+      "bytes": 4311,
+      "sha256": "da7c853bb95815f373db19676beb0beb34049bb954b2a12e41a6007f67b6929a"
+    },
+    {
+      "file": "fda_advises_public_not_eat_sell_or_serve_certain_imported_frozen_shrim.txt",
+      "bytes": 12114,
+      "sha256": "aeead6bdd94ea54e557da0bea4f447c2b08c2d8fcbb3f25daf4b9e50614ca327"
+    },
+    {
+      "file": "fda_advises_restaurants_and_retailers_not_serve_or_sell_and_consumers_.txt",
+      "bytes": 4372,
+      "sha256": "d590fbf22e98f1e44a37b932bf1002b65a663aabb6d961199f36c4d413cdc676"
+    },
+    {
+      "file": "fda_alert_concerning_certain_cinnamon_products_due_presence_elevated_l.txt",
+      "bytes": 8851,
+      "sha256": "bc1d3125dc63028ebe97d63a87efc32baf56ab0b21e6539f93e33e80e8f87ccc"
+    },
+    {
+      "file": "fda_alerts_parents_and_caregivers_cronobacter_safety_concerns_crecelac.txt",
+      "bytes": 5526,
+      "sha256": "416081877c1d4edcddc097be2beb5e0c0487fe2d73c209d385cc740556c95d92"
+    },
+    {
+      "file": "fda_calls_food_industry_leaders_strengthen_recall_compliance_and_ensur.txt",
+      "bytes": 9807,
+      "sha256": "20474527597601a23421e126067c714fa4ddb0f717840332c9352b9f9b708d26"
+    },
+    {
+      "file": "fda_encourages_food_industry_leaders_streamline_enhance_product_recall.txt",
+      "bytes": 4921,
+      "sha256": "4d0f28890ff953146a2c2d3ac4d83c149659a53eab666412475a85a7285a3a63"
+    },
+    {
+      "file": "fda_expands_warning_consumers_about_toxic_yellow_oleander_purported_be.txt",
+      "bytes": 7451,
+      "sha256": "90ca1ec391296897bf32fb0b85d5ef9c42c263077588ca307beff18f93bfaaf7"
+    },
+    {
+      "file": "fda_issues_warning_about_certain_products_containing_toxic_yellow_olea.txt",
+      "bytes": 10471,
+      "sha256": "d4ace8ff7675a4925dfd64121c7e5daae177525f504ffaaa8ad80d5886ebb633"
+    },
+    {
+      "file": "fda_issues_warning_about_imported_cookware_may_leach_lead_august_2025.txt",
+      "bytes": 9767,
+      "sha256": "57274d2a7f647cb748128b917f68cb1a25b749fea808609b4795b155775e17e4"
+    },
+    {
+      "file": "fda_issues_warning_about_toxic_amygdalin_found_apricot_seeds.txt",
+      "bytes": 3486,
+      "sha256": "79194312cf8e13df6a27d6e0d5065bf6a04788abc163a586c2d846a09a1bbb94"
+    },
+    {
+      "file": "fda_issues_warning_letter_bimbo_bakeries_over_food_allergen_labeling_c.txt",
+      "bytes": 4095,
+      "sha256": "e7eca9c3a7a1659a6e7736345cd3b9b56bcc9ea90ac77868d395b65729b5a04a"
+    },
+    {
+      "file": "fda_issues_warning_letter_manufacturer_apple_cinnamon_fruit_puree_prod.txt",
+      "bytes": 5113,
+      "sha256": "91c2d3cf2be8caad06787b466cbcc0506a8b5348f7a7c2a5b6faf2f24089f82e"
+    },
+    {
+      "file": "fda_public_health_alert_additional_ground_cinnamon_product_due_presenc.txt",
+      "bytes": 8853,
+      "sha256": "241deec40e6d4bda5c001b54e9eb11689bf453bc80eef67bba5db83d7b43a19a"
+    },
+    {
+      "file": "fda_warns_consumers_about_accidental_ingestion_children_food_products_.txt",
+      "bytes": 4216,
+      "sha256": "7f8fb9103bb754c400fb796a536647d23f33f368392c6f43cd148918477d27dc"
+    },
+    {
+      "file": "fda_warns_consumers_not_use_optimized_plant_mediated_solutions_opms_bl.txt",
+      "bytes": 3138,
+      "sha256": "953d715825823f73c1854023817dd4d06a123e690e7dbe86a4bf19a76cbe219b"
+    },
+    {
+      "file": "food_and_water_safety_during_power_outages_and_floods.txt",
+      "bytes": 10556,
+      "sha256": "cb82cdd2eacc588cfbc50a95c15327af9acddb79bcc00b5800e24622d1707e2f"
+    },
+    {
+      "file": "food_safety_tips_consumers_retailers_during_outbreak_foodborne_illness.txt",
+      "bytes": 3671,
+      "sha256": "edac158c632cd35e9aad1015021679c4950da10bfe719d1e9a8f59b4cacecd0e"
+    },
+    {
+      "file": "foodborne_illness_outbreak_executive_incident_summary_abstracts.txt",
+      "bytes": 5561,
+      "sha256": "9e81578e664597997b91def267517bf8d1a2665bb693d132f4b6821ef86a9e72"
+    },
+    {
+      "file": "foodborne_outbreak_response_improvement_plan.txt",
+      "bytes": 25427,
+      "sha256": "86df707ac9106404aa5712adf59fa0f8ce7bed69a0ef6e53617a0cf25752da85"
+    },
+    {
+      "file": "foodborne_pathogens.txt",
+      "bytes": 3827,
+      "sha256": "620912278673559e818dccb06e138fe0fed8bf796c7589f060d3109738d5ca1f"
+    },
+    {
+      "file": "freshpoint_issues_recall_due_improperly_declared_allergen_egg_chicken_.txt",
+      "bytes": 2004,
+      "sha256": "01106048b1437240455598dfeace758d2507ba77b05dd11ea9c69d6bcc8dcecf"
+    },
+    {
+      "file": "get_assistance_fda_human_foods_program_hfp.txt",
+      "bytes": 9413,
+      "sha256": "4906ed91cb4a77b72f7338a6f2f381d75bc48a230bd87cf2f66aeb696bc8a5be"
+    },
+    {
+      "file": "gf_blends_recalls_truly_aip_all_purpose_flour_and_bread_mix_and_eat_ga.txt",
+      "bytes": 2865,
+      "sha256": "a60ebc867743e6c1bb7a0ad3247743df2691c4dc2a55b77469ffada4d50d0c16"
+    },
+    {
+      "file": "gias_foods_inc_recalls_bettergoods_authentic_italian_lemon_alfredo_fet.txt",
+      "bytes": 2468,
+      "sha256": "32c797de39863851ffdcd39b5b5f7d0cb8352b0005c9d09a7998afb70ae81367"
+    },
+    {
+      "file": "industry_and_consumer_assistance_food_dietary_supplements_and_cosmetic.txt",
+      "bytes": 9413,
+      "sha256": "4906ed91cb4a77b72f7338a6f2f381d75bc48a230bd87cf2f66aeb696bc8a5be"
+    },
+    {
+      "file": "investigations_foodborne_illness_outbreaks.txt",
+      "bytes": 26973,
+      "sha256": "1fe629b515061856f9febcbdf384fc217c3fe1b6b4d30064cfe0b3ed538134cf"
+    },
+    {
+      "file": "more_ground_cinnamon_products_added_fda_public_health_alert_due_presen.txt",
+      "bytes": 15555,
+      "sha256": "c134137f14d791bc4fea4d8002b0560ee22350058fc4a5bec2b602e23a4e5e5f"
+    },
+    {
+      "file": "people_risk_foodborne_illness.txt",
+      "bytes": 5532,
+      "sha256": "e59710c0da93571fd80f67f54eeb99a4d40b20010568847572c15e160bb1c345"
+    },
+    {
+      "file": "post_outbreak_response_and_prevention_strategies_enhance_food_safety_u.txt",
+      "bytes": 7075,
+      "sha256": "7fc6446365e79801622015d2df11b083109e70ce01054a779a7062650e664c98"
+    },
+    {
+      "file": "public_health_advisories_investigations_foodborne_illness_outbreaks.txt",
+      "bytes": 6667,
+      "sha256": "75b4395332f4b2034ece7758f05b3ae88aaef2c82f28ca6c6d661628301b58d1"
+    },
+    {
+      "file": "public_health_alert_concerning_possible_listeria_contamination_felix_c.txt",
+      "bytes": 5214,
+      "sha256": "4f9c6260eacb45e1da411135670e8e0919e6bd7db88b430a091fbb330d11d7b2"
+    },
+    {
+      "file": "public_health_alert_concerning_possible_listeria_contamination_little_.txt",
+      "bytes": 3814,
+      "sha256": "be23c24ce922870741bc02b2a7ed794e109d91fad216f3c9af8fde054e440121"
+    },
+    {
+      "file": "public_health_alert_concerning_recalled_everest_and_maggi_brand_spices.txt",
+      "bytes": 3608,
+      "sha256": "53f6a80f126ea6cf6cca2593ecc3f84a0362a8b99b4540987eee48c8be8b9f0a"
+    },
+    {
+      "file": "refrigerator_thermometers_cold_facts_about_food_safety.txt",
+      "bytes": 10305,
+      "sha256": "b736ab9c73d852fa980f1b6daf594cbe3288f1bc90f92ba9741bb87e3a8783b9"
+    },
+    {
+      "file": "safe_food_handling.txt",
+      "bytes": 5086,
+      "sha256": "e96111d11684d0788fbb73eabd43ae0012d30e4e4b5e54e15e172f71d19a04ad"
+    },
+    {
+      "file": "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "bytes": 1954,
+      "sha256": "233748f6586d19ad7447e19ec2d322d260da5a50b10d7c2fabf89bdc6a933d0a"
+    },
+    {
+      "file": "so_delicious_dairy_freer_issues_voluntary_recall_salted_caramel_cluste.txt",
+      "bytes": 2600,
+      "sha256": "1bfcee4f4ffa4c374f7ddb711c9ee97fce6eb7277dbf8337f3b30175f42b26b0"
+    },
+    {
+      "file": "strengthening_food_safety_through_root_cause_analysis.txt",
+      "bytes": 5459,
+      "sha256": "c73c65c3be189fb3e7dfff14b5bcee7334ad404aa3b1f7cae3f63b70079944cd"
+    },
+    {
+      "file": "what_you_need_know_about_foodborne_illnesses.txt",
+      "bytes": 5912,
+      "sha256": "769b42302053c247193a21c6d5aab99db452dcec1ca524e139a09a2c79abfc7c"
+    },
+    {
+      "file": "what_you_need_know_about_preventing_listeria_infections.txt",
+      "bytes": 5987,
+      "sha256": "add9bf42917bf88a0430cbfb6768b01c9f3239bce57bcf0b852af0cbce7d0d79"
+    },
+    {
+      "file": "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt",
+      "bytes": 2314,
+      "sha256": "a578c48f868aea2fff2be40be1acb71f7eebf3ef2bfd56ca96820665f7f5a949"
+    }
+  ]
+}

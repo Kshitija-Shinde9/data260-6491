@@ -1,3 +1,14 @@
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-pydantic==2.12.5
+# HW2 - FastAPI backend for the recall notices API
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.5
+
+# HW3 Part 1 - login / logout / session management
+# starlette is pinned because SessionMiddleware and Jinja2Templates both come
+# from it. From 0.29 onwards TemplateResponse takes the request as its FIRST
+# argument; the older call style raises "TypeError: unhashable type: 'dict'".
+starlette==1.6.0
+jinja2==3.1.6              # renders templates/*.html
+python-multipart==0.0.32   # lets FastAPI read the posted login form
+itsdangerous==2.2.0        # signs the session cookie
+bcrypt==5.0.0              # hashes the demo account passwords

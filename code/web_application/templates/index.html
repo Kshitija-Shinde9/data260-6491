@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Home &middot; Grocery Recall Notices{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+  <div class="card-body p-4">
+
+    <h1 class="card-title h3 mb-3">Welcome to Grocery Recall Notices</h1>
+
+    {% if user %}
+      <p class="card-text text-body-secondary">
+        You are signed in as <strong>{{ user.name }}</strong> ({{ user.role }}).
+        The recall notice records are available on your dashboard.
+      </p>
+      <a class="btn btn-success" href="/dashboard">Go to Dashboard</a>
+      <a class="btn btn-outline-danger ms-2" href="/logout">Logout</a>
+
+    {% else %}
+      <p class="card-text text-body-secondary">
+        This service tracks grocery supply and recall notices &mdash; products
+        pulled from shelves for contamination, undeclared allergens, packaging
+        failures or spoilage. Recall records are private, so you need to sign
+        in before you can view them.
+      </p>
+      <a class="btn btn-success" href="/login">Login</a>
+
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

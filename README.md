@@ -231,3 +231,77 @@ want a clean pass.
 qwen3:8b (8.2B parameters, Q4_K_M) served by Ollama 0.33.2 at temperature 0.0.
 Every model call inside a node goes through `src/model_client.py`, the adapter
 written in HW1, rather than calling Ollama or LangChain directly.
+
+## Homework 3
+
+HW3 extends the same codebase again. The web application gains a login system,
+and a new retrieval-only RAG comparison is added over a local domain corpus.
+
+### Repository layout added in HW3
+
+```
+code/web_application/routers/auth.py    the login/logout/dashboard routes
+code/web_application/templates/         base.html, index.html, login.html, dashboard.html
+scripts/prove_session_security.py       session-security evidence for Part 1
+```
+
+`code/web_application/main.py` was extended rather than replaced: it now adds
+`SessionMiddleware` and includes the auth router. The `/` route, which used to
+return the HW2 recall list directly, now shows the public welcome page; the
+recall list moved behind the login onto `/dashboard`. The HW2 API endpoints
+under `/api/recalls` are unchanged.
+
+### Requirements
+
+```bash
+conda activate data260
+pip install -r code/web_application/requirements.txt
+```
+
+### Part 1 - the authentication app
+
+```bash
+cd code/web_application
+python -m uvicorn main:app --host 127.0.0.1 --port 8191
+```
+
+Then open http://localhost:8191 in **Chrome or Firefox**. The session cookie is
+marked `Secure`; those two browsers treat `localhost` as a trustworthy origin
+and still send it over HTTP, whereas Safari does not and the login will appear
+to silently fail there.
+
+Demo account: `kshitija` / `Recall@6491`
+
+| Route | Purpose |
+|---|---|
+| `/` | public welcome page for the domain |
+| `/login` | login form, with a Bootstrap alert on bad credentials |
+| `/dashboard` | protected - the recall records, requires a live session |
+| `/logout` | destroys the session and returns to `/` |
+| `/api/recalls` | the HW2 API, unchanged |
+| `/docs` | FastAPI interactive documentation |
+
+Session cookie attributes, all three set in `main.py`:
+
+| Attribute | Set by | Effect |
+|---|---|---|
+| `HttpOnly` | Starlette default | JavaScript cannot read the cookie |
+| `Secure` | `https_only=True` | not sent over plain HTTP |
+| `SameSite=lax` | `same_site="lax"` | not attached to cross-site POSTs |
+
+Idle timeout defaults to 900 seconds and is set with the `SESSION_MAX_AGE`
+environment variable. Starlette's session is stateless, so a cookie captured
+before logout would otherwise still validate afterwards. `routers/auth.py`
+therefore also keeps a server-side table of live session ids, and logging out
+deletes the id - which is what makes a logged-out cookie genuinely unusable.
+
+### Part 1 self-check
+
+```bash
+python scripts/prove_session_security.py
+```
+
+Starts its own copy of the app on port 8191 with a five-second idle timeout and
+prints the `Set-Cookie` header plus proof that logged-out and idle-expired
+sessions are both refused at `/dashboard`. Stop any server already running on
+8191 first. It does not modify application code.

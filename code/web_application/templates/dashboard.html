@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard &middot; Grocery Recall Notices{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm mb-4">
+  <div class="card-body p-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>
+      <h1 class="card-title h4 mb-1">Welcome, {{ user.name }}</h1>
+      <p class="card-text text-body-secondary mb-0">
+        Signed in as <code>{{ user.username }}</code> &middot; {{ user.role }}.
+        This page is protected &mdash; signing out or sitting idle for
+        {{ idle_timeout }} seconds ends the session.
+      </p>
+    </div>
+    <a class="btn btn-outline-danger" href="/logout">Logout</a>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body p-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+      <h2 class="h5 mb-0">Recall notices</h2>
+      <span class="badge text-bg-success" id="countBadge">&hellip;</span>
+    </div>
+
+    <div id="loadingState" class="text-body-secondary py-3">
+      <span class="spinner-border spinner-border-sm me-2" role="status"
+            aria-hidden="true"></span>
+      Loading recall notices&hellip;
+    </div>
+
+    <div id="errorState" class="alert alert-danger d-none" role="alert">
+      <strong>Could not load the notices.</strong>
+      <span id="errorText"></span>
+    </div>
+
+    <div id="emptyState" class="alert alert-secondary d-none" role="alert">
+      No recall notices have been reported yet.
+    </div>
+
+    <div class="table-responsive d-none" id="tableWrap">
+      <table class="table table-striped table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product name</th>
+            <th scope="col">Supplier / brand</th>
+            <th scope="col">Reason type</th>
+          </tr>
+        </thead>
+        <tbody id="recallRows"></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadRecalls() {
+  const loading = document.getElementById('loadingState');
+  const errorBox = document.getElementById('errorState');
+  const emptyBox = document.getElementById('emptyState');
+  const tableWrap = document.getElementById('tableWrap');
+  const badge = document.getElementById('countBadge');
+
+  try {
+    const response = await fetch('/api/recalls');
+    if (!response.ok) throw new Error('the server responded with ' + response.status);
+
+    const recalls = await response.json();
+    loading.classList.add('d-none');
+    badge.textContent = recalls.length + ' record' + (recalls.length === 1 ? '' : 's');
+
+    if (recalls.length === 0) {
+      emptyBox.classList.remove('d-none');
+      return;
+    }
+
+    document.getElementById('recallRows').innerHTML = recalls.map(r => `
+      <tr>
+        <td class="text-body-secondary">${r.id}</td>
+        <td class="fw-medium">${r.product_name}</td>
+        <td>${r.supplier}</td>
+        <td><span class="badge text-bg-light border">${r.recall_type || '—'}</span></td>
+      </tr>`).join('');
+
+    tableWrap.classList.remove('d-none');
+
+  } catch (err) {
+    loading.classList.add('d-none');
+    document.getElementById('errorText').textContent = err.message;
+    errorBox.classList.remove('d-none');
+    badge.textContent = '!';
+  }
+}
+
+loadRecalls();
+</script>
+{% endblock %}

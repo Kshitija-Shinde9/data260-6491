@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Login &middot; Grocery Recall Notices{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+
+        <h1 class="card-title h4 mb-1">Sign in</h1>
+        <p class="text-body-secondary small mb-4">
+          Recall notice records are restricted to authorised staff.
+        </p>
+
+        {% if error %}
+          <div class="alert alert-danger alert-dismissible fade show d-flex align-items-start"
+               role="alert">
+            <div class="flex-grow-1">
+              <strong>Login failed.</strong> {{ error }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+          </div>
+        {% endif %}
+
+        {% if request.query_params.get("expired") and not error %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Session ended.</strong> Your session expired or was logged
+            out, so it can no longer be used. Please sign in again.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+          </div>
+        {% endif %}
+
+        <form method="post" action="/login" novalidate>
+
+          <div class="mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username"
+                   value="{{ attempted_username or '' }}"
+                   autocomplete="username" autofocus required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password"
+                   autocomplete="current-password" required>
+          </div>
+
+          <button class="btn btn-success w-100" type="submit">Sign in</button>
+        </form>
+
+        <hr class="my-4">
+        <p class="text-body-secondary small mb-0">
+          Demo account for grading:
+          <code>kshitija</code> / <code>Recall@6491</code>
+        </p>
+
+      </div>
+    </div>
+
+    <p class="text-center mt-3 mb-0">
+      <a href="/" class="link-secondary small">Back to home</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

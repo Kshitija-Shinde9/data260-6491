@@ -1,9 +1,14 @@
+import os
+
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import List
+from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
+
+from routers.auth import router as auth_router
 
 # this is my backend for grocery recall notices app.
 # product name is the main field and the supplier is the second field.
@@ -12,6 +17,21 @@ import uvicorn
 PORT_BASE = 8191
 
 app = FastAPI(title="Grocery Supply and Recall Notices API", version="1.0.0")
+
+SECRET_KEY = os.getenv("SECRET_KEY", "data260-s6491-dev-only-secret-key")
+
+SESSION_MAX_AGE = int(os.getenv("SESSION_MAX_AGE", "900"))
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=SECRET_KEY,
+    session_cookie="s6491_session",
+    https_only=True,
+    same_site="lax",
+    max_age=SESSION_MAX_AGE,
+)
+
+app.include_router(auth_router)
 
 # This lets the browser load my html, css and js files.
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -69,12 +89,6 @@ recalls: List[RecallNotice] = [
         recall_type="Undeclared Allergen",
     ),
 ]
-
-
-@app.get("/")
-async def read_root():
-    """Show my main web page."""
-    return FileResponse("static/index.html")
 
 
 @app.get("/api/recalls", response_model=List[RecallNotice])

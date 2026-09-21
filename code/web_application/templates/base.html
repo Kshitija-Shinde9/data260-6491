@@ -6,6 +6,11 @@
   <title>{% block title %}Grocery Recall Notices{% endblock %}</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Pages can add their own stylesheet here. It loads after Bootstrap, so a page
+       that brings its own styles wins where the two overlap. The dashboard uses this
+       to pull in the HW2 stylesheet unchanged. -->
+  {% block head %}{% endblock %}
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100">
 

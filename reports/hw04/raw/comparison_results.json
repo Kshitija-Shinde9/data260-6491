@@ -1,0 +1,414 @@
+[
+  {
+    "question_id": "Q1",
+    "question_type": "single_chunk",
+    "question": "Which undeclared allergen was found in J. HIGGS Loaded Bacon and Cheddar Potato Chips, and in which supermarket chain were they sold?",
+    "config": "A_NoRAG",
+    "top_k": 3,
+    "latency_ms": 5998.25,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "I couldn't find any information on undeclared allergens in J. HIGGS Loaded Bacon and Cheddar Potato Chips.",
+    "correct_retrieval": "",
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q1",
+    "question_type": "single_chunk",
+    "question": "Which undeclared allergen was found in J. HIGGS Loaded Bacon and Cheddar Potato Chips, and in which supermarket chain were they sold?",
+    "config": "B_BasicRAG",
+    "top_k": 3,
+    "latency_ms": 7281.16,
+    "n_context_chunks": 3,
+    "sources": [
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt"
+    ],
+    "scores": [
+      0.6352,
+      0.6126,
+      0.5983
+    ],
+    "answer": "According to the context, the undeclared allergen found in J. HIGGS Loaded Bacon and Cheddar Potato Chips is soy. \n\nThe product was sold in Save A Lot stores, specifically in the states of Indiana, Kentucky, Ohio, Tennessee, and Maryland.",
+    "correct_retrieval": 1,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q1",
+    "question_type": "single_chunk",
+    "question": "Which undeclared allergen was found in J. HIGGS Loaded Bacon and Cheddar Potato Chips, and in which supermarket chain were they sold?",
+    "config": "C_ContextRAG",
+    "top_k": 3,
+    "latency_ms": 8023.78,
+    "n_context_chunks": 3,
+    "sources": [
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt"
+    ],
+    "scores": [
+      0.6352,
+      0.6126,
+      0.5983
+    ],
+    "answer": "According to Source [2], the undeclared allergen found in J. HIGGS Loaded Bacon and Cheddar Potato Chips is soy. \n\nSource [2] states that the recalled products were distributed in the states of Indiana, Kentucky, Ohio, Tennessee, and Maryland and sold in Save A Lot stores.",
+    "correct_retrieval": 1,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q2",
+    "question_type": "multi_chunk",
+    "question": "What refrigerator temperature does FDA guidance recommend, and within how many hours should leftovers be refrigerated under normal conditions?",
+    "config": "A_NoRAG",
+    "top_k": 3,
+    "latency_ms": 4711.63,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "According to the FDA, the recommended refrigerator temperature is 40\u00b0F (4\u00b0C). \n\nFor refrigerating leftovers, the FDA recommends that perishable foods be refrigerated within 2 hours of cooking, and within 1 hour if the temperature is above 90\u00b0F (32\u00b0C).",
+    "correct_retrieval": "",
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q2",
+    "question_type": "multi_chunk",
+    "question": "What refrigerator temperature does FDA guidance recommend, and within how many hours should leftovers be refrigerated under normal conditions?",
+    "config": "B_BasicRAG",
+    "top_k": 3,
+    "latency_ms": 5770.65,
+    "n_context_chunks": 3,
+    "sources": [
+      "refrigerator_thermometers_cold_facts_about_food_safety.txt",
+      "refrigerator_thermometers_cold_facts_about_food_safety.txt",
+      "refrigerator_thermometers_cold_facts_about_food_safety.txt"
+    ],
+    "scores": [
+      0.6101,
+      0.5804,
+      0.5788
+    ],
+    "answer": "According to the context, the FDA guidance recommends a refrigerator temperature of 40\u00b0F. Under normal conditions, leftovers should be refrigerated within 2 hours of cooking or purchasing.",
+    "correct_retrieval": 1,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q2",
+    "question_type": "multi_chunk",
+    "question": "What refrigerator temperature does FDA guidance recommend, and within how many hours should leftovers be refrigerated under normal conditions?",
+    "config": "C_ContextRAG",
+    "top_k": 3,
+    "latency_ms": 8435.7,
+    "n_context_chunks": 3,
+    "sources": [
+      "refrigerator_thermometers_cold_facts_about_food_safety.txt",
+      "what_you_need_know_about_preventing_listeria_infections.txt",
+      "safe_food_handling.txt"
+    ],
+    "scores": [
+      0.6101,
+      0.5561,
+      0.5474
+    ],
+    "answer": "According to Source [2], the FDA guidance recommends that the refrigerator temperature should be 40\u00b0 F (4\u00b0 C) or below.\n\nHowever, the context does not provide information on the specific time frame for refrigerating leftovers. It only mentions that refrigerate foods promptly and that meat, poultry, eggs, seafood, and other perishables should be refrigerated within 2 hours of cooking or purchasing.",
+    "correct_retrieval": 1,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q3",
+    "question_type": "cross_document",
+    "question": "According to federal estimates cited in these documents, about how many cases of foodborne illness occur in the United States each year, and what fraction of Americans does that represent?",
+    "config": "A_NoRAG",
+    "top_k": 3,
+    "latency_ms": 3498.51,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "I don't have the most current information. However, according to the Centers for Disease Control and Prevention (CDC), approximately 48 million people in the United States get sick from foodborne illnesses each year, resulting in about 128,000 hospitalizations and 3,000 deaths.",
+    "correct_retrieval": "",
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q3",
+    "question_type": "cross_document",
+    "question": "According to federal estimates cited in these documents, about how many cases of foodborne illness occur in the United States each year, and what fraction of Americans does that represent?",
+    "config": "B_BasicRAG",
+    "top_k": 3,
+    "latency_ms": 4957.72,
+    "n_context_chunks": 3,
+    "sources": [
+      "what_you_need_know_about_foodborne_illnesses.txt",
+      "refrigerator_thermometers_cold_facts_about_food_safety.txt",
+      "people_risk_foodborne_illness.txt"
+    ],
+    "scores": [
+      0.7826,
+      0.7325,
+      0.7242
+    ],
+    "answer": "According to the documents, there are about 48 million cases of foodborne illness annually in the United States. This represents 1 in 6 Americans, or approximately 1/6 of the population.",
+    "correct_retrieval": 1,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q3",
+    "question_type": "cross_document",
+    "question": "According to federal estimates cited in these documents, about how many cases of foodborne illness occur in the United States each year, and what fraction of Americans does that represent?",
+    "config": "C_ContextRAG",
+    "top_k": 3,
+    "latency_ms": 9882.61,
+    "n_context_chunks": 3,
+    "sources": [
+      "what_you_need_know_about_foodborne_illnesses.txt",
+      "refrigerator_thermometers_cold_facts_about_food_safety.txt",
+      "people_risk_foodborne_illness.txt"
+    ],
+    "scores": [
+      0.7826,
+      0.7325,
+      0.7242
+    ],
+    "answer": "According to the provided documents, there are about 48 million cases of foodborne illness annually in the United States [1], [2], [3]. \n\nTo find the fraction of Americans that represents, we need to divide the number of cases by the total population of the United States. However, the total population of the United States is not explicitly mentioned in the provided documents.\n\nWe can only conclude that 48 million cases of foodborne illness represent 1 in 6 Americans, as stated in the documents [1], [2], [3].",
+    "correct_retrieval": 1,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q4",
+    "question_type": "ambiguous",
+    "question": "What product was recalled?",
+    "config": "A_NoRAG",
+    "top_k": 3,
+    "latency_ms": 1846.65,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "I don't have any information about a specific product recall. Can you provide more context or details about the product you're referring to?",
+    "correct_retrieval": "",
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q4",
+    "question_type": "ambiguous",
+    "question": "What product was recalled?",
+    "config": "B_BasicRAG",
+    "top_k": 3,
+    "latency_ms": 6002.53,
+    "n_context_chunks": 3,
+    "sources": [
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt"
+    ],
+    "scores": [
+      0.6522,
+      0.6468,
+      0.6289
+    ],
+    "answer": "According to the context, the products recalled were:\n\n1. Raw Milk \u2013 Aged 60 days by Formagerie Coop de Mean Cabricharme, due to undeclared egg allergen.\n2. Loaded Bacon & Cheddar Potato Chips by Saratoga Potato Chips LLC, due to undeclared soy allergen.",
+    "correct_retrieval": 1,
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q4",
+    "question_type": "ambiguous",
+    "question": "What product was recalled?",
+    "config": "C_ContextRAG",
+    "top_k": 3,
+    "latency_ms": 6393.1,
+    "n_context_chunks": 3,
+    "sources": [
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt"
+    ],
+    "scores": [
+      0.6522,
+      0.6468,
+      0.6289
+    ],
+    "answer": "According to the context, the following products were recalled:\n\n1. Formagerie Coop de Mean Cabricharme Raw Milk \u2013 Aged 60 days [1]\n2. Belgian Cabricharme [1]\n3. Loaded Bacon & Cheddar Potato Chips [2]\n\nThese are the products mentioned in the context sources as being recalled.",
+    "correct_retrieval": 1,
+    "correct_answer": 0,
+    "grounded": 1,
+    "refused_when_needed": "",
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q5",
+    "question_type": "not_in_docs",
+    "question": "What is the FDA recommended daily caffeine limit for healthy adults?",
+    "config": "A_NoRAG",
+    "top_k": 3,
+    "latency_ms": 1318.59,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "The FDA recommends that healthy adults limit their daily caffeine intake to 400 milligrams (mg) or less.",
+    "correct_retrieval": "",
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": 0,
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q5",
+    "question_type": "not_in_docs",
+    "question": "What is the FDA recommended daily caffeine limit for healthy adults?",
+    "config": "B_BasicRAG",
+    "top_k": 3,
+    "latency_ms": 4346.07,
+    "n_context_chunks": 3,
+    "sources": [
+      "what_you_need_know_about_foodborne_illnesses.txt",
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt"
+    ],
+    "scores": [
+      0.3503,
+      0.312,
+      0.2956
+    ],
+    "answer": "There is no information about the FDA recommended daily caffeine limit for healthy adults in the provided context chunks. The context only mentions foodborne illnesses, allergens, and recalls related to food and beverages, but does not provide information on caffeine limits.",
+    "correct_retrieval": 0,
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": 0,
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q5",
+    "question_type": "not_in_docs",
+    "question": "What is the FDA recommended daily caffeine limit for healthy adults?",
+    "config": "C_ContextRAG",
+    "top_k": 3,
+    "latency_ms": 3135.98,
+    "n_context_chunks": 3,
+    "sources": [
+      "what_you_need_know_about_foodborne_illnesses.txt",
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt",
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt"
+    ],
+    "scores": [
+      0.3503,
+      0.312,
+      0.2956
+    ],
+    "answer": "I cannot answer this question from the provided documents.",
+    "correct_retrieval": 0,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": 1,
+    "format_compliance": 1,
+    "is_refusal": 1
+  },
+  {
+    "question_id": "Q6",
+    "question_type": "unrelated",
+    "question": "Who won the 2022 FIFA World Cup?",
+    "config": "A_NoRAG",
+    "top_k": 3,
+    "latency_ms": 1731.22,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "Argentina won the 2022 FIFA World Cup, defeating France 4-2 in a penalty shootout after the match ended 3-3 after extra time.",
+    "correct_retrieval": "",
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": 0,
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q6",
+    "question_type": "unrelated",
+    "question": "Who won the 2022 FIFA World Cup?",
+    "config": "B_BasicRAG",
+    "top_k": 3,
+    "latency_ms": 4116.59,
+    "n_context_chunks": 3,
+    "sources": [
+      "saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt",
+      "foodborne_pathogens.txt",
+      "whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt"
+    ],
+    "scores": [
+      0.096,
+      0.0744,
+      0.0736
+    ],
+    "answer": "There is no information in the provided context about the 2022 FIFA World Cup winner. The context appears to be related to food recalls, allergen alerts, and food safety issues, but does not mention sports or the FIFA World Cup.",
+    "correct_retrieval": 0,
+    "correct_answer": 0,
+    "grounded": 0,
+    "refused_when_needed": 0,
+    "format_compliance": 1,
+    "is_refusal": 0
+  },
+  {
+    "question_id": "Q6",
+    "question_type": "unrelated",
+    "question": "Who won the 2022 FIFA World Cup?",
+    "config": "C_ContextRAG",
+    "top_k": 3,
+    "latency_ms": 1245.9,
+    "n_context_chunks": 0,
+    "sources": [],
+    "scores": [],
+    "answer": "I cannot answer this question from the provided documents.",
+    "correct_retrieval": 0,
+    "correct_answer": 1,
+    "grounded": 1,
+    "refused_when_needed": 1,
+    "format_compliance": 1,
+    "is_refusal": 1
+  }
+]

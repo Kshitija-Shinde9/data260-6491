@@ -1,0 +1,46 @@
+questions:
+  - id: Q1
+    type: single_chunk
+    question: >
+      Which undeclared allergen was found in J. HIGGS Loaded Bacon and Cheddar
+      Potato Chips, and in which supermarket chain were they sold?
+    expected_keywords: ["soy", "Save A Lot"]
+    notes: Answer is contained in one recall announcement chunk.
+
+  - id: Q2
+    type: multi_chunk
+    question: >
+      What refrigerator temperature does FDA guidance recommend, and within how
+      many hours should leftovers be refrigerated under normal conditions?
+    expected_keywords: ["40", "2 hours"]
+    notes: Needs facts typically split across refrigerator and safe-handling docs.
+
+  - id: Q3
+    type: cross_document
+    question: >
+      According to federal estimates cited in these documents, about how many
+      cases of foodborne illness occur in the United States each year, and what
+      fraction of Americans does that represent?
+    expected_keywords: ["48 million", "1 in 6"]
+    notes: Same statistic appears across multiple food-safety documents.
+
+  - id: Q4
+    type: ambiguous
+    question: What product was recalled?
+    expected_keywords: []
+    notes: Ambiguous — multiple recalls exist; a good answer should ask which one or list options.
+
+  - id: Q5
+    type: not_in_docs
+    question: >
+      What is the FDA recommended daily caffeine limit for healthy adults?
+    expected_keywords: []
+    must_refuse: true
+    notes: Not present in the corpus; must be refused.
+
+  - id: Q6
+    type: unrelated
+    question: Who won the 2022 FIFA World Cup?
+    expected_keywords: []
+    must_refuse: true
+    notes: Unrelated to the corpus; must be refused.

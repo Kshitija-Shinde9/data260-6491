@@ -1,19 +1,11 @@
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Corpus: 8 documents, 96 chunks (size=500, overlap=50)
+LLM: ollama:llama3.2:3b
+Embed: sentence-transformers/all-MiniLM-L6-v2
+chunk_size=500 overlap=50
 
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
-Loading weights: 100%|██████████| 103/103 [00:00<00:00, 24178.05it/s]
-Embedding 96 chunks with sentence-transformers/all-MiniLM-L6-v2 ...
-
-Batches:   0%|          | 0/3 [00:00<?, ?it/s]
-Batches:  33%|███▎      | 1/3 [00:00<00:00,  8.36it/s]
-Batches: 100%|██████████| 3/3 [00:00<00:00, 17.25it/s]
-FAISS index ready: 96 vectors, dim=384
-LLM backend: ollama:llama3.2:3b
 === RETRIEVAL | Q1 | A_NoRAG ===
-  (none — No RAG baseline)
+  (none)
 
---- ANSWER | Q1 | A_NoRAG (14067 ms) ---
+--- ANSWER | Q1 | A_NoRAG ---
 I couldn't find any information on undeclared allergens in J. HIGGS Loaded Bacon and Cheddar Potato Chips.
 
 === RETRIEVAL | Q1 | B_BasicRAG ===
@@ -24,7 +16,8 @@ Retrieved 3 chunk(s):
     preview: Chips of Fort Wayne, IN, is recalling two Best if USED BY codes of 7.75-ounce packages of J. HIGGS Loaded Bacon and Cheddar Potato Chips because they may contain undeclared soy allergen. People who have an allergy or sev
   rank=3  score=0.5983  source=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt  chunk_id=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load::2
     preview: , Ohio, Tennessee, and Maryland and sold in Save A Lot stores. The product J. HIGGS Loaded Bacon and Cheddar with UPC code 0-51933-31645-4 comes in a 7.75-ounce, flexible multi-layered laminated metalized package marked 
---- ANSWER | Q1 | B_BasicRAG (724 ms) ---
+
+--- ANSWER | Q1 | B_BasicRAG ---
 According to the context, the undeclared allergen found in J. HIGGS Loaded Bacon and Cheddar Potato Chips is soy. 
 
 The product was sold in Save A Lot stores, specifically in the states of Indiana, Kentucky, Ohio, Tennessee, and Maryland.
@@ -37,15 +30,16 @@ Retrieved 3 chunk(s):
     preview: Chips of Fort Wayne, IN, is recalling two Best if USED BY codes of 7.75-ounce packages of J. HIGGS Loaded Bacon and Cheddar Potato Chips because they may contain undeclared soy allergen. People who have an allergy or sev
   rank=3  score=0.5983  source=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt  chunk_id=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load::2
     preview: , Ohio, Tennessee, and Maryland and sold in Save A Lot stores. The product J. HIGGS Loaded Bacon and Cheddar with UPC code 0-51933-31645-4 comes in a 7.75-ounce, flexible multi-layered laminated metalized package marked 
---- ANSWER | Q1 | C_ContextRAG (857 ms) ---
+
+--- ANSWER | Q1 | C_ContextRAG ---
 According to Source [2], the undeclared allergen found in J. HIGGS Loaded Bacon and Cheddar Potato Chips is soy. 
 
 Source [2] states that the recalled products were distributed in the states of Indiana, Kentucky, Ohio, Tennessee, and Maryland and sold in Save A Lot stores.
 
 === RETRIEVAL | Q2 | A_NoRAG ===
-  (none — No RAG baseline)
+  (none)
 
---- ANSWER | Q2 | A_NoRAG (634 ms) ---
+--- ANSWER | Q2 | A_NoRAG ---
 According to the FDA, the recommended refrigerator temperature is 40°F (4°C). 
 
 For refrigerating leftovers, the FDA recommends that perishable foods be refrigerated within 2 hours of cooking, and within 1 hour if the temperature is above 90°F (32°C).
@@ -58,7 +52,8 @@ Retrieved 3 chunk(s):
     preview: get foods that need refrigeration into your fridge quickly. Leaving perishable foods out for 2 hours or more allows bacteria to multiply rapidly — and can put you at serious risk of contracting foodborne illness. Groceri
   rank=3  score=0.5788  source=refrigerator_thermometers_cold_facts_about_food_safety.txt  chunk_id=refrigerator_thermometers_cold_facts_about_food_safety::21
     preview: od thermometer. Bring sauces, soups and gravy to a boil when reheating. CHILL Refrigerate foods promptly Use an appliance thermometer to be sure the temperature is consistently 40° F or below and the freezer temperature 
---- ANSWER | Q2 | B_BasicRAG (512 ms) ---
+
+--- ANSWER | Q2 | B_BasicRAG ---
 According to the context, the FDA guidance recommends a refrigerator temperature of 40°F. Under normal conditions, leftovers should be refrigerated within 2 hours of cooking or purchasing.
 
 === RETRIEVAL | Q2 | C_ContextRAG ===
@@ -69,15 +64,16 @@ Retrieved 3 chunk(s):
     preview: er in the refrigerator and adjust the refrigerator temperature control, if necessary. Put a second thermometer in the freezer. Your refrigerator should register at 40° F (4° C) or below and your freezer at 0° F (-18° C).
   rank=3  score=0.5474  source=safe_food_handling.txt  chunk_id=safe_food_handling::7
     preview: by hand once or twice during cooking. Always allow standing time, which completes the cooking, before checking the internal temperature with a food thermometer. Bring sauces, soups and gravy to a boil when reheating. CHI
---- ANSWER | Q2 | C_ContextRAG (1009 ms) ---
+
+--- ANSWER | Q2 | C_ContextRAG ---
 According to Source [2], the FDA guidance recommends that the refrigerator temperature should be 40° F (4° C) or below.
 
-However, the context does not provide information on the specific time frame for refrigerating leftovers. It only mentions that refrigerate or freeze meat, poultry, eggs, seafood, and other perishables within 2 hours of cooking or purchasing, but it does not specify the temperature.
+However, the context does not provide information on the specific time frame for refrigerating leftovers. It only mentions that refrigerate foods promptly and that meat, poultry, eggs, seafood, and other perishables should be refrigerated within 2 hours of cooking or purchasing.
 
 === RETRIEVAL | Q3 | A_NoRAG ===
-  (none — No RAG baseline)
+  (none)
 
---- ANSWER | Q3 | A_NoRAG (590 ms) ---
+--- ANSWER | Q3 | A_NoRAG ---
 I don't have the most current information. However, according to the Centers for Disease Control and Prevention (CDC), approximately 48 million people in the United States get sick from foodborne illnesses each year, resulting in about 128,000 hospitalizations and 3,000 deaths.
 
 === RETRIEVAL | Q3 | B_BasicRAG ===
@@ -88,7 +84,8 @@ Retrieved 3 chunk(s):
     preview: h” Foodborne Illness Is Serious Business Foodborne diseases are far more serious than many people realize. The Federal government estimates that there are about 48 million cases of foodborne illness annually — the equiva
   rank=3  score=0.7242  source=people_risk_foodborne_illness.txt  chunk_id=people_risk_foodborne_illness::0
     preview: The food supply in the United States is among the safest in the world. However, when certain disease-causing germs contaminate food, they can cause foodborne illness, often called "food poisoning." The Federal government
---- ANSWER | Q3 | B_BasicRAG (572 ms) ---
+
+--- ANSWER | Q3 | B_BasicRAG ---
 According to the documents, there are about 48 million cases of foodborne illness annually in the United States. This represents 1 in 6 Americans, or approximately 1/6 of the population.
 
 === RETRIEVAL | Q3 | C_ContextRAG ===
@@ -99,7 +96,8 @@ Retrieved 3 chunk(s):
     preview: h” Foodborne Illness Is Serious Business Foodborne diseases are far more serious than many people realize. The Federal government estimates that there are about 48 million cases of foodborne illness annually — the equiva
   rank=3  score=0.7242  source=people_risk_foodborne_illness.txt  chunk_id=people_risk_foodborne_illness::0
     preview: The food supply in the United States is among the safest in the world. However, when certain disease-causing germs contaminate food, they can cause foodborne illness, often called "food poisoning." The Federal government
---- ANSWER | Q3 | C_ContextRAG (1326 ms) ---
+
+--- ANSWER | Q3 | C_ContextRAG ---
 According to the provided documents, there are about 48 million cases of foodborne illness annually in the United States [1], [2], [3]. 
 
 To find the fraction of Americans that represents, we need to divide the number of cases by the total population of the United States. However, the total population of the United States is not explicitly mentioned in the provided documents.
@@ -107,9 +105,9 @@ To find the fraction of Americans that represents, we need to divide the number 
 We can only conclude that 48 million cases of foodborne illness represent 1 in 6 Americans, as stated in the documents [1], [2], [3].
 
 === RETRIEVAL | Q4 | A_NoRAG ===
-  (none — No RAG baseline)
+  (none)
 
---- ANSWER | Q4 | A_NoRAG (306 ms) ---
+--- ANSWER | Q4 | A_NoRAG ---
 I don't have any information about a specific product recall. Can you provide more context or details about the product you're referring to?
 
 === RETRIEVAL | Q4 | B_BasicRAG ===
@@ -120,7 +118,8 @@ Retrieved 3 chunk(s):
     preview: More Recalls, Market Withdrawals, & Safety Alerts Summary Company Announcement Date: September 16, 2026 FDA Publish Date: September 18, 2026 Product Type: Food & Beverages Allergens Reason for Announcement: Recall Reason
   rank=3  score=0.6289  source=whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt  chunk_id=whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che::5
     preview: calls on X Recent Recalled Product Photos on FDA's Flickr Photostream
---- ANSWER | Q4 | B_BasicRAG (759 ms) ---
+
+--- ANSWER | Q4 | B_BasicRAG ---
 According to the context, the products recalled were:
 
 1. Raw Milk – Aged 60 days by Formagerie Coop de Mean Cabricharme, due to undeclared egg allergen.
@@ -134,7 +133,8 @@ Retrieved 3 chunk(s):
     preview: More Recalls, Market Withdrawals, & Safety Alerts Summary Company Announcement Date: September 16, 2026 FDA Publish Date: September 18, 2026 Product Type: Food & Beverages Allergens Reason for Announcement: Recall Reason
   rank=3  score=0.6289  source=whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt  chunk_id=whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che::5
     preview: calls on X Recent Recalled Product Photos on FDA's Flickr Photostream
---- ANSWER | Q4 | C_ContextRAG (920 ms) ---
+
+--- ANSWER | Q4 | C_ContextRAG ---
 According to the context, the following products were recalled:
 
 1. Formagerie Coop de Mean Cabricharme Raw Milk – Aged 60 days [1]
@@ -144,9 +144,9 @@ According to the context, the following products were recalled:
 These are the products mentioned in the context sources as being recalled.
 
 === RETRIEVAL | Q5 | A_NoRAG ===
-  (none — No RAG baseline)
+  (none)
 
---- ANSWER | Q5 | A_NoRAG (274 ms) ---
+--- ANSWER | Q5 | A_NoRAG ---
 The FDA recommends that healthy adults limit their daily caffeine intake to 400 milligrams (mg) or less.
 
 === RETRIEVAL | Q5 | B_BasicRAG ===
@@ -157,7 +157,8 @@ Retrieved 3 chunk(s):
     preview: y at 1-844-936-8255 between the hours of 7:00 a.m. and 10:00 p.m. Central Time, Monday-Friday, or 8:00 a.m. and 6:00 p.m. Central Time, Saturday-Sunday. Media Contact – [ amazon-pr@amazon.com ] Company Contact Informatio
   rank=3  score=0.2956  source=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt  chunk_id=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load::4
     preview: d & Beverages Topic(s) Allergens Follow FDA Follow @US_FDA on X Follow FDA on Facebook Follow @FDArecalls on X Recent Recalled Product Photos on FDA's Flickr Photostream
---- ANSWER | Q5 | B_BasicRAG (598 ms) ---
+
+--- ANSWER | Q5 | B_BasicRAG ---
 There is no information about the FDA recommended daily caffeine limit for healthy adults in the provided context chunks. The context only mentions foodborne illnesses, allergens, and recalls related to food and beverages, but does not provide information on caffeine limits.
 
 === RETRIEVAL | Q5 | C_ContextRAG ===
@@ -168,13 +169,14 @@ Retrieved 3 chunk(s):
     preview: y at 1-844-936-8255 between the hours of 7:00 a.m. and 10:00 p.m. Central Time, Monday-Friday, or 8:00 a.m. and 6:00 p.m. Central Time, Saturday-Sunday. Media Contact – [ amazon-pr@amazon.com ] Company Contact Informatio
   rank=3  score=0.2956  source=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load.txt  chunk_id=saratoga_potato_chips_issues_allergy_alert_undeclared_soy_j_higgs_load::4
     preview: d & Beverages Topic(s) Allergens Follow FDA Follow @US_FDA on X Follow FDA on Facebook Follow @FDArecalls on X Recent Recalled Product Photos on FDA's Flickr Photostream
---- ANSWER | Q5 | C_ContextRAG (269 ms) ---
+
+--- ANSWER | Q5 | C_ContextRAG ---
 I cannot answer this question from the provided documents.
 
 === RETRIEVAL | Q6 | A_NoRAG ===
-  (none — No RAG baseline)
+  (none)
 
---- ANSWER | Q6 | A_NoRAG (364 ms) ---
+--- ANSWER | Q6 | A_NoRAG ---
 Argentina won the 2022 FIFA World Cup, defeating France 4-2 in a penalty shootout after the match ended 3-3 after extra time.
 
 === RETRIEVAL | Q6 | B_BasicRAG ===
@@ -185,29 +187,24 @@ Retrieved 3 chunk(s):
     preview: hy People provides science-based, 10-year national objectives for improving the health of all Americans FSMA Final Rules for Preventive Controls Current Good Manufacturing Practice and Hazard Analysis and Risk-Based Prev
   rank=3  score=0.0736  source=whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che.txt  chunk_id=whole_foods_market_issues_allergy_alert_undeclared_egg_cabricharme_che::5
     preview: calls on X Recent Recalled Product Photos on FDA's Flickr Photostream
---- ANSWER | Q6 | B_BasicRAG (593 ms) ---
+
+--- ANSWER | Q6 | B_BasicRAG ---
 There is no information in the provided context about the 2022 FIFA World Cup winner. The context appears to be related to food recalls, allergen alerts, and food safety issues, but does not mention sports or the FIFA World Cup.
 
 === RETRIEVAL | Q6 | C_ContextRAG ===
 Retrieved 0 chunk(s):
---- ANSWER | Q6 | C_ContextRAG (181 ms) ---
+
+--- ANSWER | Q6 | C_ContextRAG ---
 I cannot answer this question from the provided documents.
 
-
-########################################################################
-K-SWEEP  k=1  question=Q2  config=C_ContextRAG
-########################################################################
 === RETRIEVAL | Q2 | C_ContextRAG ===
 Retrieved 1 chunk(s):
   rank=1  score=0.6101  source=refrigerator_thermometers_cold_facts_about_food_safety.txt  chunk_id=refrigerator_thermometers_cold_facts_about_food_safety::2
     preview: d/or freezer if necessary. Buy one for the fridge, one for the freezer, and check them often. Items on this page: Refrigerator Strategies Quick Chill In Case of Disaster More Than an "Upset Stomach" Safe Food Handling: F
---- ANSWER | Q2 | C_ContextRAG (492 ms) ---
+
+--- ANSWER | Q2 | C_ContextRAG ---
 According to the provided context, the FDA guidance recommends a refrigerator temperature of 40 °F [1]. However, the context does not provide information on the specific time frame for refrigerating leftovers under normal conditions.
 
-
-########################################################################
-K-SWEEP  k=3  question=Q2  config=C_ContextRAG
-########################################################################
 === RETRIEVAL | Q2 | C_ContextRAG ===
 Retrieved 3 chunk(s):
   rank=1  score=0.6101  source=refrigerator_thermometers_cold_facts_about_food_safety.txt  chunk_id=refrigerator_thermometers_cold_facts_about_food_safety::2
@@ -216,15 +213,12 @@ Retrieved 3 chunk(s):
     preview: er in the refrigerator and adjust the refrigerator temperature control, if necessary. Put a second thermometer in the freezer. Your refrigerator should register at 40° F (4° C) or below and your freezer at 0° F (-18° C).
   rank=3  score=0.5474  source=safe_food_handling.txt  chunk_id=safe_food_handling::7
     preview: by hand once or twice during cooking. Always allow standing time, which completes the cooking, before checking the internal temperature with a food thermometer. Bring sauces, soups and gravy to a boil when reheating. CHI
---- ANSWER | Q2 | C_ContextRAG (950 ms) ---
+
+--- ANSWER | Q2 | C_ContextRAG ---
 According to Source [2], the FDA guidance recommends that the refrigerator temperature should be 40° F (4° C) or below.
 
-However, the context does not provide information on the specific time frame for refrigerating leftovers. It only mentions that refrigerate or freeze meat, poultry, eggs, seafood, and other perishables within 2 hours of cooking or purchasing, but it does not specify the temperature.
+However, the context does not provide information on the specific time frame for refrigerating leftovers. It only mentions that refrigerate foods promptly and that meat, poultry, eggs, seafood, and other perishables should be refrigerated within 2 hours of cooking or purchasing.
 
-
-########################################################################
-K-SWEEP  k=5  question=Q2  config=C_ContextRAG
-########################################################################
 === RETRIEVAL | Q2 | C_ContextRAG ===
 Retrieved 5 chunk(s):
   rank=1  score=0.6101  source=refrigerator_thermometers_cold_facts_about_food_safety.txt  chunk_id=refrigerator_thermometers_cold_facts_about_food_safety::2
@@ -237,7 +231,8 @@ Retrieved 5 chunk(s):
     preview: get foods that need refrigeration into your fridge quickly. Leaving perishable foods out for 2 hours or more allows bacteria to multiply rapidly — and can put you at serious risk of contracting foodborne illness. Groceri
   rank=5  score=0.5788  source=refrigerator_thermometers_cold_facts_about_food_safety.txt  chunk_id=refrigerator_thermometers_cold_facts_about_food_safety::21
     preview: od thermometer. Bring sauces, soups and gravy to a boil when reheating. CHILL Refrigerate foods promptly Use an appliance thermometer to be sure the temperature is consistently 40° F or below and the freezer temperature 
---- ANSWER | Q2 | C_ContextRAG (1237 ms) ---
+
+--- ANSWER | Q2 | C_ContextRAG ---
 According to the provided context, the FDA guidance recommends that the refrigerator temperature should be 40°F (4°C) or below.
 
 As for the time frame for refrigerating leftovers, Source [4] states that groceries should be put away in the fridge as quickly as possible, and never allowed to sit at room temperature for more than 2 hours. However, Source [5] provides a more specific guideline: refrigerate leftovers within 1 hour if the temperature outside is above 90°F.

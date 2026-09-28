@@ -305,3 +305,102 @@ Starts its own copy of the app on port 8191 with a five-second idle timeout and
 prints the `Set-Cookie` header plus proof that logged-out and idle-expired
 sessions are both refused at `/dashboard`. Stop any server already running on
 8191 first. It does not modify application code.
+
+## Homework 4
+
+HW4 extends the same codebase again. Recall notices and accounts move out of memory
+and into MySQL, login becomes email + password instead of the HW3 username, and a
+React client replaces the Jinja templates for day-to-day use (`templates/` and
+`static/` are left in place as HW1-3 history; the HW3 `/`, `/login`, `/dashboard`
+routes still work but `/api/recalls` is now login-gated for everyone, including
+that dashboard's JS).
+
+### Repository layout added in HW4
+
+```
+code/web_application/database.py       SQLAlchemy engine/session (reads .env)
+code/web_application/models.py         Recall, User, Session tables
+code/web_application/routers/api_auth.py   JSON /api/auth/* + require_user dependency
+code/web_application/.env              DATABASE_URL (git-ignored)
+code/web_application/frontend/         Vite + React 18 + react-router-dom client
+scripts/verify_hw04.py
+reports/hw04/                          RUN_LOG.txt, verification.json
+```
+
+`code/web_application/main.py` was extended rather than replaced: `Base.metadata.create_all`
+runs on import, the three HW2 sample notices and one `admin` user are seeded once if the
+tables are empty, and every `/api/recalls` route now takes `Depends(require_user)` on top
+of its existing SQLAlchemy `db` session.
+
+### Database
+
+MySQL database `s6491_rel` (SQLAlchemy + PyMySQL, connection string in
+`code/web_application/.env`, not committed):
+
+- `recalls` - `id`, `product_name` (primary field), `supplier` (secondary field), plus the
+  existing `email`/`description`/`recall_type` columns from the HW1 form.
+- `users` - `id`, `name`, `email` (unique), `password_hash` (bcrypt).
+- `sessions` - `id` (the opaque token), `user_id`, `created_at`, `expires_at`. The browser's
+  `s6491_sid` cookie (`HttpOnly`, `SameSite=lax`) only ever holds this token; logging in
+  inserts a row, logging out deletes it, and `require_user` rejects a token with no row or
+  a `expires_at` in the past.
+
+### Requirements
+
+```bash
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r code/web_application/requirements.txt
+```
+
+Requires a local MySQL server; create the database once with
+`mysql -u root -p -e "CREATE DATABASE s6491_rel;"` and put its connection string in
+`code/web_application/.env`.
+
+### Running it
+
+```bash
+# Terminal 1 - API
+source .venv/bin/activate
+cd code/web_application
+python -m uvicorn main:app --port 8191
+
+# Terminal 2 - React client
+cd code/web_application/frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173 (Vite proxies `/api/*` to port 8191, so the session cookie
+stays same-origin). Demo account: `admin@s6491.com` / `Recall@6491`.
+
+| Route | Component | Purpose |
+|---|---|---|
+| `/` | `Home.jsx` | list + search (by product/supplier) + "Delete Highest ID", "Login required" when logged out |
+| `/login` | `Login.jsx` | email + password |
+| `/create` | `CreateRecord.jsx` | add a notice - all 6 HW1 fields (product, supplier, email, description w/ >25-char check, reason type, terms checkbox) |
+| `/update/:id` | `UpdateRecord.jsx` | edit a notice's product name / supplier |
+| `/delete/:id` | `DeleteRecord.jsx` | delete a notice, with a preview of what's being removed |
+
+The React client is a full port of the HW1/HW2 static app's theme and feature set
+(`static/css/styles.css`, `static/js/script.js`) onto React Router pages instead of
+JS-toggled tabs: same green branding, card/table/chip/toast styling, search bar,
+per-record Edit/Delete, and the "Delete Highest ID" action - not just the two fields
+the assignment text lists as the minimum.
+
+| Method | Path | Auth |
+|---|---|---|
+| POST | `/api/auth/login` | - |
+| POST | `/api/auth/logout` | session cookie |
+| GET | `/api/auth/me` | session cookie |
+| GET/POST | `/api/recalls` | session cookie |
+| GET/PUT/DELETE | `/api/recalls/{id}` | session cookie |
+| DELETE | `/api/recalls/highest` | session cookie |
+
+### Self check
+
+```bash
+python scripts/verify_hw04.py
+```
+
+Writes `reports/hw04/verification.json`. Starts its own copy of the app on port 8191,
+so stop any server already running there first.

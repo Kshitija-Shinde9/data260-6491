@@ -1,0 +1,169 @@
+{
+  "homework": "HW4",
+  "generated_at": "2026-09-26T16:55:55Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "domain_id": 3,
+  "domain": "Grocery supply and recall notices",
+  "commit_hash": "b330d21cbf38a0d3305e873b269a5d941235718a",
+  "tag": "no tag",
+  "configuration": {
+    "model_used": "none - HW4 is a MySQL/FastAPI/React CRUD app, no LLM involved",
+    "database": "MySQL - s6491_rel",
+    "password_hashing": "bcrypt",
+    "session_token": "secrets.token_urlsafe(32), stored server-side in the sessions table"
+  },
+  "total_checks": 29,
+  "passed": 29,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "deliverable present: code/web_application/database.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/models.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/routers/api_auth.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/.env",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/package.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/App.jsx",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/pages/Login.jsx",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/pages/Home.jsx",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/pages/CreateRecord.jsx",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/pages/UpdateRecord.jsx",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/pages/DeleteRecord.jsx",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "MySQL reachable with s6491_rel database",
+      "passed": true,
+      "detail": "tables: ['recalls', 'sessions', 'users']"
+    },
+    {
+      "name": "table exists: recalls",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table exists: users",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table exists: sessions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "backend starts and responds on PORT_BASE",
+      "passed": true,
+      "detail": "http://127.0.0.1:8191"
+    },
+    {
+      "name": "unauthenticated GET /api/recalls is rejected",
+      "passed": true,
+      "detail": "HTTP 401"
+    },
+    {
+      "name": "login with a wrong password is rejected",
+      "passed": true,
+      "detail": "HTTP 401"
+    },
+    {
+      "name": "login with the correct password succeeds",
+      "passed": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "Set-Cookie is HttpOnly",
+      "passed": true,
+      "detail": "s6491_sid=_AKmn8P3XSWVUpvkjNLGN0SPYZIs6j"
+    },
+    {
+      "name": "session cookie value is an opaque token, not the account's own data",
+      "passed": true,
+      "detail": "token length 43"
+    },
+    {
+      "name": "authenticated GET /api/recalls returns data",
+      "passed": true,
+      "detail": "HTTP 200, 3 rows"
+    },
+    {
+      "name": "POST /api/recalls creates a record",
+      "passed": true,
+      "detail": "HTTP 201"
+    },
+    {
+      "name": "GET /api/recalls/{id} returns the created record",
+      "passed": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "PUT /api/recalls/{id} updates the record",
+      "passed": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "DELETE /api/recalls/{id} removes the record",
+      "passed": true,
+      "detail": "HTTP 204"
+    },
+    {
+      "name": "deleted record is gone",
+      "passed": true,
+      "detail": "HTTP 404"
+    },
+    {
+      "name": "logout succeeds",
+      "passed": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "logged-out cookie can no longer reach /api/recalls",
+      "passed": true,
+      "detail": "HTTP 401"
+    }
+  ]
+}

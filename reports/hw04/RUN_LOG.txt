@@ -1,3 +1,58 @@
+****
+PART 1, 2 and 3
+****
+
+=== HW4 verification run ===
+started: 2026-09-26T16:55:53Z
+
+HW4 self-check - SID4 6491, DOMAIN_ID 3
+
+[PASS] deliverable present: code/web_application/database.py
+[PASS] deliverable present: code/web_application/models.py
+[PASS] deliverable present: code/web_application/routers/api_auth.py
+[PASS] deliverable present: code/web_application/.env
+[PASS] deliverable present: code/web_application/frontend/package.json
+[PASS] deliverable present: code/web_application/frontend/src/App.jsx
+[PASS] deliverable present: code/web_application/frontend/src/pages/Login.jsx
+[PASS] deliverable present: code/web_application/frontend/src/pages/Home.jsx
+[PASS] deliverable present: code/web_application/frontend/src/pages/CreateRecord.jsx
+[PASS] deliverable present: code/web_application/frontend/src/pages/UpdateRecord.jsx
+[PASS] deliverable present: code/web_application/frontend/src/pages/DeleteRecord.jsx
+
+[PASS] MySQL reachable with s6491_rel database  (tables: ['recalls', 'sessions', 'users'])
+[PASS] table exists: recalls
+[PASS] table exists: users
+[PASS] table exists: sessions
+
+[PASS] backend starts and responds on PORT_BASE  (http://127.0.0.1:8191)
+[PASS] unauthenticated GET /api/recalls is rejected  (HTTP 401)
+[PASS] login with a wrong password is rejected  (HTTP 401)
+[PASS] login with the correct password succeeds  (HTTP 200)
+[PASS] Set-Cookie is HttpOnly  (s6491_sid=_AKmn8P3XSWVUpvkjNLGN0SPYZIs6j)
+[PASS] session cookie value is an opaque token, not the account's own data  (token length 43)
+[PASS] authenticated GET /api/recalls returns data  (HTTP 200, 3 rows)
+[PASS] POST /api/recalls creates a record  (HTTP 201)
+[PASS] GET /api/recalls/{id} returns the created record  (HTTP 200)
+[PASS] PUT /api/recalls/{id} updates the record  (HTTP 200)
+[PASS] DELETE /api/recalls/{id} removes the record  (HTTP 204)
+[PASS] deleted record is gone  (HTTP 404)
+[PASS] logout succeeds  (HTTP 200)
+[PASS] logged-out cookie can no longer reach /api/recalls  (HTTP 401)
+
+test server stopped.
+
+29/29 checks passed.
+Written to reports/hw04/verification.json
+
+finished: 2026-09-26T16:55:55Z
+
+
+****
+PART 4 
+****
+
+
+
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Corpus: 8 documents, 96 chunks (size=500, overlap=50)
 

@@ -1,7 +1,26 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from datetime import datetime
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from database import Base
+
+
+def utcnow():
+    return datetime.utcnow()
+
+
+class Supplier(Base):
+    __tablename__ = "suppliers"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(255), nullable=False)
+    headquarters = Column(String(255), nullable=False)
+    supplier_code = Column(String(32), nullable=False, unique=True)
+    created_at = Column(DateTime, nullable=False, default=utcnow)
+    updated_at = Column(DateTime, nullable=False, default=utcnow, onupdate=utcnow)
+
+    recalls = relationship("Recall", back_populates="supplier")
 
 
 class Recall(Base):
@@ -9,12 +28,20 @@ class Recall(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     product_name = Column(String(255), nullable=False)
-    supplier = Column(String(255), nullable=False)
+    recall_code = Column(String(32), nullable=False, unique=True)
+    affected_units = Column(Integer, nullable=False, default=0)
+    supplier_id = Column(
+        Integer,
+        ForeignKey("suppliers.id", ondelete="RESTRICT"),
+        nullable=False,
+    )
     email = Column(String(255), nullable=True, default="")
     description = Column(String(2000), nullable=True, default="")
     recall_type = Column(String(100), nullable=True, default="")
+    created_at = Column(DateTime, nullable=False, default=utcnow)
+    updated_at = Column(DateTime, nullable=False, default=utcnow, onupdate=utcnow)
 
-    notes = relationship("RecallNote")
+    supplier = relationship("Supplier", back_populates="recalls")
 
 
 class User(Base):
@@ -37,11 +64,3 @@ class Session(Base):
     expires_at = Column(DateTime, nullable=False)
 
     user = relationship("User", back_populates="sessions")
-
-class RecallNote(Base):
-    __tablename__ = "recall_notes"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    recall_id = Column(Integer, ForeignKey("recalls.id"), nullable=False)
-    note = Column(String(500), nullable=False)
-    created_at = Column(DateTime, nullable=False)

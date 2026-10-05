@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { chipClass } from "../utils.js";
+import { fetchRecalls } from "../store/recallsSlice.js";
 
-export default function Home({ recalls, loading, auth, onSearch, onReload, onSelectRecall, onDelete, onDeleteHighest, showToast }) {
+export default function Home({ auth }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const recalls = useSelector((state) => state.recalls.items);
+  const loading = useSelector((state) => state.recalls.status === "loading");
+  const storeError = useSelector((state) => state.recalls.error);
+
   const [searchInput, setSearchInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(null);
-  const [searchLoading, setSearchLoading] = useState(false);
-  const [error, setError] = useState("");
 
   if (!auth.loggedIn) {
     return (
@@ -22,76 +26,48 @@ export default function Home({ recalls, loading, auth, onSearch, onReload, onSel
     );
   }
 
-  const list = searchResults !== null ? searchResults : recalls;
-  const isLoading = searchResults !== null ? searchLoading : loading;
+  const term = searchTerm.trim().toLowerCase();
+  const list = term
+    ? recalls.filter(
+        (r) =>
+          r.product_name.toLowerCase().includes(term) ||
+          (r.recall_code || "").toLowerCase().includes(term) ||
+          String(r.supplier_id).includes(term)
+      )
+    : recalls;
 
-  async function handleSearch() {
-    const term = searchInput.trim();
-    if (!term) {
-      handleShowAll();
-      return;
-    }
-    setError("");
-    setSearchLoading(true);
-    try {
-      setSearchTerm(term);
-      setSearchResults(await onSearch(term));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setSearchLoading(false);
-    }
+  function handleSearch() {
+    setSearchTerm(searchInput.trim());
   }
 
   function handleShowAll() {
     setSearchInput("");
     setSearchTerm("");
-    setSearchResults(null);
-    onReload();
-  }
-
-  async function handleDeleteHighest() {
-    const highest = recalls.reduce((a, b) => (a.id > b.id ? a : b), recalls[0]);
-    if (!highest || !confirm(`Delete the notice with the highest ID?\n\nID ${highest.id} - ${highest.product_name}`)) {
-      return;
-    }
-    try {
-      const deleted = await onDeleteHighest();
-      showToast(`Deleted record ID ${deleted.id}, the highest ID.`);
-    } catch (err) {
-      showToast("Could not delete: " + err.message, false);
-    }
+    dispatch(fetchRecalls());
   }
 
   function goToUpdate(recall) {
-    onSelectRecall(recall);
-    navigate("/update");
+    navigate(`/update?id=${recall.id}`);
   }
 
   function goToDelete(recall) {
-    onSelectRecall(recall);
-    navigate("/delete");
+    navigate(`/delete?id=${recall.id}`);
   }
-
-  const highestPreview = recalls.length === 0
-    ? "nothing left to delete"
-    : (() => {
-        const highest = recalls.reduce((a, b) => (a.id > b.id ? a : b));
-        return `ID ${highest.id} - ${highest.product_name}`;
-      })();
 
   return (
     <>
       <div className="view-head">
         <h2>All recall notices</h2>
-        <p className="view-sub">Every notice reported so far. Search by product name or supplier.</p>
+        <p className="view-sub">
+          List is driven by Redux. Search by product name, recall code, or supplier id.
+        </p>
       </div>
 
       <div className="search-bar">
         <div className="search-field">
           <input
             type="text"
-            placeholder="Search product name or supplier…"
+            placeholder="Search product, recall code, or supplier id…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -101,31 +77,31 @@ export default function Home({ recalls, loading, auth, onSearch, onReload, onSel
         <button type="button" className="btn btn-ghost" onClick={handleShowAll}>Show All</button>
       </div>
 
-      {searchTerm && searchResults !== null && (
+      {term && (
         <p className="search-note">
-          Showing {searchResults.length} result{searchResults.length === 1 ? "" : "s"} for "{searchTerm}".
+          Showing {list.length} result{list.length === 1 ? "" : "s"} for "{searchTerm}".
         </p>
       )}
 
-      {isLoading ? (
+      {loading ? (
         <>
           <div className="skeleton-row" />
           <div className="skeleton-row" />
           <div className="skeleton-row" />
           <p className="state-caption"><span className="spinner" aria-hidden="true" /> Loading recall notices…</p>
         </>
-      ) : error ? (
+      ) : storeError && recalls.length === 0 ? (
         <div className="state state-error" role="alert">
           <h3>Could not load the notices</h3>
-          <p>{error}</p>
+          <p>{storeError}</p>
           <button type="button" className="btn btn-primary" onClick={handleShowAll}>Try again</button>
         </div>
       ) : list.length === 0 ? (
         <div className="state state-empty">
-          <h3>{searchTerm ? "No matching notices" : "No recall notices yet"}</h3>
+          <h3>{term ? "No matching notices" : "No recall notices yet"}</h3>
           <p>
-            {searchTerm
-              ? `Nothing matches "${searchTerm}". Try a different product name or supplier, or press Show All.`
+            {term
+              ? `Nothing matches "${searchTerm}". Try a different term, or press Show All.`
               : "Nothing has been reported. Use Add Notice to report the first one."}
           </p>
           <Link to="/create" className="btn btn-primary">Report a recall</Link>
@@ -137,7 +113,9 @@ export default function Home({ recalls, loading, auth, onSearch, onReload, onSel
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Product Name</th>
-                <th scope="col">Supplier / Brand</th>
+                <th scope="col">Recall code</th>
+                <th scope="col">Units</th>
+                <th scope="col">Supplier ID</th>
                 <th scope="col">Reason Type</th>
                 <th scope="col"><span className="sr-only">Actions</span></th>
               </tr>
@@ -147,7 +125,9 @@ export default function Home({ recalls, loading, auth, onSearch, onReload, onSel
                 <tr key={r.id}>
                   <td data-label="ID" className="id-cell">{r.id}</td>
                   <td data-label="Product" className="product-cell">{r.product_name}</td>
-                  <td data-label="Supplier">{r.supplier}</td>
+                  <td data-label="Code">{r.recall_code}</td>
+                  <td data-label="Units">{r.affected_units}</td>
+                  <td data-label="Supplier">{r.supplier_id}</td>
                   <td data-label="Reason">
                     {r.recall_type ? (
                       <span className={`chip ${chipClass(r.recall_type)}`}>{r.recall_type}</span>
@@ -167,15 +147,6 @@ export default function Home({ recalls, loading, auth, onSearch, onReload, onSel
           </table>
         </div>
       )}
-
-      <div className="card card-danger" style={{ marginTop: 20 }}>
-        <h3 className="card-title">Delete highest ID</h3>
-        <p className="card-sub">Removes whichever notice currently has the largest ID.</p>
-        <div className="danger-preview">About to delete: <strong>{highestPreview}</strong></div>
-        <button type="button" className="btn btn-danger btn-block" onClick={handleDeleteHighest}>
-          Delete Highest ID
-        </button>
-      </div>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -10,15 +11,8 @@ import CreateRecord from "./pages/CreateRecord.jsx";
 import UpdateRecord from "./pages/UpdateRecord.jsx";
 import DeleteRecord from "./pages/DeleteRecord.jsx";
 
-import {
-  me,
-  logout,
-  fetchRecalls,
-  createRecall,
-  updateRecall,
-  deleteRecall,
-  deleteHighestRecall,
-} from "./api/recallsApi.js";
+import { me, logout } from "./api/recallsApi.js";
+import { fetchRecalls } from "./store/recallsSlice.js";
 
 function RequireAuth({ auth, children }) {
   if (!auth.loggedIn) {
@@ -35,11 +29,10 @@ function RequireAuth({ auth, children }) {
 }
 
 export default function App() {
+  const dispatch = useDispatch();
+  const recallCount = useSelector((state) => state.recalls.items.length);
   const [auth, setAuth] = useState({ loggedIn: false, user: null, checked: false });
-  const [recalls, setRecalls] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
-  const [selectedRecall, setSelectedRecall] = useState(null);
   const toastTimer = useRef(null);
 
   function showToast(message, ok = true) {
@@ -59,22 +52,11 @@ export default function App() {
     })();
   }, []);
 
-  async function reload() {
-    if (!auth.loggedIn) {
-      setRecalls([]);
-      return;
-    }
-    try {
-      setLoading(true);
-      setRecalls(await fetchRecalls());
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    reload();
-  }, [auth.loggedIn]);
+    if (auth.loggedIn) {
+      dispatch(fetchRecalls());
+    }
+  }, [auth.loggedIn, dispatch]);
 
   function onLogin(user) {
     setAuth({ loggedIn: true, user, checked: true });
@@ -85,63 +67,21 @@ export default function App() {
     setAuth({ loggedIn: false, user: null, checked: true });
   }
 
-  async function onAdd(payload) {
-    const created = await createRecall(payload);
-    setRecalls((prev) => [...prev, created]);
-    return created;
-  }
-
-  async function onUpdate(id, payload) {
-    const updated = await updateRecall(id, payload);
-    setRecalls((prev) => prev.map((r) => (r.id === id ? updated : r)));
-    return updated;
-  }
-
-  async function onDelete(id) {
-    await deleteRecall(id);
-    setRecalls((prev) => prev.filter((r) => r.id !== id));
-  }
-
-  async function onDeleteHighest() {
-    if (recalls.length === 0) {
-      throw new Error("There are no recall notices to delete.");
-    }
-    const highest = recalls.reduce((a, b) => (a.id > b.id ? a : b));
-    await deleteHighestRecall();
-    setRecalls((prev) => prev.filter((r) => r.id !== highest.id));
-    return highest;
-  }
-
   if (!auth.checked) return null;
 
   return (
     <div>
-      <Navbar auth={auth} recallCount={recalls.length} onLogout={onLogout} />
+      <Navbar auth={auth} recallCount={recallCount} onLogout={onLogout} />
 
       <main className="page">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                recalls={recalls}
-                loading={loading}
-                auth={auth}
-                onSearch={fetchRecalls}
-                onReload={reload}
-                onSelectRecall={setSelectedRecall}
-                onDelete={onDelete}
-                onDeleteHighest={onDeleteHighest}
-                showToast={showToast}
-              />
-            }
-          />
+          <Route path="/" element={<Home auth={auth} />} />
           <Route path="/login" element={<Login onLogin={onLogin} />} />
           <Route
             path="/create"
             element={
               <RequireAuth auth={auth}>
-                <CreateRecord onAdd={onAdd} showToast={showToast} />
+                <CreateRecord showToast={showToast} />
               </RequireAuth>
             }
           />
@@ -149,7 +89,7 @@ export default function App() {
             path="/update"
             element={
               <RequireAuth auth={auth}>
-                <UpdateRecord recall={selectedRecall} onUpdate={onUpdate} showToast={showToast} />
+                <UpdateRecord showToast={showToast} />
               </RequireAuth>
             }
           />
@@ -157,7 +97,7 @@ export default function App() {
             path="/delete"
             element={
               <RequireAuth auth={auth}>
-                <DeleteRecord recall={selectedRecall} onDelete={onDelete} showToast={showToast} />
+                <DeleteRecord showToast={showToast} />
               </RequireAuth>
             }
           />

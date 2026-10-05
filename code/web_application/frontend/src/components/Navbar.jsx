@@ -18,7 +18,7 @@ export default function Navbar({ auth, recallCount, onLogout }) {
       <div className="brand">
         <div className="brand-text">
           <span className="brand-title">Grocery Recall Notices</span>
-          <span className="brand-sub">DATA-260 HW4 &middot; port 8191</span>
+          <span className="brand-sub">DATA-260 HW5 &middot; port 8191</span>
         </div>
       </div>
 

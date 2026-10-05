@@ -8,10 +8,11 @@ from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 
 from database import Base, engine, get_db
-from models import Recall, User
+from models import Recall, Supplier, User
 from routers.auth import router as auth_router
 from routers.api_auth import router as api_auth_router
 from routers.recalls import router as recalls_router
+from routers.suppliers import router as suppliers_router
 from routers.bench import router as bench_router
 
 # this is my backend for grocery recall notices app.
@@ -45,6 +46,7 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(api_auth_router)
+app.include_router(suppliers_router)
 app.include_router(recalls_router)
 app.include_router(bench_router)
 
@@ -58,30 +60,48 @@ Base.metadata.create_all(bind=engine)
 def _seed():
     db = next(get_db())
     try:
+        if db.query(Supplier).count() == 0:
+            db.add_all([
+                Supplier(name="Trader Joe's", headquarters="Monrovia, CA", supplier_code="SUP-0001"),
+                Supplier(name="Safeway Deli", headquarters="Pleasanton, CA", supplier_code="SUP-0002"),
+                Supplier(name="Costco Wholesale", headquarters="Issaquah, WA", supplier_code="SUP-0003"),
+            ])
+            db.commit()
+
         if db.query(Recall).count() == 0:
+            tj = db.query(Supplier).filter_by(supplier_code="SUP-0001").one()
+            safeway = db.query(Supplier).filter_by(supplier_code="SUP-0002").one()
+            costco = db.query(Supplier).filter_by(supplier_code="SUP-0003").one()
             db.add_all([
                 Recall(
                     product_name="Trader Joe's Organic Frozen Blueberries, 16oz",
-                    supplier="Trader Joe's",
+                    recall_code="REC-0001",
+                    affected_units=120,
+                    supplier_id=tj.id,
                     email="rohan1@gmail.com",
-                    description="Small tear near the top seal, frost buildup on the berries at the top of the bag.",
+                    description="Small tear near the top seal, frost buildup on the berries.",
                     recall_type="Packaging / Seal Failure",
                 ),
                 Recall(
                     product_name="Safeway Signature Rotisserie Chicken",
-                    supplier="Safeway Deli",
+                    recall_code="REC-0002",
+                    affected_units=40,
+                    supplier_id=safeway.id,
                     email="rohan1@gmail.com",
-                    description="Served lukewarm from the hot case, pack date on the label was two days old.",
+                    description="Served lukewarm from the hot case, pack date two days old.",
                     recall_type="Spoiled or Quality Issue",
                 ),
                 Recall(
                     product_name="Kirkland Signature Trail Mix, 4lb",
-                    supplier="Costco Wholesale",
+                    recall_code="REC-0003",
+                    affected_units=75,
+                    supplier_id=costco.id,
                     email="rohan1@gmail.com",
-                    description="Ingredient panel does not list peanuts but whole peanuts are clearly in the bag.",
+                    description="Ingredient panel does not list peanuts but peanuts are in the bag.",
                     recall_type="Undeclared Allergen",
                 ),
             ])
+            db.commit()
 
         if db.query(User).filter(User.email == "admin@s6491.com").first() is None:
             db.add(User(
@@ -89,8 +109,7 @@ def _seed():
                 email="admin@s6491.com",
                 password_hash=bcrypt.hashpw(b"Recall@6491", bcrypt.gensalt()).decode(),
             ))
-
-        db.commit()
+            db.commit()
     finally:
         db.close()
 

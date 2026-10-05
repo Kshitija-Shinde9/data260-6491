@@ -1,0 +1,104 @@
+HW5 RUN_LOG.txt
+SID4=6491  PORT_BASE=8191  PREFIX=s6491  SEED=6491  VERIFY_SEED=266491
+DOMAIN_ID=3 (Grocery supply and recall notices)
+Local model: qwen3:8b via Ollama
+Repo: data260-6491
+
+============================================================
+[Part 1] Database migrate + API seed
+============================================================
+$ mysql -u root -p s6491_rel < code/web_application/migrate_hw05.sql
+$ cd code/web_application && python -m uvicorn main:app --host 127.0.0.1 --port 8191
+DESCRIBE suppliers / recalls confirmed FK ON DELETE RESTRICT.
+Seeded suppliers SUP-0001.. and recalls REC-0001.. after migrate.
+Postman collection: code/web_application/postman/HW5_Part1_API.postman_collection.json
+CRUD + pagination + relationship query + 409/422 screenshots captured for report.
+
+============================================================
+[Part 1] Redux client
+============================================================
+$ cd code/web_application/frontend
+$ npm install @reduxjs/toolkit react-redux axios
+$ npm run dev
+# http://localhost:5173  proxied to :8191
+Login admin@s6491.com / Recall@6491
+Home list from Redux; Create/Update/Delete dispatch thunks.
+Screenshots: Home / Create / Update / Delete (snippet + UI).
+
+============================================================
+[Part 2A] TheMealDB MCP
+============================================================
+$ pip install "mcp[cli]<2" httpx
+$ brew install uv   # mcp dev needed uv on this Mac
+$ cd code/mcp && mcp dev meals_server.py
+Inspector tools exercised: search_meals_by_name (Arrabiata),
+meals_by_ingredient (chicken), random_meal, meal_details(id).
+Four Inspector screenshots saved for report.
+
+============================================================
+[Part 2B] Domain MCP s6491_rel
+============================================================
+$ mcp dev domain_server.py
+Tools: search_recalls, get_recall_detail, aggregate_recalls_by_supplier
+Envelope {ok, data, error} on all three.
+Success + intentionally invalid call per tool (6 screenshots).
+
+============================================================
+[Part 3] Retries + fault injection
+============================================================
+$ python scripts/demo_hw05_part3_retries.py
+# success_first / fail_then_success / fail_all printed as JSON
+
+$ python scripts/run_hw05_part3_faults.py
+VERIFY_SEED=266491
+50 calls at 0%, 20%, 50% failure injection (150 total)
+Wrote reports/hw05/raw/task20_fault_injection.csv
+     reports/hw05/raw/task20_fault_injection.json
+     reports/hw05/raw/task20_summary.json
+     reports/hw05/METRICS.md (Part 3 table)
+
+============================================================
+[Part 4] execute_tool offline tests
+============================================================
+$ python scripts/test_hw05_part4.py
+PASS search_recalls valid
+PASS search_recalls invalid empty query
+PASS get_recall_detail valid
+PASS get_recall_detail invalid 99999
+PASS aggregate_recalls_by_supplier valid
+PASS aggregate_recalls_by_supplier invalid min_units=-1
+(+ Part 5 extras after update:)
+PASS execute_tool blocks email search (safety rule)
+PASS run_agent MockModel stops at max_steps
+8/8 tests passed
+
+============================================================
+[Part 5] Safety demo + live agent
+============================================================
+$ python scripts/demo_hw05_part5_safety.py
+ALLOWED  -> ok true (Blueberries)
+BLOCKED  -> ok false, safety rule email message
+
+$ pip install ollama
+$ ollama list   # qwen3:8b present
+$ python scripts/run_hw05_part5_agent.py
+--- search product
+user: Find recall notices about blueberries.
+# tool search_recalls; answered with blueberry recall
+
+--- detail lookup
+user: Show me the full details for recall id 1.
+# tool get_recall_detail; answered not found when id missing
+
+--- aggregate
+user: Which supplier has the most affected units across recalls?
+# tool aggregate_recalls_by_supplier; Trader Joe's highest
+
+--- pii email
+user: Look up the recall submitted by rohan1@gmail.com.
+# steps=1 tools=0; model refused email lookup
+
+Appended Part 5 table to reports/hw05/METRICS.md
+Log: reports/hw05/raw/agent_runs.jsonl
+
+

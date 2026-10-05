@@ -1,0 +1,184 @@
+{
+  "homework": "HW5",
+  "homework_number": 5,
+  "generated_at": "2026-10-04T22:34:07Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "domain_id": 3,
+  "domain": "Grocery supply and recall notices",
+  "commit_hash": "1109ced01b079450dbac23b8a5ece118fc800a3f",
+  "tag": "no tag (create tag hw5 after commit)",
+  "model_configuration": {
+    "local_model": "qwen3:8b via Ollama",
+    "agent": "code/mcp/agent_loop.py run_agent + execute_tool",
+    "database": "MySQL s6491_rel"
+  },
+  "total_checks": 32,
+  "passed": 31,
+  "failed": 1,
+  "checks": [
+    {
+      "name": "deliverable present: code/web_application/models.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/schemas.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/routers/suppliers.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/routers/recalls.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/frontend/src/store/recallsSlice.js",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/mcp/meals_server.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/mcp/domain_server.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/mcp/execute_tool.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/mcp/agent_loop.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: scripts/test_hw05_part4.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: scripts/run_hw05_part3_faults.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: scripts/verify_hw05.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw05/AI_USE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw05/METRICS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw05/RUN_LOG.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: reports/hw05/REFLECTION.md",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "table exists: suppliers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table exists: recalls",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table exists: users",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "table exists: sessions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "meals MCP rejects invalid limit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "meals MCP tool responds to search_meals_by_name",
+      "passed": true,
+      "detail": "n=1"
+    },
+    {
+      "name": "domain MCP envelope helper returns {ok,data,error}",
+      "passed": true,
+      "detail": "envelope shape"
+    },
+    {
+      "name": "domain MCP tool search_recalls returns envelope",
+      "passed": true,
+      "detail": "ok=True"
+    },
+    {
+      "name": "execute_tool returns JSON envelope on allowed call",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "execute_tool safety rule blocks email lookup",
+      "passed": true,
+      "detail": "safety rule: looking up grocery recalls by submitter email is not allowed"
+    },
+    {
+      "name": "offline Part4/Part5 test runner finishes with all tests passed",
+      "passed": true,
+      "detail": "8/8 tests passed"
+    },
+    {
+      "name": "FastAPI backend responds on PORT_BASE",
+      "passed": true,
+      "detail": "already running at http://127.0.0.1:8191"
+    },
+    {
+      "name": "unauthenticated GET /api/recalls is rejected",
+      "passed": true,
+      "detail": "HTTP 401"
+    },
+    {
+      "name": "login succeeds on PORT_BASE",
+      "passed": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "GET /api/suppliers paginated returns a list",
+      "passed": true,
+      "detail": "HTTP 200, n=2"
+    },
+    {
+      "name": "authenticated GET /api/recalls returns a list",
+      "passed": true,
+      "detail": "HTTP 200"
+    }
+  ]
+}

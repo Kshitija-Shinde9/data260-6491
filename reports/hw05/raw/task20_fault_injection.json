@@ -1,0 +1,3409 @@
+{
+  "started_at": "2026-10-04T22:34:02.668774+00:00",
+  "finished_at": "2026-10-04T22:34:05.787326+00:00",
+  "verify_seed": 266491,
+  "calls_per_rate": 50,
+  "rates": [
+    0.0,
+    0.2,
+    0.5
+  ],
+  "records": [
+    {
+      "call_index": 1,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 142.113,
+      "wall_latency_ms": 142.121,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 142.108
+        }
+      ]
+    },
+    {
+      "call_index": 2,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.874,
+      "wall_latency_ms": 0.878,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.87
+        }
+      ]
+    },
+    {
+      "call_index": 3,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.746,
+      "wall_latency_ms": 0.749,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.744
+        }
+      ]
+    },
+    {
+      "call_index": 4,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.638,
+      "wall_latency_ms": 0.641,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.636
+        }
+      ]
+    },
+    {
+      "call_index": 5,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.635,
+      "wall_latency_ms": 0.637,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.633
+        }
+      ]
+    },
+    {
+      "call_index": 6,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.632,
+      "wall_latency_ms": 0.633,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.63
+        }
+      ]
+    },
+    {
+      "call_index": 7,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.587,
+      "wall_latency_ms": 0.588,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.585
+        }
+      ]
+    },
+    {
+      "call_index": 8,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.773,
+      "wall_latency_ms": 0.776,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.772
+        }
+      ]
+    },
+    {
+      "call_index": 9,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.593,
+      "wall_latency_ms": 0.595,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.592
+        }
+      ]
+    },
+    {
+      "call_index": 10,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.566,
+      "wall_latency_ms": 0.567,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.564
+        }
+      ]
+    },
+    {
+      "call_index": 11,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.569,
+      "wall_latency_ms": 0.57,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.568
+        }
+      ]
+    },
+    {
+      "call_index": 12,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.545,
+      "wall_latency_ms": 0.546,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.544
+        }
+      ]
+    },
+    {
+      "call_index": 13,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.536,
+      "wall_latency_ms": 0.537,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.535
+        }
+      ]
+    },
+    {
+      "call_index": 14,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.556,
+      "wall_latency_ms": 0.559,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.554
+        }
+      ]
+    },
+    {
+      "call_index": 15,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.958,
+      "wall_latency_ms": 0.96,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.956
+        }
+      ]
+    },
+    {
+      "call_index": 16,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.58,
+      "wall_latency_ms": 0.582,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.578
+        }
+      ]
+    },
+    {
+      "call_index": 17,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.578,
+      "wall_latency_ms": 0.58,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.577
+        }
+      ]
+    },
+    {
+      "call_index": 18,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.567,
+      "wall_latency_ms": 0.569,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.566
+        }
+      ]
+    },
+    {
+      "call_index": 19,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.55,
+      "wall_latency_ms": 0.552,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.549
+        }
+      ]
+    },
+    {
+      "call_index": 20,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.618,
+      "wall_latency_ms": 0.619,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.617
+        }
+      ]
+    },
+    {
+      "call_index": 21,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.548,
+      "wall_latency_ms": 0.549,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.547
+        }
+      ]
+    },
+    {
+      "call_index": 22,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.548,
+      "wall_latency_ms": 0.549,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.547
+        }
+      ]
+    },
+    {
+      "call_index": 23,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.566,
+      "wall_latency_ms": 0.568,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.564
+        }
+      ]
+    },
+    {
+      "call_index": 24,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.587,
+      "wall_latency_ms": 0.588,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.585
+        }
+      ]
+    },
+    {
+      "call_index": 25,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.552,
+      "wall_latency_ms": 0.553,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.55
+        }
+      ]
+    },
+    {
+      "call_index": 26,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.542,
+      "wall_latency_ms": 0.544,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.541
+        }
+      ]
+    },
+    {
+      "call_index": 27,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.531,
+      "wall_latency_ms": 0.533,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.53
+        }
+      ]
+    },
+    {
+      "call_index": 28,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.507,
+      "wall_latency_ms": 0.508,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.505
+        }
+      ]
+    },
+    {
+      "call_index": 29,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.543,
+      "wall_latency_ms": 0.544,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.542
+        }
+      ]
+    },
+    {
+      "call_index": 30,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.505,
+      "wall_latency_ms": 0.506,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.504
+        }
+      ]
+    },
+    {
+      "call_index": 31,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.514,
+      "wall_latency_ms": 0.516,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.513
+        }
+      ]
+    },
+    {
+      "call_index": 32,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.505,
+      "wall_latency_ms": 0.506,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.504
+        }
+      ]
+    },
+    {
+      "call_index": 33,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.497,
+      "wall_latency_ms": 0.498,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.496
+        }
+      ]
+    },
+    {
+      "call_index": 34,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.501,
+      "wall_latency_ms": 0.502,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.499
+        }
+      ]
+    },
+    {
+      "call_index": 35,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.548,
+      "wall_latency_ms": 0.549,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.546
+        }
+      ]
+    },
+    {
+      "call_index": 36,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.583,
+      "wall_latency_ms": 0.585,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.581
+        }
+      ]
+    },
+    {
+      "call_index": 37,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.593,
+      "wall_latency_ms": 0.595,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.592
+        }
+      ]
+    },
+    {
+      "call_index": 38,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.545,
+      "wall_latency_ms": 0.547,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.544
+        }
+      ]
+    },
+    {
+      "call_index": 39,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.53,
+      "wall_latency_ms": 0.531,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.528
+        }
+      ]
+    },
+    {
+      "call_index": 40,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.539,
+      "wall_latency_ms": 0.54,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.537
+        }
+      ]
+    },
+    {
+      "call_index": 41,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.533,
+      "wall_latency_ms": 0.534,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.531
+        }
+      ]
+    },
+    {
+      "call_index": 42,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.533,
+      "wall_latency_ms": 0.534,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.532
+        }
+      ]
+    },
+    {
+      "call_index": 43,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.526,
+      "wall_latency_ms": 0.527,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.524
+        }
+      ]
+    },
+    {
+      "call_index": 44,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.541,
+      "wall_latency_ms": 0.542,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.539
+        }
+      ]
+    },
+    {
+      "call_index": 45,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.531,
+      "wall_latency_ms": 0.532,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.53
+        }
+      ]
+    },
+    {
+      "call_index": 46,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.525,
+      "wall_latency_ms": 0.527,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.524
+        }
+      ]
+    },
+    {
+      "call_index": 47,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.96,
+      "wall_latency_ms": 0.963,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.957
+        }
+      ]
+    },
+    {
+      "call_index": 48,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.665,
+      "wall_latency_ms": 0.667,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.664
+        }
+      ]
+    },
+    {
+      "call_index": 49,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.501,
+      "wall_latency_ms": 0.502,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.5
+        }
+      ]
+    },
+    {
+      "call_index": 50,
+      "failure_rate": 0.0,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.485,
+      "wall_latency_ms": 0.486,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.484
+        }
+      ]
+    },
+    {
+      "call_index": 1,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.525,
+      "wall_latency_ms": 0.526,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.524
+        }
+      ]
+    },
+    {
+      "call_index": 2,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.491,
+      "wall_latency_ms": 0.492,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.489
+        }
+      ]
+    },
+    {
+      "call_index": 3,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.524,
+      "wall_latency_ms": 0.526,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.523
+        }
+      ]
+    },
+    {
+      "call_index": 4,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.493,
+      "wall_latency_ms": 0.495,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.492
+        }
+      ]
+    },
+    {
+      "call_index": 5,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 159.229,
+      "wall_latency_ms": 159.235,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.003
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.017
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.958
+        }
+      ]
+    },
+    {
+      "call_index": 6,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.769,
+      "wall_latency_ms": 0.773,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.766
+        }
+      ]
+    },
+    {
+      "call_index": 7,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.811,
+      "wall_latency_ms": 0.814,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.809
+        }
+      ]
+    },
+    {
+      "call_index": 8,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 57.65,
+      "wall_latency_ms": 57.666,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.477
+        }
+      ]
+    },
+    {
+      "call_index": 9,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 54.951,
+      "wall_latency_ms": 54.958,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.004
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.249
+        }
+      ]
+    },
+    {
+      "call_index": 10,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.667,
+      "wall_latency_ms": 1.676,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.66
+        }
+      ]
+    },
+    {
+      "call_index": 11,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.713,
+      "wall_latency_ms": 1.721,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.707
+        }
+      ]
+    },
+    {
+      "call_index": 12,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 55.883,
+      "wall_latency_ms": 55.892,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.004
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.966
+        }
+      ]
+    },
+    {
+      "call_index": 13,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.831,
+      "wall_latency_ms": 1.84,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.824
+        }
+      ]
+    },
+    {
+      "call_index": 14,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 55.989,
+      "wall_latency_ms": 55.996,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.177
+        }
+      ]
+    },
+    {
+      "call_index": 15,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.059,
+      "wall_latency_ms": 1.066,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.055
+        }
+      ]
+    },
+    {
+      "call_index": 16,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.927,
+      "wall_latency_ms": 0.931,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.924
+        }
+      ]
+    },
+    {
+      "call_index": 17,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.838,
+      "wall_latency_ms": 0.842,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.835
+        }
+      ]
+    },
+    {
+      "call_index": 18,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.565,
+      "wall_latency_ms": 58.574,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.375
+        }
+      ]
+    },
+    {
+      "call_index": 19,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.984,
+      "wall_latency_ms": 1.995,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.978
+        }
+      ]
+    },
+    {
+      "call_index": 20,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.241,
+      "wall_latency_ms": 1.247,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.238
+        }
+      ]
+    },
+    {
+      "call_index": 21,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.441,
+      "wall_latency_ms": 1.447,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.437
+        }
+      ]
+    },
+    {
+      "call_index": 22,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.499,
+      "wall_latency_ms": 1.505,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.494
+        }
+      ]
+    },
+    {
+      "call_index": 23,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.418,
+      "wall_latency_ms": 1.425,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.414
+        }
+      ]
+    },
+    {
+      "call_index": 24,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.352,
+      "wall_latency_ms": 1.357,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.347
+        }
+      ]
+    },
+    {
+      "call_index": 25,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.4,
+      "wall_latency_ms": 1.404,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.395
+        }
+      ]
+    },
+    {
+      "call_index": 26,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.342,
+      "wall_latency_ms": 1.346,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.337
+        }
+      ]
+    },
+    {
+      "call_index": 27,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.33,
+      "wall_latency_ms": 1.334,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.327
+        }
+      ]
+    },
+    {
+      "call_index": 28,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.835,
+      "wall_latency_ms": 0.838,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.832
+        }
+      ]
+    },
+    {
+      "call_index": 29,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 2.281,
+      "wall_latency_ms": 2.284,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.278
+        }
+      ]
+    },
+    {
+      "call_index": 30,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.798,
+      "wall_latency_ms": 0.801,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.796
+        }
+      ]
+    },
+    {
+      "call_index": 31,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.851,
+      "wall_latency_ms": 0.854,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.848
+        }
+      ]
+    },
+    {
+      "call_index": 32,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 55.766,
+      "wall_latency_ms": 55.776,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.003
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.856
+        }
+      ]
+    },
+    {
+      "call_index": 33,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.775,
+      "wall_latency_ms": 1.784,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.767
+        }
+      ]
+    },
+    {
+      "call_index": 34,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.648,
+      "wall_latency_ms": 1.656,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.642
+        }
+      ]
+    },
+    {
+      "call_index": 35,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 155.005,
+      "wall_latency_ms": 155.013,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.018
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.595
+        }
+      ]
+    },
+    {
+      "call_index": 36,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.283,
+      "wall_latency_ms": 58.296,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.004
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.031
+        }
+      ]
+    },
+    {
+      "call_index": 37,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.972,
+      "wall_latency_ms": 1.983,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.966
+        }
+      ]
+    },
+    {
+      "call_index": 38,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.806,
+      "wall_latency_ms": 1.815,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.799
+        }
+      ]
+    },
+    {
+      "call_index": 39,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.558,
+      "wall_latency_ms": 1.565,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.552
+        }
+      ]
+    },
+    {
+      "call_index": 40,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.384,
+      "wall_latency_ms": 1.39,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.38
+        }
+      ]
+    },
+    {
+      "call_index": 41,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.429,
+      "wall_latency_ms": 1.435,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.424
+        }
+      ]
+    },
+    {
+      "call_index": 42,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.324,
+      "wall_latency_ms": 1.329,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.319
+        }
+      ]
+    },
+    {
+      "call_index": 43,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 52.608,
+      "wall_latency_ms": 52.616,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.061
+        }
+      ]
+    },
+    {
+      "call_index": 44,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.068,
+      "wall_latency_ms": 1.074,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.063
+        }
+      ]
+    },
+    {
+      "call_index": 45,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 57.533,
+      "wall_latency_ms": 57.542,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.976
+        }
+      ]
+    },
+    {
+      "call_index": 46,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.831,
+      "wall_latency_ms": 1.841,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.824
+        }
+      ]
+    },
+    {
+      "call_index": 47,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.468,
+      "wall_latency_ms": 1.475,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.463
+        }
+      ]
+    },
+    {
+      "call_index": 48,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.378,
+      "wall_latency_ms": 1.384,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.373
+        }
+      ]
+    },
+    {
+      "call_index": 49,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.377,
+      "wall_latency_ms": 1.383,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.372
+        }
+      ]
+    },
+    {
+      "call_index": 50,
+      "failure_rate": 0.2,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.776,
+      "wall_latency_ms": 0.78,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.773
+        }
+      ]
+    },
+    {
+      "call_index": 1,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.186,
+      "wall_latency_ms": 58.195,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.999
+        }
+      ]
+    },
+    {
+      "call_index": 2,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.837,
+      "wall_latency_ms": 1.847,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.83
+        }
+      ]
+    },
+    {
+      "call_index": 3,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 162.81,
+      "wall_latency_ms": 162.82,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.004
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.026
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.969
+        }
+      ]
+    },
+    {
+      "call_index": 4,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 2.128,
+      "wall_latency_ms": 2.139,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.119
+        }
+      ]
+    },
+    {
+      "call_index": 5,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.742,
+      "wall_latency_ms": 1.749,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.736
+        }
+      ]
+    },
+    {
+      "call_index": 6,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 57.411,
+      "wall_latency_ms": 57.42,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.205
+        }
+      ]
+    },
+    {
+      "call_index": 7,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.095,
+      "wall_latency_ms": 1.102,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.091
+        }
+      ]
+    },
+    {
+      "call_index": 8,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.831,
+      "wall_latency_ms": 0.835,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.828
+        }
+      ]
+    },
+    {
+      "call_index": 9,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.779,
+      "wall_latency_ms": 0.781,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.776
+        }
+      ]
+    },
+    {
+      "call_index": 10,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.748,
+      "wall_latency_ms": 0.751,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.745
+        }
+      ]
+    },
+    {
+      "call_index": 11,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 2.649,
+      "wall_latency_ms": 2.653,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.646
+        }
+      ]
+    },
+    {
+      "call_index": 12,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.89,
+      "wall_latency_ms": 0.894,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.887
+        }
+      ]
+    },
+    {
+      "call_index": 13,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": false,
+      "error": "simulated storage failure on attempt 3",
+      "attempts": 3,
+      "latency_ms": 157.059,
+      "wall_latency_ms": 157.072,
+      "injected_failures": 3,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.055
+        },
+        {
+          "attempt": 3,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 3",
+          "latency_ms": 0.015
+        }
+      ]
+    },
+    {
+      "call_index": 14,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": false,
+      "error": "simulated storage failure on attempt 3",
+      "attempts": 3,
+      "latency_ms": 157.982,
+      "wall_latency_ms": 157.998,
+      "injected_failures": 3,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.02
+        },
+        {
+          "attempt": 3,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 3",
+          "latency_ms": 0.02
+        }
+      ]
+    },
+    {
+      "call_index": 15,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 3.013,
+      "wall_latency_ms": 3.024,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.005
+        }
+      ]
+    },
+    {
+      "call_index": 16,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 163.601,
+      "wall_latency_ms": 163.612,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.021
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.056
+        }
+      ]
+    },
+    {
+      "call_index": 17,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 55.038,
+      "wall_latency_ms": 55.052,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.006
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.324
+        }
+      ]
+    },
+    {
+      "call_index": 18,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.265,
+      "wall_latency_ms": 58.278,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.006
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.998
+        }
+      ]
+    },
+    {
+      "call_index": 19,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.707,
+      "wall_latency_ms": 58.72,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.453
+        }
+      ]
+    },
+    {
+      "call_index": 20,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.634,
+      "wall_latency_ms": 1.643,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.629
+        }
+      ]
+    },
+    {
+      "call_index": 21,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.01,
+      "wall_latency_ms": 1.014,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.006
+        }
+      ]
+    },
+    {
+      "call_index": 22,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.833,
+      "wall_latency_ms": 0.837,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.831
+        }
+      ]
+    },
+    {
+      "call_index": 23,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": false,
+      "error": "simulated storage failure on attempt 3",
+      "attempts": 3,
+      "latency_ms": 156.224,
+      "wall_latency_ms": 156.236,
+      "injected_failures": 3,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.003
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.015
+        },
+        {
+          "attempt": 3,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 3",
+          "latency_ms": 0.017
+        }
+      ]
+    },
+    {
+      "call_index": 24,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 2.969,
+      "wall_latency_ms": 2.98,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.959
+        }
+      ]
+    },
+    {
+      "call_index": 25,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.004,
+      "wall_latency_ms": 58.015,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.862
+        }
+      ]
+    },
+    {
+      "call_index": 26,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.558,
+      "wall_latency_ms": 1.567,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.552
+        }
+      ]
+    },
+    {
+      "call_index": 27,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.963,
+      "wall_latency_ms": 0.968,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.96
+        }
+      ]
+    },
+    {
+      "call_index": 28,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 159.518,
+      "wall_latency_ms": 159.526,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.003
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.019
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.019
+        }
+      ]
+    },
+    {
+      "call_index": 29,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.817,
+      "wall_latency_ms": 1.827,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.81
+        }
+      ]
+    },
+    {
+      "call_index": 30,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.005,
+      "wall_latency_ms": 1.009,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.001
+        }
+      ]
+    },
+    {
+      "call_index": 31,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.009,
+      "wall_latency_ms": 1.014,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.006
+        }
+      ]
+    },
+    {
+      "call_index": 32,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.9,
+      "wall_latency_ms": 0.904,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.897
+        }
+      ]
+    },
+    {
+      "call_index": 33,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 0.898,
+      "wall_latency_ms": 0.902,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 0.895
+        }
+      ]
+    },
+    {
+      "call_index": 34,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": false,
+      "error": "simulated storage failure on attempt 3",
+      "attempts": 3,
+      "latency_ms": 156.335,
+      "wall_latency_ms": 156.346,
+      "injected_failures": 3,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.021
+        },
+        {
+          "attempt": 3,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 3",
+          "latency_ms": 0.017
+        }
+      ]
+    },
+    {
+      "call_index": 35,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 2.939,
+      "wall_latency_ms": 2.949,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.931
+        }
+      ]
+    },
+    {
+      "call_index": 36,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.175,
+      "wall_latency_ms": 58.186,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.987
+        }
+      ]
+    },
+    {
+      "call_index": 37,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 162.402,
+      "wall_latency_ms": 162.413,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.006
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.021
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.813
+        }
+      ]
+    },
+    {
+      "call_index": 38,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.656,
+      "wall_latency_ms": 1.665,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.649
+        }
+      ]
+    },
+    {
+      "call_index": 39,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.649,
+      "wall_latency_ms": 1.656,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.643
+        }
+      ]
+    },
+    {
+      "call_index": 40,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.502,
+      "wall_latency_ms": 1.509,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.497
+        }
+      ]
+    },
+    {
+      "call_index": 41,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.406,
+      "wall_latency_ms": 1.411,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.402
+        }
+      ]
+    },
+    {
+      "call_index": 42,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.564,
+      "wall_latency_ms": 1.572,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.558
+        }
+      ]
+    },
+    {
+      "call_index": 43,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 57.762,
+      "wall_latency_ms": 57.77,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.506
+        }
+      ]
+    },
+    {
+      "call_index": 44,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 58.198,
+      "wall_latency_ms": 58.209,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.003
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 3.006
+        }
+      ]
+    },
+    {
+      "call_index": 45,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.691,
+      "wall_latency_ms": 1.699,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.685
+        }
+      ]
+    },
+    {
+      "call_index": 46,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.019,
+      "wall_latency_ms": 1.024,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.015
+        }
+      ]
+    },
+    {
+      "call_index": 47,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 2.32,
+      "wall_latency_ms": 2.323,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.317
+        }
+      ]
+    },
+    {
+      "call_index": 48,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "latency_ms": 55.381,
+      "wall_latency_ms": 55.39,
+      "injected_failures": 1,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.002
+        },
+        {
+          "attempt": 2,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.639
+        }
+      ]
+    },
+    {
+      "call_index": 49,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 3,
+      "latency_ms": 163.63,
+      "wall_latency_ms": 163.642,
+      "injected_failures": 2,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 1",
+          "latency_ms": 0.005
+        },
+        {
+          "attempt": 2,
+          "injected_failure": true,
+          "error": "simulated storage failure on attempt 2",
+          "latency_ms": 0.019
+        },
+        {
+          "attempt": 3,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 2.964
+        }
+      ]
+    },
+    {
+      "call_index": 50,
+      "failure_rate": 0.5,
+      "tool": "search_recalls",
+      "query": "a",
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "latency_ms": 1.479,
+      "wall_latency_ms": 1.489,
+      "injected_failures": 0,
+      "verify_seed": 266491,
+      "trace": [
+        {
+          "attempt": 1,
+          "injected_failure": false,
+          "error": null,
+          "latency_ms": 1.472
+        }
+      ]
+    }
+  ]
+}

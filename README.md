@@ -19,10 +19,11 @@ course's shared-code clarification) and gets extended across homeworks; each
 homework's own report/results live under `reports/hw0N/`.
 ```
 data260-6491/
-├── code/web_application/   # index.html, script.js, Dockerfile, agents_demo.py, hw1_client.py
+├── code/web_application/   # FastAPI + MySQL + React (extended through HW5)
+├── code/mcp/               # HW5 MCP servers, execute_tool, agent loop
 ├── src/model_client.py     # exact path required by the assignment
-├── reports/hw01/           # this homework's report, logs, raw data
-├── scripts/                # helper scripts (Part 3 runner, self-check)
+├── reports/hw01/ … hw05/   # each homework's report, logs, raw data
+├── scripts/                # helper scripts (experiments, self-check)
 ├── AGENT.md
 ├── DOMAIN_SCHEMA.md
 └── README.md
@@ -404,3 +405,159 @@ python scripts/verify_hw04.py
 
 Writes `reports/hw04/verification.json`. Starts its own copy of the app on port 8191,
 so stop any server already running there first.
+
+## Homework 5
+
+HW5 extends the same FastAPI + MySQL + React app. Recalls now belong to a `suppliers`
+table (FK `ON DELETE RESTRICT`), the React list is driven by Redux Toolkit + Axios, and
+two MCP servers plus an Ollama agent sit on top of the domain data.
+
+### Repository layout added in HW5
+
+```
+code/web_application/models.py / schemas.py     Supplier + Recall (FK, unique codes)
+code/web_application/routers/suppliers.py       supplier CRUD + relationship query
+code/web_application/routers/recalls.py         recall CRUD (supplier_id, recall_code)
+code/web_application/migrate_hw05.sql           one-time MySQL migrate
+code/web_application/frontend/src/store/        Redux store + recallsSlice (Axios thunks)
+code/web_application/postman/                   Part 1 API collection
+code/mcp/meals_server.py                        TheMealDB MCP (4 tools, STDIO)
+code/mcp/domain_server.py                       s6491_rel MCP (search / detail / aggregate)
+code/mcp/resilient_storage.py                   timeouts + backoff + VERIFY_SEED faults
+code/mcp/execute_tool.py                        single {ok,data,error} entry + safety rule
+code/mcp/agent_loop.py                          run_agent + max_steps
+scripts/verify_hw05.py                          smoke self-check → verification.json
+scripts/test_hw05_part4.py                      offline 8/8 tests (no LLM / no DB)
+scripts/run_hw05_part3_faults.py                150 seeded fault-injection calls
+scripts/run_hw05_part5_agent.py                 4 live Ollama scenarios
+scripts/create_hw05_report_artifacts.py         writes RUN_LOG / METRICS / AI_USE / verify
+reports/hw05/                                   RUN_LOG, METRICS, AI_USE, REFLECTION, raw/, verification.json
+```
+
+`code/web_application/main.py` was extended rather than replaced: it seeds `Supplier`
+rows first, then recalls with `supplier_id`. The HW4 login cookie (`s6491_sid`) is unchanged.
+
+### Database
+
+MySQL database `s6491_rel`. Run the migrate once, then start uvicorn so seed data is created:
+
+```bash
+mysql -u root -p s6491_rel < code/web_application/migrate_hw05.sql
+```
+
+- `suppliers` — `id`, `name`, `headquarters`, unique `supplier_code`, timestamps.
+- `recalls` — `id`, `product_name`, unique `recall_code`, `affected_units` (default 0),
+  `supplier_id` FK **ON DELETE RESTRICT**, plus the older email/description/recall_type columns.
+- `users` / `sessions` — unchanged from HW4 (bcrypt hashes, opaque session tokens).
+
+Put the connection string in git-ignored `code/web_application/.env`:
+
+```text
+DATABASE_URL=mysql+pymysql://USER:PASSWORD@127.0.0.1:3306/s6491_rel
+```
+
+### Requirements
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r code/web_application/requirements.txt
+pip install -r code/mcp/requirements-mcp.txt
+# mcp dev on macOS also needs: brew install uv
+```
+
+Parts 2A and 5 need network (TheMealDB) and a local Ollama `qwen3:8b` model respectively.
+
+### Part 1 — API + Redux client
+
+```bash
+# Terminal 1 - API on PORT_BASE
+source .venv/bin/activate
+cd code/web_application
+python -m uvicorn main:app --host 127.0.0.1 --port 8191
+
+# Terminal 2 - React client (Redux + Axios)
+cd code/web_application/frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173 (Vite proxies `/api/*` to 8191). Demo login:
+`admin@s6491.com` / `Recall@6491`.
+
+Postman: import `code/web_application/postman/HW5_Part1_API.postman_collection.json`,
+run **00 Auth → Login** first, then supplier and recall folders.
+
+| Method | Path | Notes |
+|---|---|---|
+| GET/POST | `/api/suppliers` | list is paginated (`skip`, `limit`) |
+| GET/PUT/DELETE | `/api/suppliers/{id}` | DELETE is 409 if the supplier still has recalls |
+| GET | `/api/suppliers/{id}/recalls` | relationship query |
+| GET/POST | `/api/recalls` | session cookie required |
+| GET/PUT/DELETE | `/api/recalls/{id}` | unique `recall_code` is validated |
+
+The Home / Create / Update / Delete pages dispatch `recallsSlice` thunks; the list reads
+from Redux so it updates after each mutation.
+
+### Part 2 — MCP servers (Inspector)
+
+Logs go to **stderr only** (STDIO).
+
+```bash
+source .venv/bin/activate
+cd code/mcp
+mcp dev meals_server.py      # TheMealDB: search, by ingredient, random, details
+mcp dev domain_server.py     # search_recalls, get_recall_detail, aggregate_recalls_by_supplier
+```
+
+Domain tools all return `{ok, data, error}`. For each of the three tools, Inspector should
+show one successful call and one intentionally invalid call.
+
+### Part 3 — retries and fault injection
+
+```bash
+python scripts/demo_hw05_part3_retries.py     # first-try / retry / exhausted
+python scripts/run_hw05_part3_faults.py       # VERIFY_SEED=266491, 50 calls × 0/20/50%
+```
+
+The 150-call run writes `reports/hw05/raw/task20_*.csv|json` and fills the Part 3 table
+in `reports/hw05/METRICS.md`. Needs `.env` + MySQL.
+
+### Part 4 — execute_tool (offline)
+
+```bash
+python scripts/test_hw05_part4.py
+```
+
+Uses injected backends (no LLM, no live DB). Expect `8/8 tests passed` after the Part 5
+safety + `max_steps` tests are included.
+
+### Part 5 — safety rule + agent
+
+Safety rule in `execute_tool`: looking up recalls by submitter email is blocked
+(`ok: false`, no exception).
+
+```bash
+python scripts/demo_hw05_part5_safety.py      # ALLOWED blueberries / BLOCKED email
+ollama list                                   # qwen3:8b should be present
+python scripts/run_hw05_part5_agent.py        # 4 live scenarios → raw/agent_runs.jsonl
+```
+
+### Self check
+
+```bash
+# writes RUN_LOG.txt, METRICS.md, AI_USE.md, then runs the smoke test
+python scripts/create_hw05_report_artifacts.py --with-part3
+
+# or smoke test only:
+python scripts/verify_hw05.py
+# make verify-hw05
+```
+
+Writes `reports/hw05/verification.json` (homework number, SID4, commit hash, model,
+SEED / VERIFY_SEED, and pass/fail per check). The script does not modify application
+code. Restore `.env` first so DB/API checks can pass.
+
+### Model configuration used for reported Part 5 results
+
+`qwen3:8b` served by Ollama. The agent calls domain tools only through
+`execute_tool` (`code/mcp/execute_tool.py`).

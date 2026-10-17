@@ -1,0 +1,162 @@
+{
+  "results": [
+    {
+      "name": "SHORT_TERM_N=4",
+      "prompt_tokens": 614.7666666666667,
+      "completion_tokens": 127.96666666666667,
+      "latency_ms": 17576.8,
+      "probe_quality": 3.4,
+      "answers": [
+        {
+          "id": "name_store",
+          "question": "What is my name, and which store location do I shop at?",
+          "reply": "The context provided does not contain information about your name or the store location where you shop. If you need further assistance, please provide more details.",
+          "score": 1
+        },
+        {
+          "id": "allergy",
+          "question": "What food am I allergic to?",
+          "reply": "You are allergic to peanuts.",
+          "score": 5
+        },
+        {
+          "id": "lot_code",
+          "question": "What was the lot code on the frozen blueberries?",
+          "reply": "The lot code on the frozen blueberries was TJ-16OZ-221.",
+          "score": 5
+        },
+        {
+          "id": "trail_mix",
+          "question": "Which Costco product had an undeclared allergen, and what was the allergen?",
+          "reply": "The context does not contain information about a Costco product with an undeclared allergen.",
+          "score": 1
+        },
+        {
+          "id": "phone",
+          "question": "What supplier phone number did I give you for follow-up?",
+          "reply": "The supplier phone number you provided for follow-up is 408-555-0142.",
+          "score": 5
+        }
+      ]
+    },
+    {
+      "name": "SHORT_TERM_N=12",
+      "prompt_tokens": 979.2333333333333,
+      "completion_tokens": 100.83333333333333,
+      "latency_ms": 26304.233333333334,
+      "probe_quality": 4.6,
+      "answers": [
+        {
+          "id": "name_store",
+          "question": "What is my name, and which store location do I shop at?",
+          "reply": "You did not provide your name, but you shop at Trader Joe's on Stevens Creek. If you would like to provide your name for record-keeping purposes, feel free to share it, and I can update your notes accordingly.",
+          "score": 4
+        },
+        {
+          "id": "allergy",
+          "question": "What food am I allergic to?",
+          "reply": "You are allergic to peanuts.",
+          "score": 5
+        },
+        {
+          "id": "lot_code",
+          "question": "What was the lot code on the frozen blueberries?",
+          "reply": "The lot code on the frozen blueberries was TJ-16OZ-221.",
+          "score": 5
+        },
+        {
+          "id": "trail_mix",
+          "question": "Which Costco product had an undeclared allergen, and what was the allergen?",
+          "reply": "The context provided does not mention any Costco product with an undeclared allergen. The information available refers to Trader Joe's and a peanut allergy concern with trail mix, but there is no mention of a Costco product or an undeclared allergen at Costco.",
+          "score": 4
+        },
+        {
+          "id": "phone",
+          "question": "What supplier phone number did I give you for follow-up?",
+          "reply": "The supplier phone number you gave for follow-up is 408-555-0142.",
+          "score": 5
+        }
+      ]
+    },
+    {
+      "name": "SHORT_TERM_N=30",
+      "prompt_tokens": 1571.9666666666667,
+      "completion_tokens": 87.26666666666667,
+      "latency_ms": 32529.466666666667,
+      "probe_quality": 4.2,
+      "answers": [
+        {
+          "id": "name_store",
+          "question": "What is my name, and which store location do I shop at?",
+          "reply": "You did not provide your name or store location in the conversation. If you would like to save that information for future reference, feel free to share it, and I can add it to your recall notes.",
+          "score": 1
+        },
+        {
+          "id": "allergy",
+          "question": "What food am I allergic to?",
+          "reply": "You are allergic to peanuts.",
+          "score": 5
+        },
+        {
+          "id": "lot_code",
+          "question": "What was the lot code on the frozen blueberries?",
+          "reply": "The lot code on the frozen blueberries was TJ-16OZ-221.",
+          "score": 5
+        },
+        {
+          "id": "trail_mix",
+          "question": "Which Costco product had an undeclared allergen, and what was the allergen?",
+          "reply": "The Costco product with an undeclared allergen was the Kirkland Signature Trail Mix, 4lb. The allergen was peanuts.",
+          "score": 5
+        },
+        {
+          "id": "phone",
+          "question": "What supplier phone number did I give you for follow-up?",
+          "reply": "The supplier phone number you gave me for follow-up is 408-555-0142.",
+          "score": 5
+        }
+      ]
+    },
+    {
+      "name": "Eviction/compression policy",
+      "prompt_tokens": 774.4666666666667,
+      "completion_tokens": 125.6,
+      "latency_ms": 27084.9,
+      "probe_quality": 4.2,
+      "answers": [
+        {
+          "id": "name_store",
+          "question": "What is my name, and which store location do I shop at?",
+          "reply": "The context provided does not include your name or the specific store location where you shop. Please provide that information if you need further assistance.",
+          "score": 1
+        },
+        {
+          "id": "allergy",
+          "question": "What food am I allergic to?",
+          "reply": "You are allergic to peanuts.",
+          "score": 5
+        },
+        {
+          "id": "lot_code",
+          "question": "What was the lot code on the frozen blueberries?",
+          "reply": "The lot code on the frozen blueberries is TJ-16OZ-221.",
+          "score": 5
+        },
+        {
+          "id": "trail_mix",
+          "question": "Which Costco product had an undeclared allergen, and what was the allergen?",
+          "reply": "The Costco product with an undeclared allergen was the trail mix, and the allergen was peanuts.",
+          "score": 5
+        },
+        {
+          "id": "phone",
+          "question": "What supplier phone number did I give you for follow-up?",
+          "reply": "The supplier phone number you gave for follow-up is 408-555-0142.",
+          "score": 5
+        }
+      ]
+    }
+  ],
+  "best": "SHORT_TERM_N=12",
+  "worst": "SHORT_TERM_N=30"
+}

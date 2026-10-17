@@ -1,15 +1,30 @@
+import csv
 import hashlib
 import json
 import math
 import os
 import re
 import sys
+import time
 
 from mongo_db import get_episodes, get_messages, get_summaries, utcnow
 
-SHORT_TERM_N = int(os.getenv("SHORT_TERM_N", "8"))
 SUMMARIZE_EVERY_USER_MSGS = int(os.getenv("SUMMARIZE_EVERY_USER_MSGS", "4"))
 EPISODE_TOP_K = int(os.getenv("EPISODE_TOP_K", "3"))
+LOG_FIELDS = [
+    "created_at",
+    "user_id",
+    "session_id",
+    "short_term_n",
+    "policy",
+    "prompt_tokens",
+    "completion_tokens",
+    "primer_tokens",
+    "long_term_tokens",
+    "short_term_tokens",
+    "episodic_tokens",
+    "latency_ms",
+]
 SYSTEM_PRIMER = (
     "You are a grocery recall assistant for project s6491. "
     "Answer from the long-term summaries, the short-term window, and the episodic facts. "
@@ -32,6 +47,44 @@ class ModelUnavailable(Exception):
 
 def _repo_root() -> str:
     return os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+
+def short_term_n() -> int:
+    return int(os.getenv("SHORT_TERM_N", "8"))
+
+
+def memory_policy() -> str:
+    return os.getenv("MEMORY_POLICY", "full")
+
+
+def estimate_tokens(text: str) -> int:
+    if not text:
+        return 0
+    return max(1, (len(text) + 3) // 4)
+
+
+def apply_memory_policy(prior: list, episodes: list) -> tuple:
+    if memory_policy() != "compress":
+        return prior, episodes
+    if len(prior) > 4:
+        older = " | ".join(item["content"].replace("\n", " ")[:40] for item in prior[:-4])
+        prior = [{"role": "user", "content": "Compressed earlier turns: " + older}] + prior[-4:]
+    return prior, episodes[:1]
+
+
+def log_chat_turn(row: dict) -> None:
+    raw_dir = os.path.join(_repo_root(), "reports", "hw06", "raw")
+    os.makedirs(raw_dir, exist_ok=True)
+    csv_path = os.getenv("CHAT_LOG_PATH", os.path.join(raw_dir, "chat_turns.csv"))
+    jsonl_path = os.path.splitext(csv_path)[0] + ".jsonl"
+    new_file = not os.path.exists(csv_path)
+    with open(csv_path, "a", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=LOG_FIELDS)
+        if new_file:
+            writer.writeheader()
+        writer.writerow({key: row.get(key, "") for key in LOG_FIELDS})
+    with open(jsonl_path, "a") as handle:
+        handle.write(json.dumps(row) + "\n")
 
 
 def get_model():
@@ -216,7 +269,7 @@ def maybe_summarize(user_id: str, session_id: str, client) -> None:
     if user_turns == 0 or user_turns % SUMMARIZE_EVERY_USER_MSGS != 0:
         return
 
-    recent = load_short_term(session_id, SHORT_TERM_N)
+    recent = load_short_term(session_id, short_term_n())
     transcript = "\n".join(f"{item['role']}: {item['content']}" for item in recent)
     session_text = _bullet_summary(
         client,
@@ -256,16 +309,19 @@ def maybe_summarize(user_id: str, session_id: str, client) -> None:
 
 
 def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
+    started = time.perf_counter()
     client = get_model()
     save_message(user_id, session_id, "user", message)
-    short_term = load_short_term(session_id, SHORT_TERM_N)
+    window_n = short_term_n()
+    short_term = load_short_term(session_id, window_n)
     prior = short_term[:-1]
     session_summary = latest_summary(user_id, "session", session_id)
     lifetime_summary = latest_summary(user_id, "user", None)
 
     try:
         episodes = retrieve_episodes(user_id, message, client, EPISODE_TOP_K)
-        prompt = assemble_prompt(session_summary, lifetime_summary, prior, episodes, message)
+        prompt_prior, prompt_episodes = apply_memory_policy(prior, episodes)
+        prompt = assemble_prompt(session_summary, lifetime_summary, prompt_prior, prompt_episodes, message)
         result = client.complete(prompt)
     except ModelUnavailable:
         raise
@@ -280,7 +336,26 @@ def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
         store_episodes(user_id, session_id, message, client)
         maybe_summarize(user_id, session_id, client)
     except Exception:
+        # The reply is already saved. A later fact or summary failure should not hide it.
         pass
+
+    long_term = long_term_text(session_summary, lifetime_summary) or ""
+    short_term_text = "\n".join(item["content"] for item in prompt_prior)
+    episodic_text = "\n".join(item["fact"] for item in prompt_episodes)
+    log_chat_turn({
+        "created_at": utcnow().isoformat(),
+        "user_id": user_id,
+        "session_id": session_id,
+        "short_term_n": window_n,
+        "policy": memory_policy(),
+        "prompt_tokens": result.usage.input_tokens,
+        "completion_tokens": result.usage.output_tokens,
+        "primer_tokens": estimate_tokens(SYSTEM_PRIMER),
+        "long_term_tokens": estimate_tokens(long_term),
+        "short_term_tokens": estimate_tokens(short_term_text),
+        "episodic_tokens": estimate_tokens(episodic_text),
+        "latency_ms": int((time.perf_counter() - started) * 1000),
+    })
 
     return {
         "session_id": session_id,

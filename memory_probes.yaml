@@ -1,0 +1,29 @@
+rubric:
+  5: All expected facts are present and specific.
+  4: All but one expected fact is present.
+  3: About half of the expected facts are present.
+  2: Only one expected fact is present.
+  1: None of the expected facts are present.
+probes:
+  - id: name_store
+    question: What is my name, and which store location do I shop at?
+    expected:
+      - Kshitija
+      - Stevens Creek
+  - id: allergy
+    question: What food am I allergic to?
+    expected:
+      - peanuts
+  - id: lot_code
+    question: What was the lot code on the frozen blueberries?
+    expected:
+      - TJ-16OZ-221
+  - id: trail_mix
+    question: Which Costco product had an undeclared allergen, and what was the allergen?
+    expected:
+      - Trail Mix
+      - peanuts
+  - id: phone
+    question: What supplier phone number did I give you for follow-up?
+    expected:
+      - 408-555-0142

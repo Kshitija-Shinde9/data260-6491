@@ -1,0 +1,56 @@
+<!-- consolidated: 2026-10-15T18:00:00Z -->
+- shop: Kshitija shops at Trader Joe's on Stevens Creek.
+- shop: Kshitija shops at Trader Joe's on Stevens Creek.
+- shop: Kshitija shops at Trader Joe's on Stevens Creek.
+- allergy: Kshitija is allergic to peanuts.
+- allergy: Kshitija is allergic to peanuts.
+- allergy: Kshitija is allergic to peanuts.
+- lot: The blueberry lot code is TJ-16OZ-221.
+- lot: The blueberry lot code is TJ-16OZ-221.
+- lot: The blueberry lot code is TJ-16OZ-221.
+- product: The recalled blueberries are the 16oz frozen bag.
+- product: The recalled blueberries are the 16oz frozen bag.
+- product: The recalled blueberries are the 16oz frozen bag.
+- chicken_place: The chicken was sold from the Safeway hot case.
+- chicken_place: The chicken was sold from the Safeway hot case.
+- chicken_place: The chicken was sold from the Safeway hot case.
+- seal: The blueberry bag had a tear at the top seal.
+- seal: The blueberry bag had a tear at the top seal.
+- seal: The blueberry bag had a tear at the top seal.
+- fridge: The refrigerator temperature was 38 F.
+- fridge: The refrigerator temperature was 45 F.
+- pack_date: The chicken pack date was two days old.
+- pack_date: The chicken pack date was the same day.
+- trail: The Costco trail mix label does not list peanuts.
+- trail: The Costco trail mix label lists peanuts.
+- phone: The supplier phone number is 408-555-0199.
+- phone: The supplier phone number is 408-555-0142.
+- rice: The rice bag from the same trip was sealed.
+- board: Separate cutting boards are used for meat and vegetables.
+- shelf: Raw chicken is stored on the bottom shelf.
+- freezer: The blueberries are still in the freezer.
+- pantry: The trail mix is still in the pantry.
+- receipt_costco: The Costco receipt is dated March 14.
+- receipt_safeway: The Safeway receipt is dated March 10.
+- return: Both products can be returned with those receipts.
+- eaten: None of the torn-seal blueberries were eaten.
+- frost: Frost was only on the berries near the opening.
+- thermometer: A fridge thermometer is kept on the middle shelf.
+- morning: The fridge read 38 degrees this morning.
+- hot_case: Hot-case chicken should have been steaming.
+- fed: The lukewarm chicken was not fed to anyone.
+- tomorrow: The blueberries will be checked again tomorrow.
+- brand: The blueberries were an organic frozen product.
+- size: The trail mix bag is 4lb.
+- supplier_name: The trail mix brand is Kirkland Signature.
+- store_costco: The trail mix was bought at Costco.
+- store_safeway: The chicken was bought at Safeway.
+- lot_seen: The lot code was read from the blueberry bag.
+- seal_place: The tear was at the top of the bag.
+- wash: The blueberries were washed before the tear was noticed.
+- closed: The trail mix bag was closed after the peanuts were seen.
+- notes: The phone number should stay with the recall notes.
+- followup: A follow-up call is planned for the supplier.
+- date_chicken: The chicken problem was noticed last week.
+- date_berries: The blueberry problem was noticed after purchase.
+- action: The unsafe products were set aside.

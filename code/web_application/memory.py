@@ -233,7 +233,9 @@ def assemble_prompt(session_summary, lifetime_summary, prior_messages, episodes,
         f"- {item['fact']} (importance {item['importance']:.2f})"
         for item in episodes
     ]
-    system = SYSTEM_PRIMER
+    from file_memory import file_memory_block
+
+    system = SYSTEM_PRIMER + "\n\n" + file_memory_block()
     if long_term_lines:
         system += "\n\nLong-term memory:\n" + "\n\n".join(long_term_lines)
     if fact_lines:

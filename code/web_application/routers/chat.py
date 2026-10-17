@@ -2,6 +2,7 @@ import uuid
 
 from fastapi import APIRouter, HTTPException
 
+from file_memory import run_memory_command
 from memory import ModelUnavailable, aggregate_view, memory_view, run_chat_turn
 from memory_schemas import AggregateOut, ChatIn, ChatOut, MemoryOut
 
@@ -10,9 +11,12 @@ router = APIRouter(prefix="/api", tags=["memory"])
 
 @router.post("/chat", response_model=ChatOut)
 def post_chat(body: ChatIn):
+    message = body.message.strip()
     session_id = body.session_id or f"sess-{uuid.uuid4().hex[:8]}"
+    if message.startswith("/"):
+        return run_memory_command(message, body.user_id, body.session_id or "")
     try:
-        return run_chat_turn(body.user_id, session_id, body.message.strip())
+        return run_chat_turn(body.user_id, session_id, message)
     except ModelUnavailable as exc:
         raise HTTPException(status_code=503, detail=str(exc))
 

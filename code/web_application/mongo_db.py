@@ -37,6 +37,43 @@ NOTICE_SCHEMA = {
     },
 }
 
+MESSAGE_SCHEMA = {
+    "bsonType": "object",
+    "required": ["user_id", "session_id", "role", "content", "created_at"],
+    "properties": {
+        "user_id": {"bsonType": "string", "minLength": 1},
+        "session_id": {"bsonType": "string", "minLength": 1},
+        "role": {"enum": ["user", "assistant"]},
+        "content": {"bsonType": "string", "minLength": 1},
+        "created_at": {"bsonType": "date"},
+    },
+}
+
+SUMMARY_SCHEMA = {
+    "bsonType": "object",
+    "required": ["user_id", "session_id", "scope", "text", "created_at"],
+    "properties": {
+        "user_id": {"bsonType": "string", "minLength": 1},
+        "session_id": {"bsonType": ["string", "null"]},
+        "scope": {"enum": ["session", "user"]},
+        "text": {"bsonType": "string", "minLength": 1},
+        "created_at": {"bsonType": "date"},
+    },
+}
+
+EPISODE_SCHEMA = {
+    "bsonType": "object",
+    "required": ["user_id", "session_id", "fact", "importance", "embedding", "created_at"],
+    "properties": {
+        "user_id": {"bsonType": "string", "minLength": 1},
+        "session_id": {"bsonType": "string", "minLength": 1},
+        "fact": {"bsonType": "string", "minLength": 1, "maxLength": 200},
+        "importance": {"bsonType": "double", "minimum": 0, "maximum": 1},
+        "embedding": {"bsonType": "array", "items": {"bsonType": "double"}},
+        "created_at": {"bsonType": "date"},
+    },
+}
+
 _client = MongoClient(MONGO_URL)
 
 
@@ -48,12 +85,24 @@ def get_notices() -> Collection:
     return get_database()[COLLECTION_NAME]
 
 
-def ensure_notices_collection() -> None:
+def get_messages() -> Collection:
+    return get_database()["messages"]
+
+
+def get_summaries() -> Collection:
+    return get_database()["summaries"]
+
+
+def get_episodes() -> Collection:
+    return get_database()["episodes"]
+
+
+def _ensure_collection(name: str, schema: dict) -> None:
     database = get_database()
-    validator = {"$jsonSchema": NOTICE_SCHEMA}
-    if COLLECTION_NAME not in database.list_collection_names():
+    validator = {"$jsonSchema": schema}
+    if name not in database.list_collection_names():
         database.create_collection(
-            COLLECTION_NAME,
+            name,
             validator=validator,
             validationLevel="strict",
             validationAction="error",
@@ -61,11 +110,25 @@ def ensure_notices_collection() -> None:
     else:
         database.command(
             "collMod",
-            COLLECTION_NAME,
+            name,
             validator=validator,
             validationLevel="strict",
             validationAction="error",
         )
+
+
+def ensure_notices_collection() -> None:
+    _ensure_collection(COLLECTION_NAME, NOTICE_SCHEMA)
+
+
+def ensure_memory_collections() -> None:
+    _ensure_collection("messages", MESSAGE_SCHEMA)
+    _ensure_collection("summaries", SUMMARY_SCHEMA)
+    _ensure_collection("episodes", EPISODE_SCHEMA)
+    get_messages().create_index([("session_id", 1), ("created_at", 1)])
+    get_messages().create_index([("user_id", 1), ("created_at", 1)])
+    get_summaries().create_index([("user_id", 1), ("created_at", -1)])
+    get_episodes().create_index([("user_id", 1), ("created_at", -1)])
 
 
 def utcnow() -> datetime:

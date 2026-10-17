@@ -11,9 +11,10 @@ import uvicorn
 
 from database import Base, engine, get_db
 from models import Recall, Supplier, User
-from mongo_db import ensure_notices_collection
+from mongo_db import ensure_memory_collections, ensure_notices_collection
 from routers.auth import router as auth_router
 from routers.api_auth import router as api_auth_router
+from routers.chat import router as chat_router
 from routers.notices import router as notices_router
 from routers.recalls import router as recalls_router
 from routers.suppliers import router as suppliers_router
@@ -28,12 +29,14 @@ PORT_BASE = 8191
 
 class JsonBodyMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
-        if request.method in ("POST", "PUT") and request.url.path.startswith("/api/notices"):
-            if "application/json" not in request.headers.get("content-type", ""):
-                return JSONResponse(
-                    status_code=415,
-                    content={"detail": "Content-Type must be application/json"},
-                )
+        needs_json = request.method in ("POST", "PUT") and (
+            request.url.path.startswith("/api/notices") or request.url.path == "/api/chat"
+        )
+        if needs_json and "application/json" not in request.headers.get("content-type", ""):
+            return JSONResponse(
+                status_code=415,
+                content={"detail": "Content-Type must be application/json"},
+            )
         return await call_next(request)
 
 
@@ -68,6 +71,7 @@ app.include_router(suppliers_router)
 app.include_router(recalls_router)
 app.include_router(bench_router)
 app.include_router(notices_router)
+app.include_router(chat_router)
 
 # This lets the browser load my html, css and js files.
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -135,6 +139,7 @@ def _seed():
 
 _seed()
 ensure_notices_collection()
+ensure_memory_collections()
 
 
 import webbrowser

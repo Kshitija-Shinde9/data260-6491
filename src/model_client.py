@@ -61,3 +61,16 @@ class ModelClient:
         content = response.get("message", {}).get("content", "")
 
         return CompletionResult(content=content, usage=usage, latency_ms=latency_ms, raw=response)
+
+    def embed(self, text: str) -> List[float]:
+        embed_model = os.environ.get("EMBED_MODEL", self.model)
+        try:
+            response = self._client.embed(model=embed_model, input=text)
+            vectors = response.get("embeddings") if isinstance(response, dict) else response.embeddings
+            if vectors:
+                return [float(value) for value in vectors[0]]
+        except Exception:
+            response = self._client.embeddings(model=embed_model, prompt=text)
+            vector = response.get("embedding") if isinstance(response, dict) else response.embedding
+            return [float(value) for value in vector]
+        raise RuntimeError("embedding response was empty")

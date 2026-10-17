@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>s6491 recall chat</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem auto; max-width: 46rem; color: #1c1c1c; }
+    #log { white-space: pre-wrap; background: #f6f3ea; padding: 1rem; min-height: 12rem; }
+    form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    input { flex: 1; font: inherit; padding: 0.5rem; }
+    button { font: inherit; padding: 0.5rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Grocery recall memory</h1>
+  <div id="log"></div>
+  <form id="chat">
+    <input id="message" placeholder="Tell the assistant about a recall" autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+  <script>
+    let sessionId = "sess-6491-part2";
+    const log = document.getElementById("log");
+    document.getElementById("chat").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const input = document.getElementById("message");
+      const message = input.value.trim();
+      if (!message) return;
+      input.value = "";
+      log.textContent += "\nYOU: " + message + "\n";
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: "kshitija", session_id: sessionId, message })
+      });
+      const data = await response.json();
+      if (data.session_id) sessionId = data.session_id;
+      log.textContent += "ASSISTANT: " + (data.reply || data.detail) + "\n";
+      log.textContent += JSON.stringify(data.used || data, null, 2) + "\n";
+    });
+  </script>
+</body>
+</html>

@@ -1,16 +1,20 @@
 import os
 
 import bcrypt
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 
 from database import Base, engine, get_db
 from models import Recall, Supplier, User
+from mongo_db import ensure_notices_collection
 from routers.auth import router as auth_router
 from routers.api_auth import router as api_auth_router
+from routers.notices import router as notices_router
 from routers.recalls import router as recalls_router
 from routers.suppliers import router as suppliers_router
 from routers.bench import router as bench_router
@@ -20,6 +24,18 @@ from routers.bench import router as bench_router
 # studend id 019146491
 # my student id ends in 6491 so my port number is 8000 + (6491 mod 900) = 8191.
 PORT_BASE = 8191
+
+
+class JsonBodyMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        if request.method in ("POST", "PUT") and request.url.path.startswith("/api/notices"):
+            if "application/json" not in request.headers.get("content-type", ""):
+                return JSONResponse(
+                    status_code=415,
+                    content={"detail": "Content-Type must be application/json"},
+                )
+        return await call_next(request)
+
 
 app = FastAPI(title="Grocery Supply and Recall Notices API", version="1.0.0")
 
@@ -44,11 +60,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_middleware(JsonBodyMiddleware)
+
 app.include_router(auth_router)
 app.include_router(api_auth_router)
 app.include_router(suppliers_router)
 app.include_router(recalls_router)
 app.include_router(bench_router)
+app.include_router(notices_router)
 
 # This lets the browser load my html, css and js files.
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -115,6 +134,7 @@ def _seed():
 
 
 _seed()
+ensure_notices_collection()
 
 
 import webbrowser

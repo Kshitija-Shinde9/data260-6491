@@ -1,0 +1,48 @@
+{
+  "homework": "HW6",
+  "homework_number": 6,
+  "generated_at": "2026-10-17T21:07:36Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "domain_id": 3,
+  "domain": "Grocery supply and recall notices",
+  "commit_hash": "bfee8988fcf63411e3a535228ed5118639b9cff5",
+  "tag": "no tag yet",
+  "model_configuration": {
+    "local_model": "qwen3:8b via Ollama",
+    "database": "MongoDB s6491_doc"
+  },
+  "total_checks": 5,
+  "passed": 0,
+  "failed": 5,
+  "checks": [
+    {
+      "name": "FastAPI responds on PORT_BASE",
+      "passed": false,
+      "detail": "http://127.0.0.1:8191"
+    },
+    {
+      "name": "GET /api/notices returns a list",
+      "passed": false,
+      "detail": "server is not running"
+    },
+    {
+      "name": "POST /api/chat /help returns a reply",
+      "passed": false,
+      "detail": "server is not running"
+    },
+    {
+      "name": "GET /api/memory/{user_id} returns JSON",
+      "passed": false,
+      "detail": "server is not running"
+    },
+    {
+      "name": "invalid notice body is rejected",
+      "passed": false,
+      "detail": "server is not running"
+    }
+  ]
+}

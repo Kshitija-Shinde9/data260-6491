@@ -9,8 +9,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "code", "mcp"))
 sys.path.insert(0, HERE)
 
-from execute_tool import execute_tool
-from test_hw05_part4 import BACKENDS
+from execute_tool import execute_tool  # noqa: E402
+from test_hw05_part4 import BACKENDS  # noqa: E402
 
 
 def main():

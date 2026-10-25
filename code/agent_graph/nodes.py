@@ -4,9 +4,8 @@ from helpers import parse_and_coerce, parse_raw
 from schema import validate_planner_output
 from state import AgentState
 
-
 JSON_SHAPE = (
-    'Reply with ONE JSON object and nothing else:\n'
+    "Reply with ONE JSON object and nothing else:\n"
     '{"thought": "<string>", "message": "<under 60 words>", '
     '"data": {"tags": ["<exactly 3 tags>"], "summary": "<under 25 words>", "issues": []}}'
 )
@@ -34,10 +33,12 @@ REVIEWER_SYSTEM = (
 def ask_model(state: AgentState, system_prompt: str, user_prompt: str) -> dict:
     # every call goes through my HW1 model_client never Langchain or Ollama directly
     client = state["llm"]
-    result = client.complete([
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt},
-    ])
+    result = client.complete(
+        [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+    )
     # I keep both: the raw answer for my Pydantic check, and the repaired one
     # so the rest of the graph always has something usable.
     raw = parse_raw(result.content)
@@ -114,9 +115,10 @@ def reviewer_node(state: AgentState) -> dict:
 
     feedback, _ = ask_model(state, REVIEWER_SYSTEM, prompt)
 
-
     if state.get("force_issues"):
-        feedback["data"]["issues"] = ["FORCED TEST ISSUE: always reject, to test the correction loop"]
+        feedback["data"]["issues"] = [
+            "FORCED TEST ISSUE: always reject, to test the correction loop"
+        ]
         print("   (force_issues is ON, so I am rejecting this on purpose)")
 
     issues = feedback["data"]["issues"]

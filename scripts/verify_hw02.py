@@ -35,8 +35,9 @@ def check(name, passed, detail=""):
 
 def request(url, method="GET", body=None):
     data = json.dumps(body).encode() if body is not None else None
-    req = urllib.request.Request(url, data=data, method=method,
-                                 headers={"Content-Type": "application/json"})
+    req = urllib.request.Request(
+        url, data=data, method=method, headers={"Content-Type": "application/json"}
+    )
     with urllib.request.urlopen(req, timeout=15) as response:
         raw = response.read()
         if not raw:
@@ -56,8 +57,9 @@ def port_is_open(port):
 
 def commit_hash():
     try:
-        out = subprocess.run(["git", "-C", ROOT, "rev-parse", "HEAD"],
-                             capture_output=True, text=True, timeout=10)
+        out = subprocess.run(
+            ["git", "-C", ROOT, "rev-parse", "HEAD"], capture_output=True, text=True, timeout=10
+        )
         return out.stdout.strip() or "not committed yet"
     except Exception:
         return "not a git repository"
@@ -65,8 +67,12 @@ def commit_hash():
 
 def current_tag():
     try:
-        out = subprocess.run(["git", "-C", ROOT, "describe", "--tags", "--abbrev=0"],
-                             capture_output=True, text=True, timeout=10)
+        out = subprocess.run(
+            ["git", "-C", ROOT, "describe", "--tags", "--abbrev=0"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
         return out.stdout.strip() or "no tag"
     except Exception:
         return "unknown"
@@ -74,17 +80,23 @@ def current_tag():
 
 # ---------------------------------------------------------------- required files
 
+
 def check_files():
-    for rel in ["reports/hw02/RUN_LOG.txt", "reports/hw02/METRICS.md",
-                "reports/hw02/AI_USE.md", "reports/hw02/cases/schema_input.json",
-                "reports/hw02/raw/task3_schema_runs.csv",
-                "reports/hw02/raw/task4_ceiling_2.csv",
-                "reports/hw02/raw/task4_ceiling_10.csv",
-                "reports/hw02/raw/task5_adversarial.csv"]:
+    for rel in [
+        "reports/hw02/RUN_LOG.txt",
+        "reports/hw02/METRICS.md",
+        "reports/hw02/AI_USE.md",
+        "reports/hw02/cases/schema_input.json",
+        "reports/hw02/raw/task3_schema_runs.csv",
+        "reports/hw02/raw/task4_ceiling_2.csv",
+        "reports/hw02/raw/task4_ceiling_10.csv",
+        "reports/hw02/raw/task5_adversarial.csv",
+    ]:
         check(f"deliverable present: {rel}", os.path.isfile(os.path.join(ROOT, rel)))
 
 
 # ---------------------------------------------------------- parts 1 and 2, the API
+
 
 def check_web_app():
     server = None
@@ -96,7 +108,8 @@ def check_web_app():
         server = subprocess.Popen(
             [sys.executable, "main.py"],
             cwd=os.path.join(ROOT, "code", "web_application"),
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
         started_here = True
         for _ in range(30):
@@ -114,44 +127,72 @@ def check_web_app():
             return
 
         status, before = request(API)
-        check("list endpoint returns a list of records", status == 200 and isinstance(before, list),
-              f"{len(before) if isinstance(before, list) else '?'} records")
+        check(
+            "list endpoint returns a list of records",
+            status == 200 and isinstance(before, list),
+            f"{len(before) if isinstance(before, list) else '?'} records",
+        )
 
         # Q1 - adding a record should succeed and make the list one longer
-        status, created = request(API, "POST", {
-            "product_name": "Smoke Test Product 500g",
-            "supplier": "Smoke Test Supplier",
-            "email": "smoke@test.com",
-            "description": "temporary record created by the smoke test, deleted again at the end",
-            "recall_type": "Contamination",
-        })
+        status, created = request(
+            API,
+            "POST",
+            {
+                "product_name": "Smoke Test Product 500g",
+                "supplier": "Smoke Test Supplier",
+                "email": "smoke@test.com",
+                "description": "temporary record created by the smoke test, deleted again at the end",
+                "recall_type": "Contamination",
+            },
+        )
         check("Q1 add: request succeeded", status == 201, f"http {status}")
-        check("Q1 add: server assigned an id", bool(created and created.get("id")), created.get("id") if created else None)
+        check(
+            "Q1 add: server assigned an id",
+            bool(created and created.get("id")),
+            created.get("id") if created else None,
+        )
         _, after_add = request(API)
-        check("Q1 add: the list grew by one", len(after_add) == len(before) + 1,
-              f"{len(before)} -> {len(after_add)}")
+        check(
+            "Q1 add: the list grew by one",
+            len(after_add) == len(before) + 1,
+            f"{len(before)} -> {len(after_add)}",
+        )
 
         new_id = created["id"]
 
         # Q2 - updating should change the stored values
-        status, updated = request(f"{API}/{new_id}", "PUT",
-                                  {"product_name": "Smoke Test Renamed", "supplier": "Renamed Supplier"})
+        status, updated = request(
+            f"{API}/{new_id}",
+            "PUT",
+            {"product_name": "Smoke Test Renamed", "supplier": "Renamed Supplier"},
+        )
         check("Q2 update: request succeeded", status == 200, f"http {status}")
-        check("Q2 update: the record actually changed",
-              updated["product_name"] == "Smoke Test Renamed" and updated["supplier"] == "Renamed Supplier")
+        check(
+            "Q2 update: the record actually changed",
+            updated["product_name"] == "Smoke Test Renamed"
+            and updated["supplier"] == "Renamed Supplier",
+        )
 
         # Q4 - searching should narrow the list, on both fields
         _, by_primary = request(f"{API}?search=Smoke%20Test%20Renamed")
-        check("Q4 search: matches on the primary field",
-              len(by_primary) >= 1 and all("smoke" in r["product_name"].lower() for r in by_primary),
-              f"{len(by_primary)} result(s)")
+        check(
+            "Q4 search: matches on the primary field",
+            len(by_primary) >= 1 and all("smoke" in r["product_name"].lower() for r in by_primary),
+            f"{len(by_primary)} result(s)",
+        )
         _, by_secondary = request(f"{API}?search=Renamed%20Supplier")
-        check("Q4 search: matches on the secondary field",
-              len(by_secondary) >= 1 and all("renamed" in r["supplier"].lower() for r in by_secondary),
-              f"{len(by_secondary)} result(s)")
+        check(
+            "Q4 search: matches on the secondary field",
+            len(by_secondary) >= 1
+            and all("renamed" in r["supplier"].lower() for r in by_secondary),
+            f"{len(by_secondary)} result(s)",
+        )
         _, no_match = request(f"{API}?search=zzzzzzzz")
-        check("Q4 search: a term that matches nothing returns nothing", no_match == [],
-              f"{len(no_match)} result(s)")
+        check(
+            "Q4 search: a term that matches nothing returns nothing",
+            no_match == [],
+            f"{len(no_match)} result(s)",
+        )
 
         # Q3 - deleting the highest id should remove the largest one
         _, full = request(API)
@@ -159,17 +200,27 @@ def check_web_app():
         status, _ = request(f"{API}/highest", "DELETE")
         check("Q3 delete highest: request succeeded", status == 204, f"http {status}")
         _, after_delete = request(API)
-        check("Q3 delete highest: the largest id is gone",
-              highest not in [r["id"] for r in after_delete], f"removed id {highest}")
-        check("Q3 delete highest: the list shrank by one",
-              len(after_delete) == len(full) - 1, f"{len(full)} -> {len(after_delete)}")
+        check(
+            "Q3 delete highest: the largest id is gone",
+            highest not in [r["id"] for r in after_delete],
+            f"removed id {highest}",
+        )
+        check(
+            "Q3 delete highest: the list shrank by one",
+            len(after_delete) == len(full) - 1,
+            f"{len(full)} -> {len(after_delete)}",
+        )
 
         # a request for something that does not exist should fail cleanly
         try:
             request(f"{API}/99999")
             check("missing record returns an error rather than crashing", False, "no error raised")
         except urllib.error.HTTPError as error:
-            check("missing record returns an error rather than crashing", error.code == 404, f"http {error.code}")
+            check(
+                "missing record returns an error rather than crashing",
+                error.code == 404,
+                f"http {error.code}",
+            )
 
     finally:
         if started_here and server:
@@ -179,6 +230,7 @@ def check_web_app():
 
 # ------------------------------------------------------ parts 3 and 4, the graph
 
+
 def check_agent_graph():
     sys.path.insert(0, os.path.join(ROOT, "code", "agent_graph"))
     sys.path.insert(0, ROOT)
@@ -186,26 +238,38 @@ def check_agent_graph():
     # the schema should accept a good answer and reject bad ones, whatever the wording
     try:
         from schema import validate_planner_output
+
         ok, _ = validate_planner_output(
-            {"tags": ["torn packaging seal", "frozen berry recall", "frost damage"],
-             "summary": "Blueberries recalled because the bag seal was torn."})
+            {
+                "tags": ["torn packaging seal", "frozen berry recall", "frost damage"],
+                "summary": "Blueberries recalled because the bag seal was torn.",
+            }
+        )
         check("schema accepts a valid answer", ok)
 
-        bad_two, _ = validate_planner_output({"tags": ["one tag", "two tag"], "summary": "short summary."})
+        bad_two, _ = validate_planner_output(
+            {"tags": ["one tag", "two tag"], "summary": "short summary."}
+        )
         check("schema rejects fewer than 3 tags", not bad_two)
 
-        bad_four, _ = validate_planner_output({"tags": ["a tag", "b tag", "c tag", "d tag"], "summary": "short."})
+        bad_four, _ = validate_planner_output(
+            {"tags": ["a tag", "b tag", "c tag", "d tag"], "summary": "short."}
+        )
         check("schema rejects more than 3 tags", not bad_four)
 
-        bad_short, _ = validate_planner_output({"tags": ["ok", "b tag", "c tag"], "summary": "short."})
+        bad_short, _ = validate_planner_output(
+            {"tags": ["ok", "b tag", "c tag"], "summary": "short."}
+        )
         check("schema rejects a tag under 3 characters", not bad_short)
 
         bad_long, _ = validate_planner_output(
-            {"tags": ["x" * 31, "b tag", "c tag"], "summary": "short."})
+            {"tags": ["x" * 31, "b tag", "c tag"], "summary": "short."}
+        )
         check("schema rejects a tag over 30 characters", not bad_long)
 
         bad_summary, _ = validate_planner_output(
-            {"tags": ["a tag", "b tag", "c tag"], "summary": " ".join(["word"] * 40)})
+            {"tags": ["a tag", "b tag", "c tag"], "summary": " ".join(["word"] * 40)}
+        )
         check("schema rejects a summary over 25 words", not bad_summary)
     except Exception as error:
         check("schema module loads and validates", False, error)
@@ -214,19 +278,42 @@ def check_agent_graph():
     # the router should send work back to the planner when the reviewer objects
     try:
         from router import router_logic
-        first = router_logic({"planner_proposal": {}, "reviewer_feedback": {},
-                              "turn_count": 0, "max_turns": 10, "schema_valid": True})
+
+        first = router_logic(
+            {
+                "planner_proposal": {},
+                "reviewer_feedback": {},
+                "turn_count": 0,
+                "max_turns": 10,
+                "schema_valid": True,
+            }
+        )
         check("router sends the first turn to the planner", first == "planner", first)
 
-        looped = router_logic({"planner_proposal": {"data": {}},
-                               "reviewer_feedback": {"data": {"issues": ["not good enough"]}},
-                               "turn_count": 1, "max_turns": 10, "schema_valid": True})
-        check("router routes back to the planner when the reviewer objects",
-              looped == "planner", looped)
+        looped = router_logic(
+            {
+                "planner_proposal": {"data": {}},
+                "reviewer_feedback": {"data": {"issues": ["not good enough"]}},
+                "turn_count": 1,
+                "max_turns": 10,
+                "schema_valid": True,
+            }
+        )
+        check(
+            "router routes back to the planner when the reviewer objects",
+            looped == "planner",
+            looped,
+        )
 
-        stopped = router_logic({"planner_proposal": {"data": {}},
-                                "reviewer_feedback": {"data": {"issues": ["still bad"]}},
-                                "turn_count": 10, "max_turns": 10, "schema_valid": True})
+        stopped = router_logic(
+            {
+                "planner_proposal": {"data": {}},
+                "reviewer_feedback": {"data": {"issues": ["still bad"]}},
+                "turn_count": 10,
+                "max_turns": 10,
+                "schema_valid": True,
+            }
+        )
         check("router stops the graph at the turn ceiling", stopped == "END", stopped)
     except Exception as error:
         check("router module loads and routes", False, error)
@@ -235,11 +322,15 @@ def check_agent_graph():
     # the graph itself should finish rather than hang, and give back 3 usable tags
     try:
         if not port_is_open(11434):
-            check("graph finishes and returns exactly 3 tags", False,
-                  "ollama is not running on port 11434, cannot smoke test the graph")
+            check(
+                "graph finishes and returns exactly 3 tags",
+                False,
+                "ollama is not running on port 11434, cannot smoke test the graph",
+            )
             return
 
         from workflow import build_initial_state, build_workflow
+
         case = json.load(open(os.path.join(ROOT, "reports", "hw02", "cases", "schema_input.json")))
         graph = build_workflow()
         state = build_initial_state(case["title"], case["content"], case["email"], 10)
@@ -254,12 +345,16 @@ def check_agent_graph():
         check("graph finishes instead of hanging", bool(final), f"{elapsed} ms")
         tags = final.get("planner_proposal", {}).get("data", {}).get("tags", [])
         check("graph returned exactly 3 tags", len(tags) == 3, f"{len(tags)} tags")
-        check("every tag is a non-empty string",
-              all(isinstance(t, str) and t.strip() for t in tags))
+        check(
+            "every tag is a non-empty string", all(isinstance(t, str) and t.strip() for t in tags)
+        )
         summary = final.get("planner_proposal", {}).get("data", {}).get("summary", "")
         check("graph returned a summary", bool(summary.strip()))
-        check("graph respected the turn ceiling",
-              0 < final.get("turn_count", 0) <= 10, f"{final.get('turn_count')} turns")
+        check(
+            "graph respected the turn ceiling",
+            0 < final.get("turn_count", 0) <= 10,
+            f"{final.get('turn_count')} turns",
+        )
     except Exception as error:
         check("graph finishes and returns exactly 3 tags", False, error)
 

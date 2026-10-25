@@ -35,13 +35,15 @@ def main():
 
         new_recalls = []
         for i in range(1, RECALL_COUNT + 1):
-            new_recalls.append(Recall(
-                product_name=f"Bench Product {i}",
-                supplier=f"Bench Supplier {i % 50}",
-                email="bench@example.com",
-                description=f"Synthetic benchmark record #{i} for HW4 Part 3 N+1 testing.",
-                recall_type=recall_types[i % len(recall_types)],
-            ))
+            new_recalls.append(
+                Recall(
+                    product_name=f"Bench Product {i}",
+                    supplier=f"Bench Supplier {i % 50}",
+                    email="bench@example.com",
+                    description=f"Synthetic benchmark record #{i} for HW4 Part 3 N+1 testing.",
+                    recall_type=recall_types[i % len(recall_types)],
+                )
+            )
 
         db.add_all(new_recalls)
         db.commit()
@@ -63,7 +65,9 @@ def main():
         db.commit()
 
         print(f"Inserted {len(new_recalls)} recalls (ids {recall_ids[0]}-{recall_ids[-1]}).")
-        print(f"Inserted {len(new_notes)} recall_notes for recall ids {target_ids[0]}-{target_ids[-1]}.")
+        print(
+            f"Inserted {len(new_notes)} recall_notes for recall ids {target_ids[0]}-{target_ids[-1]}."
+        )
     finally:
         db.close()
 

@@ -30,18 +30,22 @@ def summarise(rows, chunks):
         grouped = by_question(rows, t)
         top1 = statistics.mean(max(float(x["cosine_sim"]) for x in v) for v in grouped.values())
         meank = statistics.mean(float(r["cosine_sim"]) for r in rows if r["technique"] == t)
-        recall = sum(1 for v in grouped.values() if any(x["is_expected"] == "1" for x in v)) / len(grouped)
+        recall = sum(1 for v in grouped.values() if any(x["is_expected"] == "1" for x in v)) / len(
+            grouped
+        )
         latency = statistics.mean(float(v[0]["latency_ms"]) for v in grouped.values())
-        table.append({
-            "technique": t,
-            "chunks": int(chunks[t]["chunks"]),
-            "avg_chunk_length": float(chunks[t]["avg_chunk_length"]),
-            "top1_cosine": top1,
-            "meank_cosine": meank,
-            "recall_at_k": recall,
-            "latency_ms": latency,
-            "chunking_ms": float(chunks[t]["chunking_ms"]),
-        })
+        table.append(
+            {
+                "technique": t,
+                "chunks": int(chunks[t]["chunks"]),
+                "avg_chunk_length": float(chunks[t]["avg_chunk_length"]),
+                "top1_cosine": top1,
+                "meank_cosine": meank,
+                "recall_at_k": recall,
+                "latency_ms": latency,
+                "chunking_ms": float(chunks[t]["chunking_ms"]),
+            }
+        )
     return table
 
 
@@ -54,7 +58,9 @@ def per_question(rows):
             row[t] = {
                 "top1": max(float(h["cosine_sim"]) for h in hits),
                 "found": any(h["is_expected"] == "1" for h in hits),
-                "best_rank": min((int(h["rank"]) for h in hits if h["is_expected"] == "1"), default=None),
+                "best_rank": min(
+                    (int(h["rank"]) for h in hits if h["is_expected"] == "1"), default=None
+                ),
             }
         out.append(row)
     return out
@@ -94,21 +100,29 @@ def main():
     print("  " + "-" * 92)
     for t in TECHNIQUES:
         vals = [float(r["cosine_sim"]) for r in rows if r["technique"] == t]
-        print(f"  {t:<20}{statistics.mean(vals):<17.4f}{k:<5}{len(vals):<18}{min(vals):.4f}   {max(vals):.4f}")
+        print(
+            f"  {t:<20}{statistics.mean(vals):<17.4f}{k:<5}{len(vals):<18}{min(vals):.4f}   {max(vals):.4f}"
+        )
     print()
-    print(f"  Every cosine in every top-{k} list is averaged: {len(qids)} questions x {k} ranks = {len(qids)*k} values per technique.")
+    print(
+        f"  Every cosine in every top-{k} list is averaged: {len(qids)} questions x {k} ranks = {len(qids)*k} values per technique."
+    )
 
     banner(3, "#chunks produced by the chunker and the avg chunk length (characters or tokens)")
     print(f"  {'Technique':<20}{'Chunks':<12}{'Avg chunk length':<22}{'Chunking time (ms)':<22}")
     print("  " + "-" * 92)
     for r in table:
-        print(f"  {r['technique']:<20}{r['chunks']:<12}{r['avg_chunk_length']:<22.1f}{r['chunking_ms']:<22.0f}")
+        print(
+            f"  {r['technique']:<20}{r['chunks']:<12}{r['avg_chunk_length']:<22.1f}{r['chunking_ms']:<22.0f}"
+        )
     print()
     print("  Avg chunk length is measured in CHARACTERS.")
     print("  Chunking time is the cost of building the chunks, separate from search latency.")
 
     banner(4, "retrieval latency in milliseconds (time the similarity search took)")
-    print(f"  {'Technique':<20}{'Mean latency (ms)':<21}{'Chunks searched':<19}per-question latency (ms)")
+    print(
+        f"  {'Technique':<20}{'Mean latency (ms)':<21}{'Chunks searched':<19}per-question latency (ms)"
+    )
     print("  " + "-" * 92)
     for t in TECHNIQUES:
         grouped = by_question(rows, t)
@@ -136,12 +150,16 @@ def main():
     print("COMBINED TABLE (the assignment's format)")
     print("=" * 96)
     print()
-    print("| Technique | Chunks | Avg chunk length | Top-1 cosine | Mean@k cosine | Recall@k | Mean retrieval latency (ms) |")
+    print(
+        "| Technique | Chunks | Avg chunk length | Top-1 cosine | Mean@k cosine | Recall@k | Mean retrieval latency (ms) |"
+    )
     print("|---|---|---|---|---|---|---|")
     for r in table:
-        print(f"| {r['technique']} | {r['chunks']} | {r['avg_chunk_length']:.1f} | "
-              f"{r['top1_cosine']:.4f} | {r['meank_cosine']:.4f} | "
-              f"{r['recall_at_k']:.0%} | {r['latency_ms']:.2f} |")
+        print(
+            f"| {r['technique']} | {r['chunks']} | {r['avg_chunk_length']:.1f} | "
+            f"{r['top1_cosine']:.4f} | {r['meank_cosine']:.4f} | "
+            f"{r['recall_at_k']:.0%} | {r['latency_ms']:.2f} |"
+        )
 
     print()
     print("=" * 96)

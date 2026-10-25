@@ -3,13 +3,11 @@ from typing import Literal
 from state import AgentState
 
 
-
 def router_logic(state: AgentState) -> Literal["planner", "reviewer", "END"]:
     turn = state.get("turn_count", 0)
     max_turns = state.get("max_turns", 5)
     proposal = state.get("planner_proposal") or {}
     feedback = state.get("reviewer_feedback") or {}
-
 
     if turn >= max_turns:
         print(f"   router: hit the turn ceiling of {max_turns}, stopping")

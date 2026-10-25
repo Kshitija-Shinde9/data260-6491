@@ -1,13 +1,12 @@
 from typing import List
 
+from database import get_db
 from fastapi import APIRouter, Depends, HTTPException, Response
+from models import Recall, Supplier, User
+from routers.jwt_auth import get_current_user, require_roles
+from schemas import RecallCreate, RecallOut, RecallUpdate
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DBSession
-
-from database import get_db
-from models import Recall, Supplier, User
-from routers.api_auth import require_user
-from schemas import RecallCreate, RecallOut, RecallUpdate
 
 router = APIRouter(prefix="/api/recalls", tags=["recalls"])
 
@@ -31,7 +30,7 @@ async def get_recalls(
     response: Response,
     search: str = "",
     db: DBSession = Depends(get_db),
-    _user: User = Depends(require_user),
+    _user: User = Depends(get_current_user),
 ):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
@@ -43,15 +42,14 @@ async def get_recalls(
     if not term:
         return rows
     return [
-        r for r in rows
-        if term in r.product_name.lower() or term in (r.recall_code or "").lower()
+        r for r in rows if term in r.product_name.lower() or term in (r.recall_code or "").lower()
     ]
 
 
 @router.delete("/highest", status_code=204)
 async def delete_highest_recall(
     db: DBSession = Depends(get_db),
-    _user: User = Depends(require_user),
+    _user: User = Depends(require_roles("moderator")),
 ):
     highest = db.query(Recall).order_by(Recall.id.desc()).first()
     if not highest:
@@ -65,7 +63,7 @@ async def delete_highest_recall(
 async def get_recall(
     recall_id: int,
     db: DBSession = Depends(get_db),
-    _user: User = Depends(require_user),
+    _user: User = Depends(get_current_user),
 ):
     return _get_recall_or_404(db, recall_id)
 
@@ -74,7 +72,7 @@ async def get_recall(
 async def create_recall(
     recall_data: RecallCreate,
     db: DBSession = Depends(get_db),
-    _user: User = Depends(require_user),
+    _user: User = Depends(require_roles("writer", "moderator")),
 ):
     _require_supplier(db, recall_data.supplier_id)
     new_recall = Recall(
@@ -101,7 +99,7 @@ async def update_recall(
     recall_id: int,
     recall_data: RecallUpdate,
     db: DBSession = Depends(get_db),
-    _user: User = Depends(require_user),
+    _user: User = Depends(require_roles("writer", "moderator")),
 ):
     recall = _get_recall_or_404(db, recall_id)
     data = recall_data.model_dump(exclude_unset=True)
@@ -130,7 +128,7 @@ async def update_recall(
 async def delete_recall(
     recall_id: int,
     db: DBSession = Depends(get_db),
-    _user: User = Depends(require_user),
+    _user: User = Depends(require_roles("moderator")),
 ):
     recall = _get_recall_or_404(db, recall_id)
     db.delete(recall)

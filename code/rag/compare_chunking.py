@@ -79,19 +79,21 @@ def retrieve(technique, index, embed_model, question, expected_source):
 
         print(f"  {rank:<6}{hit.score:<14.4f}{sim:<13.4f}{len(text):<11}{preview[:70]}")
 
-        rows.append({
-            "question_id": question["id"],
-            "technique": technique,
-            "rank": rank,
-            "store_score": round(hit.score, 6),
-            "cosine_sim": round(sim, 6),
-            "chunk_len": len(text),
-            "source_file": source,
-            "expected_source": expected_source,
-            "is_expected": int(source == expected_source),
-            "latency_ms": round(latency_ms, 3),
-            "preview": preview,
-        })
+        rows.append(
+            {
+                "question_id": question["id"],
+                "technique": technique,
+                "rank": rank,
+                "store_score": round(hit.score, 6),
+                "cosine_sim": round(sim, 6),
+                "chunk_len": len(text),
+                "source_file": source,
+                "expected_source": expected_source,
+                "is_expected": int(source == expected_source),
+                "latency_ms": round(latency_ms, 3),
+                "preview": preview,
+            }
+        )
 
     return rows
 
@@ -129,12 +131,14 @@ def main():
 
         index = VectorStoreIndex(nodes, embed_model=embed_model, show_progress=False)
 
-        chunk_stats.append({
-            "technique": technique,
-            "chunks": len(nodes),
-            "avg_chunk_length": round(sum(lengths) / len(lengths), 2),
-            "chunking_ms": round(chunk_ms, 2),
-        })
+        chunk_stats.append(
+            {
+                "technique": technique,
+                "chunks": len(nodes),
+                "avg_chunk_length": round(sum(lengths) / len(lengths), 2),
+                "chunking_ms": round(chunk_ms, 2),
+            }
+        )
 
         for q in questions:
             all_rows.append(retrieve(technique, index, embed_model, q, q["expected_source"]))

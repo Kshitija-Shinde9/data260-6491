@@ -3,12 +3,12 @@ import secrets
 from datetime import datetime, timedelta, timezone
 
 import bcrypt
+from database import get_db
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Response
+from models import Session as SessionRow
+from models import User
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session as DBSession
-
-from database import get_db
-from models import Session as SessionRow, User
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 

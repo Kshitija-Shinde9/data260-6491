@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import json
@@ -18,7 +17,13 @@ sys.path.insert(0, str(REPO / "src"))
 from execute_tool import SAFETY_ERROR, execute_tool  # noqa: E402
 
 DEFAULT_LOG = REPO / "reports" / "hw05" / "raw" / "agent_runs.jsonl"
-MAX_STEPS = 4
+MAX_STEPS = 6
+MAX_REPAIRS = 1
+KNOWN_TOOLS = {
+    "search_recalls",
+    "get_recall_detail",
+    "aggregate_recalls_by_supplier",
+}
 
 SYSTEM_PROMPT = """You are a grocery-recall assistant for domain s6491_rel.
 You may use exactly these tools via execute_tool:
@@ -31,7 +36,10 @@ Reply with ONLY one JSON object, no markdown:
 or
 {"action":"stop","answer":"<final answer for the user>"}
 
-Never search by a person's email. After you have enough tool results, stop.
+Never search by a person's email. Follow any explicit minimum-tool-call sequence in the
+user's request. Do not stop early: if the user requires a search followed by detail
+lookup(s), complete every required lookup before giving the final answer. After the
+required tool results are available, stop.
 """
 
 
@@ -44,7 +52,6 @@ class MockTurn:
 
 
 class MockModel:
-
     def complete(self, messages, tools=None):
         return MockTurn(
             content=json.dumps(
@@ -83,6 +90,7 @@ def run_agent(
     execute_fn: Callable[..., str] = execute_tool,
     backends: dict | None = None,
     log_path: str | os.PathLike | None = DEFAULT_LOG,
+    max_repairs: int = MAX_REPAIRS,
 ) -> dict[str, Any]:
     if model is None:
         from model_client import ModelClient
@@ -95,6 +103,7 @@ def run_agent(
     ]
     steps: list[dict[str, Any]] = []
     tool_call_count = 0
+    repair_count = 0
     stop_reason = "max_steps"
     final_answer = None
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%f")
@@ -109,8 +118,23 @@ def run_agent(
         try:
             parsed = _extract_json(content)
         except Exception as exc:
-            stop_reason = "normal_completion"
-            final_answer = content or str(exc)
+            if repair_count < max_repairs:
+                repair_count += 1
+                step_record["repair"] = {"kind": "malformed_json", "error": str(exc)}
+                messages.append({"role": "assistant", "content": content})
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": (
+                            "Repair required: your previous response was not one valid JSON object. "
+                            f"Specific problem: {exc}. Return only the required tool or stop JSON object."
+                        ),
+                    }
+                )
+                steps.append(step_record)
+                continue
+            stop_reason = "repair_exhausted"
+            final_answer = "Stopped after a bounded malformed-response repair attempt."
             step_record["parse_error"] = str(exc)
             steps.append(step_record)
             break
@@ -125,8 +149,43 @@ def run_agent(
 
         if action == "tool":
             name = parsed.get("name", "")
-            inputs = parsed.get("inputs") or {}
-            raw = execute_fn(name, inputs, backends=backends) if backends is not None else execute_fn(name, inputs)
+            inputs = parsed.get("inputs")
+            schema_error = None
+            if not isinstance(name, str) or not name.strip():
+                schema_error = "tool name must be a non-empty string"
+            elif name not in KNOWN_TOOLS:
+                schema_error = f"unknown tool: {name}"
+            elif not isinstance(inputs, dict):
+                schema_error = "inputs must be a JSON object"
+
+            if schema_error is not None:
+                if repair_count < max_repairs:
+                    repair_count += 1
+                    step_record["repair"] = {"kind": "tool_schema", "error": schema_error}
+                    messages.append({"role": "assistant", "content": content})
+                    messages.append(
+                        {
+                            "role": "user",
+                            "content": (
+                                "Repair required for the tool call. "
+                                f"Specific problem: {schema_error}. Use one of {sorted(KNOWN_TOOLS)} "
+                                "and provide a JSON object in inputs."
+                            ),
+                        }
+                    )
+                    steps.append(step_record)
+                    continue
+                stop_reason = "repair_exhausted"
+                final_answer = f"Stopped after a bounded tool-call repair attempt: {schema_error}"
+                step_record["schema_error"] = schema_error
+                steps.append(step_record)
+                break
+
+            raw = (
+                execute_fn(name, inputs, backends=backends)
+                if backends is not None
+                else execute_fn(name, inputs)
+            )
             result = json.loads(raw)
             tool_call_count += 1
             step_record.update(
@@ -145,10 +204,34 @@ def run_agent(
             messages.append({"role": "assistant", "content": content})
             messages.append(
                 {
-                    "role": "user",
-                    "content": "Tool result: " + raw + " If you can answer, stop. Else call another tool.",
+                    "role": "tool",
+                    "name": name,
+                    "content": raw,
                 }
             )
+            if result.get("ok") is False and repair_count < max_repairs:
+                repair_count += 1
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": (
+                            "Repair required: the tool returned an error. "
+                            f"Specific problem: {result.get('error')}. Correct the arguments or choose "
+                            "another valid tool, then continue the task."
+                        ),
+                    }
+                )
+            else:
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": (
+                            "The tool result is above. Follow the user's required sequence exactly. "
+                            "If another lookup is required, make that tool call now; do not answer early. "
+                            "Only stop after all requested lookups are complete."
+                        ),
+                    }
+                )
             continue
 
         stop_reason = "normal_completion"
@@ -165,6 +248,7 @@ def run_agent(
         "max_steps": max_steps,
         "step_count": len(steps),
         "tool_call_count": tool_call_count,
+        "repair_count": repair_count,
         "stop_reason": stop_reason,
         "final_answer": final_answer,
         "steps": steps,

@@ -114,9 +114,10 @@ def check_mysql_schema():
         return
     try:
         sys.path.insert(0, APP_DIR)
-        from dotenv import load_dotenv
-        from urllib.parse import urlparse, unquote
+        from urllib.parse import unquote, urlparse
+
         import pymysql
+        from dotenv import load_dotenv
 
         load_dotenv(env_path)
         url = urlparse(os.environ["DATABASE_URL"].replace("mysql+pymysql", "mysql"))
@@ -171,10 +172,7 @@ def check_api_smoke():
 
 def _envelope_ok(payload):
     return (
-        isinstance(payload, dict)
-        and "ok" in payload
-        and "data" in payload
-        and "error" in payload
+        isinstance(payload, dict) and "ok" in payload and "data" in payload and "error" in payload
     )
 
 
@@ -209,7 +207,11 @@ def check_mcp_tool_smoke():
                 and "id" in result[0]
                 and "name" in result[0]
             )
-            check("meals MCP tool responds to search_meals_by_name", ok, f"n={len(result) if isinstance(result, list) else 'n/a'}")
+            check(
+                "meals MCP tool responds to search_meals_by_name",
+                ok,
+                f"n={len(result) if isinstance(result, list) else 'n/a'}",
+            )
         finally:
             httpx.Client = _orig_client
     except Exception as error:
@@ -258,7 +260,11 @@ def check_mcp_tool_smoke():
                         "data": {"count": 1, "items": [{"id": 1, "product_name": query}]},
                         "error": None,
                     },
-                    "get_recall_detail": lambda recall_id: {"ok": True, "data": {"id": recall_id}, "error": None},
+                    "get_recall_detail": lambda recall_id: {
+                        "ok": True,
+                        "data": {"id": recall_id},
+                        "error": None,
+                    },
                     "aggregate_recalls_by_supplier": lambda min_units: {
                         "ok": True,
                         "data": {"count": 0, "items": []},
@@ -277,7 +283,11 @@ def check_mcp_tool_smoke():
                         "data": {"count": 0, "items": []},
                         "error": None,
                     },
-                    "get_recall_detail": lambda recall_id: {"ok": False, "data": None, "error": "x"},
+                    "get_recall_detail": lambda recall_id: {
+                        "ok": False,
+                        "data": None,
+                        "error": "x",
+                    },
                     "aggregate_recalls_by_supplier": lambda min_units: {
                         "ok": True,
                         "data": {"count": 0, "items": []},
@@ -292,7 +302,9 @@ def check_mcp_tool_smoke():
         )
         check(
             "execute_tool safety rule blocks email lookup",
-            _envelope_ok(blocked) and blocked.get("ok") is False and blocked.get("error") == SAFETY_ERROR,
+            _envelope_ok(blocked)
+            and blocked.get("ok") is False
+            and blocked.get("error") == SAFETY_ERROR,
             blocked.get("error"),
         )
     except Exception as error:

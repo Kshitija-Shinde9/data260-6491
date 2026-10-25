@@ -1,16 +1,52 @@
-
-
 import json
 import re
 from typing import Any, Dict, Iterable, List, Tuple
 
-
-
 STOP = {
-    "the", "and", "for", "that", "with", "this", "from", "into", "than", "your", "you",
-    "are", "was", "were", "have", "has", "had", "use", "used", "using", "about", "how",
-    "can", "will", "more", "less", "very", "over", "under", "their", "there", "then",
-    "our", "out", "on", "in", "of", "to", "by", "a", "an", "is", "it", "as",
+    "the",
+    "and",
+    "for",
+    "that",
+    "with",
+    "this",
+    "from",
+    "into",
+    "than",
+    "your",
+    "you",
+    "are",
+    "was",
+    "were",
+    "have",
+    "has",
+    "had",
+    "use",
+    "used",
+    "using",
+    "about",
+    "how",
+    "can",
+    "will",
+    "more",
+    "less",
+    "very",
+    "over",
+    "under",
+    "their",
+    "there",
+    "then",
+    "our",
+    "out",
+    "on",
+    "in",
+    "of",
+    "to",
+    "by",
+    "a",
+    "an",
+    "is",
+    "it",
+    "as",
 }
 
 
@@ -23,10 +59,8 @@ def strip_code_and_md(s: str) -> str:
     s = str(s)
     s = re.sub(r"Thinking\.\.\..*?done thinking\.", "", s, flags=re.DOTALL | re.IGNORECASE)
 
-    
     s = re.sub(r"<think>.*?</think>", "", s, flags=re.DOTALL | re.IGNORECASE)
 
-    
     s = re.sub(r"```(?:json)?", "", s)
     s = s.replace("`", "")
 
@@ -34,8 +68,6 @@ def strip_code_and_md(s: str) -> str:
 
 
 def extract_json_block(text: str) -> str:
-    
-    
     cleaned = strip_code_and_md(text)
 
     start = cleaned.find("{")
@@ -49,25 +81,21 @@ def extract_json_block(text: str) -> str:
         elif cleaned[i] == "}":
             depth -= 1
             if depth == 0:
-                return cleaned[start:i + 1]
+                return cleaned[start : i + 1]
 
-   
     return json.dumps({"message": cleaned})
 
 
 def tokens(txt: str) -> List[str]:
- 
     return re.findall(r"[a-z][a-z\-]+", str(txt).lower())
 
 
 def ngrams(words: List[str], n: int) -> Iterable[Tuple[str, ...]]:
     for i in range(max(0, len(words) - n + 1)):
-        yield tuple(words[i:i + n])
+        yield tuple(words[i : i + n])
 
 
 def phrase_candidates(title: str, content: str, maxn: int = 12) -> List[str]:
-
-   
     words = [w for w in tokens(f"{title} {content}") if w not in STOP and len(w) > 2]
 
     freq: Dict[str, int] = {}
@@ -90,7 +118,6 @@ def phrase_candidates(title: str, content: str, maxn: int = 12) -> List[str]:
                 break
 
     return candidates[:maxn]
-
 
 
 # output schema coercion
@@ -118,21 +145,13 @@ def coerce_reply(raw_obj: Any, title: str, content: str, strict: bool) -> Dict[s
     if not isinstance(data, dict):
         data = {}
 
-
-
-   
     if not data:
-        data = {
-            k.split("data.", 1)[1]: v
-            for k, v in raw_obj.items()
-            if k.startswith("data.")
-        }
+        data = {k.split("data.", 1)[1]: v for k, v in raw_obj.items() if k.startswith("data.")}
 
     tags = data.get("tags", [])
     if not isinstance(tags, list):
         tags = []
     tags = [str(t).strip() for t in tags if str(t).strip()]
-
 
     if len(tags) < 3:
         for cand in phrase_candidates(title, content):

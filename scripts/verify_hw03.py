@@ -48,12 +48,19 @@ def git(*args):
 
 
 def check_deliverables():
-    for rel in ["reports/hw03/questions.yaml", "reports/hw03/SOURCES.md",
-                "reports/hw03/CORPUS_MANIFEST.json", "reports/hw03/METRICS.md",
-                "reports/hw03/AI_USE.md", "reports/hw03/RUN_LOG.txt",
-                "reports/hw03/raw/retrieval_results.csv", "reports/hw03/raw/chunk_stats.csv",
-                "code/rag/compare_chunking.py", "code/rag/requirements.txt",
-                "scripts/recompute_tables.py"]:
+    for rel in [
+        "reports/hw03/questions.yaml",
+        "reports/hw03/SOURCES.md",
+        "reports/hw03/CORPUS_MANIFEST.json",
+        "reports/hw03/METRICS.md",
+        "reports/hw03/AI_USE.md",
+        "reports/hw03/RUN_LOG.txt",
+        "reports/hw03/raw/retrieval_results.csv",
+        "reports/hw03/raw/chunk_stats.csv",
+        "code/rag/compare_chunking.py",
+        "code/rag/requirements.txt",
+        "scripts/recompute_tables.py",
+    ]:
         check(f"deliverable present: {rel}", os.path.isfile(path(rel)))
 
 
@@ -64,8 +71,11 @@ def check_corpus():
         return
     files = sorted(f for f in os.listdir(d) if f.endswith(".txt"))
     total = sum(os.path.getsize(os.path.join(d, f)) for f in files)
-    check("corpus meets the 200 KB minimum", total >= MIN_CORPUS_BYTES,
-          f"{total:,} bytes = {total/1024:.1f} KB")
+    check(
+        "corpus meets the 200 KB minimum",
+        total >= MIN_CORPUS_BYTES,
+        f"{total:,} bytes = {total/1024:.1f} KB",
+    )
     check("corpus has more than one document", len(files) > 1, f"{len(files)} documents")
 
     mpath = path("reports", "hw03", "CORPUS_MANIFEST.json")
@@ -74,8 +84,11 @@ def check_corpus():
         return
     man = json.load(open(mpath))
     docs = man.get("documents", [])
-    check("manifest lists every corpus file", len(docs) == len(files),
-          f"manifest {len(docs)}, on disk {len(files)}")
+    check(
+        "manifest lists every corpus file",
+        len(docs) == len(files),
+        f"manifest {len(docs)}, on disk {len(files)}",
+    )
 
     bad = 0
     for d_ in docs:
@@ -86,8 +99,11 @@ def check_corpus():
         b = open(p, "rb").read()
         if len(b) != d_["bytes"] or hashlib.sha256(b).hexdigest() != d_["sha256"]:
             bad += 1
-    check("every manifest byte size and SHA-256 matches", bad == 0,
-          f"{len(docs) - bad}/{len(docs)} verified")
+    check(
+        "every manifest byte size and SHA-256 matches",
+        bad == 0,
+        f"{len(docs) - bad}/{len(docs)} verified",
+    )
 
 
 def check_questions():
@@ -108,17 +124,27 @@ def check_questions():
     check("at least two questions are single-source", single >= 2, f"{single} of {len(qs)}")
 
     have_answer = sum(1 for q in qs if str(q.get("expected_answer", "")).strip())
-    check("every question records an expected answer", have_answer == len(qs),
-          f"{have_answer}/{len(qs)}")
+    check(
+        "every question records an expected answer",
+        have_answer == len(qs),
+        f"{have_answer}/{len(qs)}",
+    )
 
-    missing = [q["id"] for q in qs
-               if not os.path.isfile(path("data", "corpus", q.get("expected_source", "")))]
-    check("every expected_source exists in the corpus", not missing,
-          "missing: " + ", ".join(missing) if missing else "all present")
+    missing = [
+        q["id"]
+        for q in qs
+        if not os.path.isfile(path("data", "corpus", q.get("expected_source", "")))
+    ]
+    check(
+        "every expected_source exists in the corpus",
+        not missing,
+        "missing: " + ", ".join(missing) if missing else "all present",
+    )
 
 
 def check_results():
     import csv
+
     p = path("reports", "hw03", "raw", "retrieval_results.csv")
     if not os.path.isfile(p):
         check("retrieval results present", False)
@@ -131,35 +157,55 @@ def check_results():
 
     qids = sorted({r["question_id"] for r in rows})
     k = max(int(r["rank"]) for r in rows)
-    check("rows equal questions x techniques x k",
-          len(rows) == len(qids) * len(techs) * k,
-          f"{len(qids)} x {len(techs)} x {k} = {len(qids)*len(techs)*k}")
+    check(
+        "rows equal questions x techniques x k",
+        len(rows) == len(qids) * len(techs) * k,
+        f"{len(qids)} x {len(techs)} x {k} = {len(qids)*len(techs)*k}",
+    )
 
-    check("both a store score and a computed cosine are recorded",
-          all(r.get("store_score") and r.get("cosine_sim") for r in rows))
+    check(
+        "both a store score and a computed cosine are recorded",
+        all(r.get("store_score") and r.get("cosine_sim") for r in rows),
+    )
 
     sims = [float(r["cosine_sim"]) for r in rows]
-    check("every cosine similarity is within [-1, 1]", all(-1 <= s <= 1 for s in sims),
-          f"min {min(sims):.4f}, max {max(sims):.4f}")
+    check(
+        "every cosine similarity is within [-1, 1]",
+        all(-1 <= s <= 1 for s in sims),
+        f"min {min(sims):.4f}, max {max(sims):.4f}",
+    )
 
-    check("retrieval latency was recorded for every row",
-          all(float(r["latency_ms"]) > 0 for r in rows))
+    check(
+        "retrieval latency was recorded for every row",
+        all(float(r["latency_ms"]) > 0 for r in rows),
+    )
 
     for t in techs:
-        hits = {q for r in rows if r["technique"] == t and r["is_expected"] == "1"
-                for q in [r["question_id"]]}
-        check(f"{t}: expected source found for at least one question", bool(hits),
-              f"{len(hits)}/{len(qids)} questions")
+        hits = {
+            q
+            for r in rows
+            if r["technique"] == t and r["is_expected"] == "1"
+            for q in [r["question_id"]]
+        }
+        check(
+            f"{t}: expected source found for at least one question",
+            bool(hits),
+            f"{len(hits)}/{len(qids)} questions",
+        )
 
 
 def check_embedding():
     try:
         from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+
         t0 = time.time()
         e = HuggingFaceEmbedding(model_name=EMBED_MODEL)
         v = e.get_text_embedding("undeclared allergen in a recalled grocery product")
-        check("embedding model loads and returns a vector", len(v) > 0,
-              f"{EMBED_MODEL}, {time.time()-t0:.1f}s")
+        check(
+            "embedding model loads and returns a vector",
+            len(v) > 0,
+            f"{EMBED_MODEL}, {time.time()-t0:.1f}s",
+        )
         check("embedding dimension is 384", len(v) == 384, len(v))
     except Exception as error:
         check("embedding model loads and returns a vector", False, error)
@@ -167,10 +213,14 @@ def check_embedding():
 
 def main():
     print(f"HW3 self-check - SID4 {SID4}, DOMAIN_ID {DOMAIN_ID}\n")
-    check_deliverables(); print()
-    check_corpus(); print()
-    check_questions(); print()
-    check_results(); print()
+    check_deliverables()
+    print()
+    check_corpus()
+    print()
+    check_questions()
+    print()
+    check_results()
+    print()
     check_embedding()
 
     passed = sum(1 for c in checks if c["passed"])

@@ -3,10 +3,9 @@ from typing import List
 from bson import ObjectId
 from bson.errors import InvalidId
 from fastapi import APIRouter, HTTPException
-from pymongo import ReturnDocument
-
 from mongo_db import get_notices, utcnow
 from mongo_schemas import NoticeCreate, NoticeOut, NoticeUpdate
+from pymongo import ReturnDocument
 
 router = APIRouter(prefix="/api/notices", tags=["notices"])
 

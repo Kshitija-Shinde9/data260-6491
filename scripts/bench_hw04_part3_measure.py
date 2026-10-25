@@ -85,25 +85,39 @@ def main():
                 if status != 200:
                     print(f"  [warn] {version} page_size={page_size} req#{i}: HTTP {status}")
 
-                rows.append({
-                    "version": version,
-                    "page_size": page_size,
-                    "request_index": i,
-                    "status": status,
-                    "query_count": query_count,
-                    "latency_ms": round(latency_ms, 3),
-                })
+                rows.append(
+                    {
+                        "version": version,
+                        "page_size": page_size,
+                        "request_index": i,
+                        "status": status,
+                        "query_count": query_count,
+                        "latency_ms": round(latency_ms, 3),
+                    }
+                )
 
             print(f"{version:>6} page_size={page_size:<4} done ({REQUESTS_PER_CELL} requests).")
 
     raw_path = os.path.join(RAW_DIR, "n_plus_1_raw.csv")
     with open(raw_path, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["version", "page_size", "request_index", "status", "query_count", "latency_ms"])
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "version",
+                "page_size",
+                "request_index",
+                "status",
+                "query_count",
+                "latency_ms",
+            ],
+        )
         writer.writeheader()
         writer.writerows(rows)
     print(f"\nWrote {len(rows)} raw request records to {raw_path}")
 
-    print(f"\n{'page_size':<10}{'version':<10}{'SQL stmts/req':<16}{'p50 (ms)':<12}{'p95 (ms)':<12}{'p99 (ms)':<12}")
+    print(
+        f"\n{'page_size':<10}{'version':<10}{'SQL stmts/req':<16}{'p50 (ms)':<12}{'p95 (ms)':<12}{'p99 (ms)':<12}"
+    )
     summary = []
     for version in ENDPOINTS:
         for page_size in PAGE_SIZES:
@@ -113,12 +127,22 @@ def main():
             latencies = [r["latency_ms"] for r in cell]
             query_counts = {r["query_count"] for r in cell}
             qc = query_counts.pop() if len(query_counts) == 1 else f"varies:{query_counts}"
-            p50, p95, p99 = percentile(latencies, 50), percentile(latencies, 95), percentile(latencies, 99)
+            p50, p95, p99 = (
+                percentile(latencies, 50),
+                percentile(latencies, 95),
+                percentile(latencies, 99),
+            )
             print(f"{page_size:<10}{version:<10}{str(qc):<16}{p50:<12.2f}{p95:<12.2f}{p99:<12.2f}")
-            summary.append({
-                "page_size": page_size, "version": version, "sql_stmts_per_req": qc,
-                "p50_ms": round(p50, 2), "p95_ms": round(p95, 2), "p99_ms": round(p99, 2),
-            })
+            summary.append(
+                {
+                    "page_size": page_size,
+                    "version": version,
+                    "sql_stmts_per_req": qc,
+                    "p50_ms": round(p50, 2),
+                    "p95_ms": round(p95, 2),
+                    "p99_ms": round(p99, 2),
+                }
+            )
 
     summary_path = os.path.join(RAW_DIR, "n_plus_1_summary.json")
     with open(summary_path, "w") as f:

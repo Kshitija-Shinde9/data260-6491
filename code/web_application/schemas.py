@@ -3,7 +3,6 @@ from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-
 SUPPLIER_CODE_PATTERN = r"^SUP-[0-9]{4}$"
 RECALL_CODE_PATTERN = r"^REC-[0-9]{4}$"
 

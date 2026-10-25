@@ -7,7 +7,7 @@ import os
 import re
 import sys
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
@@ -117,8 +117,8 @@ def _relax_ssl_for_hf() -> None:
 
 class VectorIndex:
     def __init__(self, chunks: List[Chunk], embed_model_name: str = EMBED_MODEL):
-        from sentence_transformers import SentenceTransformer
         import faiss
+        from sentence_transformers import SentenceTransformer
 
         _relax_ssl_for_hf()
         self.chunks = chunks
@@ -145,6 +145,7 @@ class VectorIndex:
             hits.append(Retrieved(chunk=self.chunks[int(idx)], score=float(score), rank=rank))
         return hits
 
+
 def _tokens(text: str) -> set:
     return set(re.findall(r"[a-z0-9]+", text.lower()))
 
@@ -156,7 +157,9 @@ def jaccard(a: str, b: str) -> float:
     return len(ta & tb) / len(ta | tb)
 
 
-def engineer_context(hits: List[Retrieved], threshold: float = RELEVANCE_THRESHOLD) -> List[Retrieved]:
+def engineer_context(
+    hits: List[Retrieved], threshold: float = RELEVANCE_THRESHOLD
+) -> List[Retrieved]:
     """Drop low-relevance and near-duplicate chunks; prefer source diversity."""
     filtered: List[Retrieved] = []
     for hit in hits:
@@ -170,6 +173,7 @@ def engineer_context(hits: List[Retrieved], threshold: float = RELEVANCE_THRESHO
     seen_sources: set = set()
     remaining = list(filtered)
     while remaining:
+
         def pick_key(h: Retrieved) -> float:
             diversity_bonus = 0.05 if h.chunk.source_name not in seen_sources else 0.0
             return h.score + diversity_bonus
@@ -180,8 +184,7 @@ def engineer_context(hits: List[Retrieved], threshold: float = RELEVANCE_THRESHO
         seen_sources.add(best.chunk.source_name)
 
     return [
-        Retrieved(chunk=h.chunk, score=h.score, rank=i)
-        for i, h in enumerate(selected, start=1)
+        Retrieved(chunk=h.chunk, score=h.score, rank=i) for i, h in enumerate(selected, start=1)
     ]
 
 
@@ -277,8 +280,8 @@ class LocalTransformersClient(LLMClient):
     """Small local instruct model — no API key required."""
 
     def __init__(self, model_name: str = "Qwen/Qwen2.5-0.5B-Instruct"):
-        from transformers import AutoModelForCausalLM, AutoTokenizer
         import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
 
         _relax_ssl_for_hf()
         print(f"Loading local LLM: {model_name} ...")
@@ -320,8 +323,10 @@ def build_llm(args: argparse.Namespace) -> Tuple[LLMClient, str]:
         base_url = "https://api.groq.com/openai/v1"
         api_key = os.environ["GROQ_API_KEY"]
     if api_key:
-        model = args.model or os.environ.get("OPENAI_MODEL") or (
-            "llama-3.1-8b-instant" if base_url and "groq" in base_url else "gpt-4o-mini"
+        model = (
+            args.model
+            or os.environ.get("OPENAI_MODEL")
+            or ("llama-3.1-8b-instant" if base_url and "groq" in base_url else "gpt-4o-mini")
         )
         return OpenAICompatClient(model, api_key, base_url), f"openai-compat:{model}"
 
@@ -335,8 +340,7 @@ def build_llm(args: argparse.Namespace) -> Tuple[LLMClient, str]:
 
 
 NO_RAG_SYSTEM = (
-    "You are a helpful assistant. Answer the user's question as best you can. "
-    "Be concise."
+    "You are a helpful assistant. Answer the user's question as best you can. " "Be concise."
 )
 
 BASIC_RAG_SYSTEM = (
@@ -374,7 +378,6 @@ def build_prompt(config: str, question: str, context: str) -> Tuple[str, str]:
         )
         return CONTEXT_RAG_SYSTEM, user
     raise ValueError(config)
-
 
 
 def contains_keywords(answer: str, keywords: Sequence[str]) -> bool:
@@ -428,8 +431,10 @@ def evaluate_row(
 
     format_ok = True
     if config == "C_ContextRAG":
-        format_ok = (refused and must_refuse) or (cites_sources(answer) and not must_refuse) or (
-            refused and not must_refuse and qid == "Q4"
+        format_ok = (
+            (refused and must_refuse)
+            or (cites_sources(answer) and not must_refuse)
+            or (refused and not must_refuse and qid == "Q4")
         )
 
     return {
@@ -443,6 +448,7 @@ def evaluate_row(
         "is_refusal": int(refused),
         "answer_preview": answer.replace("\n", " ")[:300],
     }
+
 
 def run_config(
     llm: LLMClient,
@@ -493,10 +499,17 @@ def run_config(
         "sources": [h.chunk.source_name for h in hits],
         "scores": [round(h.score, 4) for h in hits],
         "answer": answer,
-        **{k: eval_row[k] for k in (
-            "correct_retrieval", "correct_answer", "grounded",
-            "refused_when_needed", "format_compliance", "is_refusal",
-        )},
+        **{
+            k: eval_row[k]
+            for k in (
+                "correct_retrieval",
+                "correct_answer",
+                "grounded",
+                "refused_when_needed",
+                "format_compliance",
+                "is_refusal",
+            )
+        },
     }
 
 
@@ -514,7 +527,8 @@ def summarize_metrics(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
         refuse_rows = [r for r in group if r["refused_when_needed"] != ""]
         robustness = (
             sum(int(r["refused_when_needed"]) for r in refuse_rows) / len(refuse_rows)
-            if refuse_rows else None
+            if refuse_rows
+            else None
         )
         summary[config] = {
             "n": n,
@@ -554,8 +568,10 @@ def main() -> int:
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     docs = load_documents(CORPUS_DIR)
     chunks = build_chunks(docs)
-    print(f"Corpus: {len(docs)} documents, {len(chunks)} chunks "
-          f"(size={CHUNK_SIZE}, overlap={CHUNK_OVERLAP})")
+    print(
+        f"Corpus: {len(docs)} documents, {len(chunks)} chunks "
+        f"(size={CHUNK_SIZE}, overlap={CHUNK_OVERLAP})"
+    )
 
     questions = yaml.safe_load(QUESTIONS_PATH.read_text(encoding="utf-8"))["questions"]
     index = VectorIndex(chunks)
@@ -590,19 +606,25 @@ def main() -> int:
 
         eval_rows = []
         for r in comparison_rows:
-            eval_rows.append({
-                "question_id": r["question_id"],
-                "config": r["config"],
-                "correct_retrieval": r["correct_retrieval"],
-                "correct_answer": r["correct_answer"],
-                "grounded": r["grounded"],
-                "refused_when_needed": r["refused_when_needed"],
-                "format_compliance": r["format_compliance"],
-            })
+            eval_rows.append(
+                {
+                    "question_id": r["question_id"],
+                    "config": r["config"],
+                    "correct_retrieval": r["correct_retrieval"],
+                    "correct_answer": r["correct_answer"],
+                    "grounded": r["grounded"],
+                    "refused_when_needed": r["refused_when_needed"],
+                    "format_compliance": r["format_compliance"],
+                }
+            )
         write_csv(RAW_DIR / "evaluation_table.csv", eval_rows)
 
-        md = ["# Evaluation Table", "", "| Q | Config | Correct Retrieval | Correct Answer | Grounded | Refused-when-needed | Format |",
-              "|---|--------|-------------------|----------------|----------|---------------------|--------|"]
+        md = [
+            "# Evaluation Table",
+            "",
+            "| Q | Config | Correct Retrieval | Correct Answer | Grounded | Refused-when-needed | Format |",
+            "|---|--------|-------------------|----------------|----------|---------------------|--------|",
+        ]
         for r in eval_rows:
             md.append(
                 f"| {r['question_id']} | {r['config']} | {r['correct_retrieval']} | "
@@ -612,8 +634,12 @@ def main() -> int:
         md.append("")
         md.append("## Overall by configuration")
         md.append("")
-        md.append("| Config | Accuracy | Faithfulness | Format compliance | Robustness (Q5/Q6 refuse) |")
-        md.append("|--------|----------|--------------|-------------------|---------------------------|")
+        md.append(
+            "| Config | Accuracy | Faithfulness | Format compliance | Robustness (Q5/Q6 refuse) |"
+        )
+        md.append(
+            "|--------|----------|--------------|-------------------|---------------------------|"
+        )
         for cfg, s in summary.items():
             md.append(
                 f"| {cfg} | {s['accuracy']} | {s['faithfulness']} | {s['format_compliance']} | "

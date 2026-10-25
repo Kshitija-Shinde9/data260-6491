@@ -27,10 +27,14 @@ def file_exists(rel_path):
 
 def main():
     required_files = [
-        "code/web_application/index.html", "code/web_application/script.js",
-        "code/web_application/Dockerfile", "DOMAIN_SCHEMA.md",
-        "code/web_application/agents_demo.py", "AGENT.md",
-        "code/web_application/hw1_client.py", "src/model_client.py",
+        "code/web_application/index.html",
+        "code/web_application/script.js",
+        "code/web_application/Dockerfile",
+        "DOMAIN_SCHEMA.md",
+        "code/web_application/agents_demo.py",
+        "AGENT.md",
+        "code/web_application/hw1_client.py",
+        "src/model_client.py",
         "README.md",
         "reports/hw01/cases/nondeterminism_input.json",
         "reports/hw01/AI_USE.md",
@@ -71,16 +75,30 @@ def main():
         check("agents_demo.py imports cleanly", False, str(e))
 
     check("Part 3 raw CSV present", file_exists("reports/hw01/raw/nondeterminism_runs.csv"))
-    check("Part 3 metrics JSON present", file_exists("reports/hw01/raw/nondeterminism_metrics.json"))
-    check("Part 4 per-turn token counts CSV present", file_exists("reports/hw01/raw/hw1_client_turns.csv"))
+    check(
+        "Part 3 metrics JSON present", file_exists("reports/hw01/raw/nondeterminism_metrics.json")
+    )
+    check(
+        "Part 4 per-turn token counts CSV present",
+        file_exists("reports/hw01/raw/hw1_client_turns.csv"),
+    )
 
     try:
         result = subprocess.run(
             [
-                "curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "10",
+                "curl",
+                "-s",
+                "-o",
+                "/dev/null",
+                "-w",
+                "%{http_code}",
+                "--max-time",
+                "10",
                 f"http://{PUBLIC_IP}:{PORT_BASE}/",
             ],
-            capture_output=True, text=True, timeout=15,
+            capture_output=True,
+            text=True,
+            timeout=15,
         )
         status = result.stdout.strip()
         check(
@@ -94,10 +112,19 @@ def main():
     try:
         result = subprocess.run(
             [
-                "curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "5",
+                "curl",
+                "-s",
+                "-o",
+                "/dev/null",
+                "-w",
+                "%{http_code}",
+                "--max-time",
+                "5",
                 f"http://localhost:{PORT_BASE}/",
             ],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True,
+            text=True,
+            timeout=10,
         )
         status = result.stdout.strip()
         check(

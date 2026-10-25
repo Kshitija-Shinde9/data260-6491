@@ -1,4 +1,3 @@
-
 from nodes import supervisor_node
 from router import router_logic
 
@@ -18,24 +17,30 @@ print("Testing every decision my router can make")
 print("=" * 55)
 
 situations = [
-    ("nothing written yet",
-     make_state()),
-
-    ("planner wrote, nobody checked it",
-     make_state(planner_proposal={"data": {"tags": ["a", "b", "c"]}})),
-
-    ("reviewer found a problem",
-     make_state(planner_proposal={"data": {}},
-                reviewer_feedback={"data": {"issues": ["tag is too vague"]}})),
-
-    ("reviewer was happy",
-     make_state(planner_proposal={"data": {}},
-                reviewer_feedback={"data": {"issues": []}})),
-
-    ("too many turns already",
-     make_state(turn_count=5,
-                planner_proposal={"data": {}},
-                reviewer_feedback={"data": {"issues": ["still bad"]}})),
+    ("nothing written yet", make_state()),
+    (
+        "planner wrote, nobody checked it",
+        make_state(planner_proposal={"data": {"tags": ["a", "b", "c"]}}),
+    ),
+    (
+        "reviewer found a problem",
+        make_state(
+            planner_proposal={"data": {}},
+            reviewer_feedback={"data": {"issues": ["tag is too vague"]}},
+        ),
+    ),
+    (
+        "reviewer was happy",
+        make_state(planner_proposal={"data": {}}, reviewer_feedback={"data": {"issues": []}}),
+    ),
+    (
+        "too many turns already",
+        make_state(
+            turn_count=5,
+            planner_proposal={"data": {}},
+            reviewer_feedback={"data": {"issues": ["still bad"]}},
+        ),
+    ),
 ]
 
 for name, state in situations:

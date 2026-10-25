@@ -6,9 +6,9 @@ sys.path.insert(0, REPO_ROOT)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 
+from nodes import planner_node, reviewer_node
 
 from src.model_client import ModelClient
-from nodes import planner_node, reviewer_node
 
 state = {
     "title": "Trader Joe's Organic Frozen Blueberries, 16oz",

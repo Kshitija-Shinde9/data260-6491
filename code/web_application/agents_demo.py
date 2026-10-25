@@ -16,20 +16,59 @@ import re
 import sys
 import time
 from dataclasses import dataclass
-from typing import List, Dict, Any, Iterable, Tuple
+from typing import Any, Dict, Iterable, List, Tuple
 
-from langchain_ollama import ChatOllama
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_ollama import ChatOllama
 
 # just common english filler words, not domain-specific, used as a fallback when
 # building tags straight from whatever title/content gets passed in
 STOP = {
-    "the", "and", "for", "that", "with", "this", "from", "into", "than", "your", "you",
-    "are", "was", "were", "have", "has", "had", "use", "used", "using", "about", "how",
-    "can", "will", "more", "less", "very", "over", "under", "their", "there", "then",
-    "our", "out", "on", "in", "of", "to", "by", "a", "an", "is", "it", "as",
+    "the",
+    "and",
+    "for",
+    "that",
+    "with",
+    "this",
+    "from",
+    "into",
+    "than",
+    "your",
+    "you",
+    "are",
+    "was",
+    "were",
+    "have",
+    "has",
+    "had",
+    "use",
+    "used",
+    "using",
+    "about",
+    "how",
+    "can",
+    "will",
+    "more",
+    "less",
+    "very",
+    "over",
+    "under",
+    "their",
+    "there",
+    "then",
+    "our",
+    "out",
+    "on",
+    "in",
+    "of",
+    "to",
+    "by",
+    "a",
+    "an",
+    "is",
+    "it",
+    "as",
 }
 
 
@@ -68,7 +107,7 @@ def extract_json_block(text: str) -> str:
         elif cleaned[i] == "}":
             depth -= 1
             if depth == 0:
-                return cleaned[start:i + 1]
+                return cleaned[start : i + 1]
 
     # brace never closed properly, bail out safely
     return json.dumps({"message": cleaned})
@@ -81,7 +120,7 @@ def tokens(txt: str) -> List[str]:
 
 def ngrams(words: List[str], n: int) -> Iterable[Tuple[str, ...]]:
     for i in range(max(0, len(words) - n + 1)):
-        yield tuple(words[i:i + n])
+        yield tuple(words[i : i + n])
 
 
 def phrase_candidates(title: str, content: str, maxn: int = 12) -> List[str]:
@@ -109,7 +148,6 @@ def phrase_candidates(title: str, content: str, maxn: int = 12) -> List[str]:
                 break
 
     return candidates[:maxn]
-
 
 
 # output schema coercion
@@ -141,11 +179,7 @@ def coerce_reply(raw_obj: Any, title: str, content: str, strict: bool) -> Dict[s
     # instead of a nested "data" object, despite the prompt asking for nesting. recover
     # those here rather than silently falling through to the generic fallback below.
     if not data:
-        data = {
-            k.split("data.", 1)[1]: v
-            for k, v in raw_obj.items()
-            if k.startswith("data.")
-        }
+        data = {k.split("data.", 1)[1]: v for k, v in raw_obj.items() if k.startswith("data.")}
 
     tags = data.get("tags", [])
     if not isinstance(tags, list):
@@ -198,7 +232,6 @@ def parse_and_coerce(text: str, title: str, content: str, strict: bool) -> Dict[
     return coerce_reply(obj, title, content, strict)
 
 
-
 # agent wrapper
 
 
@@ -216,42 +249,45 @@ class SimpleAgent:
         content: str,
         strict: bool,
     ) -> Dict[str, Any]:
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", self.system),
-            ("human",
-             "Task:\n{task}\n\n"
-             "Prior agent proposals in this pipeline so far (each line is the previous "
-             "agent's actual proposed tags/summary/issues as JSON, not just a message). "
-             "Build on the most recent one instead of generating independently from "
-             "scratch:\n{history}\n\n"
-             "Return ONLY one JSON object, with this exact nested shape (no code fences, "
-             "no markdown, no explanations, no dotted key names like \"data.tags\"):\n"
-             "{{\n"
-             '  "thought": "<string>",\n'
-             '  "message": "<non-empty, <=60 words, no code>",\n'
-             '  "data": {{\n'
-             '    "tags": ["<exactly 3 topical tags derived only from the task\'s title/content, '
-             'never fixed domain keywords>"],\n'
-             '    "summary": "<<=25 words, ends with a period, no ellipses>",\n'
-             '    "issues": []\n'
-             "  }}\n"
-             "}}\n"
-             "The \"data\" key's value MUST be a nested JSON object as shown above, never "
-             "flat keys such as \"data.tags\". Do not add extra text outside this JSON object."
-            ),
-        ])
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", self.system),
+                (
+                    "human",
+                    "Task:\n{task}\n\n"
+                    "Prior agent proposals in this pipeline so far (each line is the previous "
+                    "agent's actual proposed tags/summary/issues as JSON, not just a message). "
+                    "Build on the most recent one instead of generating independently from "
+                    "scratch:\n{history}\n\n"
+                    "Return ONLY one JSON object, with this exact nested shape (no code fences, "
+                    'no markdown, no explanations, no dotted key names like "data.tags"):\n'
+                    "{{\n"
+                    '  "thought": "<string>",\n'
+                    '  "message": "<non-empty, <=60 words, no code>",\n'
+                    '  "data": {{\n'
+                    '    "tags": ["<exactly 3 topical tags derived only from the task\'s title/content, '
+                    'never fixed domain keywords>"],\n'
+                    '    "summary": "<<=25 words, ends with a period, no ellipses>",\n'
+                    '    "issues": []\n'
+                    "  }}\n"
+                    "}}\n"
+                    'The "data" key\'s value MUST be a nested JSON object as shown above, never '
+                    'flat keys such as "data.tags". Do not add extra text outside this JSON object.',
+                ),
+            ]
+        )
 
-        history_text = "\n".join(
-            [f'{m["role"]}: {m["content"]}' for m in conversation]
-        ) or "(none yet, this is the first proposal)"
+        history_text = (
+            "\n".join([f'{m["role"]}: {m["content"]}' for m in conversation])
+            or "(none yet, this is the first proposal)"
+        )
         chain = prompt | self.model | StrOutputParser()
 
         raw = chain.invoke({"task": task, "history": history_text})
         return parse_and_coerce(raw, title, content, strict)
 
 
-
-# pipeline 
+# pipeline
 
 
 def build_llm(model: str, base_url: str, temperature: float) -> ChatOllama:
@@ -315,7 +351,7 @@ def run_pipeline(
 
     task = (
         f'Given entity title "{title}" and content "{content}", produce exactly 3 topical tags '
-        f'and a one-sentence summary in your own words. Submitter email is {email}.'
+        f"and a one-sentence summary in your own words. Submitter email is {email}."
     )
 
     transcript: List[Dict[str, str]] = []
@@ -356,13 +392,14 @@ def run_pipeline(
     }
 
 
-
 # cli entrypoint
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--title", required=True, help="domain entity title, e.g. the recalled product name")
+    ap.add_argument(
+        "--title", required=True, help="domain entity title, e.g. the recalled product name"
+    )
     ap.add_argument("--content", required=True, help="domain entity content/description")
     ap.add_argument("--email", default="student@example.com")
     ap.add_argument("--model", default=os.environ.get("SMOL_MODEL", "qwen3:8b"))
@@ -384,9 +421,15 @@ def main():
 
     result = run_pipeline(llm, args.title, args.content, args.email, args.strict)
 
-    print(f"\n--- Planner ({result['latency_ms']['planner']} ms) ---\n{json.dumps(result['planner'], indent=2)}")
-    print(f"\n--- Reviewer ({result['latency_ms']['reviewer']} ms) ---\n{json.dumps(result['reviewer'], indent=2)}")
-    print(f"\n--- Finalizer ({result['latency_ms']['finalizer']} ms) ---\n{json.dumps(result['finalizer'], indent=2)}")
+    print(
+        f"\n--- Planner ({result['latency_ms']['planner']} ms) ---\n{json.dumps(result['planner'], indent=2)}"
+    )
+    print(
+        f"\n--- Reviewer ({result['latency_ms']['reviewer']} ms) ---\n{json.dumps(result['reviewer'], indent=2)}"
+    )
+    print(
+        f"\n--- Finalizer ({result['latency_ms']['finalizer']} ms) ---\n{json.dumps(result['finalizer'], indent=2)}"
+    )
     print(f"\n--- Publish Package ---\n{json.dumps(result['package'], indent=2)}")
 
 

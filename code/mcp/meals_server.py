@@ -67,7 +67,6 @@ def _no_matches() -> dict[str, Any]:
 
 @mcp.tool()
 def search_meals_by_name(query: str, limit: int = 5) -> list[dict[str, Any]] | dict[str, Any]:
-
     if limit < 1 or limit > 25:
         raise ValueError("limit must be between 1 and 25")
     log.info("search_meals_by_name query=%r limit=%s", query, limit)
@@ -91,7 +90,6 @@ def search_meals_by_name(query: str, limit: int = 5) -> list[dict[str, Any]] | d
 
 @mcp.tool()
 def meals_by_ingredient(ingredient: str, limit: int = 12) -> list[dict[str, Any]] | dict[str, Any]:
-
     if limit < 1:
         raise ValueError("limit must be at least 1")
     log.info("meals_by_ingredient ingredient=%r limit=%s", ingredient, limit)
@@ -113,7 +111,6 @@ def meals_by_ingredient(ingredient: str, limit: int = 12) -> list[dict[str, Any]
 
 @mcp.tool()
 def meal_details(id: str | int) -> dict[str, Any]:
-
     log.info("meal_details id=%r", id)
     payload = _get_json("lookup.php", {"i": str(id)})
     meals = payload.get("meals")
@@ -124,7 +121,6 @@ def meal_details(id: str | int) -> dict[str, Any]:
 
 @mcp.tool()
 def random_meal() -> dict[str, Any]:
-
     log.info("random_meal")
     payload = _get_json("random.php")
     meals = payload.get("meals")

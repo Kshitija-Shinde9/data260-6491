@@ -1,14 +1,14 @@
 from contextlib import contextmanager
 from typing import List
 
-from fastapi import APIRouter, Depends, Query, Response
-from pydantic import BaseModel
-from sqlalchemy import event
-from sqlalchemy.orm import Session as DBSession, selectinload
-
 from database import engine, get_db
+from fastapi import APIRouter, Depends, Query, Response
 from models import Recall, User
+from pydantic import BaseModel
 from routers.api_auth import require_user
+from sqlalchemy import event
+from sqlalchemy.orm import Session as DBSession
+from sqlalchemy.orm import selectinload
 
 router = APIRouter(prefix="/api/bench", tags=["bench"])
 
@@ -48,12 +48,14 @@ async def list_recalls_naive(
         results = []
         for recall in recalls:
             supplier = recall.supplier
-            results.append({
-                "id": recall.id,
-                "product_name": recall.product_name,
-                "supplier": supplier.name if supplier else "",
-                "notes": [],
-            })
+            results.append(
+                {
+                    "id": recall.id,
+                    "product_name": recall.product_name,
+                    "supplier": supplier.name if supplier else "",
+                    "notes": [],
+                }
+            )
 
     response.headers["X-Query-Count"] = str(get_count())
     return results

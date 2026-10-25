@@ -42,8 +42,7 @@ def port_open(port):
 
 
 def fetch(path, data=None, cookie=None):
-    req = urllib.request.Request(BASE + path, data=data,
-                                 method="POST" if data else "GET")
+    req = urllib.request.Request(BASE + path, data=data, method="POST" if data else "GET")
     if cookie:
         req.add_header("Cookie", cookie)
     try:
@@ -72,10 +71,20 @@ def main():
 
     env = dict(os.environ, SESSION_MAX_AGE=str(IDLE_SECONDS))
     server = subprocess.Popen(
-        [sys.executable, "-m", "uvicorn", "main:app",
-         "--host", "127.0.0.1", "--port", str(PORT_BASE)],
-        cwd=APP_DIR, env=env,
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        [
+            sys.executable,
+            "-m",
+            "uvicorn",
+            "main:app",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            str(PORT_BASE),
+        ],
+        cwd=APP_DIR,
+        env=env,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )
 
     try:
@@ -113,7 +122,7 @@ def main():
         for label, ok in attrs.items():
             results.append((f"{label} attribute present", ok))
 
-        print(f"\nKeeping a raw copy of the cookie, as an attacker would:")
+        print("\nKeeping a raw copy of the cookie, as an attacker would:")
         print(f"  {cookie[:56]}...")
 
         rule("CHECK 2 - the session works while it is alive")

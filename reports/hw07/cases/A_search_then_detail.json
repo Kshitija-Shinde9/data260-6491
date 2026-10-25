@@ -1,0 +1,5 @@
+{
+  "name": "A_search_then_detail",
+  "prompt": "You must make at least two tool calls. First call search_recalls for blueberries. Then use the id of the first search result in get_recall_detail. Do not answer after the search; answer only after the detail lookup.",
+  "minimum_tool_calls": 2
+}

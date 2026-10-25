@@ -11,7 +11,6 @@ sys.path.insert(0, os.path.join(HERE, "..", "code", "mcp"))
 
 from execute_tool import SAFETY_ERROR, envelope, execute_tool  # noqa: E402
 
-
 FIXTURE_RECALLS = [
     {
         "id": 1,

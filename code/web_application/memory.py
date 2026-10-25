@@ -99,22 +99,19 @@ def get_model():
 
 
 def save_message(user_id: str, session_id: str, role: str, content: str) -> None:
-    get_messages().insert_one({
-        "user_id": user_id,
-        "session_id": session_id,
-        "role": role,
-        "content": content,
-        "created_at": utcnow(),
-    })
+    get_messages().insert_one(
+        {
+            "user_id": user_id,
+            "session_id": session_id,
+            "role": role,
+            "content": content,
+            "created_at": utcnow(),
+        }
+    )
 
 
 def load_short_term(session_id: str, limit: int) -> list:
-    rows = list(
-        get_messages()
-        .find({"session_id": session_id})
-        .sort("created_at", -1)
-        .limit(limit)
-    )
+    rows = list(get_messages().find({"session_id": session_id}).sort("created_at", -1).limit(limit))
     rows.reverse()
     return rows
 
@@ -134,7 +131,7 @@ def parse_json_object(text: str) -> dict:
     end = cleaned.rfind("}")
     if start < 0 or end <= start:
         raise ValueError("no JSON object")
-    payload = json.loads(cleaned[start:end + 1])
+    payload = json.loads(cleaned[start : end + 1])
     if not isinstance(payload, dict):
         raise ValueError("JSON value was not an object")
     return payload
@@ -173,10 +170,12 @@ def cosine(left: list, right: list) -> float:
 
 
 def extract_facts(client, message: str) -> list:
-    raw = client.complete([
-        {"role": "system", "content": EXTRACT_INSTRUCTIONS},
-        {"role": "user", "content": message},
-    ]).content
+    raw = client.complete(
+        [
+            {"role": "system", "content": EXTRACT_INSTRUCTIONS},
+            {"role": "user", "content": message},
+        ]
+    ).content
     try:
         facts = parse_json_object(raw).get("facts", [])[:3]
     except (ValueError, json.JSONDecodeError, TypeError):
@@ -200,14 +199,16 @@ def extract_facts(client, message: str) -> list:
 
 def store_episodes(user_id: str, session_id: str, message: str, client) -> None:
     for item in extract_facts(client, message):
-        get_episodes().insert_one({
-            "user_id": user_id,
-            "session_id": session_id,
-            "fact": item["fact"],
-            "importance": float(item["importance"]),
-            "embedding": embed_text(client, item["fact"]),
-            "created_at": utcnow(),
-        })
+        get_episodes().insert_one(
+            {
+                "user_id": user_id,
+                "session_id": session_id,
+                "fact": item["fact"],
+                "importance": float(item["importance"]),
+                "embedding": embed_text(client, item["fact"]),
+                "created_at": utcnow(),
+            }
+        )
 
 
 def retrieve_episodes(user_id: str, message: str, client, top_k: int) -> list:
@@ -229,10 +230,7 @@ def assemble_prompt(session_summary, lifetime_summary, prior_messages, episodes,
         long_term_lines.append("Session summary:\n" + session_summary["text"])
     if lifetime_summary and lifetime_summary.get("text"):
         long_term_lines.append("Lifetime summary:\n" + lifetime_summary["text"])
-    fact_lines = [
-        f"- {item['fact']} (importance {item['importance']:.2f})"
-        for item in episodes
-    ]
+    fact_lines = [f"- {item['fact']} (importance {item['importance']:.2f})" for item in episodes]
     from file_memory import file_memory_block
 
     system = SYSTEM_PRIMER + "\n\n" + file_memory_block()
@@ -258,10 +256,12 @@ def long_term_text(session_summary, lifetime_summary):
 
 
 def _bullet_summary(client, instruction: str, source: str) -> str:
-    raw = client.complete([
-        {"role": "system", "content": instruction},
-        {"role": "user", "content": source},
-    ]).content
+    raw = client.complete(
+        [
+            {"role": "system", "content": instruction},
+            {"role": "user", "content": source},
+        ]
+    ).content
     text = re.sub(r"<think>.*?</think>", "", raw or "", flags=re.DOTALL).strip()
     return text[:2000] or "- No summary produced."
 
@@ -278,22 +278,22 @@ def maybe_summarize(user_id: str, session_id: str, client) -> None:
         "Summarize this grocery-recall conversation in at most 5 bullet lines starting with '- '. No other text.",
         transcript,
     )
-    get_summaries().insert_one({
-        "user_id": user_id,
-        "session_id": session_id,
-        "scope": "session",
-        "text": session_text,
-        "created_at": utcnow(),
-    })
+    get_summaries().insert_one(
+        {
+            "user_id": user_id,
+            "session_id": session_id,
+            "scope": "session",
+            "text": session_text,
+            "created_at": utcnow(),
+        }
+    )
 
     session_count = get_summaries().count_documents({"user_id": user_id, "scope": "session"})
     if session_count % 2 != 0:
         return
 
     session_rows = list(
-        get_summaries()
-        .find({"user_id": user_id, "scope": "session"})
-        .sort("created_at", 1)
+        get_summaries().find({"user_id": user_id, "scope": "session"}).sort("created_at", 1)
     )
     combined = "\n\n".join(row["text"] for row in session_rows)
     lifetime_text = _bullet_summary(
@@ -301,13 +301,15 @@ def maybe_summarize(user_id: str, session_id: str, client) -> None:
         "Condense these session summaries into at most 6 bullet lines starting with '- '. Keep every distinct fact. No other text.",
         combined,
     )
-    get_summaries().insert_one({
-        "user_id": user_id,
-        "session_id": None,
-        "scope": "user",
-        "text": lifetime_text,
-        "created_at": utcnow(),
-    })
+    get_summaries().insert_one(
+        {
+            "user_id": user_id,
+            "session_id": None,
+            "scope": "user",
+            "text": lifetime_text,
+            "created_at": utcnow(),
+        }
+    )
 
 
 def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
@@ -323,12 +325,16 @@ def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
     try:
         episodes = retrieve_episodes(user_id, message, client, EPISODE_TOP_K)
         prompt_prior, prompt_episodes = apply_memory_policy(prior, episodes)
-        prompt = assemble_prompt(session_summary, lifetime_summary, prompt_prior, prompt_episodes, message)
+        prompt = assemble_prompt(
+            session_summary, lifetime_summary, prompt_prior, prompt_episodes, message
+        )
         result = client.complete(prompt)
     except ModelUnavailable:
         raise
     except Exception as exc:
-        raise ModelUnavailable("Local model is unavailable. Start Ollama and make sure qwen3:8b is pulled.") from exc
+        raise ModelUnavailable(
+            "Local model is unavailable. Start Ollama and make sure qwen3:8b is pulled."
+        ) from exc
 
     reply = re.sub(r"<think>.*?</think>", "", result.content or "", flags=re.DOTALL).strip()
     if not reply:
@@ -344,20 +350,22 @@ def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
     long_term = long_term_text(session_summary, lifetime_summary) or ""
     short_term_text = "\n".join(item["content"] for item in prompt_prior)
     episodic_text = "\n".join(item["fact"] for item in prompt_episodes)
-    log_chat_turn({
-        "created_at": utcnow().isoformat(),
-        "user_id": user_id,
-        "session_id": session_id,
-        "short_term_n": window_n,
-        "policy": memory_policy(),
-        "prompt_tokens": result.usage.input_tokens,
-        "completion_tokens": result.usage.output_tokens,
-        "primer_tokens": estimate_tokens(SYSTEM_PRIMER),
-        "long_term_tokens": estimate_tokens(long_term),
-        "short_term_tokens": estimate_tokens(short_term_text),
-        "episodic_tokens": estimate_tokens(episodic_text),
-        "latency_ms": int((time.perf_counter() - started) * 1000),
-    })
+    log_chat_turn(
+        {
+            "created_at": utcnow().isoformat(),
+            "user_id": user_id,
+            "session_id": session_id,
+            "short_term_n": window_n,
+            "policy": memory_policy(),
+            "prompt_tokens": result.usage.input_tokens,
+            "completion_tokens": result.usage.output_tokens,
+            "primer_tokens": estimate_tokens(SYSTEM_PRIMER),
+            "long_term_tokens": estimate_tokens(long_term),
+            "short_term_tokens": estimate_tokens(short_term_text),
+            "episodic_tokens": estimate_tokens(episodic_text),
+            "latency_ms": int((time.perf_counter() - started) * 1000),
+        }
+    )
 
     return {
         "session_id": session_id,
@@ -365,8 +373,7 @@ def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
         "used": {
             "short_term_count": len(short_term),
             "short_term": [
-                {"role": item["role"], "content": item["content"]}
-                for item in short_term
+                {"role": item["role"], "content": item["content"]} for item in short_term
             ],
             "long_term_summary": long_term_text(session_summary, lifetime_summary),
             "episodic_facts": episodes,
@@ -375,18 +382,10 @@ def run_chat_turn(user_id: str, session_id: str, message: str) -> dict:
 
 
 def memory_view(user_id: str) -> dict:
-    messages = list(
-        get_messages()
-        .find({"user_id": user_id})
-        .sort("created_at", -1)
-        .limit(16)
-    )
+    messages = list(get_messages().find({"user_id": user_id}).sort("created_at", -1).limit(16))
     messages.reverse()
     episodes = list(
-        get_episodes()
-        .find({"user_id": user_id}, {"embedding": 0})
-        .sort("created_at", -1)
-        .limit(20)
+        get_episodes().find({"user_id": user_id}, {"embedding": 0}).sort("created_at", -1).limit(20)
     )
     episodes.reverse()
     return {
@@ -401,20 +400,21 @@ def memory_view(user_id: str) -> dict:
 
 
 def aggregate_view(user_id: str) -> dict:
-    counts = list(get_messages().aggregate([
-        {"$match": {"user_id": user_id}},
-        {"$group": {
-            "_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$created_at"}},
-            "count": {"$sum": 1},
-        }},
-        {"$sort": {"_id": 1}},
-    ]))
-    summaries = list(
-        get_summaries()
-        .find({"user_id": user_id})
-        .sort("created_at", -1)
-        .limit(5)
+    counts = list(
+        get_messages().aggregate(
+            [
+                {"$match": {"user_id": user_id}},
+                {
+                    "$group": {
+                        "_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$created_at"}},
+                        "count": {"$sum": 1},
+                    }
+                },
+                {"$sort": {"_id": 1}},
+            ]
+        )
     )
+    summaries = list(get_summaries().find({"user_id": user_id}).sort("created_at", -1).limit(5))
     return {
         "daily_counts": [{"date": row["_id"], "count": row["count"]} for row in counts],
         "recent_summaries": summaries,

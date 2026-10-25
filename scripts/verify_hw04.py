@@ -72,14 +72,18 @@ def check_mysql_tables():
     try:
         sys.path.insert(0, APP_DIR)
         from dotenv import load_dotenv
+
         load_dotenv(path("code", "web_application", ".env"))
+        from urllib.parse import unquote, urlparse
+
         import pymysql
-        from urllib.parse import urlparse, unquote
 
         url = urlparse(os.environ["DATABASE_URL"].replace("mysql+pymysql", "mysql"))
         conn = pymysql.connect(
-            host=url.hostname, port=url.port or 3306,
-            user=url.username, password=unquote(url.password or ""),
+            host=url.hostname,
+            port=url.port or 3306,
+            user=url.username,
+            password=unquote(url.password or ""),
             database=url.path.lstrip("/"),
         )
         with conn.cursor() as cur:
@@ -127,10 +131,14 @@ def check_api():
     status, _, _ = fetch("/api/recalls")
     check("unauthenticated GET /api/recalls is rejected", status == 401, f"HTTP {status}")
 
-    status, _, body = fetch("/api/auth/login", "POST", {"email": DEMO_EMAIL, "password": "wrong-password"})
+    status, _, body = fetch(
+        "/api/auth/login", "POST", {"email": DEMO_EMAIL, "password": "wrong-password"}
+    )
     check("login with a wrong password is rejected", status == 401, f"HTTP {status}")
 
-    status, headers, user = fetch("/api/auth/login", "POST", {"email": DEMO_EMAIL, "password": DEMO_PASSWORD})
+    status, headers, user = fetch(
+        "/api/auth/login", "POST", {"email": DEMO_EMAIL, "password": DEMO_PASSWORD}
+    )
     raw_cookie = headers.get("set-cookie", "") if status == 200 else ""
     check("login with the correct password succeeds", status == 200, f"HTTP {status}")
     check("Set-Cookie is HttpOnly", "httponly" in raw_cookie.lower(), raw_cookie[:40])
@@ -138,31 +146,52 @@ def check_api():
     token = ""
     if "=" in raw_cookie:
         token = raw_cookie.split(";")[0].split("=", 1)[1]
-    check("session cookie value is an opaque token, not the account's own data",
-          bool(token) and DEMO_EMAIL not in token and (not user or str(user.get("id")) != token),
-          f"token length {len(token)}")
+    check(
+        "session cookie value is an opaque token, not the account's own data",
+        bool(token) and DEMO_EMAIL not in token and (not user or str(user.get("id")) != token),
+        f"token length {len(token)}",
+    )
     cookie = f"{COOKIE_NAME}={token}"
 
     status, _, recalls = fetch("/api/recalls", cookie=cookie)
-    check("authenticated GET /api/recalls returns data", status == 200 and isinstance(recalls, list) and len(recalls) >= 3,
-          f"HTTP {status}, {len(recalls) if isinstance(recalls, list) else 'n/a'} rows")
+    check(
+        "authenticated GET /api/recalls returns data",
+        status == 200 and isinstance(recalls, list) and len(recalls) >= 3,
+        f"HTTP {status}, {len(recalls) if isinstance(recalls, list) else 'n/a'} rows",
+    )
 
-    status, _, created = fetch("/api/recalls", "POST",
-                                {"product_name": "Verify HW4 Product", "supplier": "Verify HW4 Supplier"},
-                                cookie=cookie)
-    check("POST /api/recalls creates a record", status == 201 and created and created.get("product_name") == "Verify HW4 Product",
-          f"HTTP {status}")
+    status, _, created = fetch(
+        "/api/recalls",
+        "POST",
+        {"product_name": "Verify HW4 Product", "supplier": "Verify HW4 Supplier"},
+        cookie=cookie,
+    )
+    check(
+        "POST /api/recalls creates a record",
+        status == 201 and created and created.get("product_name") == "Verify HW4 Product",
+        f"HTTP {status}",
+    )
     new_id = created["id"] if created else None
 
     if new_id is not None:
         status, _, fetched = fetch(f"/api/recalls/{new_id}", cookie=cookie)
-        check("GET /api/recalls/{id} returns the created record", status == 200 and fetched["id"] == new_id, f"HTTP {status}")
+        check(
+            "GET /api/recalls/{id} returns the created record",
+            status == 200 and fetched["id"] == new_id,
+            f"HTTP {status}",
+        )
 
-        status, _, updated = fetch(f"/api/recalls/{new_id}", "PUT",
-                                    {"product_name": "Verify HW4 Product Updated", "supplier": "Verify HW4 Supplier"},
-                                    cookie=cookie)
-        check("PUT /api/recalls/{id} updates the record", status == 200 and updated["product_name"] == "Verify HW4 Product Updated",
-              f"HTTP {status}")
+        status, _, updated = fetch(
+            f"/api/recalls/{new_id}",
+            "PUT",
+            {"product_name": "Verify HW4 Product Updated", "supplier": "Verify HW4 Supplier"},
+            cookie=cookie,
+        )
+        check(
+            "PUT /api/recalls/{id} updates the record",
+            status == 200 and updated["product_name"] == "Verify HW4 Product Updated",
+            f"HTTP {status}",
+        )
 
         status, _, _ = fetch(f"/api/recalls/{new_id}", "DELETE", cookie=cookie)
         check("DELETE /api/recalls/{id} removes the record", status == 204, f"HTTP {status}")
@@ -184,17 +213,23 @@ def check_api():
 
 def main():
     print(f"HW4 self-check - SID4 {SID4}, DOMAIN_ID {DOMAIN_ID}\n")
-    check_deliverables(); print()
-    check_mysql_tables(); print()
+    check_deliverables()
+    print()
+    check_mysql_tables()
+    print()
 
     if port_open(PORT_BASE):
-        print(f"Port {PORT_BASE} is already in use. Stop the running server first, then run this script again.")
+        print(
+            f"Port {PORT_BASE} is already in use. Stop the running server first, then run this script again."
+        )
         return 1
 
     python = os.path.join(ROOT, ".venv", "bin", "python")
     server = subprocess.Popen(
         [python, "-m", "uvicorn", "main:app", "--host", "127.0.0.1", "--port", str(PORT_BASE)],
-        cwd=APP_DIR, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        cwd=APP_DIR,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )
     try:
         for _ in range(40):

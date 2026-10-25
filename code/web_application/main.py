@@ -1,24 +1,25 @@
 import os
+import webbrowser
 
 import bcrypt
+import uvicorn
+from database import Base, engine, get_db
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.middleware.sessions import SessionMiddleware
-import uvicorn
-
-from database import Base, engine, get_db
 from models import Recall, Supplier, User
 from mongo_db import ensure_memory_collections, ensure_notices_collection
-from routers.auth import router as auth_router
 from routers.api_auth import router as api_auth_router
+from routers.auth import router as auth_router
+from routers.bench import router as bench_router
 from routers.chat import router as chat_router
+from routers.jwt_auth import router as jwt_auth_router
 from routers.notices import router as notices_router
 from routers.recalls import router as recalls_router
 from routers.suppliers import router as suppliers_router
-from routers.bench import router as bench_router
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 
 # this is my backend for grocery recall notices app.
 # product name is the main field and the supplier is the second field.
@@ -67,6 +68,7 @@ app.add_middleware(JsonBodyMiddleware)
 
 app.include_router(auth_router)
 app.include_router(api_auth_router)
+app.include_router(jwt_auth_router)
 app.include_router(suppliers_router)
 app.include_router(recalls_router)
 app.include_router(bench_router)
@@ -84,55 +86,81 @@ def _seed():
     db = next(get_db())
     try:
         if db.query(Supplier).count() == 0:
-            db.add_all([
-                Supplier(name="Trader Joe's", headquarters="Monrovia, CA", supplier_code="SUP-0001"),
-                Supplier(name="Safeway Deli", headquarters="Pleasanton, CA", supplier_code="SUP-0002"),
-                Supplier(name="Costco Wholesale", headquarters="Issaquah, WA", supplier_code="SUP-0003"),
-            ])
+            db.add_all(
+                [
+                    Supplier(
+                        name="Trader Joe's", headquarters="Monrovia, CA", supplier_code="SUP-0001"
+                    ),
+                    Supplier(
+                        name="Safeway Deli", headquarters="Pleasanton, CA", supplier_code="SUP-0002"
+                    ),
+                    Supplier(
+                        name="Costco Wholesale",
+                        headquarters="Issaquah, WA",
+                        supplier_code="SUP-0003",
+                    ),
+                ]
+            )
             db.commit()
 
         if db.query(Recall).count() == 0:
             tj = db.query(Supplier).filter_by(supplier_code="SUP-0001").one()
             safeway = db.query(Supplier).filter_by(supplier_code="SUP-0002").one()
             costco = db.query(Supplier).filter_by(supplier_code="SUP-0003").one()
-            db.add_all([
-                Recall(
-                    product_name="Trader Joe's Organic Frozen Blueberries, 16oz",
-                    recall_code="REC-0001",
-                    affected_units=120,
-                    supplier_id=tj.id,
-                    email="rohan1@gmail.com",
-                    description="Small tear near the top seal, frost buildup on the berries.",
-                    recall_type="Packaging / Seal Failure",
-                ),
-                Recall(
-                    product_name="Safeway Signature Rotisserie Chicken",
-                    recall_code="REC-0002",
-                    affected_units=40,
-                    supplier_id=safeway.id,
-                    email="rohan1@gmail.com",
-                    description="Served lukewarm from the hot case, pack date two days old.",
-                    recall_type="Spoiled or Quality Issue",
-                ),
-                Recall(
-                    product_name="Kirkland Signature Trail Mix, 4lb",
-                    recall_code="REC-0003",
-                    affected_units=75,
-                    supplier_id=costco.id,
-                    email="rohan1@gmail.com",
-                    description="Ingredient panel does not list peanuts but peanuts are in the bag.",
-                    recall_type="Undeclared Allergen",
-                ),
-            ])
+            db.add_all(
+                [
+                    Recall(
+                        product_name="Trader Joe's Organic Frozen Blueberries, 16oz",
+                        recall_code="REC-0001",
+                        affected_units=120,
+                        supplier_id=tj.id,
+                        email="rohan1@gmail.com",
+                        description="Small tear near the top seal, frost buildup on the berries.",
+                        recall_type="Packaging / Seal Failure",
+                    ),
+                    Recall(
+                        product_name="Safeway Signature Rotisserie Chicken",
+                        recall_code="REC-0002",
+                        affected_units=40,
+                        supplier_id=safeway.id,
+                        email="rohan1@gmail.com",
+                        description="Served lukewarm from the hot case, pack date two days old.",
+                        recall_type="Spoiled or Quality Issue",
+                    ),
+                    Recall(
+                        product_name="Kirkland Signature Trail Mix, 4lb",
+                        recall_code="REC-0003",
+                        affected_units=75,
+                        supplier_id=costco.id,
+                        email="rohan1@gmail.com",
+                        description="Ingredient panel does not list peanuts but peanuts are in the bag.",
+                        recall_type="Undeclared Allergen",
+                    ),
+                ]
+            )
             db.commit()
 
-        if db.query(User).filter(User.email == "admin@s6491.com").first() is None:
-            db.add(User(
-                name="admin",
-                email="admin@s6491.com",
-                password_hash=bcrypt.hashpw(b"Recall@6491", bcrypt.gensalt()).decode(),
-            ))
-            db.commit()
+        demo_users = [
+            ("admin", "Admin User", "admin@s6491.com", "Recall@6491", "moderator"),
+            ("reader", "Reader User", "reader@s6491.com", "Reader@6491", "reader"),
+            ("writer", "Writer User", "writer@s6491.com", "Writer@6491", "writer"),
+        ]
+        for username, name, email, password, role in demo_users:
+            user = db.query(User).filter(User.email == email).first()
+            if user is None:
+                db.add(
+                    User(
+                        username=username,
+                        name=name,
+                        email=email,
+                        password_hash=bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode(),
+                        role=role,
+                    )
+                )
+            else:
+                user.username = username
+                user.role = role
+        db.commit()
     finally:
         db.close()
 
@@ -141,8 +169,6 @@ _seed()
 ensure_notices_collection()
 ensure_memory_collections()
 
-
-import webbrowser
 
 # This starts the server on my port and opens the page in my browser.
 if __name__ == "__main__":

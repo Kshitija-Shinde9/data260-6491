@@ -1,0 +1,5 @@
+{
+  "name": "C_compare_two_entities",
+  "prompt": "You must make at least three tool calls. First call search_recalls for Signature. Then call get_recall_detail for each of the first two result ids. Do not answer until the search and both detail lookups are complete.",
+  "minimum_tool_calls": 3
+}

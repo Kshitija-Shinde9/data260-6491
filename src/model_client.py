@@ -23,7 +23,6 @@ class CompletionResult:
 
 
 class ModelClient:
-
     def __init__(
         self,
         model: Optional[str] = None,
@@ -40,7 +39,6 @@ class ModelClient:
         messages: List[Dict[str, str]],
         tools: Optional[List[Dict[str, Any]]] = None,
     ) -> CompletionResult:
-
         t0 = time.time()
         response = self._client.chat(
             model=self.model,
@@ -66,7 +64,9 @@ class ModelClient:
         embed_model = os.environ.get("EMBED_MODEL", self.model)
         try:
             response = self._client.embed(model=embed_model, input=text)
-            vectors = response.get("embeddings") if isinstance(response, dict) else response.embeddings
+            vectors = (
+                response.get("embeddings") if isinstance(response, dict) else response.embeddings
+            )
             if vectors:
                 return [float(value) for value in vectors[0]]
         except Exception:

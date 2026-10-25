@@ -2,18 +2,16 @@ import argparse
 import os
 import sys
 
-
 REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 sys.path.insert(0, REPO_ROOT)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from langgraph.graph import END, StateGraph
-
 from nodes import planner_node, reviewer_node, supervisor_node
 from router import router_logic
-from src.model_client import ModelClient
 from state import AgentState
 
+from src.model_client import ModelClient
 
 
 def build_workflow():
@@ -49,7 +47,7 @@ def build_workflow():
 # builds the first version of the shared state before anything has run.
 def build_initial_state(title, content, email, max_turns, strict=False, force_issues=False):
     task = (
-        f'Give exactly 3 topical tags and a one-line summary for this grocery recall notice. '
+        f"Give exactly 3 topical tags and a one-line summary for this grocery recall notice. "
         f'Title: "{title}". Content: "{content}".'
     )
     return {
@@ -74,16 +72,24 @@ def build_initial_state(title, content, email, max_turns, strict=False, force_is
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--title", default="Trader Joe's Organic Frozen Blueberries, 16oz")
-    parser.add_argument("--content", default="The bag seal was torn near the top and there was frost buildup on the berries.")
+    parser.add_argument(
+        "--content",
+        default="The bag seal was torn near the top and there was frost buildup on the berries.",
+    )
     parser.add_argument("--email", default="kshitija@example.com")
     parser.add_argument("--max_turns", type=int, default=5)
     parser.add_argument("--strict", action="store_true")
-    parser.add_argument("--force_issues", action="store_true",
-                        help="make the Reviewer always complain, to test the correction loop")
+    parser.add_argument(
+        "--force_issues",
+        action="store_true",
+        help="make the Reviewer always complain, to test the correction loop",
+    )
     args = parser.parse_args()
 
     graph = build_workflow()
-    state = build_initial_state(args.title, args.content, args.email, args.max_turns, args.strict, args.force_issues)
+    state = build_initial_state(
+        args.title, args.content, args.email, args.max_turns, args.strict, args.force_issues
+    )
 
     print("=" * 60)
     print("RECALL:", args.title)

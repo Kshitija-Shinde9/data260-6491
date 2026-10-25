@@ -1,0 +1,5 @@
+{
+  "name": "D_nonexistent_id",
+  "prompt": "Look up the full details for recall id 99999 and explain the result without crashing.",
+  "expected": "useful not-found response"
+}

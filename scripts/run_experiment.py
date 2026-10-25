@@ -3,9 +3,8 @@ import csv
 import json
 import os
 import statistics
-import time
-
 import sys
+import time
 
 # My graph code lives in code/agent_graph and src/model_client.py at the repo root,
 # so I add both to the path before importing.
@@ -20,8 +19,18 @@ REPORTS = os.path.join(HERE, "..", "reports", "hw02")
 CASES = os.path.join(REPORTS, "cases")
 RAW = os.path.join(REPORTS, "raw")
 
-FIELDS = ["run", "ceiling", "attempts", "schema_failures", "schema_valid", "turns_used",
-          "latency_ms", "outcome", "tags", "schema_error"]
+FIELDS = [
+    "run",
+    "ceiling",
+    "attempts",
+    "schema_failures",
+    "schema_valid",
+    "turns_used",
+    "latency_ms",
+    "outcome",
+    "tags",
+    "schema_error",
+]
 
 
 # Reads my frozen input file so every run uses exactly the same text.
@@ -100,17 +109,23 @@ def run_many(case, ceiling, n, csv_name, label):
             print(f"\n--- run {i} of {n} ---")
             row = run_once(graph, case, ceiling, i)
             writer.writerow(row)
-            f.flush()          # write each run straight away, so nothing is lost if I stop it
+            f.flush()  # write each run straight away, so nothing is lost if I stop it
             rows.append(row)
-            print(f"   => {row['outcome']}  ({row['latency_ms']} ms, {row['attempts']} attempt(s), {row['schema_failures']} schema failure(s))")
+            print(
+                f"   => {row['outcome']}  ({row['latency_ms']} ms, {row['attempts']} attempt(s), {row['schema_failures']} schema failure(s))"
+            )
 
     return rows
 
 
 # Prints the results table the assignment gives me.
 def print_outcome_table(rows, title):
-    buckets = ["valid first attempt", "valid after 1 retry",
-               "valid after 2+ retries", "hit turn ceiling"]
+    buckets = [
+        "valid first attempt",
+        "valid after 1 retry",
+        "valid after 2+ retries",
+        "hit turn ceiling",
+    ]
 
     print()
     print("=" * 64)
@@ -150,9 +165,16 @@ def print_ceiling_comparison(rows2, rows10):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--task", type=int, required=True, choices=[3, 4, 5],
-                    help="3 = 30 runs, 4 = ceilings 2 vs 10, 5 = adversarial input")
-    ap.add_argument("--runs", type=int, default=None, help="override how many runs, useful for a quick test")
+    ap.add_argument(
+        "--task",
+        type=int,
+        required=True,
+        choices=[3, 4, 5],
+        help="3 = 30 runs, 4 = ceilings 2 vs 10, 5 = adversarial input",
+    )
+    ap.add_argument(
+        "--runs", type=int, default=None, help="override how many runs, useful for a quick test"
+    )
     args = ap.parse_args()
 
     if args.task == 3:

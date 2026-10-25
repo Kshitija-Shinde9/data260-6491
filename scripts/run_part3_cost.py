@@ -48,10 +48,34 @@ CONVERSATION = [
     "I will check the blueberries again tomorrow.",
 ]
 SETTINGS = [
-    {"name": "SHORT_TERM_N=4", "n": "4", "policy": "full", "user": "part3-n4", "session": "part3-n4"},
-    {"name": "SHORT_TERM_N=12", "n": "12", "policy": "full", "user": "part3-n12", "session": "part3-n12"},
-    {"name": "SHORT_TERM_N=30", "n": "30", "policy": "full", "user": "part3-n30", "session": "part3-n30"},
-    {"name": "Eviction/compression policy", "n": "30", "policy": "compress", "user": "part3-compress", "session": "part3-compress"},
+    {
+        "name": "SHORT_TERM_N=4",
+        "n": "4",
+        "policy": "full",
+        "user": "part3-n4",
+        "session": "part3-n4",
+    },
+    {
+        "name": "SHORT_TERM_N=12",
+        "n": "12",
+        "policy": "full",
+        "user": "part3-n12",
+        "session": "part3-n12",
+    },
+    {
+        "name": "SHORT_TERM_N=30",
+        "n": "30",
+        "policy": "full",
+        "user": "part3-n30",
+        "session": "part3-n30",
+    },
+    {
+        "name": "Eviction/compression policy",
+        "n": "30",
+        "policy": "compress",
+        "user": "part3-compress",
+        "session": "part3-compress",
+    },
 ]
 
 
@@ -161,28 +185,32 @@ def write_report(root: str, results: list) -> None:
         lines.append(
             f"| {item['name']} | {item['prompt_tokens']:.1f} | {item['latency_ms']:.0f} | {item['probe_quality']:.2f} |"
         )
-    lines.extend([
-        "",
-        f"Best setting: {best['name']}.",
-        f"Worst setting: {worst['name']}.",
-        "",
-        "The best setting is the one with the highest probe score. If two scores are close, the lower prompt-token setting is preferred. The worst setting is the one with the highest mean prompt tokens.",
-        "",
-        "Cost of 10,000 conversations of 30 turns, at $1 per million input tokens and $5 per million output tokens:",
-        "",
-        f"- Best ({best['name']}): ${cost_for_10000(best['prompt_tokens'], best['completion_tokens']):.2f}",
-        f"- Worst ({worst['name']}): ${cost_for_10000(worst['prompt_tokens'], worst['completion_tokens']):.2f}",
-        "",
-        "Prompt and completion token means come from Ollama. Primer, summary, short-term, and episodic token columns in chat_turns.csv are estimates of 4 characters per token, because Ollama returns only the total prompt size.",
-        "",
-        "The compression policy keeps the last 4 short-term messages in full, replaces older messages with one truncated line, and sends only the single closest episodic fact.",
-    ])
+    lines.extend(
+        [
+            "",
+            f"Best setting: {best['name']}.",
+            f"Worst setting: {worst['name']}.",
+            "",
+            "The best setting is the one with the highest probe score. If two scores are close, the lower prompt-token setting is preferred. The worst setting is the one with the highest mean prompt tokens.",
+            "",
+            "Cost of 10,000 conversations of 30 turns, at $1 per million input tokens and $5 per million output tokens:",
+            "",
+            f"- Best ({best['name']}): ${cost_for_10000(best['prompt_tokens'], best['completion_tokens']):.2f}",
+            f"- Worst ({worst['name']}): ${cost_for_10000(worst['prompt_tokens'], worst['completion_tokens']):.2f}",
+            "",
+            "Prompt and completion token means come from Ollama. Primer, summary, short-term, and episodic token columns in chat_turns.csv are estimates of 4 characters per token, because Ollama returns only the total prompt size.",
+            "",
+            "The compression policy keeps the last 4 short-term messages in full, replaces older messages with one truncated line, and sends only the single closest episodic fact.",
+        ]
+    )
     out = os.path.join(root, "reports", "hw06", "METRICS.md")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w") as handle:
         handle.write("\n".join(lines) + "\n")
     with open(os.path.join(root, "reports", "hw06", "raw", "part3_summary.json"), "w") as handle:
-        json.dump({"results": results, "best": best["name"], "worst": worst["name"]}, handle, indent=2)
+        json.dump(
+            {"results": results, "best": best["name"], "worst": worst["name"]}, handle, indent=2
+        )
 
 
 def run_setting(root: str, setting: dict, probes: list) -> dict:
@@ -197,12 +225,14 @@ def run_setting(root: str, setting: dict, probes: list) -> dict:
             payload = post_chat(setting["user"], setting["session"], message)
             if index > len(CONVERSATION):
                 probe = probes[index - len(CONVERSATION) - 1]
-                answers.append({
-                    "id": probe["id"],
-                    "question": probe["question"],
-                    "reply": payload.get("reply", ""),
-                    "score": score_reply(payload.get("reply", ""), probe["expected"]),
-                })
+                answers.append(
+                    {
+                        "id": probe["id"],
+                        "question": probe["question"],
+                        "reply": payload.get("reply", ""),
+                        "score": score_reply(payload.get("reply", ""), probe["expected"]),
+                    }
+                )
     finally:
         proc.terminate()
         try:
@@ -211,7 +241,7 @@ def run_setting(root: str, setting: dict, probes: list) -> dict:
             proc.kill()
         wait_until_down()
     rows = rows_for(root, setting["session"])
-    conversation_rows = rows[:len(CONVERSATION)]
+    conversation_rows = rows[: len(CONVERSATION)]
     quality = sum(item["score"] for item in answers) / len(answers)
     result = {
         "name": setting["name"],
@@ -236,7 +266,11 @@ def main() -> None:
     if port_open():
         sys.exit("Port 8191 is already in use. Stop the running API, then run this again.")
     probes = load_probes(root)
-    chosen = [item for item in SETTINGS if not only or only in item["name"] or only == item["policy"] or only == item["n"]]
+    chosen = [
+        item
+        for item in SETTINGS
+        if not only or only in item["name"] or only == item["policy"] or only == item["n"]
+    ]
     results = [run_setting(root, setting, probes) for setting in chosen]
     raw = os.path.join(root, "reports", "hw06", "raw")
     os.makedirs(raw, exist_ok=True)

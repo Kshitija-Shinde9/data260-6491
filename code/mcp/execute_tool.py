@@ -1,12 +1,10 @@
-
 from __future__ import annotations
 
 import json
 import re
 import sys
-from typing import Any, Callable
-
 from pathlib import Path
+from typing import Any, Callable
 
 SAFETY_ERROR = "safety rule: looking up grocery recalls by submitter email is not allowed"
 _EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
@@ -87,10 +85,14 @@ def _live_backends() -> dict[str, Callable]:
     }
 
 
-def execute_tool(name: str, inputs: dict[str, Any] | None = None, backends: dict | None = None) -> str:
+def execute_tool(
+    name: str, inputs: dict[str, Any] | None = None, backends: dict | None = None
+) -> str:
     try:
         if not isinstance(name, str) or not name.strip():
-            return _to_json(envelope(ok=False, data=None, error="tool name must be a non-empty string"))
+            return _to_json(
+                envelope(ok=False, data=None, error="tool name must be a non-empty string")
+            )
         if inputs is None:
             inputs = {}
         if not isinstance(inputs, dict):

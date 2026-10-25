@@ -1,6 +1,6 @@
 import os
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 from mongo_db import get_messages, utcnow
 
@@ -97,7 +97,7 @@ def consolidate_text(text: str) -> str:
         else:
             rest = "; ".join(unique[1:])
             written.append(
-                f"- {key}: Conflict. Kept \"{unique[0]}\" because it appeared first. Also recorded: {rest}."
+                f'- {key}: Conflict. Kept "{unique[0]}" because it appeared first. Also recorded: {rest}.'
             )
     return "\n".join(written) + "\n"
 

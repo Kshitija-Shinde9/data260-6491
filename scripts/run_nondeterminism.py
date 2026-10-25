@@ -13,7 +13,6 @@ REPO_ROOT = os.path.join(os.path.dirname(__file__), "..")
 sys.path.insert(0, os.path.join(REPO_ROOT, "code", "web_application"))
 
 import numpy as np
-
 from agents_demo import build_llm, run_pipeline
 
 HW01_DIR = os.path.join(REPO_ROOT, "reports", "hw01")
@@ -34,8 +33,17 @@ def main():
     json_path = os.path.join(RAW_DIR, "nondeterminism_runs.json")
 
     fieldnames = [
-        "run_index", "temperature", "tag1", "tag2", "tag3", "summary",
-        "planner_ms", "reviewer_ms", "finalizer_ms", "total_ms", "timestamp",
+        "run_index",
+        "temperature",
+        "tag1",
+        "tag2",
+        "tag3",
+        "summary",
+        "planner_ms",
+        "reviewer_ms",
+        "finalizer_ms",
+        "total_ms",
+        "timestamp",
     ]
     all_rows = []
 

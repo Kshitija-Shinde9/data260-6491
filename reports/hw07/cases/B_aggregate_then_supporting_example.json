@@ -1,0 +1,5 @@
+{
+  "name": "B_aggregate_then_supporting_example",
+  "prompt": "First call aggregate_recalls_by_supplier with min_units=0. Then call search_recalls for blueberries to find one supporting recall example. Do not answer until both calls return results.",
+  "minimum_tool_calls": 2
+}

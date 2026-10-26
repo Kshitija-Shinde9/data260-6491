@@ -12,6 +12,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote, urlparse
 
 CSV_SQL_SCHEMA = {
     "name": "csv_sql",
@@ -38,6 +39,10 @@ CALCULATOR_SCHEMA = {
     },
 }
 
+ROOT = Path(__file__).resolve().parents[2]
+OFFICIAL_EVIDENCE = "reports/hw07/part4/policy"
+FIXTURE_EVIDENCE = "reports/hw07/part5/policy"
+
 
 def _ok(data: Any, source: str | None = None) -> dict[str, Any]:
     out = {"success": True, "data": data, "ts": datetime.now(timezone.utc).isoformat()}
@@ -46,76 +51,138 @@ def _ok(data: Any, source: str | None = None) -> dict[str, Any]:
     return out
 
 
-def _err(message: str) -> dict[str, Any]:
-    return {"success": False, "error": message, "ts": datetime.now(timezone.utc).isoformat()}
+def _err(message: str, data: dict[str, Any] | None = None) -> dict[str, Any]:
+    out: dict[str, Any] = {
+        "success": False,
+        "error": message,
+        "ts": datetime.now(timezone.utc).isoformat(),
+    }
+    if data is not None:
+        out["data"] = data
+    return out
 
 
-def csv_sql(csv_text: str, sql: str) -> dict[str, Any]:
-    if not re.match(r"^\s*select\b", sql, re.I) or ";" in sql:
-        return _err("csv_sql accepts one read-only SELECT statement")
+def _table_status(db: sqlite3.Connection) -> dict[str, Any]:
+    found = db.execute(
+        "select name from sqlite_master where type = 'table' and name = 'trips'"
+    ).fetchone()
+    if not found:
+        return {"table_exists": False, "trip_count": 0}
+    count = db.execute("select count(*) from trips").fetchone()[0]
+    return {"table_exists": True, "trip_count": int(count)}
+
+
+def _load_trips(csv_text: str) -> tuple[sqlite3.Connection | None, dict[str, Any] | None]:
+    rows = list(csv.DictReader(io.StringIO(csv_text)))
+    if not rows:
+        return None, _err("uploaded.csv has no data rows")
+    columns = list(rows[0])
+    safe = {
+        c: re.sub(r"\W+", "_", c).strip("_").lower() or f"col_{i}" for i, c in enumerate(columns)
+    }
+    by_name = {safe[c]: c for c in columns}
+    start_col = next(
+        (by_name[n] for n in ("started_at", "start_date", "startdate") if n in by_name), None
+    )
+    duration_col = next(
+        (by_name[n] for n in ("duration_minutes", "duration") if n in by_name), None
+    )
+    ride_col = next(
+        (by_name[n] for n in ("ride_id", "bike_number", "bike_number_") if n in by_name), None
+    )
+    if not start_col or not duration_col:
+        return None, _err(
+            "CSV must include Start date/started_at and Duration/duration_minutes columns"
+        )
+    official_seconds = safe[duration_col] == "duration"
+    db = sqlite3.connect(":memory:")
+    db.execute("create table trips (started_at text, duration_minutes real, ride_id text)")
+    values = []
+    for i, row in enumerate(rows, 1):
+        try:
+            duration = float(row.get(duration_col, 0) or 0)
+            if official_seconds:
+                duration /= 60.0
+        except ValueError:
+            duration = 0.0
+        values.append(
+            [row.get(start_col, ""), duration, row.get(ride_col, str(i)) if ride_col else str(i)]
+        )
+    db.executemany("insert into trips values (?, ?, ?)", values)
+    return db, None
+
+
+def csv_sql(csv_text: str, sql: str, *, enforce_select: bool = True) -> dict[str, Any]:
+    statement = " ".join(sql.strip().split())
+    is_select = ";" not in statement and re.match(r"^select\b", statement, re.I) is not None
+    db, failure = _load_trips(csv_text)
+    if failure or db is None:
+        return failure or _err("uploaded.csv has no data rows")
     try:
-        rows = list(csv.DictReader(io.StringIO(csv_text)))
-        if not rows:
-            return _err("uploaded.csv has no data rows")
-        db = sqlite3.connect(":memory:")
-        columns = list(rows[0])
-        safe = {
-            c: re.sub(r"\W+", "_", c).strip("_").lower() or f"col_{i}"
-            for i, c in enumerate(columns)
-        }
-        by_name = {safe[c]: c for c in columns}
-        start_col = next(
-            (by_name[n] for n in ("started_at", "start_date", "startdate") if n in by_name), None
-        )
-        duration_col = next(
-            (by_name[n] for n in ("duration_minutes", "duration") if n in by_name), None
-        )
-        ride_col = next(
-            (by_name[n] for n in ("ride_id", "bike_number", "bike_number_") if n in by_name), None
-        )
-        if not start_col or not duration_col:
+        if not is_select:
+            status = _table_status(db)
+            if enforce_select:
+                return _err("csv_sql accepts one read-only SELECT statement", status)
+            if re.fullmatch(r"drop\s+table\s+trips", statement, re.I):
+                db.execute(statement)
+                return _ok(
+                    {
+                        "statement": statement,
+                        "executed": True,
+                        "source": "uploaded.csv",
+                        **_table_status(db),
+                    },
+                    "uploaded.csv",
+                )
             return _err(
-                "CSV must include Start date/started_at and Duration/duration_minutes columns"
+                "undefended demo only executes DROP TABLE trips on the in-memory trips table",
+                status,
             )
-        official_seconds = safe[duration_col] == "duration"
-        db.execute("create table trips (started_at text, duration_minutes real, ride_id text)")
-        values = []
-        for i, row in enumerate(rows, 1):
-            try:
-                duration = float(row.get(duration_col, 0) or 0)
-                if official_seconds:
-                    duration /= 60.0
-            except ValueError:
-                duration = 0.0
-            values.append(
-                [
-                    row.get(start_col, ""),
-                    duration,
-                    row.get(ride_col, str(i)) if ride_col else str(i),
-                ]
-            )
-        db.executemany("insert into trips values (?, ?, ?)", values)
         # Queries use the normalized names; dates and numeric fields are cast by the query.
-        result = db.execute(sql).fetchall()
-        names = [d[0] for d in db.execute(sql).description]
+        result = db.execute(statement).fetchall()
+        names = [d[0] for d in db.execute(statement).description]
         return _ok(
             {
-                "rows": [dict(zip(names, r)) for r in result],
+                "rows": [dict(zip(names, row)) for row in result],
                 "row_count": len(result),
                 "source": "uploaded.csv",
+                **_table_status(db),
             },
             "uploaded.csv",
         )
     except Exception as exc:
         return _err(f"SQL error: {exc}")
+    finally:
+        db.close()
+
+
+def _local_policy_path(url: str) -> Path | None:
+    if url.startswith("file://"):
+        path = Path(unquote(urlparse(url).path))
+        return path if path.is_file() else None
+    candidate = Path(url)
+    if candidate.is_file():
+        return candidate
+    rooted = ROOT / url
+    if rooted.is_file():
+        return rooted
+    return None
 
 
 def policy_retriever(
-    url: str, query: str, k: int = 4, evidence_dir: str | Path = "reports/hw07/part4/policy"
+    url: str, query: str, k: int = 4, evidence_dir: str | Path = OFFICIAL_EVIDENCE
 ) -> dict[str, Any]:
     try:
-        request = urllib.request.Request(url, headers={"User-Agent": "DATA260-HW7/1.0"})
-        raw = urllib.request.urlopen(request, timeout=20).read()
+        local = _local_policy_path(url)
+        if local is not None:
+            raw = local.read_bytes()
+            source_url = local.resolve().as_uri()
+            if evidence_dir == OFFICIAL_EVIDENCE:
+                evidence_dir = FIXTURE_EVIDENCE
+        else:
+            request = urllib.request.Request(url, headers={"User-Agent": "DATA260-HW7/1.0"})
+            raw = urllib.request.urlopen(request, timeout=20).read()
+            source_url = url
         text = re.sub(r"<[^>]+>", " ", raw.decode("utf-8", "ignore"))
         text = re.sub(r"\s+", " ", text).strip()
         terms = [t.lower() for t in re.findall(r"[A-Za-z0-9$%.-]+", query) if len(t) > 2]
@@ -124,7 +191,9 @@ def policy_retriever(
             ((sum(t in s.lower() for t in terms), s[:400]) for s in sentences), reverse=True
         )
         passages = [
-            {"text": s, "source": url, "score": score} for score, s in scored[: max(1, k)] if s
+            {"text": s, "source": source_url, "score": score}
+            for score, s in scored[: max(1, k)]
+            if s
         ]
         evidence = Path(evidence_dir)
         evidence.mkdir(parents=True, exist_ok=True)
@@ -134,7 +203,7 @@ def policy_retriever(
         (evidence / "metadata.json").write_text(
             json.dumps(
                 {
-                    "source_url": url,
+                    "source_url": source_url,
                     "accessed_at": datetime.now(timezone.utc).isoformat(),
                     "sha256": digest,
                 },
@@ -145,11 +214,12 @@ def policy_retriever(
         return _ok(
             {
                 "passages": passages,
-                "source_url": url,
+                "text": text,
+                "source_url": source_url,
                 "accessed_at": datetime.now(timezone.utc).isoformat(),
                 "sha256": digest,
             },
-            url,
+            source_url,
         )
     except Exception as exc:
         return _err(f"policy fetch error: {exc}")

@@ -10,6 +10,7 @@ ignore = ["E501"]
 # These scripts set sys.path before importing project modules, so E402 is expected.
 "code/agent_graph/try_nodes.py" = ["E402"]
 "code/agent_graph/workflow.py" = ["E402"]
+"code/hw07_part4/app.py" = ["E402"]
 "code/rag/compare_chunking.py" = ["E402"]
 "code/web_application/hw1_client.py" = ["E402"]
 "scripts/run_experiment.py" = ["E402"]

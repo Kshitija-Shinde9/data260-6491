@@ -1,0 +1,324 @@
+HW7 Part 6 RUN_LOG
+
+File tools and the safety gate are in code/hw07_part4/tools.py.
+Tests run only inside reports/hw07/part6/sandbox.
+
+PART 6 FILE TOOLS
+glob -> search -> read
+glob *.py: notes_a.py, notes_b.py, notes_c.py
+search DEBUG in *.py: notes_b.py
+read notes_b.py max_lines=5:
+DEBUG = True
+
+def trace():
+    return "debug trace enabled"
+
+edit_file diff:
+--- notes_c.py
++++ notes_c.py
+@@ -1,2 +1,2 @@
+ def total(rows):
+-    return len(rows)
++    return len(rows)  # counted
+
+PART 6 SAFETY GATE
+SAFE_PREFIXES: git status, git diff, python3, python, echo, pwd, ls
+PASS  pwd -> allow: command matches SAFE_PREFIXES (pwd)
+PASS  ls -> allow: command matches SAFE_PREFIXES (ls)
+PASS  echo hello -> allow: command matches SAFE_PREFIXES (echo)
+PASS  python3 -c "print(1)" -> allow: command matches SAFE_PREFIXES (python3)
+PASS  git status -> allow: command matches SAFE_PREFIXES (git status)
+BLOCK rm -rf notes_b.py -> block: destructive command requires confirmation: recursive deletion
+BLOCK sudo python3 -c "print(1)" -> block: destructive command requires confirmation: privilege escalation
+BLOCK chmod 777 notes_a.py -> block: destructive command requires confirmation: permission or ownership change
+BLOCK dd if=/dev/zero of=/dev/disk0 -> block: destructive command requires confirmation: raw-device write
+BLOCK echo hello > /etc/passwd -> block: destructive command requires confirmation: redirection to a root path
+
+pass 5 / blocked 5
+false allow identified and fixed:
+  echo hello > /etc/passwd
+  SAFE_PREFIXES matches echo, and is_destructive is true because it redirects to a root path.
+  confirm_bash -> block: destructive command requires confirmation: redirection to a root path
+
+integration json:
+{
+  "glob": {
+    "success": true,
+    "data": {
+      "pattern": "*.py",
+      "files": [
+        "notes_a.py",
+        "notes_b.py",
+        "notes_c.py"
+      ]
+    },
+    "ts": "2026-10-26T20:42:14.716307+00:00"
+  },
+  "search": {
+    "success": true,
+    "data": {
+      "query": "DEBUG",
+      "file_pattern": "*.py",
+      "hits": [
+        {
+          "path": "notes_b.py",
+          "line": 1,
+          "text": "DEBUG = True"
+        }
+      ]
+    },
+    "ts": "2026-10-26T20:42:14.716556+00:00"
+  },
+  "read": {
+    "success": true,
+    "data": {
+      "path": "notes_b.py",
+      "content": "DEBUG = True\n\ndef trace():\n    return \"debug trace enabled\"",
+      "line_count": 4,
+      "truncated": false
+    },
+    "ts": "2026-10-26T20:42:14.716636+00:00"
+  },
+  "edit": {
+    "success": true,
+    "data": {
+      "path": "notes_c.py",
+      "diff": "--- notes_c.py\n+++ notes_c.py\n@@ -1,2 +1,2 @@\n def total(rows):\n-    return len(rows)\n+    return len(rows)  # counted"
+    },
+    "ts": "2026-10-26T20:42:14.716016+00:00"
+  },
+  "outside": {
+    "success": false,
+    "error": "path is outside the course sandbox",
+    "ts": "2026-10-26T20:42:14.716693+00:00"
+  }
+}
+
+gate json:
+{
+  "passed": [
+    {
+      "command": "pwd",
+      "gate": {
+        "decision": "allow",
+        "reason": "command matches SAFE_PREFIXES (pwd)",
+        "destructive": false,
+        "prefix": "pwd"
+      },
+      "ran": {
+        "success": true,
+        "data": {
+          "returncode": 0,
+          "stdout": "/Users/kshitijarohandeshmukh/Downloads/Fall2026/Data260_AgenticAI/Homeworks/Github Repo Location For All Homeworks/data260-6491/reports/hw07/part6/sandbox",
+          "stderr": "",
+          "decision": "allow",
+          "reason": "command matches SAFE_PREFIXES (pwd)",
+          "destructive": false,
+          "prefix": "pwd"
+        },
+        "ts": "2026-10-26T20:42:14.726184+00:00"
+      }
+    },
+    {
+      "command": "ls",
+      "gate": {
+        "decision": "allow",
+        "reason": "command matches SAFE_PREFIXES (ls)",
+        "destructive": false,
+        "prefix": "ls"
+      },
+      "ran": {
+        "success": true,
+        "data": {
+          "returncode": 0,
+          "stdout": "notes_a.py\nnotes_b.py\nnotes_c.py",
+          "stderr": "",
+          "decision": "allow",
+          "reason": "command matches SAFE_PREFIXES (ls)",
+          "destructive": false,
+          "prefix": "ls"
+        },
+        "ts": "2026-10-26T20:42:14.738995+00:00"
+      }
+    },
+    {
+      "command": "echo hello",
+      "gate": {
+        "decision": "allow",
+        "reason": "command matches SAFE_PREFIXES (echo)",
+        "destructive": false,
+        "prefix": "echo"
+      },
+      "ran": {
+        "success": true,
+        "data": {
+          "returncode": 0,
+          "stdout": "hello",
+          "stderr": "",
+          "decision": "allow",
+          "reason": "command matches SAFE_PREFIXES (echo)",
+          "destructive": false,
+          "prefix": "echo"
+        },
+        "ts": "2026-10-26T20:42:14.746252+00:00"
+      }
+    },
+    {
+      "command": "python3 -c \"print(1)\"",
+      "gate": {
+        "decision": "allow",
+        "reason": "command matches SAFE_PREFIXES (python3)",
+        "destructive": false,
+        "prefix": "python3"
+      },
+      "ran": {
+        "success": true,
+        "data": {
+          "returncode": 0,
+          "stdout": "1",
+          "stderr": "",
+          "decision": "allow",
+          "reason": "command matches SAFE_PREFIXES (python3)",
+          "destructive": false,
+          "prefix": "python3"
+        },
+        "ts": "2026-10-26T20:42:14.766532+00:00"
+      }
+    },
+    {
+      "command": "git status",
+      "gate": {
+        "decision": "allow",
+        "reason": "command matches SAFE_PREFIXES (git status)",
+        "destructive": false,
+        "prefix": "git status"
+      },
+      "ran": {
+        "success": true,
+        "data": {
+          "returncode": 0,
+          "stdout": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   ../../../../code/hw07_part4/__init__.py\n\tmodified:   ../../../../code/hw07_part4/tools.py\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\t../\n\t../../../../scripts/run_hw07_part6.py\n\t../../../../todo_part6.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")",
+          "stderr": "",
+          "decision": "allow",
+          "reason": "command matches SAFE_PREFIXES (git status)",
+          "destructive": false,
+          "prefix": "git status"
+        },
+        "ts": "2026-10-26T20:42:14.780838+00:00"
+      }
+    }
+  ],
+  "blocked": [
+    {
+      "command": "rm -rf notes_b.py",
+      "gate": {
+        "decision": "block",
+        "reason": "destructive command requires confirmation: recursive deletion",
+        "destructive": true,
+        "prefix": null
+      },
+      "ran": {
+        "success": false,
+        "error": "destructive command requires confirmation: recursive deletion",
+        "ts": "2026-10-26T20:42:14.780906+00:00",
+        "data": {
+          "decision": "block",
+          "reason": "destructive command requires confirmation: recursive deletion",
+          "destructive": true,
+          "prefix": null
+        }
+      }
+    },
+    {
+      "command": "sudo python3 -c \"print(1)\"",
+      "gate": {
+        "decision": "block",
+        "reason": "destructive command requires confirmation: privilege escalation",
+        "destructive": true,
+        "prefix": null
+      },
+      "ran": {
+        "success": false,
+        "error": "destructive command requires confirmation: privilege escalation",
+        "ts": "2026-10-26T20:42:14.780915+00:00",
+        "data": {
+          "decision": "block",
+          "reason": "destructive command requires confirmation: privilege escalation",
+          "destructive": true,
+          "prefix": null
+        }
+      }
+    },
+    {
+      "command": "chmod 777 notes_a.py",
+      "gate": {
+        "decision": "block",
+        "reason": "destructive command requires confirmation: permission or ownership change",
+        "destructive": true,
+        "prefix": null
+      },
+      "ran": {
+        "success": false,
+        "error": "destructive command requires confirmation: permission or ownership change",
+        "ts": "2026-10-26T20:42:14.780923+00:00",
+        "data": {
+          "decision": "block",
+          "reason": "destructive command requires confirmation: permission or ownership change",
+          "destructive": true,
+          "prefix": null
+        }
+      }
+    },
+    {
+      "command": "dd if=/dev/zero of=/dev/disk0",
+      "gate": {
+        "decision": "block",
+        "reason": "destructive command requires confirmation: raw-device write",
+        "destructive": true,
+        "prefix": null
+      },
+      "ran": {
+        "success": false,
+        "error": "destructive command requires confirmation: raw-device write",
+        "ts": "2026-10-26T20:42:14.780935+00:00",
+        "data": {
+          "decision": "block",
+          "reason": "destructive command requires confirmation: raw-device write",
+          "destructive": true,
+          "prefix": null
+        }
+      }
+    },
+    {
+      "command": "echo hello > /etc/passwd",
+      "gate": {
+        "decision": "block",
+        "reason": "destructive command requires confirmation: redirection to a root path",
+        "destructive": true,
+        "prefix": "echo"
+      },
+      "ran": {
+        "success": false,
+        "error": "destructive command requires confirmation: redirection to a root path",
+        "ts": "2026-10-26T20:42:14.780951+00:00",
+        "data": {
+          "decision": "block",
+          "reason": "destructive command requires confirmation: redirection to a root path",
+          "destructive": true,
+          "prefix": "echo"
+        }
+      }
+    }
+  ],
+  "false_allow": {
+    "command": "echo hello > /etc/passwd",
+    "prefix_match": true,
+    "destructive": true,
+    "gate": {
+      "decision": "block",
+      "reason": "destructive command requires confirmation: redirection to a root path",
+      "destructive": true,
+      "prefix": "echo"
+    }
+  }
+}

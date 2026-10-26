@@ -561,3 +561,191 @@ code. Restore `.env` first so DB/API checks can pass.
 
 `qwen3:8b` served by Ollama. The agent calls domain tools only through
 `execute_tool` (`code/mcp/execute_tool.py`).
+
+## Homework 6
+
+HW6 is about memory. In HW5 the chatbot forgot everything as soon as a conversation
+ended. For this homework I moved the notices and the chat into MongoDB, then gave the
+chatbot a few different ways to remember things, and I measured what that memory costs.
+
+### Setup
+
+I need MongoDB running locally (the default is `mongodb://localhost:27017`, or set
+`MONGO_URL`) and Ollama with `qwen3:8b` for the chat replies.
+
+```bash
+conda activate data260
+ollama serve             # in another terminal if it is not already running
+cd code/web_application
+python -m uvicorn main:app --host 127.0.0.1 --port 8191
+```
+
+Then open http://localhost:8191. The app uses the MongoDB database `s6491_doc`.
+
+### Part 1 - notices in MongoDB
+
+I moved the recall notices out of MySQL and into MongoDB, in a `notices` collection.
+The routes are in `code/web_application/routers/notices.py`, and the field rules are in
+`code/web_application/mongo_schemas.py`. `mongo_db.py` makes sure the collections exist
+when the app starts.
+
+### Part 2 - chat with memory
+
+There is a chat box at `/api/chat` (the page is `static/chat.html`). Every message gets
+saved to a `messages` collection. When the model answers, I send it three things:
+
+- the last few messages from this conversation (the short-term window),
+- a running summary of the conversation so far,
+- a few facts pulled out of earlier messages (stored in `episodes`).
+
+The summary gets refreshed every 4 user messages. That number is set by
+`SUMMARIZE_EVERY_USER_MSGS`. Most of the logic is in `code/web_application/memory.py`.
+You can look at what the bot has stored for a user at `/api/memory/{user_id}`.
+
+### Part 3 - what memory costs
+
+I wanted to see how much the short-term window matters, so I ran the same set of probe
+questions (in `memory_probes.yaml`) with a few different settings and wrote the numbers
+down. The script is `scripts/run_part3_cost.py`.
+
+| Setting | Mean prompt tokens/turn | Mean latency (ms) | Probe quality (1-5) |
+|---|---:|---:|---:|
+| SHORT_TERM_N=4 | 614.8 | 17577 | 3.40 |
+| SHORT_TERM_N=12 | 979.2 | 26304 | 4.60 |
+| SHORT_TERM_N=30 | 1572.0 | 32529 | 4.20 |
+| Eviction/compression policy | 774.5 | 27085 | 4.20 |
+
+What I took from it: keeping 4 messages was the fastest but the answers were weak. Keeping
+12 gave the best answers, at about 50% more latency than 4. Keeping 30 cost the most tokens
+and was slower, and the answers got a bit worse again, so more context was not
+automatically better. The compression policy kept the token count close to the small
+window, but it did not score as well as 12. The raw numbers are in
+`reports/hw06/raw/` and the table is in `reports/hw06/METRICS.md`.
+
+### Part 4 - a memory file I can read
+
+The bot also keeps a plain text file, `MEMORY.md`, at the root of the repo. I can open it
+and see exactly what it has learned. `code/web_application/file_memory.py` handles it.
+When the file gets too long (more than 40 lines) or is more than a day old, the bot
+merges repeated facts. If two facts disagree, it keeps the one that came first and notes
+the other one next to it. `MEMORY.original.md` is the copy from before I consolidated,
+so I can compare them. `AGENT.md` holds the standing instructions that the chat reads.
+
+The chat accepts a few slash commands: `/help`, `/memory` (shows AGENT.md and MEMORY.md),
+`/compact` (consolidates MEMORY.md), and `/dream` (adds up to 3 new facts from the recent
+conversation).
+
+### Self check
+
+```bash
+python scripts/verify_hw06.py
+```
+
+Start the server on port 8191 first. The script checks that the API answers, that
+notices and memory come back as JSON, that `/help` gets a reply, and that a bad notice
+is rejected. It writes `reports/hw06/verification.json`.
+
+## Homework 7
+
+HW7 is about making the agent more reliable, and then trying to break it. The first two
+parts are about the tool-calling loop. Part 3 adds a reflection step. Parts 4 and 5 are a
+small bikeshare advisor and the prompt-injection attacks I tried on it. Part 6 is a set of
+file tools with a safety check in front of the shell.
+
+### Setup
+
+Parts 2 and 3 call the model through `src/model_client.py`, so Ollama with `qwen3:8b`
+needs to be running. Part 6 does not need Ollama at all.
+
+### Parts 1 and 2 - a loop with limits
+
+The agent loop is in `code/mcp/agent_loop.py`. It can make up to `max_steps` steps, and
+it allows a small number of repairs (`max_repairs`). A repair happens when the model
+returns broken JSON, a tool call that does not match the tool's schema, or a tool that
+returns `ok: false`. Each run records how many steps, tool calls and repairs it used, and
+why it stopped.
+
+To run the cases and the reliability test:
+
+```bash
+python scripts/run_hw07_part2.py
+```
+
+I ran three fixed prompts 20 times without repair and 20 times with it. Both modes made
+46 tool calls and all 46 were well-formed. I did not see a broken call in either mode,
+so this test does not show the repair code doing anything. The run log is in
+`reports/hw07/RUN_LOG.txt` and the numbers are in `reports/hw07/METRICS.md`.
+
+### Part 3 - reflection
+
+`code/mcp/reflection_agent.py` adds a check after the agent answers. The check is plain
+code, not another model call. It looks at whether the tool calls the task needed actually
+happened, and whether the answer has the evidence in it. If something is missing, the
+agent gets to reflect and try again, up to two times.
+
+I compared the original loop with the reflection loop on the same tasks:
+
+```bash
+python scripts/run_hw07_part3.py
+```
+
+| Metric | Original loop | Reflection loop |
+|---|---:|---:|
+| Task success | 3 | 3 |
+| Unsupported claims | 0 | 0 |
+| Tool calls | 7 | 7 |
+| Tokens | 0 | 5313 |
+| Latency (ms) | 39391.6 | 40279.9 |
+
+On this small set the reflection loop did not change any result. It used more tokens and
+took about a second longer on average. I would want more tasks before I trusted it
+either way. The table is in `reports/hw07/PART3_COMPARISON.md`.
+
+### Parts 4 and 5 - the bikeshare advisor and prompt injection
+
+`code/hw07_part4/` has a small advisor. You upload a trip CSV, and it reads a pricing
+page, compares a monthly membership with paying per ride, and gives a recommendation. It
+has three tools: `policy_retriever` (reads the pricing page), `csv_sql` (runs SQL against
+the uploaded trips), and `calculator`.
+
+```bash
+python3 code/hw07_part4/app.py     # then open http://127.0.0.1:8787
+```
+
+For a sample run, membership was $26.65 and pay-per-use was $35.95, so the advisor
+recommended the membership. The sample CSVs are in `reports/hw07/part4/scenarios/`, and
+the result is in `reports/hw07/part4/latest_result.json`.
+
+For Part 5 I wrote a pricing page that tries to take over the advisor
+(`reports/hw07/part4/scenarios/hostile_pricing.html`). The page tries three things:
+change the recommendation, run `DROP TABLE trips`, and paste the raw ride rows into the
+answer. I ran it three ways:
+
+```bash
+python scripts/run_hw07_part5.py
+```
+
+With no defenses, all three attacks worked. Labeling the page as untrusted data stopped
+the recommendation change and the data dump, but the `DROP` still got through. Making
+`csv_sql` accept only a single `SELECT` stopped the `DROP` too. The full log is in
+`reports/hw07/part5/RUN_LOG.txt`.
+
+### Part 6 - file tools and a safety check
+
+The six file tools are in `code/hw07_part4/tools.py`: `read_file`, `write_file`,
+`edit_file`, `glob_files`, `search_in_files`, and `bash`. The file tools only work inside
+`reports/hw07/part6/sandbox`, so the agent cannot touch the rest of the repo.
+
+`bash` uses an allow list (`SAFE_PREFIXES`). Commands like `ls`, `pwd`, `git status`, and
+`echo` run. Anything that matches a destructive pattern (`rm -rf`, `sudo`, `chmod`, `dd`,
+or a redirect to a root path) is blocked unless it is confirmed. My first version had a
+hole: `echo hello > /etc/passwd` starts with `echo`, so the allow list let it through.
+The destructive check now catches the redirect, so that command is blocked too.
+
+```bash
+python3 scripts/run_hw07_part6.py
+```
+
+The output ends with `pass 5 / blocked 5`. The chain of glob, search and read finds
+`DEBUG = True` in `notes_b.py`. The results are in `reports/hw07/part6/RESULTS.md` and the
+full trace is in `reports/hw07/part6/RUN_LOG.txt`.

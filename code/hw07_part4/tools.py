@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import ast
 import csv
+import difflib
+import fnmatch
 import hashlib
 import io
 import json
 import operator
 import re
+import shlex
 import sqlite3
+import subprocess
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -256,3 +260,216 @@ def calculator(expression: str, units: str | None = None) -> dict[str, Any]:
         )
     except Exception as exc:
         return _err(f"calculation error: {exc}")
+
+
+SAFE_PREFIXES = ("git status", "git diff", "python3", "python", "echo", "pwd", "ls")
+_SANDBOX: Path | None = None
+_DESTRUCTIVE_RULES = (
+    (
+        re.compile(r"\brm\b[^\n]*\s-(?:[a-zA-Z]*r[a-zA-Z]*|--recursive)\b", re.I),
+        "recursive deletion",
+    ),
+    (re.compile(r"\b(?:sudo|pkexec|doas)\b|\bsu\s+-", re.I), "privilege escalation"),
+    (re.compile(r"\b(?:chmod|chown|chgrp)\b", re.I), "permission or ownership change"),
+    (re.compile(r"\bdd\b[^\n]*\bof=/dev/|\bof=/dev/", re.I), "raw-device write"),
+    (re.compile(r"\b(?:mkfs|newfs)\b|\bdiskutil\s+erase\b", re.I), "filesystem creation"),
+    (re.compile(r"(?:>>?)\s*/\S+"), "redirection to a root path"),
+)
+
+
+def set_sandbox(path: str | Path) -> Path:
+    global _SANDBOX
+    root = Path(path).resolve()
+    root.mkdir(parents=True, exist_ok=True)
+    _SANDBOX = root
+    return root
+
+
+def _sandbox_path(path: str) -> Path:
+    if _SANDBOX is None:
+        raise ValueError("course sandbox is not set")
+    raw = Path(path)
+    candidate = raw.resolve() if raw.is_absolute() else (_SANDBOX / raw).resolve()
+    if candidate != _SANDBOX and _SANDBOX not in candidate.parents:
+        raise ValueError("path is outside the course sandbox")
+    return candidate
+
+
+def _relative(path: Path) -> str:
+    if _SANDBOX is None:
+        return path.name
+    try:
+        return path.resolve().relative_to(_SANDBOX).as_posix()
+    except ValueError:
+        return path.name
+
+
+def read_file(path: str, max_lines: int | None = None) -> dict[str, Any]:
+    try:
+        target = _sandbox_path(path)
+        if not target.is_file():
+            return _err(f"file not found: {_relative(target)}")
+        lines = target.read_text(encoding="utf-8").splitlines()
+        shown = lines if max_lines is None else lines[: max(0, max_lines)]
+        return _ok(
+            {
+                "path": _relative(target),
+                "content": "\n".join(shown),
+                "line_count": len(lines),
+                "truncated": max_lines is not None and len(lines) > max_lines,
+            }
+        )
+    except Exception as exc:
+        return _err(str(exc))
+
+
+def write_file(path: str, content: str) -> dict[str, Any]:
+    try:
+        target = _sandbox_path(path)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(content, encoding="utf-8")
+        return _ok({"path": _relative(target), "bytes": len(content.encode("utf-8"))})
+    except Exception as exc:
+        return _err(str(exc))
+
+
+def edit_file(path: str, old: str, new: str) -> dict[str, Any]:
+    try:
+        target = _sandbox_path(path)
+        if not target.is_file():
+            return _err(f"file not found: {_relative(target)}")
+        before = target.read_text(encoding="utf-8")
+        if old not in before:
+            return _err("old text was not found in the file")
+        after = before.replace(old, new, 1)
+        target.write_text(after, encoding="utf-8")
+        diff = "".join(
+            difflib.unified_diff(
+                before.splitlines(keepends=True),
+                after.splitlines(keepends=True),
+                fromfile=_relative(target),
+                tofile=_relative(target),
+                n=1,
+            )
+        )
+        short = "\n".join(diff.splitlines()[:12])
+        return _ok({"path": _relative(target), "diff": short})
+    except Exception as exc:
+        return _err(str(exc))
+
+
+def glob_files(pattern: str) -> dict[str, Any]:
+    try:
+        if _SANDBOX is None:
+            return _err("course sandbox is not set")
+        if ".." in Path(pattern).parts:
+            return _err("pattern escapes the course sandbox")
+        matches = sorted(
+            path
+            for path in _SANDBOX.glob(pattern)
+            if path.is_file() and (_SANDBOX in path.resolve().parents or path.resolve() == _SANDBOX)
+        )
+        return _ok({"pattern": pattern, "files": [_relative(path) for path in matches]})
+    except Exception as exc:
+        return _err(str(exc))
+
+
+def search_in_files(query: str, file_pattern: str = "*") -> dict[str, Any]:
+    try:
+        if _SANDBOX is None:
+            return _err("course sandbox is not set")
+        hits = []
+        for path in sorted(_SANDBOX.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = _relative(path)
+            if not fnmatch.fnmatch(relative, file_pattern):
+                continue
+            for number, line in enumerate(
+                path.read_text(encoding="utf-8", errors="replace").splitlines(), 1
+            ):
+                if query in line:
+                    hits.append({"path": relative, "line": number, "text": line.strip()})
+        return _ok({"query": query, "file_pattern": file_pattern, "hits": hits})
+    except Exception as exc:
+        return _err(str(exc))
+
+
+def _matches_safe_prefix(command: str) -> str | None:
+    stripped = " ".join(command.strip().split())
+    for prefix in SAFE_PREFIXES:
+        if stripped == prefix or stripped.startswith(prefix + " "):
+            return prefix
+    return None
+
+
+def is_destructive(command: str) -> bool:
+    return any(rule.search(command) for rule, _reason in _DESTRUCTIVE_RULES)
+
+
+def destructive_reason(command: str) -> str | None:
+    for rule, reason in _DESTRUCTIVE_RULES:
+        if rule.search(command):
+            return reason
+    return None
+
+
+def confirm_bash(command: str, auto_approve: bool = False) -> dict[str, Any]:
+    reason = destructive_reason(command)
+    prefix = _matches_safe_prefix(command)
+    if reason and not auto_approve:
+        return {
+            "decision": "block",
+            "reason": f"destructive command requires confirmation: {reason}",
+            "destructive": True,
+            "prefix": prefix,
+        }
+    if reason and auto_approve:
+        return {
+            "decision": "allow",
+            "reason": f"destructive command confirmed: {reason}",
+            "destructive": True,
+            "prefix": prefix,
+        }
+    if prefix is None:
+        return {
+            "decision": "block",
+            "reason": "command is not on SAFE_PREFIXES",
+            "destructive": False,
+            "prefix": None,
+        }
+    return {
+        "decision": "allow",
+        "reason": f"command matches SAFE_PREFIXES ({prefix})",
+        "destructive": False,
+        "prefix": prefix,
+    }
+
+
+def bash(command: str, auto_approve: bool = False) -> dict[str, Any]:
+    gate = confirm_bash(command, auto_approve=auto_approve)
+    if gate["decision"] != "allow" or gate["destructive"]:
+        return _err(gate["reason"], gate)
+    if any(token in command for token in ("|", ";", "&&", "||", "`", "$(", ">", "<")):
+        return _err("bash in this sandbox does not run shell operators", gate)
+    if _SANDBOX is None:
+        return _err("course sandbox is not set", gate)
+    try:
+        completed = subprocess.run(
+            shlex.split(command),
+            cwd=_SANDBOX,
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        )
+    except Exception as exc:
+        return _err(str(exc), gate)
+    return _ok(
+        {
+            "returncode": completed.returncode,
+            "stdout": completed.stdout.strip(),
+            "stderr": completed.stderr.strip(),
+            **gate,
+        }
+    )

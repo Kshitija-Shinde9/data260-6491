@@ -1,0 +1,14 @@
+2026-11-02T04:33:21.866660Z | WRITER | READY    | listening on s6491_tasks[0], s6491_tasks[1]
+2026-11-02T04:33:24.378336Z | WRITER | RECEIVE  | corr=dup-266491 <- s6491_tasks[0]@1
+2026-11-02T04:33:24.379870Z | WRITER | SEND     | corr=dup-266491 -> s6491_drafts partition=0
+2026-11-02T04:33:24.380805Z | WRITER | COMMIT   | corr=dup-266491 committed after success
+2026-11-02T04:33:24.883287Z | WRITER | RECEIVE  | corr=dup-266491 <- s6491_tasks[0]@2
+2026-11-02T04:33:24.884297Z | WRITER | SEND     | corr=dup-266491 -> s6491_drafts partition=0
+2026-11-02T04:33:24.885074Z | WRITER | COMMIT   | corr=dup-266491 committed after success
+2026-11-02T04:33:24.949249Z | WRITER | READY    | listening on s6491_tasks[0], s6491_tasks[1]
+2026-11-02T04:33:27.470457Z | WRITER | RECEIVE  | corr=dup-266491 <- s6491_tasks[0]@3
+2026-11-02T04:33:27.473944Z | WRITER | SEND     | corr=dup-266491 -> s6491_drafts partition=0
+2026-11-02T04:33:27.476349Z | WRITER | COMMIT   | corr=dup-266491 committed after success
+2026-11-02T04:33:27.977756Z | WRITER | RECEIVE  | corr=dup-266491 <- s6491_tasks[0]@4
+2026-11-02T04:33:27.978153Z | WRITER | DUPLICATE | corr=dup-266491 already handled, no second draft
+2026-11-02T04:33:27.979615Z | WRITER | COMMIT   | corr=dup-266491 duplicate skipped

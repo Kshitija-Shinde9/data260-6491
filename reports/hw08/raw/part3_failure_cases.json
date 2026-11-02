@@ -1,0 +1,25 @@
+{
+  "ran_at_local": "2026-11-01T20:33:00-08:00",
+  "broker": "localhost:9094",
+  "duplicate": {
+    "script": "code/kafka_service/part3_duplicate.py",
+    "correlation_id": "dup-266491",
+    "before": {"idempotent": false, "sends": 2, "duplicates": 0},
+    "after": {"idempotent": true, "sends": 1, "duplicates": 1, "detail": "already handled, no second draft"}
+  },
+  "consumer_killed": {
+    "script": "code/kafka_service/part3_crash.py",
+    "topic": "s6491_part3_crash",
+    "before": {"correlation_id": "crash-before-266491", "committed_before_crash": true, "redelivered": false},
+    "after": {"correlation_id": "crash-after-266491", "committed_before_crash": false, "redelivered": true, "commit_detail": "committed after success"}
+  },
+  "poison": {
+    "script": "code/kafka_service/part3_poison.py",
+    "dead_letter_topic": "s6491_dead_letter",
+    "poison_correlation_id": "poison-266491",
+    "attempts": 3,
+    "error": "poison message",
+    "following_correlation_id": "good-266491",
+    "following_message_drafted": true
+  }
+}

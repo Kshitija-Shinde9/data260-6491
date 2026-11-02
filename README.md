@@ -749,3 +749,75 @@ python3 scripts/run_hw07_part6.py
 The output ends with `pass 5 / blocked 5`. The chain of glob, search and read finds
 `DEBUG = True` in `notes_b.py`. The results are in `reports/hw07/part6/RESULTS.md` and the
 full trace is in `reports/hw07/part6/RUN_LOG.txt`.
+
+## Homework 8
+
+HW8 builds on HW7. Instead of calling the recall logic directly inside one process, I split
+it into a client and a worker that only talk through Kafka messages. My primary entity is
+the recall notice, so the two operations are `CREATE_RECALL` and `GET_RECALL`, and the id
+field is `recall_id`.
+
+### Repository layout added in HW8
+
+```
+code/kafka_service/config.py           PREFIX, PORT_BASE, topic names, operation names
+code/kafka_service/recall_entity.py    field validation for a recall (HW1 form rules)
+code/kafka_service/kafka_io.py         topic creation, idempotent producer, send_json
+code/kafka_service/worker.py           consumer: validates, stores in a dict, replies to reply_to
+code/kafka_service/kafka_client.py     request/reply client that matches replies by correlation_id
+code/kafka_service/homework_demo.py    CREATE_RECALL -> GET_RECALL demo with one correlation_id
+code/kafka_service/Dockerfile          one image for the worker, the API wrapper, and the demo
+code/kafka_service/docker-compose.yml  Kafka (KRaft) + worker + API wrapper (+ demo profile)
+code/web_application/routers/kafka_recalls.py   FastAPI wrapper routes under /api/kafka
+code/web_application/kafka_api.py      slim FastAPI app with only the Kafka routes (for Docker)
+scripts/test_hw08_part1.py             offline tests, no broker needed
+scripts/verify_hw08.py                 live self-check -> reports/hw08/verification.json
+reports/hw08/logs/message_flow.log     shared message-flow log written by every container
+```
+
+`code/web_application/main.py` was extended rather than replaced: it also includes the
+`kafka_recalls` router. The router only connects to Kafka on its first request, so the
+HW1-HW7 app still starts when Kafka is not running.
+
+### Part 1 - request/response over Kafka
+
+| Topic | Who writes | Who reads |
+|---|---|---|
+| `s6491_recall_requests` | client / API wrapper | worker (group `s6491_recall_worker`) |
+| `s6491_recall_responses` | worker | client / API wrapper |
+
+Request message:
+
+```json
+{"correlation_id": "<uuid>", "reply_to": "s6491_recall_responses",
+ "operation": "CREATE_RECALL", "data": {"product_name": "...", "supplier": "...",
+ "recall_code": "REC-0101", "recall_type": "Packaging / Seal Failure",
+ "description": "more than 25 characters", "affected_units": 120}}
+```
+
+Responses always echo the same `correlation_id`:
+
+```json
+{"correlation_id": "<same uuid>", "operation": "CREATE_RECALL", "success": true,
+ "recall_id": "<uuid made by the worker>", "message": "Recall created"}
+{"correlation_id": "<same uuid>", "operation": "GET_RECALL", "success": true,
+ "recall": {"recall_id": "...", "product_name": "...", "...": "..."}}
+{"correlation_id": "<same uuid>", "operation": "GET_RECALL", "success": false,
+ "error": "Recall not found"}
+```
+
+Run it (Docker Desktop must be running):
+
+```bash
+docker compose -f code/kafka_service/docker-compose.yml up -d --build
+docker compose -f code/kafka_service/docker-compose.yml run --rm demo
+docker compose -f code/kafka_service/docker-compose.yml run --rm demo \
+  python code/kafka_service/homework_demo.py --via-api --with-errors
+python3 scripts/verify_hw08.py
+```
+
+API wrapper on PORT_BASE: `POST /api/kafka/recalls`, `GET /api/kafka/recalls/{recall_id}`,
+`POST /api/kafka/requests` (any operation), `GET /api/kafka/health`. Send an
+`X-Correlation-ID` header to choose the correlation_id; the wrapper forwards it unchanged.
+
+Step-by-step commands and the screenshot list are in `reports/hw08/HW8_PART1_TODO.md`.

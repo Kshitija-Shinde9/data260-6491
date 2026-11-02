@@ -1,0 +1,27 @@
+{
+  "verify_seed": 266491,
+  "ran_at_local": "2026-11-01T20:35:16-08:00",
+  "topic": "s6491_tasks",
+  "partitions": 2,
+  "writers": 2,
+  "consumer_groups": ["s6491_part3_order_spread", "s6491_part3_order_keyed"],
+  "note": "Recorded from the part3_ordering.py terminal on Kshitijas-MacBook-Air. Sent order matches build_ordering_messages(266491).",
+  "run_1_no_product_key": {
+    "a_product_landed_on_both_partitions": true,
+    "products": {
+      "blueberries": {"partitions": [0, 1], "sent": [0, 4, 1, 2, 3], "processed": [0, 3, 4, 1, 2]},
+      "chicken": {"partitions": [0, 1], "sent": [0, 3, 1, 2, 4], "processed": [1, 2, 0, 3, 4]},
+      "trail mix": {"partitions": [0, 1], "sent": [2, 3, 4, 1, 0], "processed": [2, 3, 1, 4, 0]},
+      "spinach": {"partitions": [0, 1], "sent": [4, 0, 2, 1, 3], "processed": [0, 2, 3, 4, 1]}
+    }
+  },
+  "run_2_key_is_product_name": {
+    "every_product_stayed_on_one_partition_in_send_order": true,
+    "products": {
+      "blueberries": {"partitions": [0], "sent": [0, 4, 1, 2, 3], "processed": [0, 4, 1, 2, 3]},
+      "chicken": {"partitions": [0], "sent": [0, 3, 1, 2, 4], "processed": [0, 3, 1, 2, 4]},
+      "trail mix": {"partitions": [0], "sent": [2, 3, 4, 1, 0], "processed": [2, 3, 4, 1, 0]},
+      "spinach": {"partitions": [0], "sent": [4, 0, 2, 1, 3], "processed": [4, 0, 2, 1, 3]}
+    }
+  }
+}

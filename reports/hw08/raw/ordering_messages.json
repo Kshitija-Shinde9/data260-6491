@@ -1,0 +1,277 @@
+{
+  "verify_seed": 266491,
+  "count": 20,
+  "source": "kafka_service.failure.build_ordering_messages",
+  "sent_order": {
+    "blueberries": [
+      0,
+      4,
+      1,
+      2,
+      3
+    ],
+    "chicken": [
+      0,
+      3,
+      1,
+      2,
+      4
+    ],
+    "trail mix": [
+      2,
+      3,
+      4,
+      1,
+      0
+    ],
+    "spinach": [
+      4,
+      0,
+      2,
+      1,
+      3
+    ]
+  },
+  "messages": [
+    {
+      "correlation_id": "ord-blueberries-0",
+      "entity": "blueberries",
+      "entity_sequence": 0,
+      "question": "Recall update 0 for blueberries. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 0
+    },
+    {
+      "correlation_id": "ord-chicken-0",
+      "entity": "chicken",
+      "entity_sequence": 0,
+      "question": "Recall update 0 for chicken. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 1
+    },
+    {
+      "correlation_id": "ord-trail-mix-2",
+      "entity": "trail mix",
+      "entity_sequence": 2,
+      "question": "Recall update 2 for trail mix. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 2
+    },
+    {
+      "correlation_id": "ord-spinach-4",
+      "entity": "spinach",
+      "entity_sequence": 4,
+      "question": "Recall update 4 for spinach. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 3
+    },
+    {
+      "correlation_id": "ord-spinach-0",
+      "entity": "spinach",
+      "entity_sequence": 0,
+      "question": "Recall update 0 for spinach. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 4
+    },
+    {
+      "correlation_id": "ord-chicken-3",
+      "entity": "chicken",
+      "entity_sequence": 3,
+      "question": "Recall update 3 for chicken. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 5
+    },
+    {
+      "correlation_id": "ord-spinach-2",
+      "entity": "spinach",
+      "entity_sequence": 2,
+      "question": "Recall update 2 for spinach. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 6
+    },
+    {
+      "correlation_id": "ord-spinach-1",
+      "entity": "spinach",
+      "entity_sequence": 1,
+      "question": "Recall update 1 for spinach. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 7
+    },
+    {
+      "correlation_id": "ord-spinach-3",
+      "entity": "spinach",
+      "entity_sequence": 3,
+      "question": "Recall update 3 for spinach. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 8
+    },
+    {
+      "correlation_id": "ord-blueberries-4",
+      "entity": "blueberries",
+      "entity_sequence": 4,
+      "question": "Recall update 4 for blueberries. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 9
+    },
+    {
+      "correlation_id": "ord-trail-mix-3",
+      "entity": "trail mix",
+      "entity_sequence": 3,
+      "question": "Recall update 3 for trail mix. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 10
+    },
+    {
+      "correlation_id": "ord-blueberries-1",
+      "entity": "blueberries",
+      "entity_sequence": 1,
+      "question": "Recall update 1 for blueberries. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 11
+    },
+    {
+      "correlation_id": "ord-chicken-1",
+      "entity": "chicken",
+      "entity_sequence": 1,
+      "question": "Recall update 1 for chicken. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 12
+    },
+    {
+      "correlation_id": "ord-trail-mix-4",
+      "entity": "trail mix",
+      "entity_sequence": 4,
+      "question": "Recall update 4 for trail mix. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 13
+    },
+    {
+      "correlation_id": "ord-chicken-2",
+      "entity": "chicken",
+      "entity_sequence": 2,
+      "question": "Recall update 2 for chicken. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 14
+    },
+    {
+      "correlation_id": "ord-blueberries-2",
+      "entity": "blueberries",
+      "entity_sequence": 2,
+      "question": "Recall update 2 for blueberries. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 15
+    },
+    {
+      "correlation_id": "ord-trail-mix-1",
+      "entity": "trail mix",
+      "entity_sequence": 1,
+      "question": "Recall update 1 for trail mix. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 16
+    },
+    {
+      "correlation_id": "ord-trail-mix-0",
+      "entity": "trail mix",
+      "entity_sequence": 0,
+      "question": "Recall update 0 for trail mix. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 17
+    },
+    {
+      "correlation_id": "ord-blueberries-3",
+      "entity": "blueberries",
+      "entity_sequence": 3,
+      "question": "Recall update 3 for blueberries. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 18
+    },
+    {
+      "correlation_id": "ord-chicken-4",
+      "entity": "chicken",
+      "entity_sequence": 4,
+      "question": "Recall update 4 for chicken. The seal is torn.",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "produce_index": 19
+    }
+  ]
+}

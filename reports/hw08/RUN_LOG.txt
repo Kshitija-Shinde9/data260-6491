@@ -1,0 +1,110 @@
+HW8 console record
+Machine: Kshitijas-MacBook-Air
+Local time: 2026-11-01 evening, Pacific
+Broker: localhost:9094
+These are the commands and the result lines from the terminals that produced the report screenshots.
+
+================================================================================
+Part 1. Containers and the recall round trip
+Screenshot times about 6:43 PM to 6:51 PM.
+================================================================================
+
+docker ps showed s6491_kafka healthy on 0.0.0.0:9094, s6491_worker up, s6491_api up on 127.0.0.1:8191.
+Worker log: Consumer is ready and listening...
+API log: FastAPI server started at http://127.0.0.1:8191
+
+homework_demo.py
+correlation_id = daaf6214-0b06-4e54-a35f-2cc369cd1d51
+CREATE_RECALL success true, recall_id a882f870-0c0b-48c6-8def-20a7645ca886, Recall created
+GET_RECALL preserved = True, same recall_id, REC-7449
+
+Error pass: unknown operation, missing fields, bad recall_type, and unknown id "Recall not found". Each one kept its correlation_id.
+
+curl through the API
+correlation_id = fab236e9-39bc-4d15-876e-f078c07960a9
+POST /api/kafka/recalls -> HTTP 201, recall_id 2c261c67-2383-4ba1-96a3-665b60897039
+GET that id -> HTTP 200, Kirkland trail mix
+Flow order for create, then the same seven stages for get:
+HTTP-IN, SEND, RECEIVE, PROCESS, REPLY, RESPONSE, HTTP-OUT
+
+================================================================================
+Part 2. Three agents
+Screenshot times about 7:46 PM to 8:02 PM.
+================================================================================
+
+Topics created inside s6491_kafka:
+s6491_inbox    PartitionCount: 1
+s6491_tasks    PartitionCount: 2
+s6491_drafts   PartitionCount: 1
+s6491_final    PartitionCount: 1
+
+Three terminals:
+PLANNER is ready and listening on s6491_inbox[0]
+WRITER is ready and listening on s6491_tasks[0], s6491_tasks[1]
+REVIEWER is ready and listening on s6491_drafts[0]
+
+python send_question.py
+correlation_id = 2b83f4a7-e6f0-46cc-b334-4890d285daa4
+status = approved
+answer starts with "Do not eat these blueberries."
+correlation_id preserved = True
+Journey:
+YOU      SEND     -> s6491_inbox
+PLANNER  RECEIVE  <- s6491_inbox
+PLANNER  SEND     -> s6491_tasks
+WRITER   RECEIVE  <- s6491_tasks
+WRITER   SEND     -> s6491_drafts
+REVIEWER RECEIVE  <- s6491_drafts
+REVIEWER SEND     -> s6491_final
+YOU      FINAL
+
+================================================================================
+Part 3. One terminal. The three agents were stopped. Kafka was left running.
+Screenshot times 8:33 PM, 8:34 PM, and 8:35 PM.
+Log clock on the duplicate run was 2026-11-02T04:33Z, which is 8:33 PM Pacific.
+================================================================================
+
+python part3_duplicate.py
+broker localhost:9094
+BEFORE FIX  idempotent = False  correlation_id = dup-266491
+  two SEND lines, each followed by COMMIT "committed after success"
+AFTER FIX  idempotent = True  correlation_id = dup-266491
+  one SEND, then
+  DUPLICATE | corr=dup-266491 already handled, no second draft
+  COMMIT    | corr=dup-266491 duplicate skipped
+Before: two SEND lines. After: one SEND and one DUPLICATE, no second draft.
+
+python part3_crash.py
+BEFORE FIX  correlation_id = crash-before-266491  channel s6491_part3_crash
+  RECEIVE, COMMIT "committed before the work finished", CRASH
+  restart: READY only
+  redelivered = no. The offset had been saved before the work finished.
+AFTER FIX  correlation_id = crash-after-266491
+  RECEIVE, CRASH, no COMMIT before the crash
+  restart: RECEIVE, SEND -> s6491_drafts, COMMIT "committed after success"
+  redelivered = yes. The offset was saved only after the draft was sent.
+
+python part3_poison.py
+created s6491_dead_letter
+BEFORE FIX: poison-266491 keeps failing, good-266491 does not get a draft
+AFTER FIX:
+  RETRY  attempt=1/3 poison message
+  RETRY  attempt=2/3 poison message
+  RETRY  attempt=3/3 poison message
+  DEAD   corr=poison-266491 -> s6491_dead_letter attempts=3
+  COMMIT dead letter committed
+  RECEIVE corr=good-266491
+  SEND    -> s6491_drafts
+  COMMIT  committed after success
+s6491_dead_letter has poison-266491
+attempts = 3
+error = poison message
+good-266491 was drafted after the poison message: yes
+
+python part3_ordering.py
+VERIFY_SEED = 266491
+20 messages, 4 products, 5 updates each, 2 writers, 2 partitions
+WRITER-A and WRITER-B ready on s6491_tasks[0] and s6491_tasks[1]
+RUN 1 no product key: a product landed on both partitions: yes
+RUN 2 key = product name: every product stayed on one partition, in the order it was sent: yes
+Per-product sent and processed numbers are in reports/hw08/METRICS.md and reports/hw08/raw/ordering_run.json.

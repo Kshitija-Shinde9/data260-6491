@@ -1,0 +1,176 @@
+{
+  "homework": "HW8",
+  "homework_number": 8,
+  "part": 1,
+  "generated_at": "2026-11-02T05:03:20Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "model": "qwen3:8b via Ollama (local). Part 3 agents are deterministic and do not call the model.",
+  "request_topic": "s6491_recall_requests",
+  "response_topic": "s6491_recall_responses",
+  "hardware": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "commit_hash": "7befc89c2864ce2b48a1635da2dba224b71aecde",
+  "total_checks": 31,
+  "passed": 31,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "deliverable present: code/kafka_service/config.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/recall_entity.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/kafka_io.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/kafka_client.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/worker.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/homework_demo.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/Dockerfile",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/kafka_service/docker-compose.yml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/kafka_api.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: code/web_application/routers/kafka_recalls.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "deliverable present: scripts/test_hw08_part1.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "offline part 1 tests pass",
+      "passed": true,
+      "detail": "8/8 tests passed"
+    },
+    {
+      "name": "offline part 2 tests pass",
+      "passed": true,
+      "detail": "5/5 tests passed"
+    },
+    {
+      "name": "offline part 3 tests pass",
+      "passed": true,
+      "detail": "7/7 tests passed"
+    },
+    {
+      "name": "container running: s6491_kafka",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "container running: s6491_worker",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "container running: s6491_api",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "worker log says \"Consumer is ready and listening...\"",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "API log says server started at http://127.0.0.1:8191",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "API wrapper responds on PORT_BASE",
+      "passed": true,
+      "detail": "http://127.0.0.1:8191 -> {'ok': True, 'component': 'API', 'bootstrap': 'kafka:9092'}"
+    },
+    {
+      "name": "CREATE_RECALL succeeds",
+      "passed": true,
+      "detail": "{'correlation_id': 'e4a53ec3-8e14-4b43-85cf-86d0059a984f', 'operation': 'CREATE_RECALL', 'success': True, 'recall_id': 'da823459-2585-4afa-8e7f-d8e9e0ce3ad2', 'message': 'Recall created'}"
+    },
+    {
+      "name": "CREATE_RECALL echoes correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "worker generated a UUID recall_id",
+      "passed": true,
+      "detail": "da823459-2585-4afa-8e7f-d8e9e0ce3ad2"
+    },
+    {
+      "name": "GET_RECALL returns the created recall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GET_RECALL echoes correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GET_RECALL unknown id -> Recall not found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "error response keeps correlation_id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "unknown operation -> Unknown operation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "invalid CREATE_RECALL data is rejected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "flow log has CREATE_RECALL HTTP-IN -> SEND -> RECEIVE -> PROCESS -> REPLY -> RESPONSE -> HTTP-OUT in order",
+      "passed": true,
+      "detail": "HTTP-IN -> SEND -> RECEIVE -> PROCESS -> REPLY -> RESPONSE -> HTTP-OUT"
+    },
+    {
+      "name": "flow log has GET_RECALL HTTP-IN -> SEND -> RECEIVE -> PROCESS -> REPLY -> RESPONSE -> HTTP-OUT in order",
+      "passed": true,
+      "detail": "HTTP-IN -> SEND -> RECEIVE -> PROCESS -> REPLY -> RESPONSE -> HTTP-OUT"
+    }
+  ]
+}

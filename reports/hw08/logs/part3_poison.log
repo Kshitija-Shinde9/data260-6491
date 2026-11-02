@@ -1,0 +1,10 @@
+2026-11-02T04:34:23.168043Z | WRITER | READY    | listening on s6491_tasks[0], s6491_tasks[1]
+2026-11-02T04:34:25.681725Z | WRITER | RECEIVE  | corr=poison-266491 <- s6491_tasks[0]@5
+2026-11-02T04:34:25.682380Z | WRITER | RETRY    | corr=poison-266491 attempt=1/3 poison message
+2026-11-02T04:34:25.682569Z | WRITER | RETRY    | corr=poison-266491 attempt=2/3 poison message
+2026-11-02T04:34:25.682706Z | WRITER | RETRY    | corr=poison-266491 attempt=3/3 poison message
+2026-11-02T04:34:25.684082Z | WRITER | DEAD     | corr=poison-266491 -> s6491_dead_letter attempts=3
+2026-11-02T04:34:25.684864Z | WRITER | COMMIT   | corr=poison-266491 dead letter committed
+2026-11-02T04:34:26.187103Z | WRITER | RECEIVE  | corr=good-266491 <- s6491_tasks[0]@6
+2026-11-02T04:34:26.189712Z | WRITER | SEND     | corr=good-266491 -> s6491_drafts partition=0
+2026-11-02T04:34:26.191316Z | WRITER | COMMIT   | corr=good-266491 committed after success

@@ -15,6 +15,7 @@ from routers.auth import router as auth_router
 from routers.bench import router as bench_router
 from routers.chat import router as chat_router
 from routers.jwt_auth import router as jwt_auth_router
+from routers.kafka_recalls import router as kafka_recalls_router
 from routers.notices import router as notices_router
 from routers.recalls import router as recalls_router
 from routers.suppliers import router as suppliers_router
@@ -74,6 +75,7 @@ app.include_router(recalls_router)
 app.include_router(bench_router)
 app.include_router(notices_router)
 app.include_router(chat_router)
+app.include_router(kafka_recalls_router)
 
 # This lets the browser load my html, css and js files.
 app.mount("/static", StaticFiles(directory="static"), name="static")

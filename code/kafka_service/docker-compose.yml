@@ -1,0 +1,76 @@
+# HW8 Part 1 - Kafka broker, recall worker, and FastAPI wrapper for s6491.
+#   docker compose -f code/kafka_service/docker-compose.yml up -d --build
+#   docker compose -f code/kafka_service/docker-compose.yml run --rm demo
+name: s6491-hw08
+
+x-recall-app: &recall-app
+  build:
+    context: ../..
+    dockerfile: code/kafka_service/Dockerfile
+  image: s6491-hw08-recall:latest
+  environment:
+    KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    FLOW_LOG_PATH: /app/reports/hw08/logs/message_flow.log
+  volumes:
+    - ../../reports/hw08/logs:/app/reports/hw08/logs
+  depends_on:
+    kafka:
+      condition: service_healthy
+
+services:
+  kafka:
+    image: apache/kafka:3.9.0
+    hostname: kafka
+    container_name: s6491_kafka
+    ports:
+      - "9094:9094"
+    environment:
+      CLUSTER_ID: "4L6g3nShT-eMCtK--X86sw"
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093,EXTERNAL://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_SHARE_COORDINATOR_STATE_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_SHARE_COORDINATOR_STATE_TOPIC_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 10s
+      retries: 24
+      start_period: 15s
+
+  worker:
+    <<: *recall-app
+    container_name: s6491_worker
+    command: ["python", "-m", "kafka_service.worker"]
+    restart: unless-stopped
+
+  api:
+    <<: *recall-app
+    container_name: s6491_api
+    command: ["python", "code/web_application/kafka_api.py"]
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      FLOW_LOG_PATH: /app/reports/hw08/logs/message_flow.log
+      BIND_HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:8191:8191"
+    restart: unless-stopped
+
+  demo:
+    <<: *recall-app
+    profiles: ["demo"]
+    command: ["python", "code/kafka_service/homework_demo.py"]
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      FLOW_LOG_PATH: /app/reports/hw08/logs/message_flow.log
+      API_URL: http://api:8191

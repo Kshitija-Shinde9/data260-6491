@@ -1,0 +1,5 @@
+# HW8 Part 1 - Kafka worker, client, and FastAPI wrapper (same pins as code/web_application)
+confluent-kafka==2.12.1
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.5

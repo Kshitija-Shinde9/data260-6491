@@ -51,7 +51,13 @@ def build_producer(bootstrap: str = KAFKA_BOOTSTRAP_SERVERS) -> Producer:
     )
 
 
-def send_json(producer: Producer, topic: str, key: str, payload: dict) -> dict:
+def send_json(
+    producer: Producer,
+    topic: str,
+    key: str | None,
+    payload: dict,
+    partition: int | None = None,
+) -> dict:
     """Produce one JSON message, wait for the broker ack, and return its partition/offset."""
     delivery: dict = {}
 
@@ -62,12 +68,16 @@ def send_json(producer: Producer, topic: str, key: str, payload: dict) -> dict:
             delivery["partition"] = message.partition()
             delivery["offset"] = message.offset()
 
-    producer.produce(
-        topic,
-        key=key.encode() if key else None,
-        value=json.dumps(payload).encode("utf-8"),
-        on_delivery=on_delivery,
-    )
+    produce_args = {
+        "topic": topic,
+        "value": json.dumps(payload).encode("utf-8"),
+        "on_delivery": on_delivery,
+    }
+    if key:
+        produce_args["key"] = key.encode()
+    if partition is not None:
+        produce_args["partition"] = int(partition)
+    producer.produce(**produce_args)
     producer.flush(10)
     if "error" in delivery:
         raise RuntimeError(f"delivery to {topic} failed: {delivery['error']}")

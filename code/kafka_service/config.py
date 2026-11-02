@@ -21,6 +21,10 @@ PART2_TOPICS = (
     (DRAFTS_TOPIC, 1),
     (FINAL_TOPIC, 1),
 )
+DEAD_LETTER_TOPIC = f"{PREFIX}_dead_letter"
+MAX_ATTEMPTS = int(os.getenv("MAX_ATTEMPTS", "3"))
+VERIFY_SEED = 266491
+CRASH_TOPIC = f"{PREFIX}_part3_crash"
 
 KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9094")
 WORKER_GROUP_ID = os.getenv("WORKER_GROUP_ID", f"{PREFIX}_{ENTITY}_worker")

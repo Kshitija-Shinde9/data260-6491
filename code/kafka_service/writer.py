@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -22,6 +23,10 @@ def write_draft(question: str, plan: list) -> str:
 
 
 def handle(message: dict) -> dict:
+    from kafka_service.failure import PoisonMessage
+
+    if message.get("poison"):
+        raise PoisonMessage("poison message")
     question = str(message.get("question", "")).strip()
     plan = message.get("plan") or []
     if not isinstance(plan, list):
@@ -38,7 +43,10 @@ def main() -> None:
     from kafka_service.config import DRAFTS_TOPIC, TASKS_TOPIC
     from kafka_service.pipeline import serve
 
-    serve("WRITER", TASKS_TOPIC, DRAFTS_TOPIC, "s6491_writer", handle)
+    source = os.getenv("WRITER_SOURCE", TASKS_TOPIC)
+    target = os.getenv("WRITER_TARGET", DRAFTS_TOPIC)
+    group_id = os.getenv("WRITER_GROUP", "s6491_writer")
+    serve("WRITER", source, target, group_id, handle)
 
 
 if __name__ == "__main__":

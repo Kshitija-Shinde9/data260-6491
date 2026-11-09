@@ -1,0 +1,642 @@
+[
+  {
+    "variant": "Baseline",
+    "summary": {
+      "correct": 1,
+      "incorrect": 5,
+      "avg_attempts": 1.0,
+      "avg_latency_ms": 2741.3
+    },
+    "rows": [
+      {
+        "id": "test_01",
+        "question": "What is the recall type for the frozen blueberry bag from Trader Joe's?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2772.0,
+        "answer": "I do not have a matching grocery recall record for that question.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: Packaging / Seal Failure.",
+            "feedback": "Include the missing fact from the reference dataset: Packaging / Seal Failure.",
+            "pattern": "omits_recall_type",
+            "latency_ms": 2772.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_02",
+        "question": "What recall type applies to Safeway's rotisserie chicken?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2292.0,
+        "answer": "I do not have a matching grocery recall record for that question.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: Spoiled or Quality Issue.",
+            "feedback": "Include the missing fact from the reference dataset: Spoiled or Quality Issue.",
+            "pattern": "omits_recall_type",
+            "latency_ms": 2292.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_03",
+        "question": "Why was the Kirkland Signature trail mix recalled?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2560.0,
+        "answer": "The Kirkland Signature trail mix was recalled due to potential contamination with foreign objects.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The Kirkland Signature trail mix was recalled due to potential contamination with foreign objects.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: Undeclared Allergen.",
+            "feedback": "Include the missing fact from the reference dataset: Undeclared Allergen.",
+            "pattern": "omits_recall_type",
+            "latency_ms": 2560.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_04",
+        "question": "How many units were affected in the Trader Joe's blueberry recall?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2751.0,
+        "answer": "I do not have a matching grocery recall record for that question.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: 120.",
+            "feedback": "Include the missing fact from the reference dataset: 120.",
+            "pattern": "omits_units",
+            "latency_ms": 2751.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_05",
+        "question": "Which undeclared allergen is listed for the Kirkland trail mix recall?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2377.0,
+        "answer": "I do not have a matching grocery recall record for that question.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: peanuts.",
+            "feedback": "Include the missing fact from the reference dataset: peanuts.",
+            "pattern": "omits_allergen",
+            "latency_ms": 2377.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_06",
+        "question": "How do I reset my Netflix password?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3696.0,
+        "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help.",
+            "verdict": "PASS",
+            "explanation": "The question is not about a recall in the reference dataset.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3696.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      }
+    ]
+  },
+  {
+    "variant": "Evaluator Repair",
+    "summary": {
+      "correct": 6,
+      "incorrect": 0,
+      "avg_attempts": 1.83,
+      "avg_latency_ms": 6931.5
+    },
+    "rows": [
+      {
+        "id": "test_01",
+        "question": "What is the recall type for the frozen blueberry bag from Trader Joe's?",
+        "correct": true,
+        "attempts": 2,
+        "latency_ms": 8539.0,
+        "answer": "The recall type is Packaging / Seal Failure. The frozen blueberry bag from Trader Joe's was recalled due to a potential seal failure, which could lead to product contamination.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: Packaging / Seal Failure.",
+            "feedback": "Include the missing fact from the reference dataset: Packaging / Seal Failure.",
+            "pattern": "omits_recall_type",
+            "latency_ms": 2634.0,
+            "lessons": []
+          },
+          {
+            "attempt": 2,
+            "answer": "The recall type is Packaging / Seal Failure. The frozen blueberry bag from Trader Joe's was recalled due to a potential seal failure, which could lead to product contamination.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 5905.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_02",
+        "question": "What recall type applies to Safeway's rotisserie chicken?",
+        "correct": true,
+        "attempts": 2,
+        "latency_ms": 8005.0,
+        "answer": "The recall type for Safeway's rotisserie chicken is a Quality Issue. This is based on the fact that the product was found to be spoiled. Spoiled or Quality Issue",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: Spoiled or Quality Issue.",
+            "feedback": "Include the missing fact from the reference dataset: Spoiled or Quality Issue.",
+            "pattern": "omits_recall_type",
+            "latency_ms": 2560.0,
+            "lessons": []
+          },
+          {
+            "attempt": 2,
+            "answer": "The recall type for Safeway's rotisserie chicken is a Quality Issue. This is based on the fact that the product was found to be spoiled. Spoiled or Quality Issue",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 5445.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_03",
+        "question": "Why was the Kirkland Signature trail mix recalled?",
+        "correct": true,
+        "attempts": 2,
+        "latency_ms": 9102.0,
+        "answer": "The Kirkland Signature trail mix was recalled due to an undeclared allergen. The missing fact from the reference dataset is that the undeclared allergen was peanuts.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The Kirkland Signature trail mix was recalled due to potential contamination with foreign objects.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: Undeclared Allergen.",
+            "feedback": "Include the missing fact from the reference dataset: Undeclared Allergen.",
+            "pattern": "omits_recall_type",
+            "latency_ms": 3099.0,
+            "lessons": []
+          },
+          {
+            "attempt": 2,
+            "answer": "The Kirkland Signature trail mix was recalled due to an undeclared allergen. The missing fact from the reference dataset is that the undeclared allergen was peanuts.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 6003.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_04",
+        "question": "How many units were affected in the Trader Joe's blueberry recall?",
+        "correct": true,
+        "attempts": 2,
+        "latency_ms": 5357.0,
+        "answer": "The recall affected 120 units of Trader Joe's blueberry products.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: 120.",
+            "feedback": "Include the missing fact from the reference dataset: 120.",
+            "pattern": "omits_units",
+            "latency_ms": 3070.0,
+            "lessons": []
+          },
+          {
+            "attempt": 2,
+            "answer": "The recall affected 120 units of Trader Joe's blueberry products.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 2287.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_05",
+        "question": "Which undeclared allergen is listed for the Kirkland trail mix recall?",
+        "correct": true,
+        "attempts": 2,
+        "latency_ms": 6671.0,
+        "answer": "The undeclared allergen listed for the Kirkland trail mix recall is peanuts.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: peanuts.",
+            "feedback": "Include the missing fact from the reference dataset: peanuts.",
+            "pattern": "omits_allergen",
+            "latency_ms": 3443.0,
+            "lessons": []
+          },
+          {
+            "attempt": 2,
+            "answer": "The undeclared allergen listed for the Kirkland trail mix recall is peanuts.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3228.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_06",
+        "question": "How do I reset my Netflix password?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3915.0,
+        "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help.",
+            "verdict": "PASS",
+            "explanation": "The question is not about a recall in the reference dataset.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3915.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      }
+    ]
+  },
+  {
+    "variant": "Lesson Memory",
+    "summary": {
+      "correct": 2,
+      "incorrect": 4,
+      "avg_attempts": 1.0,
+      "avg_latency_ms": 4656.3
+    },
+    "rows": [
+      {
+        "id": "test_01",
+        "question": "What is the recall type for the frozen blueberry bag from Trader Joe's?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3733.0,
+        "answer": "The recall type for the frozen blueberry bag from Trader Joe's is Packaging / Seal Failure. 120 affected units",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The recall type for the frozen blueberry bag from Trader Joe's is Packaging / Seal Failure. 120 affected units",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3733.0,
+            "lessons": [
+              "lesson_001",
+              "lesson_002"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_001",
+          "lesson_002"
+        ]
+      },
+      {
+        "id": "test_02",
+        "question": "What recall type applies to Safeway's rotisserie chicken?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 6953.0,
+        "answer": "The recall type for Safeway's rotisserie chicken is Spoiled or Quality Issue. This recall involves 120 affected units and is classified as a Packaging / Seal Failure.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The recall type for Safeway's rotisserie chicken is Spoiled or Quality Issue. This recall involves 120 affected units and is classified as a Packaging / Seal Failure.",
+            "verdict": "REVISE",
+            "explanation": "The answer brings in another product's recall type: Packaging / Seal Failure.",
+            "feedback": "The answer adds a recall fact the question did not ask for. Remove it, and do not name a product that was not asked about.",
+            "pattern": "unsupported",
+            "latency_ms": 6953.0,
+            "lessons": [
+              "lesson_001",
+              "lesson_002"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_001",
+          "lesson_002"
+        ]
+      },
+      {
+        "id": "test_03",
+        "question": "Why was the Kirkland Signature trail mix recalled?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 6361.0,
+        "answer": "The Kirkland Signature Trail Mix was recalled due to an undeclared allergen, peanuts. This recall type is Packaging / Seal Failure, and 120 units were affected. 120 affected units",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The Kirkland Signature Trail Mix was recalled due to an undeclared allergen, peanuts. This recall type is Packaging / Seal Failure, and 120 units were affected. 120 affected units",
+            "verdict": "REVISE",
+            "explanation": "The answer brings in another product's recall type: Packaging / Seal Failure.",
+            "feedback": "The answer adds a recall fact the question did not ask for. Remove it, and do not name a product that was not asked about.",
+            "pattern": "unsupported",
+            "latency_ms": 6361.0,
+            "lessons": [
+              "lesson_001",
+              "lesson_002"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_001",
+          "lesson_002"
+        ]
+      },
+      {
+        "id": "test_04",
+        "question": "How many units were affected in the Trader Joe's blueberry recall?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 2957.0,
+        "answer": "The recall affected 120 units. The recall type is Packaging / Seal Failure. 120 affected units",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The recall affected 120 units. The recall type is Packaging / Seal Failure. 120 affected units",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 2957.0,
+            "lessons": [
+              "lesson_002"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_002"
+        ]
+      },
+      {
+        "id": "test_05",
+        "question": "Which undeclared allergen is listed for the Kirkland trail mix recall?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 4426.0,
+        "answer": "The recall lists tree nuts as the undeclared allergen. This recall is a Packaging / Seal Failure type with 120 affected units.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The recall lists tree nuts as the undeclared allergen. This recall is a Packaging / Seal Failure type with 120 affected units.",
+            "verdict": "REVISE",
+            "explanation": "The answer brings in another product's recall type: Packaging / Seal Failure.",
+            "feedback": "The answer adds a recall fact the question did not ask for. Remove it, and do not name a product that was not asked about.",
+            "pattern": "unsupported",
+            "latency_ms": 4426.0,
+            "lessons": [
+              "lesson_002"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_002"
+        ]
+      },
+      {
+        "id": "test_06",
+        "question": "How do I reset my Netflix password?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 3508.0,
+        "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help. Packaging / Seal Failure 120 affected units",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help. Packaging / Seal Failure 120 affected units",
+            "verdict": "REVISE",
+            "explanation": "The answer brings in another product's recall type: Packaging / Seal Failure.",
+            "feedback": "The answer adds a recall fact the question did not ask for. Remove it, and do not name a product that was not asked about.",
+            "pattern": "unsupported",
+            "latency_ms": 3508.0,
+            "lessons": [
+              "lesson_002"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_002"
+        ]
+      }
+    ]
+  },
+  {
+    "variant": "Validated Improvement",
+    "summary": {
+      "correct": 4,
+      "incorrect": 2,
+      "avg_attempts": 1.0,
+      "avg_latency_ms": 3304.5
+    },
+    "rows": [
+      {
+        "id": "test_01",
+        "question": "What is the recall type for the frozen blueberry bag from Trader Joe's?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3748.0,
+        "answer": "The recall type for the frozen blueberry bag from Trader Joe's is Packaging / Seal Failure.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The recall type for the frozen blueberry bag from Trader Joe's is Packaging / Seal Failure.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3748.0,
+            "lessons": [
+              "lesson_001"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_001"
+        ]
+      },
+      {
+        "id": "test_02",
+        "question": "What recall type applies to Safeway's rotisserie chicken?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3911.0,
+        "answer": "The recall type for Safeway's rotisserie chicken is Spoiled or Quality Issue.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The recall type for Safeway's rotisserie chicken is Spoiled or Quality Issue.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3911.0,
+            "lessons": [
+              "lesson_001"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_001"
+        ]
+      },
+      {
+        "id": "test_03",
+        "question": "Why was the Kirkland Signature trail mix recalled?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3860.0,
+        "answer": "The Kirkland Signature Trail Mix was recalled due to an undeclared allergen, peanuts.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "The Kirkland Signature Trail Mix was recalled due to an undeclared allergen, peanuts.",
+            "verdict": "PASS",
+            "explanation": "The answer includes the reference fact this question asks for.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3860.0,
+            "lessons": [
+              "lesson_001"
+            ]
+          }
+        ],
+        "lessons": [
+          "lesson_001"
+        ]
+      },
+      {
+        "id": "test_04",
+        "question": "How many units were affected in the Trader Joe's blueberry recall?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2431.0,
+        "answer": "I do not have a matching grocery recall record for that question.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: 120.",
+            "feedback": "Include the missing fact from the reference dataset: 120.",
+            "pattern": "omits_units",
+            "latency_ms": 2431.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_05",
+        "question": "Which undeclared allergen is listed for the Kirkland trail mix recall?",
+        "correct": false,
+        "attempts": 1,
+        "latency_ms": 2434.0,
+        "answer": "I do not have a matching grocery recall record for that question.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I do not have a matching grocery recall record for that question.",
+            "verdict": "REVISE",
+            "explanation": "The answer does not state the reference fact: peanuts.",
+            "feedback": "Include the missing fact from the reference dataset: peanuts.",
+            "pattern": "omits_allergen",
+            "latency_ms": 2434.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      },
+      {
+        "id": "test_06",
+        "question": "How do I reset my Netflix password?",
+        "correct": true,
+        "attempts": 1,
+        "latency_ms": 3443.0,
+        "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help.",
+        "history": [
+          {
+            "attempt": 1,
+            "answer": "I can't assist with resetting your Netflix password. Please visit the Netflix website or contact their customer support for help.",
+            "verdict": "PASS",
+            "explanation": "The question is not about a recall in the reference dataset.",
+            "feedback": "",
+            "pattern": null,
+            "latency_ms": 3443.0,
+            "lessons": []
+          }
+        ],
+        "lessons": []
+      }
+    ]
+  }
+]

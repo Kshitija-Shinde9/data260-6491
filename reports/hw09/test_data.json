@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "id": "test_01",
+      "question": "What is the recall type for the frozen blueberry bag from Trader Joe's?"
+    },
+    {
+      "id": "test_02",
+      "question": "What recall type applies to Safeway's rotisserie chicken?"
+    },
+    {
+      "id": "test_03",
+      "question": "Why was the Kirkland Signature trail mix recalled?"
+    },
+    {
+      "id": "test_04",
+      "question": "How many units were affected in the Trader Joe's blueberry recall?"
+    },
+    {
+      "id": "test_05",
+      "question": "Which undeclared allergen is listed for the Kirkland trail mix recall?"
+    },
+    {
+      "id": "test_06",
+      "question": "How do I reset my Netflix password?"
+    }
+  ]
+}

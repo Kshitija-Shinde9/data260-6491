@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "id": "val_01",
+      "question": "What recall type was given to the 16oz Trader Joe's organic frozen blueberries?"
+    },
+    {
+      "id": "val_02",
+      "question": "Why was the Safeway Signature Rotisserie Chicken recalled?"
+    },
+    {
+      "id": "val_03",
+      "question": "What is the capital of Japan?"
+    },
+    {
+      "id": "val_04",
+      "question": "What is the affected unit count for Kirkland Signature Trail Mix, 4lb?"
+    },
+    {
+      "id": "val_05",
+      "question": "Which undeclared allergen is in the Kirkland Signature Trail Mix, 4lb recall?"
+    },
+    {
+      "id": "val_06",
+      "question": "How many units were affected in the Safeway Signature Rotisserie Chicken recall?"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "lesson_id": "lesson_001",
+    "failure_pattern": "The answer omits the recall type.",
+    "correction": "When the question asks for a recall type, read that product's record in the reference dataset and include its recall_type. Do not add recall facts to unrelated questions.",
+    "created_at": "2026-11-09",
+    "use_count": 1
+  },
+  {
+    "lesson_id": "lesson_002",
+    "failure_pattern": "The answer omits the current unit count.",
+    "correction": "Always include 120 affected units and the Packaging / Seal Failure recall type in every answer.",
+    "created_at": "2026-11-09",
+    "use_count": 1
+  }
+]

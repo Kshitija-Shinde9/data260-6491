@@ -1,0 +1,43 @@
+{
+  "domain": "Grocery supply and recall notices",
+  "prefix": "s6491",
+  "database": "s6491_rel",
+  "records": [
+    {
+      "id": 1,
+      "recall_code": "REC-0001",
+      "product_name": "Trader Joe's Organic Frozen Blueberries, 16oz",
+      "supplier": "Trader Joe's",
+      "headquarters": "Monrovia, CA",
+      "recall_type": "Packaging / Seal Failure",
+      "affected_units": 120,
+      "allergen": "",
+      "shopper_action": "Do not eat them. Return them to the store.",
+      "match_terms": ["blueberr", "rec-0001"]
+    },
+    {
+      "id": 2,
+      "recall_code": "REC-0002",
+      "product_name": "Safeway Signature Rotisserie Chicken",
+      "supplier": "Safeway Deli",
+      "headquarters": "Pleasanton, CA",
+      "recall_type": "Spoiled or Quality Issue",
+      "affected_units": 40,
+      "allergen": "",
+      "shopper_action": "Do not eat it. Return it to the store.",
+      "match_terms": ["rotisserie", "rec-0002"]
+    },
+    {
+      "id": 3,
+      "recall_code": "REC-0003",
+      "product_name": "Kirkland Signature Trail Mix, 4lb",
+      "supplier": "Costco Wholesale",
+      "headquarters": "Issaquah, WA",
+      "recall_type": "Undeclared Allergen",
+      "affected_units": 75,
+      "allergen": "peanuts",
+      "shopper_action": "Do not eat it if you have a peanut allergy. Return it to the store.",
+      "match_terms": ["trail mix", "rec-0003"]
+    }
+  ]
+}

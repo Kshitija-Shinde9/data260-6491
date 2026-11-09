@@ -1,0 +1,83 @@
+{
+  "thresholds": [
+    {
+      "threshold": 0.75,
+      "hit_rate": 75.0,
+      "false_hit_rate": 50.0,
+      "mean_latency_ms": 418.6,
+      "correct_hits": 20,
+      "false_hits": 10,
+      "misses": 10,
+      "total_cost": 484.0
+    },
+    {
+      "threshold": 0.8,
+      "hit_rate": 70.0,
+      "false_hit_rate": 40.0,
+      "mean_latency_ms": 456.0,
+      "correct_hits": 20,
+      "false_hits": 8,
+      "misses": 12,
+      "total_cost": 420.0
+    },
+    {
+      "threshold": 0.85,
+      "hit_rate": 62.5,
+      "false_hit_rate": 25.0,
+      "mean_latency_ms": 568.9,
+      "correct_hits": 20,
+      "false_hits": 5,
+      "misses": 15,
+      "total_cost": 324.0
+    },
+    {
+      "threshold": 0.9,
+      "hit_rate": 57.5,
+      "false_hit_rate": 15.0,
+      "mean_latency_ms": 638.6,
+      "correct_hits": 20,
+      "false_hits": 3,
+      "misses": 17,
+      "total_cost": 260.0
+    },
+    {
+      "threshold": 0.95,
+      "hit_rate": 47.5,
+      "false_hit_rate": 0.0,
+      "mean_latency_ms": 836.9,
+      "correct_hits": 19,
+      "false_hits": 0,
+      "misses": 21,
+      "total_cost": 171.8
+    }
+  ],
+  "ship_threshold": 0.95,
+  "false_hit": {
+    "id": "near_01",
+    "group": "superficial",
+    "expect": "miss",
+    "threshold": 0.85,
+    "hit": true,
+    "false_hit": true,
+    "similarity": 0.9292,
+    "latency_ms": 6.8,
+    "query": "What is the recall type for Trader Joe's Organic Frozen Strawberries, 16oz?",
+    "cached_query": "What is the recall type for Trader Joe's Organic Frozen Blueberries, 16oz?",
+    "cached_answer": "The recall type for Trader Joe's Organic Frozen Blueberries, 16oz is Packaging / Seal Failure. Do not eat the product and take it back to the store.",
+    "correct_answer": "No recall on file for Trader Joe's Organic Frozen Strawberries, 16oz."
+  },
+  "stale": {
+    "question": "How many units were affected in the Trader Joe's Organic Frozen Blueberries, 16oz recall?",
+    "recall_code": "REC-0001",
+    "first_answer": "The Trader Joe's Organic Frozen Blueberries, 16oz recall affected 120 units. Do not eat the product and take it back to the store. The current affected_units value is 120.",
+    "stale_answer": "The Trader Joe's Organic Frozen Blueberries, 16oz recall affected 120 units. Do not eat the product and take it back to the store. The current affected_units value is 120.",
+    "fresh_answer": "The Trader Joe's Organic Frozen Blueberries, 16oz recall affected 300 units. Do not eat the product and take it back to the store. The current affected_units value is 300.",
+    "updated_units": 300,
+    "updated_version": "300@2026-11-09T20:56:56"
+  },
+  "costs": {
+    "hit": 0.2,
+    "miss": 8.0,
+    "false_hit": 40.0
+  }
+}

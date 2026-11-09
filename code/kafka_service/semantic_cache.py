@@ -153,3 +153,17 @@ class SemanticCache:
             "recall_code": _text(doc.recall_code),
             "similarity": similarity,
         }
+
+    def delete(self, key: str) -> None:
+        if key:
+            self.redis.delete(key)
+
+    def entry(self, query: str) -> dict:
+        raw = self.redis.hgetall(self.key_for(query))
+        visible = {}
+        for key, value in raw.items():
+            name = _text(key)
+            if name == "embedding":
+                continue
+            visible[name] = _text(value)
+        return visible

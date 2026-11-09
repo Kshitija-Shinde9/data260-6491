@@ -1,6 +1,7 @@
 import re
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 _CODE = Path(__file__).resolve().parents[1]
@@ -124,6 +125,10 @@ def run_hw8_path(question: str, records: list[dict]) -> dict:
             "  ollama pull qwen3:8b\n"
             f"{exc}"
         ) from exc
+    if matched and ("how many" in question.lower() or "unit" in question.lower()):
+        sentence = f"The current affected_units value is {matched['affected_units']}."
+        if sentence not in draft:
+            draft = draft.rstrip() + " " + sentence
     if matched and "do not eat" not in draft.lower():
         draft = draft.rstrip() + " Do not eat it."
     status, answer = review_draft(draft)
@@ -137,15 +142,45 @@ def run_hw8_path(question: str, records: list[dict]) -> dict:
     }
 
 
+def _version_for(records: list[dict], recall_code: str) -> str | None:
+    for row in records:
+        if row["recall_code"] == recall_code:
+            return row["data_version"]
+    return None
+
+
+def set_affected_units(recall_code: str, units: int) -> dict:
+    """Change one s6491_rel row. The data_version includes the unit count and the timestamp."""
+    db = SessionLocal()
+    try:
+        row = db.query(Recall).filter(Recall.recall_code == recall_code).one()
+        row.affected_units = units
+        row.updated_at = datetime.utcnow()
+        db.commit()
+        db.refresh(row)
+        stamp = row.updated_at.isoformat(timespec="seconds") if row.updated_at else "none"
+        return {
+            "recall_code": row.recall_code,
+            "affected_units": row.affected_units,
+            "data_version": f"{row.affected_units}@{stamp}",
+        }
+    finally:
+        db.close()
+
+
 def answer_question(
     question: str,
     cache: SemanticCache,
     records: list[dict] | None = None,
     threshold: float = QA_THRESHOLD,
+    *,
+    validate_version: bool = True,
+    store_miss: bool = True,
 ) -> dict:
     """Ingress in front of the HW8 path.
 
     A hit returns the stored answer and does not call the planner or the model.
+    A data_version mismatch deletes that hit and runs the HW8 path again.
     A miss runs the HW8 path and stores the query, embedding, answer, and data_version.
     """
     records = load_records() if records is None else records
@@ -154,31 +189,47 @@ def answer_question(
     best = 0.0 if found is None else found["similarity"]
 
     if found is not None and found["similarity"] >= threshold:
-        latency_ms = (time.perf_counter() - started) * 1000
-        print(
-            f"cache hit similarity={found['similarity']:.4f} "
-            f"is_cached=true latency_ms={latency_ms:.1f}",
-            flush=True,
+        cached_version = found["data_version"]
+        current_version = (
+            _version_for(records, found["recall_code"]) if found["recall_code"] else None
         )
-        return {
-            "answer": found["answer"],
-            "is_cached": True,
-            "similarity": found["similarity"],
-            "latency_ms": latency_ms,
-            "data_version": found["data_version"],
-            "recall_code": found["recall_code"],
-            "plan": [],
-            "review": "",
-            "model": "",
-        }
+        stale = bool(found["recall_code"]) and cached_version != current_version
+        if validate_version and stale:
+            cache.delete(found["key"])
+            print(
+                f"invalidated {found['recall_code']} "
+                f"cached data_version={cached_version} current data_version={current_version}",
+                flush=True,
+            )
+            found = None
+        else:
+            latency_ms = (time.perf_counter() - started) * 1000
+            print(
+                f"cache hit similarity={found['similarity']:.4f} "
+                f"is_cached=true latency_ms={latency_ms:.1f}",
+                flush=True,
+            )
+            return {
+                "answer": found["answer"],
+                "is_cached": True,
+                "similarity": found["similarity"],
+                "latency_ms": latency_ms,
+                "data_version": found["data_version"],
+                "recall_code": found["recall_code"],
+                "stale": stale,
+                "plan": [],
+                "review": "",
+                "model": "",
+            }
 
     generated = run_hw8_path(question, records)
-    cache.store(
-        question,
-        generated["answer"],
-        generated["data_version"],
-        generated["recall_code"],
-    )
+    if store_miss:
+        cache.store(
+            question,
+            generated["answer"],
+            generated["data_version"],
+            generated["recall_code"],
+        )
     latency_ms = (time.perf_counter() - started) * 1000
     print(
         f"HW8 path: planner -> {generated['model']} via src/model_client.py -> reviewer",
@@ -186,11 +237,12 @@ def answer_question(
     )
     print("plan: " + " | ".join(generated["plan"]), flush=True)
     print(f"review: {generated['review']}", flush=True)
-    print(
-        f"stored data_version={generated['data_version']} "
-        f"recall_code={generated['recall_code'] or '-'}",
-        flush=True,
-    )
+    if store_miss:
+        print(
+            f"stored data_version={generated['data_version']} "
+            f"recall_code={generated['recall_code'] or '-'}",
+            flush=True,
+        )
     print(
         f"cache miss similarity={best:.4f} is_cached=false latency_ms={latency_ms:.1f}",
         flush=True,

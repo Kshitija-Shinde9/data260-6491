@@ -1,0 +1,277 @@
+
+seeds:
+  - id: seed_01
+    recall_code: REC-0001
+    query: "What is the recall type for Trader Joe's Organic Frozen Blueberries, 16oz?"
+  - id: seed_02
+    recall_code: REC-0001
+    query: "How many units were affected in the Trader Joe's Organic Frozen Blueberries, 16oz recall?"
+  - id: seed_03
+    recall_code: REC-0001
+    query: "What should a shopper do with the Trader Joe's Organic Frozen Blueberries, 16oz that have a torn seal?"
+  - id: seed_04
+    recall_code: REC-0002
+    query: "What is the recall type for the Safeway Signature Rotisserie Chicken?"
+  - id: seed_05
+    recall_code: REC-0002
+    query: "How many units were affected in the Safeway Signature Rotisserie Chicken recall?"
+  - id: seed_06
+    recall_code: REC-0002
+    query: "Where is the headquarters of the supplier for the Safeway Signature Rotisserie Chicken recall?"
+  - id: seed_07
+    recall_code: REC-0003
+    query: "What is the recall type for Kirkland Signature Trail Mix, 4lb?"
+  - id: seed_08
+    recall_code: REC-0003
+    query: "How many units were affected in the Kirkland Signature Trail Mix, 4lb recall?"
+  - id: seed_09
+    recall_code: REC-0003
+    query: "Which undeclared allergen is in the Kirkland Signature Trail Mix, 4lb recall?"
+  - id: seed_10
+    recall_code: REC-0003
+    query: "Where is the headquarters of the supplier for the Kirkland Signature Trail Mix, 4lb recall?"
+
+cases:
+  - id: dup_01
+    group: exact_duplicate
+    expect: hit
+    pair: seed_01
+    query: "What is the recall type for Trader Joe's Organic Frozen Blueberries, 16oz?"
+    correct_answer: "Packaging / Seal Failure"
+  - id: dup_02
+    group: exact_duplicate
+    expect: hit
+    pair: seed_02
+    query: "How many units were affected in the Trader Joe's Organic Frozen Blueberries, 16oz recall?"
+    correct_answer: "120"
+  - id: dup_03
+    group: exact_duplicate
+    expect: hit
+    pair: seed_03
+    query: "What should a shopper do with the Trader Joe's Organic Frozen Blueberries, 16oz that have a torn seal?"
+    correct_answer: "Do not eat them. Return them to the store."
+  - id: dup_04
+    group: exact_duplicate
+    expect: hit
+    pair: seed_04
+    query: "What is the recall type for the Safeway Signature Rotisserie Chicken?"
+    correct_answer: "Spoiled or Quality Issue"
+  - id: dup_05
+    group: exact_duplicate
+    expect: hit
+    pair: seed_05
+    query: "How many units were affected in the Safeway Signature Rotisserie Chicken recall?"
+    correct_answer: "40"
+  - id: dup_06
+    group: exact_duplicate
+    expect: hit
+    pair: seed_06
+    query: "Where is the headquarters of the supplier for the Safeway Signature Rotisserie Chicken recall?"
+    correct_answer: "Pleasanton, CA"
+  - id: dup_07
+    group: exact_duplicate
+    expect: hit
+    pair: seed_07
+    query: "What is the recall type for Kirkland Signature Trail Mix, 4lb?"
+    correct_answer: "Undeclared Allergen"
+  - id: dup_08
+    group: exact_duplicate
+    expect: hit
+    pair: seed_08
+    query: "How many units were affected in the Kirkland Signature Trail Mix, 4lb recall?"
+    correct_answer: "75"
+  - id: dup_09
+    group: exact_duplicate
+    expect: hit
+    pair: seed_09
+    query: "Which undeclared allergen is in the Kirkland Signature Trail Mix, 4lb recall?"
+    correct_answer: "peanuts"
+  - id: dup_10
+    group: exact_duplicate
+    expect: hit
+    pair: seed_10
+    query: "Where is the headquarters of the supplier for the Kirkland Signature Trail Mix, 4lb recall?"
+    correct_answer: "Issaquah, WA"
+
+  - id: para_01
+    group: paraphrase
+    expect: hit
+    pair: seed_01
+    query: "What recall type applies to Trader Joe's Organic Frozen Blueberries, 16oz?"
+    correct_answer: "Packaging / Seal Failure"
+  - id: para_02
+    group: paraphrase
+    expect: hit
+    pair: seed_02
+    query: "What is the affected unit count for the Trader Joe's Organic Frozen Blueberries, 16oz recall?"
+    correct_answer: "120"
+  - id: para_03
+    group: paraphrase
+    expect: hit
+    pair: seed_03
+    query: "What should the shopper do about the Trader Joe's Organic Frozen Blueberries, 16oz with a torn seal?"
+    correct_answer: "Do not eat them. Return them to the store."
+  - id: para_04
+    group: paraphrase
+    expect: hit
+    pair: seed_04
+    query: "What recall type applies to the Safeway Signature Rotisserie Chicken?"
+    correct_answer: "Spoiled or Quality Issue"
+  - id: para_05
+    group: paraphrase
+    expect: hit
+    pair: seed_05
+    query: "What is the affected unit count for the Safeway Signature Rotisserie Chicken recall?"
+    correct_answer: "40"
+  - id: para_06
+    group: paraphrase
+    expect: hit
+    pair: seed_06
+    query: "What is the headquarters city of the supplier behind the Safeway Signature Rotisserie Chicken recall?"
+    correct_answer: "Pleasanton, CA"
+  - id: para_07
+    group: paraphrase
+    expect: hit
+    pair: seed_07
+    query: "What recall type applies to Kirkland Signature Trail Mix, 4lb?"
+    correct_answer: "Undeclared Allergen"
+  - id: para_08
+    group: paraphrase
+    expect: hit
+    pair: seed_08
+    query: "What is the affected unit count for the Kirkland Signature Trail Mix, 4lb recall?"
+    correct_answer: "75"
+  - id: para_09
+    group: paraphrase
+    expect: hit
+    pair: seed_09
+    query: "What undeclared allergen does the Kirkland Signature Trail Mix, 4lb recall involve?"
+    correct_answer: "peanuts"
+  - id: para_10
+    group: paraphrase
+    expect: hit
+    pair: seed_10
+    query: "What is the headquarters city of the supplier behind the Kirkland Signature Trail Mix, 4lb recall?"
+    correct_answer: "Issaquah, WA"
+
+  - id: near_01
+    group: superficial
+    expect: miss
+    pair: seed_01
+    query: "What is the recall type for Trader Joe's Organic Frozen Strawberries, 16oz?"
+    correct_answer: "No recall on file for Trader Joe's Organic Frozen Strawberries, 16oz."
+  - id: near_02
+    group: superficial
+    expect: miss
+    pair: seed_02
+    query: "How many units were affected in the Trader Joe's Organic Frozen Strawberries, 16oz recall?"
+    correct_answer: "No recall on file for Trader Joe's Organic Frozen Strawberries, 16oz."
+  - id: near_03
+    group: superficial
+    expect: miss
+    pair: seed_03
+    query: "What should a shopper do with the Trader Joe's Organic Frozen Strawberries, 16oz that have a torn seal?"
+    correct_answer: "No recall on file for Trader Joe's Organic Frozen Strawberries, 16oz."
+  - id: near_04
+    group: superficial
+    expect: miss
+    pair: seed_04
+    query: "What is the recall type for the Safeway Signature Roasted Turkey?"
+    correct_answer: "No recall on file for Safeway Signature Roasted Turkey."
+  - id: near_05
+    group: superficial
+    expect: miss
+    pair: seed_05
+    query: "How many units were affected in the Safeway Signature Roasted Turkey recall?"
+    correct_answer: "No recall on file for Safeway Signature Roasted Turkey."
+  - id: near_06
+    group: superficial
+    expect: miss
+    pair: seed_06
+    query: "Where is the headquarters of the supplier for the Safeway Signature Roasted Turkey recall?"
+    correct_answer: "No recall on file for Safeway Signature Roasted Turkey."
+  - id: near_07
+    group: superficial
+    expect: miss
+    pair: seed_07
+    query: "What is the recall type for Kirkland Signature Cashews, 4lb?"
+    correct_answer: "No recall on file for Kirkland Signature Cashews, 4lb."
+  - id: near_08
+    group: superficial
+    expect: miss
+    pair: seed_08
+    query: "How many units were affected in the Kirkland Signature Cashews, 4lb recall?"
+    correct_answer: "No recall on file for Kirkland Signature Cashews, 4lb."
+  - id: near_09
+    group: superficial
+    expect: miss
+    pair: seed_09
+    query: "Which undeclared allergen is in the Kirkland Signature Cashews, 4lb recall?"
+    correct_answer: "No recall on file for Kirkland Signature Cashews, 4lb."
+  - id: near_10
+    group: superficial
+    expect: miss
+    pair: seed_10
+    query: "Where is the headquarters of the supplier for the Kirkland Signature Cashews, 4lb recall?"
+    correct_answer: "No recall on file for Kirkland Signature Cashews, 4lb."
+
+  - id: unrel_01
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "What is the capital of France?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_02
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "How do I reset my Netflix password?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_03
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "What temperature should a refrigerator be set to?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_04
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "Who won the 2022 World Cup?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_05
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "What is 15 percent of 80?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_06
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "How do I change a flat tire?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_07
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "What time zone is California in?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_08
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "Give me a chocolate cake recipe."
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_09
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "What is the homework deadline for a history class?"
+    correct_answer: "This is not a grocery recall question."
+  - id: unrel_10
+    group: unrelated
+    expect: miss
+    pair: ""
+    query: "How many planets are in the solar system?"
+    correct_answer: "This is not a grocery recall question."

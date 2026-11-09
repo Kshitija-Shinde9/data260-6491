@@ -1,0 +1,132 @@
+{
+  "homework": "HW9",
+  "homework_number": 9,
+  "generated_at": "2026-11-09T21:40:00Z",
+  "sid4": 6491,
+  "port_base": 8191,
+  "prefix": "s6491",
+  "seed": 6491,
+  "verify_seed": 266491,
+  "domain_id": 3,
+  "database": "s6491_rel",
+  "model": "qwen3:8b via Ollama (local)",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "hardware": "MacBook Air, 13-inch, M4, 2025, 16GB RAM, macOS Tahoe 26.5.2",
+  "commit_hash": "not recorded in this checkout",
+  "measurement_source": "Parts 1-4 were run on Kshitijas-MacBook-Air on 2026-11-09. The measured checks below quote that terminal output. Static checks were read from this checkout and were not a second live run.",
+  "total_checks": 22,
+  "passed": 22,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Part 1 key uses PREFIX and Redis INCR",
+      "passed": true,
+      "detail": "code/web_application/recall_cache.py view_key returns s6491:views:recall:{id} and increment_recall_views calls incr"
+    },
+    {
+      "name": "Part 1 syncs the database every 10 views",
+      "passed": true,
+      "detail": "count % 10 == 0 writes view_count. Run: 25 accesses, Redis 25, MySQL view_count 20, sync at access 10 and 20"
+    },
+    {
+      "name": "Part 2 cache sits in front of the HW8 path",
+      "passed": true,
+      "detail": "code/kafka_service/qa_ingress.py answer_question searches Redis, then run_hw8_path on a miss. Default threshold 0.85"
+    },
+    {
+      "name": "Part 2 measured hit rate and latency",
+      "passed": true,
+      "detail": "12 queries, 7 hits, 5 misses, hit rate 58.3%, average cached 221.6 ms, average non-cached 5797.8 ms"
+    },
+    {
+      "name": "cache_cases.yaml has 40 labels and was not relabeled",
+      "passed": true,
+      "detail": "10 exact_duplicate, 10 paraphrase, 10 superficial, 10 unrelated. para_08 missed only at 0.95 and the file was left unchanged"
+    },
+    {
+      "name": "Part 3 threshold table",
+      "passed": true,
+      "detail": "0.75 cost 484.0; 0.80 cost 420.0; 0.85 cost 324.0; 0.90 cost 260.0; 0.95 cost 171.8. Shipped 0.95, false-hit rate 0.0%, hit rate 47.5%"
+    },
+    {
+      "name": "Part 3 false hit near_01",
+      "passed": true,
+      "detail": "threshold 0.85, blueberry cached query vs strawberry incoming query, similarity 0.9292, cached answer Packaging / Seal Failure"
+    },
+    {
+      "name": "Part 3 stale answer and invalidation",
+      "passed": true,
+      "detail": "REC-0001 120@2026-11-09T20:56:54 still served after the row became 300. Key deleted. Fresh answer used 300@2026-11-09T20:56:56. Row restored to 120@2026-11-09T20:57:00"
+    },
+    {
+      "name": "reference dataset has the three s6491_rel recalls",
+      "passed": true,
+      "detail": "REC-0001 Packaging / Seal Failure 120; REC-0002 Spoiled or Quality Issue 40; REC-0003 Undeclared Allergen peanuts 75"
+    },
+    {
+      "name": "training, validation, and test files contain questions only",
+      "passed": true,
+      "detail": "6 items each. Keys are id and question. No answer or correct_answer field"
+    },
+    {
+      "name": "Part 4 stops after two attempts",
+      "passed": true,
+      "detail": "scripts/run_hw09_part4.py breaks on PASS, when repair is off, or when attempt == 2. Revision sequence finished at attempts 2 with PASS"
+    },
+    {
+      "name": "Part 4 controlled incomplete first draft",
+      "passed": true,
+      "detail": "train_repair_01 attempt 1 was 'The blueberries were recalled from the store.' Attempt 2 included Packaging / Seal Failure"
+    },
+    {
+      "name": "Part 4 lesson reuse",
+      "passed": true,
+      "detail": "lesson_001 created after the second recall-type miss. train_03 loaded it with use_count 1 and passed on attempt 1"
+    },
+    {
+      "name": "Part 4 scoped lesson kept",
+      "passed": true,
+      "detail": "validation before 1 correct / 5 incorrect; after 3 correct / 3 incorrect. Previously correct answer stayed correct"
+    },
+    {
+      "name": "Part 4 broad lesson removed after regression",
+      "passed": true,
+      "detail": "validation fell from 3 correct to 1 correct. lessons.json does not contain lesson_002"
+    },
+    {
+      "name": "test_data.json used only after lessons were chosen",
+      "passed": true,
+      "detail": "run printed 'test_data.json is loaded only now, after lessons were chosen' before the four test variants"
+    },
+    {
+      "name": "Part 4 Baseline",
+      "passed": true,
+      "detail": "correct 1, incorrect 5, average attempts 1.00, average latency 2741.3 ms"
+    },
+    {
+      "name": "Part 4 Evaluator Repair",
+      "passed": true,
+      "detail": "correct 6, incorrect 0, average attempts 1.83, average latency 6931.5 ms"
+    },
+    {
+      "name": "Part 4 Lesson Memory",
+      "passed": true,
+      "detail": "correct 2, incorrect 4, average attempts 1.00, average latency 4656.3 ms"
+    },
+    {
+      "name": "Part 4 Validated Improvement",
+      "passed": true,
+      "detail": "correct 4, incorrect 2, average attempts 1.00, average latency 3304.5 ms"
+    },
+    {
+      "name": "lessons.json keeps lesson_001",
+      "passed": true,
+      "detail": "lesson_id lesson_001, failure_pattern 'The answer omits the recall type.', created_at 2026-11-09, use_count 6"
+    },
+    {
+      "name": "same test file for all four variants",
+      "passed": true,
+      "detail": "test_data.json is loaded once, then Baseline, Evaluator Repair, Lesson Memory, and Validated Improvement each score those six questions"
+    }
+  ]
+}

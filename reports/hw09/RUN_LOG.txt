@@ -1,0 +1,114 @@
+
+================================================================================
+Part 1. Redis view counter
+Screenshot time about 11:52 AM.
+================================================================================
+
+bash scripts/setup_hw09_part1.sh
+Redis answered PONG. Recall 1 was opened 25 times.
+
+Access 10 and access 20 printed the sync line.
+Redis key s6491:views:recall:1 = 25
+MySQL view_count = 20
+
+================================================================================
+Part 2. Semantic cache in front of the HW8 path
+Screenshot time about 12:31 PM.
+================================================================================
+
+bash scripts/setup_hw09_part2.sh
+qwen3:8b is available. Redis Stack is the cache. Threshold 0.85.
+
+12 queries, 7 hits, 5 misses, hit rate 58.3%
+average cached latency 221.6 ms
+average non-cached latency 5797.8 ms
+
+Exact blueberry repeat: hit, similarity 1.0000, 31.3 ms.
+First blueberry question: miss, 14631.7 ms.
+Strawberry question: hit on the blueberry answer, similarity 0.9292.
+
+================================================================================
+Part 3. Threshold sweep and stale answer
+Screenshot times 12:59:25 PM, 12:59:34 PM, and 12:59:44 PM.
+================================================================================
+
+bash scripts/setup_hw09_part3.sh
+cache_cases.yaml was not modified. 10 seed questions were stored.
+Seed model calls averaged 3136.1 ms.
+
+Cost model: correct hit 0.2, miss 8.0, false hit 40.0
+
+Threshold  Hit rate  False-hit rate  Mean latency ms  Total cost
+0.75       75.0%     50.0%           418.6            484.0
+0.80       70.0%     40.0%           456.0            420.0
+0.85       62.5%     25.0%           568.9            324.0
+0.90       57.5%     15.0%           638.6            260.0
+0.95       47.5%     0.0%            836.9            171.8
+
+Ship threshold 0.95. Cost 171.8. False-hit rate 0.0%. Hit rate 47.5%.
+para_08 is labeled as a paraphrase that should hit. It missed only at 0.95.
+
+False hit, threshold 0.85, case near_01, group superficial.
+Cached query: What is the recall type for Trader Joe's Organic Frozen Blueberries, 16oz?
+Incoming query: What is the recall type for Trader Joe's Organic Frozen Strawberries, 16oz?
+Similarity 0.9292. Cached answer Packaging / Seal Failure.
+Correct answer: no recall on file for strawberries.
+
+Stale answer, REC-0001.
+First answer 120 units, data_version 120@2026-11-09T20:56:54.
+Row updated to 300, data_version 300@2026-11-09T20:56:56.
+Stale hit is_cached=true, similarity 1.0000, answer still 120.
+Invalidated REC-0001. Fresh answer 300 units, data_version 300@2026-11-09T20:56:56.
+Restored affected_units=120, data_version 120@2026-11-09T20:57:00.
+
+Wrote reports/hw09/part3_results.json on that laptop.
+
+================================================================================
+Part 4. Answering agent and evaluator
+Screenshot times 1:20:51 PM, 1:20:58 PM, 1:21:05 PM, and 1:21:11 PM.
+================================================================================
+
+bash scripts/setup_hw09_part4.sh
+qwen3:8b is available.
+test_data.json was not read until the lessons were chosen.
+
+=== REVISION SEQUENCE ===
+question: What is the recall type for Trader Joe's Organic Frozen Blueberries, 16oz?
+attempt 1: The blueberries were recalled from the store.
+evaluator: REVISE
+feedback: Include the missing fact from the reference dataset: Packaging / Seal Failure.
+attempt 2: The recall type for Trader Joe's Organic Frozen Blueberries, 16oz, is Packaging / Seal Failure.
+final verdict: PASS
+attempts: 2
+
+created lesson_001 from a repeated recall-type miss
+
+=== LESSON REUSE ===
+question: What is the recall type for Kirkland Signature Trail Mix, 4lb?
+loaded lesson_001 use_count=1 created_at=2026-11-09
+answer: The recall type for Kirkland Signature Trail Mix, 4lb is Undeclared Allergen.
+evaluator: PASS
+attempts: 1
+
+created lesson_002 from a repeated unit-count miss
+correction: Always include 120 affected units and the Packaging / Seal Failure recall type in every answer.
+
+=== Validation: scoped lesson ===
+no lesson:      correct=1 incorrect=5 avg_attempts=1.0 avg_latency_ms=1643.5
+scoped lesson:  correct=3 incorrect=3 avg_attempts=1.0 avg_latency_ms=2108.0
+Scoped lesson kept.
+
+=== Validation: broad lesson ===
+scoped only:    correct=3 incorrect=3 avg_attempts=1.0 avg_latency_ms=2108.0
+scoped + broad: correct=1 incorrect=5 avg_attempts=1.0 avg_latency_ms=3192.7
+
+=== Test ===
+Variant                   Correct  Incorrect   Avg attempts   Avg latency ms
+Baseline                        1          5           1.00           2741.3
+Evaluator Repair                6          0           1.83           6931.5
+Lesson Memory                   2          4           1.00           4656.3
+Validated Improvement           4          2           1.00           3304.5
+
+ lessons:
+lesson_001, use_count 6, created_at 2026-11-09
+failure_pattern: The answer omits the recall type.

@@ -27,6 +27,13 @@ VERIFY_SEED = 266491
 CRASH_TOPIC = f"{PREFIX}_part3_crash"
 
 KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9094")
+
+# HW9 Part 2. The semantic cache sits in front of the HW8 planner, model, and reviewer.
+QA_THRESHOLD = float(os.getenv("QA_THRESHOLD", "0.85"))
+QA_INDEX = f"{PREFIX}_qa_idx"
+QA_KEY_PREFIX = f"{PREFIX}:qa:"
+EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBED_DIM = 384
 WORKER_GROUP_ID = os.getenv("WORKER_GROUP_ID", f"{PREFIX}_{ENTITY}_worker")
 CLIENT_GROUP_PREFIX = f"{PREFIX}_{ENTITY}_client"
 

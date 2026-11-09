@@ -1,8 +1,11 @@
+# One Redis for the Part 1 counter and the Part 2 vector index.
+# INCR works here, and RediSearch is what the semantic cache needs.
+#   docker compose -f code/web_application/docker-compose.redis.yml up -d
 name: s6491-hw09
 
 services:
   redis:
-    image: redis:7-alpine
+    image: redis/redis-stack-server:7.4.0-v1
     container_name: s6491_redis
     ports:
       - "6379:6379"

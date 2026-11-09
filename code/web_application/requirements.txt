@@ -25,5 +25,9 @@ confluent-kafka==2.12.1
 
 # HW9 Part 1 - Redis view counter in front of the recall row
 redis==5.2.1
+
+# HW9 Part 2 - embeddings for the semantic cache, and the HW8 model adapter
+sentence-transformers==6.1.0
+ollama==0.6.1
 ruff==0.6.9
 pre-commit==3.8.0

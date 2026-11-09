@@ -10,6 +10,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from models import Recall, Supplier, User
 from mongo_db import ensure_memory_collections, ensure_notices_collection
+from recall_cache import ensure_view_count_column
 from routers.api_auth import router as api_auth_router
 from routers.auth import router as auth_router
 from routers.bench import router as bench_router
@@ -82,6 +83,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 Base.metadata.create_all(bind=engine)
+ensure_view_count_column()
 
 
 def _seed():

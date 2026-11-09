@@ -22,5 +22,8 @@ PyJWT==2.10.1
 
 # HW8 Part 1 - request/response over Kafka
 confluent-kafka==2.12.1
+
+# HW9 Part 1 - Redis view counter in front of the recall row
+redis==5.2.1
 ruff==0.6.9
 pre-commit==3.8.0

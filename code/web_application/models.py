@@ -37,6 +37,7 @@ class Recall(Base):
     email = Column(String(255), nullable=True, default="")
     description = Column(String(2000), nullable=True, default="")
     recall_type = Column(String(100), nullable=True, default="")
+    view_count = Column(Integer, nullable=False, default=0)
     created_at = Column(DateTime, nullable=False, default=utcnow)
     updated_at = Column(DateTime, nullable=False, default=utcnow, onupdate=utcnow)
 

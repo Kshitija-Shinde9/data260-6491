@@ -1,8 +1,10 @@
 from typing import List
 
+import redis
 from database import get_db
 from fastapi import APIRouter, Depends, HTTPException, Response
 from models import Recall, Supplier, User
+from recall_cache import RecallCache
 from routers.jwt_auth import get_current_user, require_roles
 from schemas import RecallCreate, RecallOut, RecallUpdate
 from sqlalchemy.exc import IntegrityError
@@ -65,7 +67,12 @@ async def get_recall(
     db: DBSession = Depends(get_db),
     _user: User = Depends(get_current_user),
 ):
-    return _get_recall_or_404(db, recall_id)
+    recall = _get_recall_or_404(db, recall_id)
+    try:
+        RecallCache(db).increment_recall_views(recall_id)
+    except redis.RedisError:
+        pass
+    return recall
 
 
 @router.post("", response_model=RecallOut, status_code=201)

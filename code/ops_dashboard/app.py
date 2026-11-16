@@ -186,7 +186,8 @@ def render_evaluation(index: OpsIndex) -> None:
         gap.metric("Mean final minus draft", _fmt(means["final_minus_draft"]))
         st.subheader("Scores by case")
         st.dataframe(cases, width="stretch", hide_index=True)
-        interpretation = interpret_coordination(means)
+        saved = (index.evaluation or {}).get("interpretation")
+        interpretation = saved or interpret_coordination(means)
         if interpretation:
             st.subheader("What the scores suggest")
             st.write(interpretation)

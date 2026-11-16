@@ -107,10 +107,11 @@ def main() -> int:
         and part3["correct_hits"] == 19,
         str(part3),
     )
+    cases = evaluation_cases(index.evaluation)
     record(
-        "evaluation file is absent until Part 2 writes it",
-        index.evaluation is None,
-        f"reports/hw10/{'part2_evaluation.json'}",
+        "evaluation file is absent until Part 2 writes it, or those scores load",
+        index.evaluation is None or bool(cases),
+        "absent" if index.evaluation is None else f"{len(cases)} cases",
     )
     record(
         "judge-validation file is absent until Part 3 writes it",

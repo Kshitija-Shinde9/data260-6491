@@ -1,7 +1,7 @@
 {
   "homework": "HW10",
   "part": 1,
-  "generated_at": "2026-11-16T16:40:47Z",
+  "generated_at": "2026-11-16T17:36:01Z",
   "sid4": 6491,
   "prefix": "s6491",
   "total_checks": 24,
@@ -107,9 +107,9 @@
       "detail": "{'threshold': 0.95, 'hit_rate': 47.5, 'false_hit_rate': 0.0, 'correct_hits': 19, 'false_hits': 0, 'misses': 21, 'mean_latency_ms': 836.9, 'source': 'reports/hw09/part3_results.json', 'window': 'HW9 Part 3 threshold sweep on 2026-11-09 (40 labeled cases)'}"
     },
     {
-      "name": "evaluation file is absent until Part 2 writes it",
+      "name": "evaluation file is absent until Part 2 writes it, or those scores load",
       "passed": true,
-      "detail": "reports/hw10/part2_evaluation.json"
+      "detail": "absent"
     },
     {
       "name": "judge-validation file is absent until Part 3 writes it",
@@ -124,7 +124,7 @@
     {
       "name": "a line from flow_log.log_flow is the line the dashboard parses",
       "passed": true,
-      "detail": "2026-11-16T16:40:47.253989Z | CACHE  | LOOKUP   | corr=extend-check cache hit similarity=1.0000"
+      "detail": "2026-11-16T17:36:01.175659Z | CACHE  | LOOKUP   | corr=extend-check cache hit similarity=1.0000"
     },
     {
       "name": "dashboard log list is the list the Kafka service already saves",

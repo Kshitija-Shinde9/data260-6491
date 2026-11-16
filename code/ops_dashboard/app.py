@@ -13,6 +13,7 @@ from kafka_service.ops_metrics import (  # noqa: E402
     evaluation_cases,
     interpret_coordination,
     interpret_judge,
+    load_part4,
     parse_cache_part2,
     parse_cache_part3,
     repo_root_from_here,
@@ -151,6 +152,18 @@ def render_summary(index: OpsIndex, source: str) -> None:
             f"Hit rate {part3['hit_rate']}%. False-hit rate {part3['false_hit_rate']}%. "
             f"Mean latency {part3['mean_latency_ms']} ms."
         )
+
+    part4 = load_part4(ROOT / "reports" / "hw10" / "part4_latency.json")
+    if part4 is not None:
+        st.subheader("Stage latency, cache misses")
+        st.caption(
+            f"{part4['miss_count']} confirmed cache misses. {part4['window']}. "
+            "Cache-hit latency is separate from this table."
+        )
+        hit = part4.get("cache_hit_latency_ms") or {}
+        st.metric("Cache-hit latency (p50)", f"{hit.get('p50', 0):.1f} ms")
+        st.dataframe(part4["stages"], width="stretch", hide_index=True)
+        st.caption(part4.get("optimize_first", ""))
 
     st.subheader("Recent requests")
     records = index.requests(source)

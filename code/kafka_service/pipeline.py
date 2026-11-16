@@ -4,6 +4,7 @@ import signal
 import sys
 import threading
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 
 _CODE = Path(__file__).resolve().parents[1]
@@ -20,8 +21,26 @@ from confluent_kafka import Consumer, KafkaError, TopicPartition
 
 from kafka_service.config import DEAD_LETTER_TOPIC, KAFKA_BOOTSTRAP_SERVERS, MAX_ATTEMPTS
 from kafka_service.failure import crash_plan, decide
-from kafka_service.flow_log import log_flow, read_flow_lines
+from kafka_service.flow_log import log_flow, read_flow_lines, write_span
 from kafka_service.kafka_io import build_producer, send_json
+
+
+def _write_stage_span(
+    component: str, correlation_id: str, started: datetime, decision: dict
+) -> None:
+    stage = {"PLANNER": "planner", "WRITER": "writer", "REVIEWER": "reviewer"}.get(component)
+    if stage is None:
+        return
+    action = decision["action"]
+    error = ""
+    status = "ok"
+    if action == "dead":
+        status = "error"
+        error = (decision.get("errors") or ["stage failed"])[-1]
+    try:
+        write_span(correlation_id, stage, started, datetime.now(timezone.utc), status, error)
+    except OSError:
+        return
 
 
 def new_correlation_id() -> str:
@@ -148,6 +167,7 @@ def serve(
             def on_retry(attempt, total, exc, _cid=correlation_id):
                 _emit(component, "RETRY", f"corr={_cid} attempt={attempt}/{total} {exc}")
 
+            work_started = datetime.now(timezone.utc)
             decision = decide(
                 incoming,
                 seen,
@@ -156,6 +176,7 @@ def serve(
                 max_attempts=MAX_ATTEMPTS,
                 on_retry=on_retry,
             )
+            _write_stage_span(component, correlation_id, work_started, decision)
             action = decision["action"]
             if action == "duplicate":
                 _emit(

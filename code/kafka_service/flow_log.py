@@ -36,6 +36,44 @@ def read_flow_lines(correlation_id: str) -> list[str]:
         return [line.rstrip("\n") for line in handle if correlation_id in line]
 
 
+def span_log_path() -> Path:
+    configured = os.environ.get("SPAN_LOG_PATH", "")
+    if configured:
+        return Path(configured)
+    root = Path(__file__).resolve().parents[2]
+    return root / "reports" / "hw10" / "logs" / "part4_spans.jsonl"
+
+
+def write_span(
+    trace_id: str,
+    stage: str,
+    start: datetime,
+    end: datetime,
+    status: str,
+    error: str = "",
+    cache: str | None = None,
+    detail: str = "",
+) -> dict:
+    """One JSON span. trace_id is the HW8 correlation_id, not a second id."""
+    payload = {
+        "trace_id": trace_id,
+        "stage": stage,
+        "start": start.isoformat(),
+        "end": end.isoformat(),
+        "status": status,
+        "error": error or "",
+    }
+    if cache in {"hit", "miss"}:
+        payload["cache"] = cache
+    if detail:
+        payload["detail"] = detail
+    path = span_log_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with _file_lock, path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(payload) + "\n")
+    return payload
+
+
 def saved_flow_logs(repo_root: str | Path) -> list[Path]:
     """Logs already written by this service, plus any later span log under reports/hw10."""
     root = Path(repo_root)

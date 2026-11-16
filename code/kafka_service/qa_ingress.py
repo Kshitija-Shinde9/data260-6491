@@ -1,7 +1,7 @@
 import re
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 _CODE = Path(__file__).resolve().parents[1]
@@ -18,7 +18,7 @@ from database import SessionLocal  # noqa: E402
 from models import Recall  # noqa: E402
 
 from kafka_service.config import QA_THRESHOLD  # noqa: E402
-from kafka_service.flow_log import log_flow  # noqa: E402
+from kafka_service.flow_log import log_flow, write_span  # noqa: E402
 from kafka_service.planner import make_plan  # noqa: E402
 from kafka_service.reviewer import review_draft  # noqa: E402
 from kafka_service.semantic_cache import SemanticCache  # noqa: E402
@@ -169,11 +169,22 @@ def set_affected_units(recall_code: str, units: int) -> dict:
         db.close()
 
 
-def _log_cache(correlation_id: str | None, detail: str) -> None:
+def _log_cache(correlation_id: str | None, detail: str, started: float, cache: str) -> None:
     """Write a cache stage on the same flow log the HW8 pipeline already uses."""
     if not correlation_id:
         return
     log_flow("CACHE", "LOOKUP", f"corr={correlation_id} {detail}")
+    end = datetime.now(timezone.utc)
+    start = end.timestamp() - (time.perf_counter() - started)
+    write_span(
+        correlation_id,
+        "cache_lookup",
+        datetime.fromtimestamp(start, timezone.utc),
+        end,
+        "ok",
+        cache=cache,
+        detail=detail,
+    )
 
 
 def answer_question(
@@ -214,6 +225,8 @@ def answer_question(
                 correlation_id,
                 f"cache miss invalidated {found['recall_code']} "
                 f"cached={cached_version} current={current_version}",
+                started,
+                "miss",
             )
             found = None
         else:
@@ -227,6 +240,8 @@ def answer_question(
                 correlation_id,
                 f"cache hit similarity={found['similarity']:.4f} "
                 f"is_cached=true latency_ms={latency_ms:.1f}",
+                started,
+                "hit",
             )
             return {
                 "answer": found["answer"],
@@ -269,6 +284,8 @@ def answer_question(
     _log_cache(
         correlation_id,
         f"cache miss similarity={best:.4f} is_cached=false latency_ms={latency_ms:.1f}",
+        started,
+        "miss",
     )
     return {
         "answer": generated["answer"],

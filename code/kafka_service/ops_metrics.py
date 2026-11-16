@@ -374,6 +374,7 @@ def source_signature(root: Path) -> str:
         "reports/hw09/part3_results.json",
         f"reports/hw10/{EVAL_FILENAME}",
         f"reports/hw10/{JUDGE_FILENAME}",
+        "reports/hw10/part4_latency.json",
     ):
         path = root / relative
         if path.is_file():
@@ -535,6 +536,13 @@ def load_optional_json(path: Path) -> dict | None:
         return None
     data = json.loads(path.read_text(encoding="utf-8"))
     return data if isinstance(data, dict) else None
+
+
+def load_part4(path: Path) -> dict | None:
+    document = load_optional_json(path)
+    if not document or not document.get("stages"):
+        return None
+    return document
 
 
 def _case_number(case: dict, *names: str) -> float | None:

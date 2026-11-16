@@ -77,7 +77,7 @@ def _complete(messages: list[dict]) -> tuple[str, float]:
         result = ModelClient().complete(messages)
     except Exception as exc:
         raise SystemExit(
-            "The model call failed. Open the Ollama app and confirm qwen3:8b is pulled.\n" f"{exc}"
+            f"The model call failed. Open the Ollama app and confirm qwen3:8b is pulled.\n{exc}"
         ) from exc
     return result.content.strip(), float(result.latency_ms)
 

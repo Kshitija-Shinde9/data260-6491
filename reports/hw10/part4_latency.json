@@ -1,0 +1,59 @@
+{
+  "cache_backend": "exact-question store because Redis was not running",
+  "kafka": "not running; planner, writer, reviewer, and the judge ran in-process",
+  "judge": "llama3.2:3b",
+  "miss_count": 50,
+  "all_confirmed_misses": true,
+  "window": "2026-11-16",
+  "traces": {
+    "cache_hit": "b44672f6-2e5c-4d99-9dbd-bad25aae66ca",
+    "cache_miss": "e5eb5b97-41a9-4305-845d-1b8288e885cb",
+    "failed": "ec69d594-d031-420a-86a1-ea41e9ff9d90",
+    "failed_stage": "writer",
+    "failed_error": "poison message"
+  },
+  "cache_hit_latency_ms": {
+    "p50": 0.005,
+    "p95": 0.005
+  },
+  "stages": [
+    {
+      "stage": "Cache lookup",
+      "p50_ms": 0.003,
+      "p95_ms": 0.004,
+      "percent_of_e2e": 0.0
+    },
+    {
+      "stage": "Planner",
+      "p50_ms": 0.008,
+      "p95_ms": 0.02,
+      "percent_of_e2e": 0.0
+    },
+    {
+      "stage": "Writer",
+      "p50_ms": 0.021,
+      "p95_ms": 0.082,
+      "percent_of_e2e": 0.0
+    },
+    {
+      "stage": "Reviewer",
+      "p50_ms": 0.003,
+      "p95_ms": 0.012,
+      "percent_of_e2e": 0.0
+    },
+    {
+      "stage": "Queue wait (total)",
+      "p50_ms": 0.006,
+      "p95_ms": 0.017,
+      "percent_of_e2e": 0.0
+    },
+    {
+      "stage": "Evaluation",
+      "p50_ms": 1328.554,
+      "p95_ms": 2087.335,
+      "percent_of_e2e": 100.0
+    }
+  ],
+  "dominant_stage": "Evaluation",
+  "optimize_first": "Evaluation is the largest share of a cache miss (p50 1328.554 ms, 100.0% of end-to-end). I would take that stage off the shopper's wait, or make it cheaper, before tuning the others."
+}

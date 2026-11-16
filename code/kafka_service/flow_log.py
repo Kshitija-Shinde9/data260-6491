@@ -2,6 +2,7 @@ import json
 import os
 import threading
 from datetime import datetime, timezone
+from pathlib import Path
 
 _file_lock = threading.Lock()
 
@@ -33,3 +34,19 @@ def read_flow_lines(correlation_id: str) -> list[str]:
         return []
     with open(path, encoding="utf-8") as handle:
         return [line.rstrip("\n") for line in handle if correlation_id in line]
+
+
+def saved_flow_logs(repo_root: str | Path) -> list[Path]:
+    """Logs already written by this service, plus any later span log under reports/hw10."""
+    root = Path(repo_root)
+    logs = sorted((root / "reports" / "hw08" / "logs").glob("*.log"))
+    later = root / "reports" / "hw10" / "logs"
+    if later.is_dir():
+        logs.extend(sorted(later.glob("*.log")))
+        logs.extend(sorted(later.glob("*.jsonl")))
+    active = _flow_log_path()
+    if active:
+        current = Path(active)
+        if current.is_file() and current not in logs:
+            logs.append(current)
+    return logs

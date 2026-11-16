@@ -1,0 +1,170 @@
+{
+  "homework": "HW10",
+  "part": 1,
+  "generated_at": "2026-11-16T16:40:47Z",
+  "sid4": 6491,
+  "prefix": "s6491",
+  "total_checks": 24,
+  "passed": 24,
+  "failed": 0,
+  "summary": {
+    "request_count": 21,
+    "error_count": 10,
+    "error_rate": 0.4762,
+    "mean_e2e_ms": 236.6,
+    "latency_sample_count": 21,
+    "window_start": "2026-11-02T02:44:05.745726+00:00",
+    "window_end": "2026-11-02T05:03:20.320396+00:00",
+    "sources": [
+      "message_flow.log",
+      "part2_message_flow.log",
+      "part3_crash.log",
+      "part3_duplicate.log",
+      "part3_poison.log"
+    ],
+    "cache_part2": {
+      "queries": 12,
+      "hits": 7,
+      "misses": 5,
+      "hit_rate": 58.3,
+      "mean_hit_ms": 221.6,
+      "mean_miss_ms": 5797.8,
+      "source": "reports/hw09/RUN_LOG.txt",
+      "window": "HW9 Part 2 run on 2026-11-09 (12 questions, threshold 0.85)",
+      "note": "The hit count includes the strawberry question, which returned the cached blueberry answer. RUN_LOG.txt records that false hit at similarity 0.9292."
+    },
+    "cache_part3": {
+      "threshold": 0.95,
+      "hit_rate": 47.5,
+      "false_hit_rate": 0.0,
+      "correct_hits": 19,
+      "false_hits": 0,
+      "misses": 21,
+      "mean_latency_ms": 836.9,
+      "source": "reports/hw09/part3_results.json",
+      "window": "HW9 Part 3 threshold sweep on 2026-11-09 (40 labeled cases)"
+    }
+  },
+  "checks": [
+    {
+      "name": "flow events loaded",
+      "passed": true,
+      "detail": "126 events"
+    },
+    {
+      "name": "request count is positive",
+      "passed": true,
+      "detail": "21"
+    },
+    {
+      "name": "error rate is a share of those requests",
+      "passed": true,
+      "detail": "10 errors, rate 0.4762"
+    },
+    {
+      "name": "mean end-to-end latency is present",
+      "passed": true,
+      "detail": "236.6"
+    },
+    {
+      "name": "request window has a start and an end",
+      "passed": true,
+      "detail": "2026-11-02T02:44:05.745726+00:00 -> 2026-11-02T05:03:20.320396+00:00"
+    },
+    {
+      "name": "reused correlation_id stays one trace_id across two operations",
+      "passed": true,
+      "detail": "2 segments"
+    },
+    {
+      "name": "planner trace stages follow inbox, planner, writer, reviewer, final",
+      "passed": true,
+      "detail": "inbox -> planner -> writer -> reviewer -> final"
+    },
+    {
+      "name": "planner trace cache path is not recorded",
+      "passed": true,
+      "detail": "not_recorded"
+    },
+    {
+      "name": "poison trace is an error",
+      "passed": true,
+      "detail": "poison message"
+    },
+    {
+      "name": "crash-before trace names the failing stage",
+      "passed": true,
+      "detail": "corr=crash-before-266491 writer killed before the work finished"
+    },
+    {
+      "name": "Part 2 cache hits and misses are separated",
+      "passed": true,
+      "detail": "{'queries': 12, 'hits': 7, 'misses': 5, 'hit_rate': 58.3, 'mean_hit_ms': 221.6, 'mean_miss_ms': 5797.8, 'source': 'reports/hw09/RUN_LOG.txt', 'window': 'HW9 Part 2 run on 2026-11-09 (12 questions, threshold 0.85)', 'note': 'The hit count includes the strawberry question, which returned the cached blueberry answer. RUN_LOG.txt records that false hit at similarity 0.9292.'}"
+    },
+    {
+      "name": "Part 3 shipped threshold reports hits, false hits, and misses",
+      "passed": true,
+      "detail": "{'threshold': 0.95, 'hit_rate': 47.5, 'false_hit_rate': 0.0, 'correct_hits': 19, 'false_hits': 0, 'misses': 21, 'mean_latency_ms': 836.9, 'source': 'reports/hw09/part3_results.json', 'window': 'HW9 Part 3 threshold sweep on 2026-11-09 (40 labeled cases)'}"
+    },
+    {
+      "name": "evaluation file is absent until Part 2 writes it",
+      "passed": true,
+      "detail": "reports/hw10/part2_evaluation.json"
+    },
+    {
+      "name": "judge-validation file is absent until Part 3 writes it",
+      "passed": true,
+      "detail": "reports/hw10/part3_judge_validation.json"
+    },
+    {
+      "name": "cache hit and cache miss paths are different labels",
+      "passed": true,
+      "detail": "hit=hit miss=miss"
+    },
+    {
+      "name": "a line from flow_log.log_flow is the line the dashboard parses",
+      "passed": true,
+      "detail": "2026-11-16T16:40:47.253989Z | CACHE  | LOOKUP   | corr=extend-check cache hit similarity=1.0000"
+    },
+    {
+      "name": "dashboard log list is the list the Kafka service already saves",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "name": "a lower final score is described as no improvement",
+      "passed": true,
+      "detail": "Mean plan quality is 4.00, mean writer helpfulness is 3.00, and mean final-answer helpfulness is 2.50 on a 1-5 scale. The final answer did not score above the writer draft. On this set the reviewer pass left the shopper-facing answer no better than the draft. The plan scores above the draft, so the writer is dropping steps the planner asked for."
+    },
+    {
+      "name": "a higher final score reports the gap",
+      "passed": true,
+      "detail": "Mean plan quality is 3.00, mean writer helpfulness is 3.20, and mean final-answer helpfulness is 4.00 on a 1-5 scale. The final answer scores 0.80 above the draft. That gap is the reviewer changing the writer output before it is returned. Plan and writer scores sit close together, so the writer is following the plan."
+    },
+    {
+      "name": "a weak judge is not described as ready to gate a deployment",
+      "passed": true,
+      "detail": "Spearman correlation with the human labels is 0.200. Mean absolute difference is 1.400 points on the 1-5 scale. Across 3 repeated runs, 8 case scores changed. Mean absolute change was 0.700. These figures do not support trusting this judge as a deployment gate yet. The additional evidence to collect first is a higher rank agreement with the frozen human labels and a smaller change across repeated runs."
+    },
+    {
+      "name": "evaluation loader reads scores by case",
+      "passed": true,
+      "detail": "{'plan_quality': 4.0, 'writer_helpfulness': 3.0, 'final_answer_helpfulness': 5.0, 'final_minus_draft': 2.0}"
+    },
+    {
+      "name": "dashboard app and requirements exist",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cache parser agrees with the index",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "events used by the index come from load_events",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

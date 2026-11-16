@@ -18,6 +18,7 @@ from database import SessionLocal  # noqa: E402
 from models import Recall  # noqa: E402
 
 from kafka_service.config import QA_THRESHOLD  # noqa: E402
+from kafka_service.flow_log import log_flow  # noqa: E402
 from kafka_service.planner import make_plan  # noqa: E402
 from kafka_service.reviewer import review_draft  # noqa: E402
 from kafka_service.semantic_cache import SemanticCache  # noqa: E402
@@ -168,6 +169,13 @@ def set_affected_units(recall_code: str, units: int) -> dict:
         db.close()
 
 
+def _log_cache(correlation_id: str | None, detail: str) -> None:
+    """Write a cache stage on the same flow log the HW8 pipeline already uses."""
+    if not correlation_id:
+        return
+    log_flow("CACHE", "LOOKUP", f"corr={correlation_id} {detail}")
+
+
 def answer_question(
     question: str,
     cache: SemanticCache,
@@ -176,6 +184,7 @@ def answer_question(
     *,
     validate_version: bool = True,
     store_miss: bool = True,
+    correlation_id: str | None = None,
 ) -> dict:
     """Ingress in front of the HW8 path.
 
@@ -201,6 +210,11 @@ def answer_question(
                 f"cached data_version={cached_version} current data_version={current_version}",
                 flush=True,
             )
+            _log_cache(
+                correlation_id,
+                f"cache miss invalidated {found['recall_code']} "
+                f"cached={cached_version} current={current_version}",
+            )
             found = None
         else:
             latency_ms = (time.perf_counter() - started) * 1000
@@ -208,6 +222,11 @@ def answer_question(
                 f"cache hit similarity={found['similarity']:.4f} "
                 f"is_cached=true latency_ms={latency_ms:.1f}",
                 flush=True,
+            )
+            _log_cache(
+                correlation_id,
+                f"cache hit similarity={found['similarity']:.4f} "
+                f"is_cached=true latency_ms={latency_ms:.1f}",
             )
             return {
                 "answer": found["answer"],
@@ -246,6 +265,10 @@ def answer_question(
     print(
         f"cache miss similarity={best:.4f} is_cached=false latency_ms={latency_ms:.1f}",
         flush=True,
+    )
+    _log_cache(
+        correlation_id,
+        f"cache miss similarity={best:.4f} is_cached=false latency_ms={latency_ms:.1f}",
     )
     return {
         "answer": generated["answer"],

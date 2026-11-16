@@ -91,3 +91,5 @@
 2026-11-02T05:03:20.319813Z | WORKER | REPLY    | corr=aa5394ba-690c-4c02-af0a-1f0af6e6a50d op=CREATE_RECALL -> s6491_recall_responses | {"correlation_id": "aa5394ba-690c-4c02-af0a-1f0af6e6a50d", "operation": "CREATE_RECALL", "success": false, "error": "Missing required field(s): supplier, recall_code, recall_type, description, affected_units"}
 2026-11-02T05:03:20.320272Z | API    | RESPONSE | corr=aa5394ba-690c-4c02-af0a-1f0af6e6a50d op=CREATE_RECALL <- s6491_recall_responses[0]@14 correlation_preserved=True | {"correlation_id": "aa5394ba-690c-4c02-af0a-1f0af6e6a50d", "operation": "CREATE_RECALL", "success": false, "error": "Missing required field(s): supplier, recall_code, recall_type, description, affected_units"}
 2026-11-02T05:03:20.320396Z | API    | HTTP-OUT | corr=aa5394ba-690c-4c02-af0a-1f0af6e6a50d op=CREATE_RECALL status=400
+2026-11-16T19:39:57.646214Z | API    | READY    | listening on s6491_recall_responses at kafka:9092
+2026-11-16T19:40:22.642128Z | WORKER | READY    | assigned s6491_recall_requests[0] in group s6491_recall_worker

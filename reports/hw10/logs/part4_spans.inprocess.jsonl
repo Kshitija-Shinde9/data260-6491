@@ -1,0 +1,413 @@
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "cache_lookup", "start": "2026-11-16T18:47:12.085782+00:00", "end": "2026-11-16T18:47:12.085785+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "inbox", "start": "2026-11-16T18:47:12.086180+00:00", "end": "2026-11-16T18:47:12.086180+00:00", "status": "ok", "error": ""}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "planner", "start": "2026-11-16T18:47:12.086282+00:00", "end": "2026-11-16T18:47:12.086286+00:00", "status": "ok", "error": ""}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "writer", "start": "2026-11-16T18:47:12.086372+00:00", "end": "2026-11-16T18:47:12.086380+00:00", "status": "ok", "error": ""}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "reviewer", "start": "2026-11-16T18:47:12.086456+00:00", "end": "2026-11-16T18:47:12.086457+00:00", "status": "ok", "error": ""}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "final", "start": "2026-11-16T18:47:12.086535+00:00", "end": "2026-11-16T18:47:12.086535+00:00", "status": "ok", "error": ""}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "queue_wait", "start": "2026-11-16T18:47:12.086606+00:00", "end": "2026-11-16T18:47:12.086607+00:00", "status": "ok", "error": ""}
+{"trace_id": "e5eb5b97-41a9-4305-845d-1b8288e885cb", "stage": "evaluation", "start": "2026-11-16T18:47:12.086667+00:00", "end": "2026-11-16T18:47:17.795417+00:00", "status": "ok", "error": ""}
+{"trace_id": "b44672f6-2e5c-4d99-9dbd-bad25aae66ca", "stage": "cache_lookup", "start": "2026-11-16T18:47:17.796387+00:00", "end": "2026-11-16T18:47:17.796392+00:00", "status": "ok", "error": "", "cache": "hit"}
+{"trace_id": "ec69d594-d031-420a-86a1-ea41e9ff9d90", "stage": "cache_lookup", "start": "2026-11-16T18:47:17.796710+00:00", "end": "2026-11-16T18:47:17.796712+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "ec69d594-d031-420a-86a1-ea41e9ff9d90", "stage": "inbox", "start": "2026-11-16T18:47:17.796940+00:00", "end": "2026-11-16T18:47:17.796941+00:00", "status": "ok", "error": ""}
+{"trace_id": "ec69d594-d031-420a-86a1-ea41e9ff9d90", "stage": "planner", "start": "2026-11-16T18:47:17.797169+00:00", "end": "2026-11-16T18:47:17.797170+00:00", "status": "ok", "error": ""}
+{"trace_id": "ec69d594-d031-420a-86a1-ea41e9ff9d90", "stage": "writer", "start": "2026-11-16T18:47:17.797375+00:00", "end": "2026-11-16T18:47:17.797396+00:00", "status": "error", "error": "poison message"}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "cache_lookup", "start": "2026-11-16T18:47:17.797663+00:00", "end": "2026-11-16T18:47:17.797665+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "inbox", "start": "2026-11-16T18:47:17.797881+00:00", "end": "2026-11-16T18:47:17.797882+00:00", "status": "ok", "error": ""}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "planner", "start": "2026-11-16T18:47:17.798083+00:00", "end": "2026-11-16T18:47:17.798088+00:00", "status": "ok", "error": ""}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "writer", "start": "2026-11-16T18:47:17.798265+00:00", "end": "2026-11-16T18:47:17.798286+00:00", "status": "ok", "error": ""}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "reviewer", "start": "2026-11-16T18:47:17.798458+00:00", "end": "2026-11-16T18:47:17.798468+00:00", "status": "ok", "error": ""}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "final", "start": "2026-11-16T18:47:17.798635+00:00", "end": "2026-11-16T18:47:17.798636+00:00", "status": "ok", "error": ""}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "queue_wait", "start": "2026-11-16T18:47:17.798804+00:00", "end": "2026-11-16T18:47:17.798808+00:00", "status": "ok", "error": ""}
+{"trace_id": "78c807d7-95e3-41b7-8192-4af6632ce675", "stage": "evaluation", "start": "2026-11-16T18:47:17.798984+00:00", "end": "2026-11-16T18:47:18.696981+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "cache_lookup", "start": "2026-11-16T18:47:18.698063+00:00", "end": "2026-11-16T18:47:18.698066+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "inbox", "start": "2026-11-16T18:47:18.698401+00:00", "end": "2026-11-16T18:47:18.698402+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "planner", "start": "2026-11-16T18:47:18.698634+00:00", "end": "2026-11-16T18:47:18.698641+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "writer", "start": "2026-11-16T18:47:18.698860+00:00", "end": "2026-11-16T18:47:18.698880+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "reviewer", "start": "2026-11-16T18:47:18.699108+00:00", "end": "2026-11-16T18:47:18.699112+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "final", "start": "2026-11-16T18:47:18.699314+00:00", "end": "2026-11-16T18:47:18.699315+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "queue_wait", "start": "2026-11-16T18:47:18.699520+00:00", "end": "2026-11-16T18:47:18.699524+00:00", "status": "ok", "error": ""}
+{"trace_id": "662a8715-750a-4530-be60-27e18ca53331", "stage": "evaluation", "start": "2026-11-16T18:47:18.699726+00:00", "end": "2026-11-16T18:47:19.575800+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "cache_lookup", "start": "2026-11-16T18:47:19.576307+00:00", "end": "2026-11-16T18:47:19.576308+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "inbox", "start": "2026-11-16T18:47:19.576530+00:00", "end": "2026-11-16T18:47:19.576531+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "planner", "start": "2026-11-16T18:47:19.576976+00:00", "end": "2026-11-16T18:47:19.576986+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "writer", "start": "2026-11-16T18:47:19.577270+00:00", "end": "2026-11-16T18:47:19.577290+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "reviewer", "start": "2026-11-16T18:47:19.577474+00:00", "end": "2026-11-16T18:47:19.577477+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "final", "start": "2026-11-16T18:47:19.577654+00:00", "end": "2026-11-16T18:47:19.577655+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "queue_wait", "start": "2026-11-16T18:47:19.577828+00:00", "end": "2026-11-16T18:47:19.577831+00:00", "status": "ok", "error": ""}
+{"trace_id": "a849904b-98bc-4117-9a2c-3f3946807dda", "stage": "evaluation", "start": "2026-11-16T18:47:19.578196+00:00", "end": "2026-11-16T18:47:20.468893+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "cache_lookup", "start": "2026-11-16T18:47:20.469527+00:00", "end": "2026-11-16T18:47:20.469529+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "inbox", "start": "2026-11-16T18:47:20.471260+00:00", "end": "2026-11-16T18:47:20.471262+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "planner", "start": "2026-11-16T18:47:20.472113+00:00", "end": "2026-11-16T18:47:20.472120+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "writer", "start": "2026-11-16T18:47:20.472496+00:00", "end": "2026-11-16T18:47:20.472514+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "reviewer", "start": "2026-11-16T18:47:20.472831+00:00", "end": "2026-11-16T18:47:20.472834+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "final", "start": "2026-11-16T18:47:20.473303+00:00", "end": "2026-11-16T18:47:20.473306+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "queue_wait", "start": "2026-11-16T18:47:20.473792+00:00", "end": "2026-11-16T18:47:20.473804+00:00", "status": "ok", "error": ""}
+{"trace_id": "d8c71cbd-2022-4f6c-b1f5-6fe701abdf13", "stage": "evaluation", "start": "2026-11-16T18:47:20.474151+00:00", "end": "2026-11-16T18:47:21.382678+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "cache_lookup", "start": "2026-11-16T18:47:21.383178+00:00", "end": "2026-11-16T18:47:21.383179+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "inbox", "start": "2026-11-16T18:47:21.383524+00:00", "end": "2026-11-16T18:47:21.383526+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "planner", "start": "2026-11-16T18:47:21.383921+00:00", "end": "2026-11-16T18:47:21.383928+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "writer", "start": "2026-11-16T18:47:21.384295+00:00", "end": "2026-11-16T18:47:21.384315+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "reviewer", "start": "2026-11-16T18:47:21.384622+00:00", "end": "2026-11-16T18:47:21.384624+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "final", "start": "2026-11-16T18:47:21.384836+00:00", "end": "2026-11-16T18:47:21.384837+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "queue_wait", "start": "2026-11-16T18:47:21.385049+00:00", "end": "2026-11-16T18:47:21.385056+00:00", "status": "ok", "error": ""}
+{"trace_id": "f3b6bcfe-f148-422b-88bb-796c2e804ae3", "stage": "evaluation", "start": "2026-11-16T18:47:21.385265+00:00", "end": "2026-11-16T18:47:22.334617+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "cache_lookup", "start": "2026-11-16T18:47:22.335286+00:00", "end": "2026-11-16T18:47:22.335287+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "inbox", "start": "2026-11-16T18:47:22.335577+00:00", "end": "2026-11-16T18:47:22.335578+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "planner", "start": "2026-11-16T18:47:22.335797+00:00", "end": "2026-11-16T18:47:22.335805+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "writer", "start": "2026-11-16T18:47:22.335965+00:00", "end": "2026-11-16T18:47:22.335981+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "reviewer", "start": "2026-11-16T18:47:22.336127+00:00", "end": "2026-11-16T18:47:22.336128+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "final", "start": "2026-11-16T18:47:22.336279+00:00", "end": "2026-11-16T18:47:22.336280+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "queue_wait", "start": "2026-11-16T18:47:22.336464+00:00", "end": "2026-11-16T18:47:22.336468+00:00", "status": "ok", "error": ""}
+{"trace_id": "29d55c20-072f-4f2d-a455-64ae9efc83ea", "stage": "evaluation", "start": "2026-11-16T18:47:22.336663+00:00", "end": "2026-11-16T18:47:23.291754+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "cache_lookup", "start": "2026-11-16T18:47:23.292246+00:00", "end": "2026-11-16T18:47:23.292247+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "inbox", "start": "2026-11-16T18:47:23.292484+00:00", "end": "2026-11-16T18:47:23.292484+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "planner", "start": "2026-11-16T18:47:23.292648+00:00", "end": "2026-11-16T18:47:23.292653+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "writer", "start": "2026-11-16T18:47:23.292851+00:00", "end": "2026-11-16T18:47:23.292866+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "reviewer", "start": "2026-11-16T18:47:23.293028+00:00", "end": "2026-11-16T18:47:23.293029+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "final", "start": "2026-11-16T18:47:23.293188+00:00", "end": "2026-11-16T18:47:23.293188+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "queue_wait", "start": "2026-11-16T18:47:23.293365+00:00", "end": "2026-11-16T18:47:23.293369+00:00", "status": "ok", "error": ""}
+{"trace_id": "0bb30be0-5620-4651-82a8-4a748dc6d9e0", "stage": "evaluation", "start": "2026-11-16T18:47:23.293525+00:00", "end": "2026-11-16T18:47:24.240450+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "cache_lookup", "start": "2026-11-16T18:47:24.241000+00:00", "end": "2026-11-16T18:47:24.241001+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "inbox", "start": "2026-11-16T18:47:24.241385+00:00", "end": "2026-11-16T18:47:24.241386+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "planner", "start": "2026-11-16T18:47:24.241787+00:00", "end": "2026-11-16T18:47:24.241795+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "writer", "start": "2026-11-16T18:47:24.242175+00:00", "end": "2026-11-16T18:47:24.242197+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "reviewer", "start": "2026-11-16T18:47:24.242436+00:00", "end": "2026-11-16T18:47:24.242438+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "final", "start": "2026-11-16T18:47:24.242649+00:00", "end": "2026-11-16T18:47:24.242650+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "queue_wait", "start": "2026-11-16T18:47:24.242879+00:00", "end": "2026-11-16T18:47:24.242886+00:00", "status": "ok", "error": ""}
+{"trace_id": "7e783cb2-604c-4f7d-a57a-5b472cf8646d", "stage": "evaluation", "start": "2026-11-16T18:47:24.243108+00:00", "end": "2026-11-16T18:47:25.183871+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "cache_lookup", "start": "2026-11-16T18:47:25.184839+00:00", "end": "2026-11-16T18:47:25.184840+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "inbox", "start": "2026-11-16T18:47:25.185073+00:00", "end": "2026-11-16T18:47:25.185073+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "planner", "start": "2026-11-16T18:47:25.185249+00:00", "end": "2026-11-16T18:47:25.185253+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "writer", "start": "2026-11-16T18:47:25.185420+00:00", "end": "2026-11-16T18:47:25.185433+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "reviewer", "start": "2026-11-16T18:47:25.185583+00:00", "end": "2026-11-16T18:47:25.185589+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "final", "start": "2026-11-16T18:47:25.185974+00:00", "end": "2026-11-16T18:47:25.185976+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "queue_wait", "start": "2026-11-16T18:47:25.186343+00:00", "end": "2026-11-16T18:47:25.186349+00:00", "status": "ok", "error": ""}
+{"trace_id": "e93becea-4a6d-4822-8fee-1ff279ac6a59", "stage": "evaluation", "start": "2026-11-16T18:47:25.186709+00:00", "end": "2026-11-16T18:47:26.324605+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "cache_lookup", "start": "2026-11-16T18:47:26.325066+00:00", "end": "2026-11-16T18:47:26.325067+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "inbox", "start": "2026-11-16T18:47:26.325246+00:00", "end": "2026-11-16T18:47:26.325246+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "planner", "start": "2026-11-16T18:47:26.325351+00:00", "end": "2026-11-16T18:47:26.325353+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "writer", "start": "2026-11-16T18:47:26.325426+00:00", "end": "2026-11-16T18:47:26.325434+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "reviewer", "start": "2026-11-16T18:47:26.325502+00:00", "end": "2026-11-16T18:47:26.325502+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "final", "start": "2026-11-16T18:47:26.325569+00:00", "end": "2026-11-16T18:47:26.325569+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "queue_wait", "start": "2026-11-16T18:47:26.325636+00:00", "end": "2026-11-16T18:47:26.325637+00:00", "status": "ok", "error": ""}
+{"trace_id": "8c228917-4069-4f08-b69d-e73a67c037c0", "stage": "evaluation", "start": "2026-11-16T18:47:26.325733+00:00", "end": "2026-11-16T18:47:27.276129+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "cache_lookup", "start": "2026-11-16T18:47:27.276725+00:00", "end": "2026-11-16T18:47:27.276727+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "inbox", "start": "2026-11-16T18:47:27.277037+00:00", "end": "2026-11-16T18:47:27.277038+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "planner", "start": "2026-11-16T18:47:27.277333+00:00", "end": "2026-11-16T18:47:27.277340+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "writer", "start": "2026-11-16T18:47:27.277648+00:00", "end": "2026-11-16T18:47:27.277665+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "reviewer", "start": "2026-11-16T18:47:27.278022+00:00", "end": "2026-11-16T18:47:27.278025+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "final", "start": "2026-11-16T18:47:27.278441+00:00", "end": "2026-11-16T18:47:27.278443+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "queue_wait", "start": "2026-11-16T18:47:27.278782+00:00", "end": "2026-11-16T18:47:27.278790+00:00", "status": "ok", "error": ""}
+{"trace_id": "4302bac3-84a1-4f0d-979c-6e2827c6dc6f", "stage": "evaluation", "start": "2026-11-16T18:47:27.279099+00:00", "end": "2026-11-16T18:47:28.208605+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "cache_lookup", "start": "2026-11-16T18:47:28.209692+00:00", "end": "2026-11-16T18:47:28.209695+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "inbox", "start": "2026-11-16T18:47:28.210525+00:00", "end": "2026-11-16T18:47:28.210527+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "planner", "start": "2026-11-16T18:47:28.211265+00:00", "end": "2026-11-16T18:47:28.211276+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "writer", "start": "2026-11-16T18:47:28.212321+00:00", "end": "2026-11-16T18:47:28.212350+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "reviewer", "start": "2026-11-16T18:47:28.213248+00:00", "end": "2026-11-16T18:47:28.213253+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "final", "start": "2026-11-16T18:47:28.214556+00:00", "end": "2026-11-16T18:47:28.214561+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "queue_wait", "start": "2026-11-16T18:47:28.215079+00:00", "end": "2026-11-16T18:47:28.215094+00:00", "status": "ok", "error": ""}
+{"trace_id": "e068e25b-af19-4c78-83bc-47f933d8c647", "stage": "evaluation", "start": "2026-11-16T18:47:28.215477+00:00", "end": "2026-11-16T18:47:29.141992+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "cache_lookup", "start": "2026-11-16T18:47:29.142687+00:00", "end": "2026-11-16T18:47:29.142689+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "inbox", "start": "2026-11-16T18:47:29.143148+00:00", "end": "2026-11-16T18:47:29.143150+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "planner", "start": "2026-11-16T18:47:29.143542+00:00", "end": "2026-11-16T18:47:29.143551+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "writer", "start": "2026-11-16T18:47:29.143849+00:00", "end": "2026-11-16T18:47:29.143865+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "reviewer", "start": "2026-11-16T18:47:29.144076+00:00", "end": "2026-11-16T18:47:29.144079+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "final", "start": "2026-11-16T18:47:29.144291+00:00", "end": "2026-11-16T18:47:29.144292+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "queue_wait", "start": "2026-11-16T18:47:29.144495+00:00", "end": "2026-11-16T18:47:29.144500+00:00", "status": "ok", "error": ""}
+{"trace_id": "8e6c8ad9-a367-4e13-b71f-b164bc08eced", "stage": "evaluation", "start": "2026-11-16T18:47:29.144700+00:00", "end": "2026-11-16T18:47:30.081495+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "cache_lookup", "start": "2026-11-16T18:47:30.082017+00:00", "end": "2026-11-16T18:47:30.082019+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "inbox", "start": "2026-11-16T18:47:30.082315+00:00", "end": "2026-11-16T18:47:30.082316+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "planner", "start": "2026-11-16T18:47:30.082543+00:00", "end": "2026-11-16T18:47:30.082548+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "writer", "start": "2026-11-16T18:47:30.082771+00:00", "end": "2026-11-16T18:47:30.082786+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "reviewer", "start": "2026-11-16T18:47:30.082960+00:00", "end": "2026-11-16T18:47:30.082963+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "final", "start": "2026-11-16T18:47:30.083122+00:00", "end": "2026-11-16T18:47:30.083124+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "queue_wait", "start": "2026-11-16T18:47:30.083286+00:00", "end": "2026-11-16T18:47:30.083289+00:00", "status": "ok", "error": ""}
+{"trace_id": "523e8b3e-50ae-419b-bc27-83820a6739dd", "stage": "evaluation", "start": "2026-11-16T18:47:30.083437+00:00", "end": "2026-11-16T18:47:31.113773+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "cache_lookup", "start": "2026-11-16T18:47:31.114332+00:00", "end": "2026-11-16T18:47:31.114334+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "inbox", "start": "2026-11-16T18:47:31.114546+00:00", "end": "2026-11-16T18:47:31.114546+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "planner", "start": "2026-11-16T18:47:31.114697+00:00", "end": "2026-11-16T18:47:31.114702+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "writer", "start": "2026-11-16T18:47:31.114894+00:00", "end": "2026-11-16T18:47:31.114911+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "reviewer", "start": "2026-11-16T18:47:31.115141+00:00", "end": "2026-11-16T18:47:31.115143+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "final", "start": "2026-11-16T18:47:31.115374+00:00", "end": "2026-11-16T18:47:31.115376+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "queue_wait", "start": "2026-11-16T18:47:31.115598+00:00", "end": "2026-11-16T18:47:31.115602+00:00", "status": "ok", "error": ""}
+{"trace_id": "2632b905-8281-417c-bad3-0963230a4f67", "stage": "evaluation", "start": "2026-11-16T18:47:31.115805+00:00", "end": "2026-11-16T18:47:32.201081+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "cache_lookup", "start": "2026-11-16T18:47:32.202781+00:00", "end": "2026-11-16T18:47:32.202784+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "inbox", "start": "2026-11-16T18:47:32.203276+00:00", "end": "2026-11-16T18:47:32.203276+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "planner", "start": "2026-11-16T18:47:32.203684+00:00", "end": "2026-11-16T18:47:32.203692+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "writer", "start": "2026-11-16T18:47:32.204192+00:00", "end": "2026-11-16T18:47:32.204221+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "reviewer", "start": "2026-11-16T18:47:32.204733+00:00", "end": "2026-11-16T18:47:32.204738+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "final", "start": "2026-11-16T18:47:32.205244+00:00", "end": "2026-11-16T18:47:32.205248+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "queue_wait", "start": "2026-11-16T18:47:32.205998+00:00", "end": "2026-11-16T18:47:32.206007+00:00", "status": "ok", "error": ""}
+{"trace_id": "3befe937-9fa4-43a3-b153-065710390ee4", "stage": "evaluation", "start": "2026-11-16T18:47:32.206494+00:00", "end": "2026-11-16T18:47:33.324643+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "cache_lookup", "start": "2026-11-16T18:47:33.329592+00:00", "end": "2026-11-16T18:47:33.329594+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "inbox", "start": "2026-11-16T18:47:33.329901+00:00", "end": "2026-11-16T18:47:33.329902+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "planner", "start": "2026-11-16T18:47:33.330074+00:00", "end": "2026-11-16T18:47:33.330080+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "writer", "start": "2026-11-16T18:47:33.330224+00:00", "end": "2026-11-16T18:47:33.330361+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "reviewer", "start": "2026-11-16T18:47:33.330502+00:00", "end": "2026-11-16T18:47:33.330503+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "final", "start": "2026-11-16T18:47:33.330626+00:00", "end": "2026-11-16T18:47:33.330627+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "queue_wait", "start": "2026-11-16T18:47:33.330748+00:00", "end": "2026-11-16T18:47:33.330752+00:00", "status": "ok", "error": ""}
+{"trace_id": "0c19f415-c3dd-4ce4-9e2a-3ed265364c37", "stage": "evaluation", "start": "2026-11-16T18:47:33.330881+00:00", "end": "2026-11-16T18:47:34.421123+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "cache_lookup", "start": "2026-11-16T18:47:34.422242+00:00", "end": "2026-11-16T18:47:34.422245+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "inbox", "start": "2026-11-16T18:47:34.422927+00:00", "end": "2026-11-16T18:47:34.422928+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "planner", "start": "2026-11-16T18:47:34.423309+00:00", "end": "2026-11-16T18:47:34.423316+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "writer", "start": "2026-11-16T18:47:34.423616+00:00", "end": "2026-11-16T18:47:34.423635+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "reviewer", "start": "2026-11-16T18:47:34.423928+00:00", "end": "2026-11-16T18:47:34.423931+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "final", "start": "2026-11-16T18:47:34.424201+00:00", "end": "2026-11-16T18:47:34.424203+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "queue_wait", "start": "2026-11-16T18:47:34.424476+00:00", "end": "2026-11-16T18:47:34.424482+00:00", "status": "ok", "error": ""}
+{"trace_id": "a7227bfa-8507-4932-a5b3-6931f56fa020", "stage": "evaluation", "start": "2026-11-16T18:47:34.424741+00:00", "end": "2026-11-16T18:47:35.483080+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "cache_lookup", "start": "2026-11-16T18:47:35.483910+00:00", "end": "2026-11-16T18:47:35.483913+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "inbox", "start": "2026-11-16T18:47:35.484295+00:00", "end": "2026-11-16T18:47:35.484296+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "planner", "start": "2026-11-16T18:47:35.484556+00:00", "end": "2026-11-16T18:47:35.484564+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "writer", "start": "2026-11-16T18:47:35.484819+00:00", "end": "2026-11-16T18:47:35.484849+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "reviewer", "start": "2026-11-16T18:47:35.485252+00:00", "end": "2026-11-16T18:47:35.485256+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "final", "start": "2026-11-16T18:47:35.485628+00:00", "end": "2026-11-16T18:47:35.485630+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "queue_wait", "start": "2026-11-16T18:47:35.486018+00:00", "end": "2026-11-16T18:47:35.486025+00:00", "status": "ok", "error": ""}
+{"trace_id": "cd48aba3-e7d1-4901-a0d7-6dc16535db0b", "stage": "evaluation", "start": "2026-11-16T18:47:35.486277+00:00", "end": "2026-11-16T18:47:36.739443+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "cache_lookup", "start": "2026-11-16T18:47:36.740350+00:00", "end": "2026-11-16T18:47:36.740351+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "inbox", "start": "2026-11-16T18:47:36.740604+00:00", "end": "2026-11-16T18:47:36.740604+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "planner", "start": "2026-11-16T18:47:36.740776+00:00", "end": "2026-11-16T18:47:36.740781+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "writer", "start": "2026-11-16T18:47:36.740933+00:00", "end": "2026-11-16T18:47:36.740952+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "reviewer", "start": "2026-11-16T18:47:36.741348+00:00", "end": "2026-11-16T18:47:36.741351+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "final", "start": "2026-11-16T18:47:36.741692+00:00", "end": "2026-11-16T18:47:36.741693+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "queue_wait", "start": "2026-11-16T18:47:36.741901+00:00", "end": "2026-11-16T18:47:36.741905+00:00", "status": "ok", "error": ""}
+{"trace_id": "9b4bf59b-d1c5-4973-9352-d52b1e563299", "stage": "evaluation", "start": "2026-11-16T18:47:36.742103+00:00", "end": "2026-11-16T18:47:38.105509+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "cache_lookup", "start": "2026-11-16T18:47:38.106325+00:00", "end": "2026-11-16T18:47:38.106327+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "inbox", "start": "2026-11-16T18:47:38.106809+00:00", "end": "2026-11-16T18:47:38.106810+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "planner", "start": "2026-11-16T18:47:38.107210+00:00", "end": "2026-11-16T18:47:38.107217+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "writer", "start": "2026-11-16T18:47:38.107543+00:00", "end": "2026-11-16T18:47:38.107559+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "reviewer", "start": "2026-11-16T18:47:38.107754+00:00", "end": "2026-11-16T18:47:38.107756+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "final", "start": "2026-11-16T18:47:38.107945+00:00", "end": "2026-11-16T18:47:38.107946+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "queue_wait", "start": "2026-11-16T18:47:38.108132+00:00", "end": "2026-11-16T18:47:38.108137+00:00", "status": "ok", "error": ""}
+{"trace_id": "affca62c-5d6e-48ba-8b86-9508bc877360", "stage": "evaluation", "start": "2026-11-16T18:47:38.108319+00:00", "end": "2026-11-16T18:47:39.405779+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "cache_lookup", "start": "2026-11-16T18:47:39.406768+00:00", "end": "2026-11-16T18:47:39.406770+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "inbox", "start": "2026-11-16T18:47:39.407215+00:00", "end": "2026-11-16T18:47:39.407216+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "planner", "start": "2026-11-16T18:47:39.407569+00:00", "end": "2026-11-16T18:47:39.407576+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "writer", "start": "2026-11-16T18:47:39.407863+00:00", "end": "2026-11-16T18:47:39.407881+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "reviewer", "start": "2026-11-16T18:47:39.408130+00:00", "end": "2026-11-16T18:47:39.408133+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "final", "start": "2026-11-16T18:47:39.408351+00:00", "end": "2026-11-16T18:47:39.408352+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "queue_wait", "start": "2026-11-16T18:47:39.408566+00:00", "end": "2026-11-16T18:47:39.408572+00:00", "status": "ok", "error": ""}
+{"trace_id": "c324f03c-5adb-4731-9f19-7b98d7e9207e", "stage": "evaluation", "start": "2026-11-16T18:47:39.408777+00:00", "end": "2026-11-16T18:47:40.702865+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "cache_lookup", "start": "2026-11-16T18:47:40.704010+00:00", "end": "2026-11-16T18:47:40.704012+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "inbox", "start": "2026-11-16T18:47:40.704516+00:00", "end": "2026-11-16T18:47:40.704518+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "planner", "start": "2026-11-16T18:47:40.704994+00:00", "end": "2026-11-16T18:47:40.705005+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "writer", "start": "2026-11-16T18:47:40.705402+00:00", "end": "2026-11-16T18:47:40.705425+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "reviewer", "start": "2026-11-16T18:47:40.705584+00:00", "end": "2026-11-16T18:47:40.705588+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "final", "start": "2026-11-16T18:47:40.705730+00:00", "end": "2026-11-16T18:47:40.705731+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "queue_wait", "start": "2026-11-16T18:47:40.705885+00:00", "end": "2026-11-16T18:47:40.705892+00:00", "status": "ok", "error": ""}
+{"trace_id": "51244885-ecb1-42e4-9278-f532bb4bf8d0", "stage": "evaluation", "start": "2026-11-16T18:47:40.706039+00:00", "end": "2026-11-16T18:47:42.007784+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "cache_lookup", "start": "2026-11-16T18:47:42.008820+00:00", "end": "2026-11-16T18:47:42.008822+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "inbox", "start": "2026-11-16T18:47:42.009283+00:00", "end": "2026-11-16T18:47:42.009284+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "planner", "start": "2026-11-16T18:47:42.009591+00:00", "end": "2026-11-16T18:47:42.009596+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "writer", "start": "2026-11-16T18:47:42.009748+00:00", "end": "2026-11-16T18:47:42.009763+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "reviewer", "start": "2026-11-16T18:47:42.009905+00:00", "end": "2026-11-16T18:47:42.009907+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "final", "start": "2026-11-16T18:47:42.010065+00:00", "end": "2026-11-16T18:47:42.010066+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "queue_wait", "start": "2026-11-16T18:47:42.010212+00:00", "end": "2026-11-16T18:47:42.010217+00:00", "status": "ok", "error": ""}
+{"trace_id": "4389a9af-e05c-40f7-a83a-887ef38a9ace", "stage": "evaluation", "start": "2026-11-16T18:47:42.010354+00:00", "end": "2026-11-16T18:47:43.256024+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "cache_lookup", "start": "2026-11-16T18:47:43.257065+00:00", "end": "2026-11-16T18:47:43.257068+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "inbox", "start": "2026-11-16T18:47:43.257536+00:00", "end": "2026-11-16T18:47:43.257538+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "planner", "start": "2026-11-16T18:47:43.257913+00:00", "end": "2026-11-16T18:47:43.257919+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "writer", "start": "2026-11-16T18:47:43.258141+00:00", "end": "2026-11-16T18:47:43.258160+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "reviewer", "start": "2026-11-16T18:47:43.258373+00:00", "end": "2026-11-16T18:47:43.258375+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "final", "start": "2026-11-16T18:47:43.258579+00:00", "end": "2026-11-16T18:47:43.258580+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "queue_wait", "start": "2026-11-16T18:47:43.258786+00:00", "end": "2026-11-16T18:47:43.258791+00:00", "status": "ok", "error": ""}
+{"trace_id": "502c5d6d-ee18-411c-b2bd-917b62dfdc64", "stage": "evaluation", "start": "2026-11-16T18:47:43.258991+00:00", "end": "2026-11-16T18:47:44.562225+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "cache_lookup", "start": "2026-11-16T18:47:44.563212+00:00", "end": "2026-11-16T18:47:44.563214+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "inbox", "start": "2026-11-16T18:47:44.563726+00:00", "end": "2026-11-16T18:47:44.563728+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "planner", "start": "2026-11-16T18:47:44.564069+00:00", "end": "2026-11-16T18:47:44.564076+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "writer", "start": "2026-11-16T18:47:44.564387+00:00", "end": "2026-11-16T18:47:44.564412+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "reviewer", "start": "2026-11-16T18:47:44.564825+00:00", "end": "2026-11-16T18:47:44.564828+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "final", "start": "2026-11-16T18:47:44.565209+00:00", "end": "2026-11-16T18:47:44.565211+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "queue_wait", "start": "2026-11-16T18:47:44.565591+00:00", "end": "2026-11-16T18:47:44.565597+00:00", "status": "ok", "error": ""}
+{"trace_id": "b4776735-bc73-4ec2-9656-c1c52be54cde", "stage": "evaluation", "start": "2026-11-16T18:47:44.565867+00:00", "end": "2026-11-16T18:47:45.916143+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "cache_lookup", "start": "2026-11-16T18:47:45.917198+00:00", "end": "2026-11-16T18:47:45.917201+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "inbox", "start": "2026-11-16T18:47:45.917555+00:00", "end": "2026-11-16T18:47:45.917556+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "planner", "start": "2026-11-16T18:47:45.917825+00:00", "end": "2026-11-16T18:47:45.917832+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "writer", "start": "2026-11-16T18:47:45.918094+00:00", "end": "2026-11-16T18:47:45.918114+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "reviewer", "start": "2026-11-16T18:47:45.918344+00:00", "end": "2026-11-16T18:47:45.918346+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "final", "start": "2026-11-16T18:47:45.918558+00:00", "end": "2026-11-16T18:47:45.918559+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "queue_wait", "start": "2026-11-16T18:47:45.918773+00:00", "end": "2026-11-16T18:47:45.918779+00:00", "status": "ok", "error": ""}
+{"trace_id": "05b00d2f-bd35-41f5-add2-8c4cc906ab85", "stage": "evaluation", "start": "2026-11-16T18:47:45.919130+00:00", "end": "2026-11-16T18:47:47.301347+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "cache_lookup", "start": "2026-11-16T18:47:47.302301+00:00", "end": "2026-11-16T18:47:47.302305+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "inbox", "start": "2026-11-16T18:47:47.302922+00:00", "end": "2026-11-16T18:47:47.302924+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "planner", "start": "2026-11-16T18:47:47.303379+00:00", "end": "2026-11-16T18:47:47.303390+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "writer", "start": "2026-11-16T18:47:47.303820+00:00", "end": "2026-11-16T18:47:47.303851+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "reviewer", "start": "2026-11-16T18:47:47.304200+00:00", "end": "2026-11-16T18:47:47.304202+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "final", "start": "2026-11-16T18:47:47.304496+00:00", "end": "2026-11-16T18:47:47.304497+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "queue_wait", "start": "2026-11-16T18:47:47.304732+00:00", "end": "2026-11-16T18:47:47.304739+00:00", "status": "ok", "error": ""}
+{"trace_id": "80d24d52-2ee6-4235-8154-eac4ab774789", "stage": "evaluation", "start": "2026-11-16T18:47:47.304963+00:00", "end": "2026-11-16T18:47:48.611795+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "cache_lookup", "start": "2026-11-16T18:47:48.612818+00:00", "end": "2026-11-16T18:47:48.612822+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "inbox", "start": "2026-11-16T18:47:48.613288+00:00", "end": "2026-11-16T18:47:48.613290+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "planner", "start": "2026-11-16T18:47:48.613701+00:00", "end": "2026-11-16T18:47:48.613711+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "writer", "start": "2026-11-16T18:47:48.614129+00:00", "end": "2026-11-16T18:47:48.614155+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "reviewer", "start": "2026-11-16T18:47:48.614519+00:00", "end": "2026-11-16T18:47:48.614521+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "final", "start": "2026-11-16T18:47:48.614739+00:00", "end": "2026-11-16T18:47:48.614740+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "queue_wait", "start": "2026-11-16T18:47:48.614957+00:00", "end": "2026-11-16T18:47:48.614963+00:00", "status": "ok", "error": ""}
+{"trace_id": "5214bbd9-3100-4096-90c1-ffc6f633e1e9", "stage": "evaluation", "start": "2026-11-16T18:47:48.615173+00:00", "end": "2026-11-16T18:47:50.001859+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "cache_lookup", "start": "2026-11-16T18:47:50.002723+00:00", "end": "2026-11-16T18:47:50.002726+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "inbox", "start": "2026-11-16T18:47:50.003261+00:00", "end": "2026-11-16T18:47:50.003263+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "planner", "start": "2026-11-16T18:47:50.003679+00:00", "end": "2026-11-16T18:47:50.003688+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "writer", "start": "2026-11-16T18:47:50.004089+00:00", "end": "2026-11-16T18:47:50.004113+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "reviewer", "start": "2026-11-16T18:47:50.004504+00:00", "end": "2026-11-16T18:47:50.004507+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "final", "start": "2026-11-16T18:47:50.004889+00:00", "end": "2026-11-16T18:47:50.004891+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "queue_wait", "start": "2026-11-16T18:47:50.005247+00:00", "end": "2026-11-16T18:47:50.005254+00:00", "status": "ok", "error": ""}
+{"trace_id": "f66feb94-4073-4128-b402-cdb7feaa09c6", "stage": "evaluation", "start": "2026-11-16T18:47:50.005471+00:00", "end": "2026-11-16T18:47:51.471398+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "cache_lookup", "start": "2026-11-16T18:47:51.472617+00:00", "end": "2026-11-16T18:47:51.472620+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "inbox", "start": "2026-11-16T18:47:51.473137+00:00", "end": "2026-11-16T18:47:51.473139+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "planner", "start": "2026-11-16T18:47:51.473617+00:00", "end": "2026-11-16T18:47:51.473626+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "writer", "start": "2026-11-16T18:47:51.473995+00:00", "end": "2026-11-16T18:47:51.474020+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "reviewer", "start": "2026-11-16T18:47:51.474298+00:00", "end": "2026-11-16T18:47:51.474301+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "final", "start": "2026-11-16T18:47:51.474509+00:00", "end": "2026-11-16T18:47:51.474510+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "queue_wait", "start": "2026-11-16T18:47:51.474714+00:00", "end": "2026-11-16T18:47:51.474720+00:00", "status": "ok", "error": ""}
+{"trace_id": "61bfd90c-71d0-4613-93e7-c74b7828e87f", "stage": "evaluation", "start": "2026-11-16T18:47:51.474917+00:00", "end": "2026-11-16T18:47:52.970357+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "cache_lookup", "start": "2026-11-16T18:47:52.971252+00:00", "end": "2026-11-16T18:47:52.971255+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "inbox", "start": "2026-11-16T18:47:52.971700+00:00", "end": "2026-11-16T18:47:52.971702+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "planner", "start": "2026-11-16T18:47:52.972095+00:00", "end": "2026-11-16T18:47:52.972101+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "writer", "start": "2026-11-16T18:47:52.972320+00:00", "end": "2026-11-16T18:47:52.972335+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "reviewer", "start": "2026-11-16T18:47:52.972556+00:00", "end": "2026-11-16T18:47:52.972558+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "final", "start": "2026-11-16T18:47:52.972759+00:00", "end": "2026-11-16T18:47:52.972761+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "queue_wait", "start": "2026-11-16T18:47:52.972961+00:00", "end": "2026-11-16T18:47:52.972965+00:00", "status": "ok", "error": ""}
+{"trace_id": "2d7488c9-045e-464b-a5bb-0d1692dbbc79", "stage": "evaluation", "start": "2026-11-16T18:47:52.973161+00:00", "end": "2026-11-16T18:47:54.447575+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "cache_lookup", "start": "2026-11-16T18:47:54.448254+00:00", "end": "2026-11-16T18:47:54.448256+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "inbox", "start": "2026-11-16T18:47:54.448625+00:00", "end": "2026-11-16T18:47:54.448626+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "planner", "start": "2026-11-16T18:47:54.448925+00:00", "end": "2026-11-16T18:47:54.448931+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "writer", "start": "2026-11-16T18:47:54.449203+00:00", "end": "2026-11-16T18:47:54.449220+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "reviewer", "start": "2026-11-16T18:47:54.449466+00:00", "end": "2026-11-16T18:47:54.449468+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "final", "start": "2026-11-16T18:47:54.449698+00:00", "end": "2026-11-16T18:47:54.449699+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "queue_wait", "start": "2026-11-16T18:47:54.449947+00:00", "end": "2026-11-16T18:47:54.449952+00:00", "status": "ok", "error": ""}
+{"trace_id": "2463bc12-29c6-435d-bb32-ece30caca11a", "stage": "evaluation", "start": "2026-11-16T18:47:54.450269+00:00", "end": "2026-11-16T18:47:55.933559+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "cache_lookup", "start": "2026-11-16T18:47:55.934533+00:00", "end": "2026-11-16T18:47:55.934536+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "inbox", "start": "2026-11-16T18:47:55.938904+00:00", "end": "2026-11-16T18:47:55.938905+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "planner", "start": "2026-11-16T18:47:55.941646+00:00", "end": "2026-11-16T18:47:55.941657+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "writer", "start": "2026-11-16T18:47:55.944791+00:00", "end": "2026-11-16T18:47:55.944813+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "reviewer", "start": "2026-11-16T18:47:55.947825+00:00", "end": "2026-11-16T18:47:55.947829+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "final", "start": "2026-11-16T18:47:55.950795+00:00", "end": "2026-11-16T18:47:55.950801+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "queue_wait", "start": "2026-11-16T18:47:55.953810+00:00", "end": "2026-11-16T18:47:55.953826+00:00", "status": "ok", "error": ""}
+{"trace_id": "50d24b95-b661-4e12-8a48-303ebc1eae4d", "stage": "evaluation", "start": "2026-11-16T18:47:55.956847+00:00", "end": "2026-11-16T18:47:57.478892+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "cache_lookup", "start": "2026-11-16T18:47:57.479805+00:00", "end": "2026-11-16T18:47:57.479808+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "inbox", "start": "2026-11-16T18:47:57.480265+00:00", "end": "2026-11-16T18:47:57.480266+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "planner", "start": "2026-11-16T18:47:57.480679+00:00", "end": "2026-11-16T18:47:57.480687+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "writer", "start": "2026-11-16T18:47:57.481068+00:00", "end": "2026-11-16T18:47:57.481092+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "reviewer", "start": "2026-11-16T18:47:57.481463+00:00", "end": "2026-11-16T18:47:57.481466+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "final", "start": "2026-11-16T18:47:57.481728+00:00", "end": "2026-11-16T18:47:57.481729+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "queue_wait", "start": "2026-11-16T18:47:57.481944+00:00", "end": "2026-11-16T18:47:57.481951+00:00", "status": "ok", "error": ""}
+{"trace_id": "bdce5362-0bdd-4934-b6a7-85e25ff34245", "stage": "evaluation", "start": "2026-11-16T18:47:57.482152+00:00", "end": "2026-11-16T18:47:58.979303+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "cache_lookup", "start": "2026-11-16T18:47:58.980320+00:00", "end": "2026-11-16T18:47:58.980323+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "inbox", "start": "2026-11-16T18:47:58.980845+00:00", "end": "2026-11-16T18:47:58.980847+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "planner", "start": "2026-11-16T18:47:58.981243+00:00", "end": "2026-11-16T18:47:58.981249+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "writer", "start": "2026-11-16T18:47:58.981478+00:00", "end": "2026-11-16T18:47:58.981496+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "reviewer", "start": "2026-11-16T18:47:58.981765+00:00", "end": "2026-11-16T18:47:58.981767+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "final", "start": "2026-11-16T18:47:58.981983+00:00", "end": "2026-11-16T18:47:58.981984+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "queue_wait", "start": "2026-11-16T18:47:58.982204+00:00", "end": "2026-11-16T18:47:58.982211+00:00", "status": "ok", "error": ""}
+{"trace_id": "59bb7415-caac-472b-9221-2693ccb123cf", "stage": "evaluation", "start": "2026-11-16T18:47:58.982418+00:00", "end": "2026-11-16T18:48:00.536162+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "cache_lookup", "start": "2026-11-16T18:48:00.537419+00:00", "end": "2026-11-16T18:48:00.537422+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "inbox", "start": "2026-11-16T18:48:00.537896+00:00", "end": "2026-11-16T18:48:00.537897+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "planner", "start": "2026-11-16T18:48:00.538301+00:00", "end": "2026-11-16T18:48:00.538313+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "writer", "start": "2026-11-16T18:48:00.538700+00:00", "end": "2026-11-16T18:48:00.538733+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "reviewer", "start": "2026-11-16T18:48:00.539104+00:00", "end": "2026-11-16T18:48:00.539108+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "final", "start": "2026-11-16T18:48:00.539329+00:00", "end": "2026-11-16T18:48:00.539331+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "queue_wait", "start": "2026-11-16T18:48:00.539553+00:00", "end": "2026-11-16T18:48:00.539559+00:00", "status": "ok", "error": ""}
+{"trace_id": "100e4742-e289-411c-8d5c-305c9726bd1e", "stage": "evaluation", "start": "2026-11-16T18:48:00.539774+00:00", "end": "2026-11-16T18:48:02.189485+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "cache_lookup", "start": "2026-11-16T18:48:02.190121+00:00", "end": "2026-11-16T18:48:02.190122+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "inbox", "start": "2026-11-16T18:48:02.190310+00:00", "end": "2026-11-16T18:48:02.190310+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "planner", "start": "2026-11-16T18:48:02.190691+00:00", "end": "2026-11-16T18:48:02.190699+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "writer", "start": "2026-11-16T18:48:02.191062+00:00", "end": "2026-11-16T18:48:02.191085+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "reviewer", "start": "2026-11-16T18:48:02.191444+00:00", "end": "2026-11-16T18:48:02.191448+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "final", "start": "2026-11-16T18:48:02.191795+00:00", "end": "2026-11-16T18:48:02.191797+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "queue_wait", "start": "2026-11-16T18:48:02.192145+00:00", "end": "2026-11-16T18:48:02.192150+00:00", "status": "ok", "error": ""}
+{"trace_id": "48526c6b-5ba2-4a0e-b4e9-1e16dff0aa2e", "stage": "evaluation", "start": "2026-11-16T18:48:02.192414+00:00", "end": "2026-11-16T18:48:03.882755+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "cache_lookup", "start": "2026-11-16T18:48:03.883443+00:00", "end": "2026-11-16T18:48:03.883446+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "inbox", "start": "2026-11-16T18:48:03.883906+00:00", "end": "2026-11-16T18:48:03.883907+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "planner", "start": "2026-11-16T18:48:03.884240+00:00", "end": "2026-11-16T18:48:03.884246+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "writer", "start": "2026-11-16T18:48:03.884515+00:00", "end": "2026-11-16T18:48:03.884539+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "reviewer", "start": "2026-11-16T18:48:03.884978+00:00", "end": "2026-11-16T18:48:03.884982+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "final", "start": "2026-11-16T18:48:03.885281+00:00", "end": "2026-11-16T18:48:03.885282+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "queue_wait", "start": "2026-11-16T18:48:03.885457+00:00", "end": "2026-11-16T18:48:03.885463+00:00", "status": "ok", "error": ""}
+{"trace_id": "5a5e6d84-d46b-4230-87a4-d690752c03e3", "stage": "evaluation", "start": "2026-11-16T18:48:03.885618+00:00", "end": "2026-11-16T18:48:05.562213+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "cache_lookup", "start": "2026-11-16T18:48:05.563358+00:00", "end": "2026-11-16T18:48:05.563362+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "inbox", "start": "2026-11-16T18:48:05.563994+00:00", "end": "2026-11-16T18:48:05.563996+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "planner", "start": "2026-11-16T18:48:05.564823+00:00", "end": "2026-11-16T18:48:05.564833+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "writer", "start": "2026-11-16T18:48:05.565397+00:00", "end": "2026-11-16T18:48:05.565419+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "reviewer", "start": "2026-11-16T18:48:05.565772+00:00", "end": "2026-11-16T18:48:05.565774+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "final", "start": "2026-11-16T18:48:05.566697+00:00", "end": "2026-11-16T18:48:05.566698+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "queue_wait", "start": "2026-11-16T18:48:05.577681+00:00", "end": "2026-11-16T18:48:05.577690+00:00", "status": "ok", "error": ""}
+{"trace_id": "4baa93a9-9856-4221-bc17-3a424035abaf", "stage": "evaluation", "start": "2026-11-16T18:48:05.578232+00:00", "end": "2026-11-16T18:48:07.319090+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "cache_lookup", "start": "2026-11-16T18:48:07.320255+00:00", "end": "2026-11-16T18:48:07.320258+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "inbox", "start": "2026-11-16T18:48:07.320807+00:00", "end": "2026-11-16T18:48:07.320809+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "planner", "start": "2026-11-16T18:48:07.321241+00:00", "end": "2026-11-16T18:48:07.321250+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "writer", "start": "2026-11-16T18:48:07.321527+00:00", "end": "2026-11-16T18:48:07.321542+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "reviewer", "start": "2026-11-16T18:48:07.321748+00:00", "end": "2026-11-16T18:48:07.321750+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "final", "start": "2026-11-16T18:48:07.321946+00:00", "end": "2026-11-16T18:48:07.321947+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "queue_wait", "start": "2026-11-16T18:48:07.322173+00:00", "end": "2026-11-16T18:48:07.322178+00:00", "status": "ok", "error": ""}
+{"trace_id": "ed07c044-8d2a-4c00-8ee8-5b2a124a0580", "stage": "evaluation", "start": "2026-11-16T18:48:07.322468+00:00", "end": "2026-11-16T18:48:09.217790+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "cache_lookup", "start": "2026-11-16T18:48:09.219159+00:00", "end": "2026-11-16T18:48:09.219162+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "inbox", "start": "2026-11-16T18:48:09.220139+00:00", "end": "2026-11-16T18:48:09.220140+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "planner", "start": "2026-11-16T18:48:09.220789+00:00", "end": "2026-11-16T18:48:09.220800+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "writer", "start": "2026-11-16T18:48:09.221443+00:00", "end": "2026-11-16T18:48:09.221479+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "reviewer", "start": "2026-11-16T18:48:09.222171+00:00", "end": "2026-11-16T18:48:09.222175+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "final", "start": "2026-11-16T18:48:09.222806+00:00", "end": "2026-11-16T18:48:09.222809+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "queue_wait", "start": "2026-11-16T18:48:09.223248+00:00", "end": "2026-11-16T18:48:09.223265+00:00", "status": "ok", "error": ""}
+{"trace_id": "0d465fd9-4f13-4d0f-8405-02bc6dd39a9f", "stage": "evaluation", "start": "2026-11-16T18:48:09.223739+00:00", "end": "2026-11-16T18:48:11.061035+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "cache_lookup", "start": "2026-11-16T18:48:11.063064+00:00", "end": "2026-11-16T18:48:11.063067+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "inbox", "start": "2026-11-16T18:48:11.063835+00:00", "end": "2026-11-16T18:48:11.063836+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "planner", "start": "2026-11-16T18:48:11.064635+00:00", "end": "2026-11-16T18:48:11.064650+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "writer", "start": "2026-11-16T18:48:11.065392+00:00", "end": "2026-11-16T18:48:11.065438+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "reviewer", "start": "2026-11-16T18:48:11.066058+00:00", "end": "2026-11-16T18:48:11.066065+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "final", "start": "2026-11-16T18:48:11.066750+00:00", "end": "2026-11-16T18:48:11.066755+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "queue_wait", "start": "2026-11-16T18:48:11.067415+00:00", "end": "2026-11-16T18:48:11.067425+00:00", "status": "ok", "error": ""}
+{"trace_id": "dadf27c5-fa4f-4a9e-9ec4-431ce182c438", "stage": "evaluation", "start": "2026-11-16T18:48:11.067961+00:00", "end": "2026-11-16T18:48:12.948532+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "cache_lookup", "start": "2026-11-16T18:48:12.950526+00:00", "end": "2026-11-16T18:48:12.950529+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "inbox", "start": "2026-11-16T18:48:12.951274+00:00", "end": "2026-11-16T18:48:12.951275+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "planner", "start": "2026-11-16T18:48:12.951952+00:00", "end": "2026-11-16T18:48:12.951974+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "writer", "start": "2026-11-16T18:48:12.952646+00:00", "end": "2026-11-16T18:48:12.952670+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "reviewer", "start": "2026-11-16T18:48:12.953720+00:00", "end": "2026-11-16T18:48:12.953725+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "final", "start": "2026-11-16T18:48:12.954581+00:00", "end": "2026-11-16T18:48:12.954584+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "queue_wait", "start": "2026-11-16T18:48:12.955121+00:00", "end": "2026-11-16T18:48:12.955147+00:00", "status": "ok", "error": ""}
+{"trace_id": "9e88e2a1-fc92-426e-8ae8-ae06270bc434", "stage": "evaluation", "start": "2026-11-16T18:48:12.955767+00:00", "end": "2026-11-16T18:48:15.013185+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "cache_lookup", "start": "2026-11-16T18:48:15.033972+00:00", "end": "2026-11-16T18:48:15.033978+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "inbox", "start": "2026-11-16T18:48:15.035261+00:00", "end": "2026-11-16T18:48:15.035262+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "planner", "start": "2026-11-16T18:48:15.037393+00:00", "end": "2026-11-16T18:48:15.037410+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "writer", "start": "2026-11-16T18:48:15.038174+00:00", "end": "2026-11-16T18:48:15.038257+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "reviewer", "start": "2026-11-16T18:48:15.038860+00:00", "end": "2026-11-16T18:48:15.038868+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "final", "start": "2026-11-16T18:48:15.041298+00:00", "end": "2026-11-16T18:48:15.041310+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "queue_wait", "start": "2026-11-16T18:48:15.042523+00:00", "end": "2026-11-16T18:48:15.042539+00:00", "status": "ok", "error": ""}
+{"trace_id": "874407e6-788f-4b4a-88a3-17fb66ece62e", "stage": "evaluation", "start": "2026-11-16T18:48:15.043010+00:00", "end": "2026-11-16T18:48:16.965499+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "cache_lookup", "start": "2026-11-16T18:48:16.968387+00:00", "end": "2026-11-16T18:48:16.968390+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "inbox", "start": "2026-11-16T18:48:16.969299+00:00", "end": "2026-11-16T18:48:16.969300+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "planner", "start": "2026-11-16T18:48:16.969921+00:00", "end": "2026-11-16T18:48:16.969946+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "writer", "start": "2026-11-16T18:48:16.970511+00:00", "end": "2026-11-16T18:48:16.970601+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "reviewer", "start": "2026-11-16T18:48:16.971144+00:00", "end": "2026-11-16T18:48:16.971170+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "final", "start": "2026-11-16T18:48:16.971688+00:00", "end": "2026-11-16T18:48:16.971691+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "queue_wait", "start": "2026-11-16T18:48:16.972187+00:00", "end": "2026-11-16T18:48:16.972198+00:00", "status": "ok", "error": ""}
+{"trace_id": "c2d3168b-6853-47b9-9c2c-c766d8c90112", "stage": "evaluation", "start": "2026-11-16T18:48:16.972722+00:00", "end": "2026-11-16T18:48:19.084535+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "cache_lookup", "start": "2026-11-16T18:48:19.086891+00:00", "end": "2026-11-16T18:48:19.086893+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "inbox", "start": "2026-11-16T18:48:19.087754+00:00", "end": "2026-11-16T18:48:19.087755+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "planner", "start": "2026-11-16T18:48:19.088402+00:00", "end": "2026-11-16T18:48:19.088429+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "writer", "start": "2026-11-16T18:48:19.089028+00:00", "end": "2026-11-16T18:48:19.089109+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "reviewer", "start": "2026-11-16T18:48:19.089601+00:00", "end": "2026-11-16T18:48:19.089616+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "final", "start": "2026-11-16T18:48:19.090154+00:00", "end": "2026-11-16T18:48:19.090156+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "queue_wait", "start": "2026-11-16T18:48:19.090695+00:00", "end": "2026-11-16T18:48:19.090723+00:00", "status": "ok", "error": ""}
+{"trace_id": "4fd76b7c-d095-412a-9cfd-c7d9bb34edba", "stage": "evaluation", "start": "2026-11-16T18:48:19.091157+00:00", "end": "2026-11-16T18:48:21.132260+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "cache_lookup", "start": "2026-11-16T18:48:21.133852+00:00", "end": "2026-11-16T18:48:21.133855+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "inbox", "start": "2026-11-16T18:48:21.134262+00:00", "end": "2026-11-16T18:48:21.134263+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "planner", "start": "2026-11-16T18:48:21.134546+00:00", "end": "2026-11-16T18:48:21.134563+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "writer", "start": "2026-11-16T18:48:21.134802+00:00", "end": "2026-11-16T18:48:21.134846+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "reviewer", "start": "2026-11-16T18:48:21.135083+00:00", "end": "2026-11-16T18:48:21.135096+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "final", "start": "2026-11-16T18:48:21.135311+00:00", "end": "2026-11-16T18:48:21.135312+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "queue_wait", "start": "2026-11-16T18:48:21.135530+00:00", "end": "2026-11-16T18:48:21.135536+00:00", "status": "ok", "error": ""}
+{"trace_id": "85208c67-9a71-474d-8f8f-bca6daf41476", "stage": "evaluation", "start": "2026-11-16T18:48:21.135746+00:00", "end": "2026-11-16T18:48:22.881430+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "cache_lookup", "start": "2026-11-16T18:48:22.882627+00:00", "end": "2026-11-16T18:48:22.882630+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "inbox", "start": "2026-11-16T18:48:22.883222+00:00", "end": "2026-11-16T18:48:22.883224+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "planner", "start": "2026-11-16T18:48:22.883723+00:00", "end": "2026-11-16T18:48:22.883736+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "writer", "start": "2026-11-16T18:48:22.884136+00:00", "end": "2026-11-16T18:48:22.884162+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "reviewer", "start": "2026-11-16T18:48:22.884460+00:00", "end": "2026-11-16T18:48:22.884465+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "final", "start": "2026-11-16T18:48:22.884741+00:00", "end": "2026-11-16T18:48:22.884743+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "queue_wait", "start": "2026-11-16T18:48:22.885012+00:00", "end": "2026-11-16T18:48:22.885019+00:00", "status": "ok", "error": ""}
+{"trace_id": "83891859-db71-4783-87e9-01f8fec2c2b5", "stage": "evaluation", "start": "2026-11-16T18:48:22.885391+00:00", "end": "2026-11-16T18:48:25.339003+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "cache_lookup", "start": "2026-11-16T18:48:25.340110+00:00", "end": "2026-11-16T18:48:25.340112+00:00", "status": "ok", "error": "", "cache": "miss"}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "inbox", "start": "2026-11-16T18:48:25.340680+00:00", "end": "2026-11-16T18:48:25.340681+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "planner", "start": "2026-11-16T18:48:25.341125+00:00", "end": "2026-11-16T18:48:25.341134+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "writer", "start": "2026-11-16T18:48:25.341526+00:00", "end": "2026-11-16T18:48:25.341545+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "reviewer", "start": "2026-11-16T18:48:25.341913+00:00", "end": "2026-11-16T18:48:25.341916+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "final", "start": "2026-11-16T18:48:25.342283+00:00", "end": "2026-11-16T18:48:25.342285+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "queue_wait", "start": "2026-11-16T18:48:25.342700+00:00", "end": "2026-11-16T18:48:25.342707+00:00", "status": "ok", "error": ""}
+{"trace_id": "71ceafef-e3b0-4f2e-b5cd-0fd7a9ed010f", "stage": "evaluation", "start": "2026-11-16T18:48:25.343088+00:00", "end": "2026-11-16T18:48:27.526287+00:00", "status": "ok", "error": ""}

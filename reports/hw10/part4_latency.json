@@ -1,59 +1,63 @@
 {
-  "cache_backend": "exact-question store because Redis was not running",
-  "kafka": "not running; planner, writer, reviewer, and the judge ran in-process",
+  "cache_backend": "Redis semantic cache, all-MiniLM-L6-v2, threshold 0.95",
+  "kafka": "planner, writer, and reviewer ran as separate processes on s6491_inbox, s6491_tasks, s6491_drafts, and s6491_final",
   "judge": "llama3.2:3b",
   "miss_count": 50,
   "all_confirmed_misses": true,
   "window": "2026-11-16",
   "traces": {
-    "cache_hit": "b44672f6-2e5c-4d99-9dbd-bad25aae66ca",
-    "cache_miss": "e5eb5b97-41a9-4305-845d-1b8288e885cb",
-    "failed": "ec69d594-d031-420a-86a1-ea41e9ff9d90",
+    "cache_hit": "bdb388cf-4e3d-478c-a547-ee20fc1e258c",
+    "cache_miss": "c87c5886-8fc9-49f4-8322-e4b8aebf3a46",
+    "failed": "18a23fd9-e8a3-4c7d-9428-1b4fd226299f",
     "failed_stage": "writer",
     "failed_error": "poison message"
   },
   "cache_hit_latency_ms": {
-    "p50": 0.005,
-    "p95": 0.005
+    "p50": 12.267,
+    "p95": 19.912,
+    "samples": 10
   },
   "stages": [
     {
       "stage": "Cache lookup",
-      "p50_ms": 0.003,
-      "p95_ms": 0.004,
-      "percent_of_e2e": 0.0
+      "p50_ms": 147.336,
+      "p95_ms": 508.84,
+      "percent_of_e2e": 3.0
     },
     {
       "stage": "Planner",
-      "p50_ms": 0.008,
-      "p95_ms": 0.02,
+      "p50_ms": 0.096,
+      "p95_ms": 0.231,
       "percent_of_e2e": 0.0
     },
     {
       "stage": "Writer",
-      "p50_ms": 0.021,
-      "p95_ms": 0.082,
+      "p50_ms": 0.141,
+      "p95_ms": 0.589,
       "percent_of_e2e": 0.0
     },
     {
       "stage": "Reviewer",
-      "p50_ms": 0.003,
-      "p95_ms": 0.012,
+      "p50_ms": 0.097,
+      "p95_ms": 0.862,
       "percent_of_e2e": 0.0
     },
     {
       "stage": "Queue wait (total)",
-      "p50_ms": 0.006,
-      "p95_ms": 0.017,
-      "percent_of_e2e": 0.0
+      "p50_ms": 3.295,
+      "p95_ms": 16.342,
+      "percent_of_e2e": 0.1
     },
     {
       "stage": "Evaluation",
-      "p50_ms": 1328.554,
-      "p95_ms": 2087.335,
-      "percent_of_e2e": 100.0
+      "p50_ms": 6124.038,
+      "p95_ms": 7049.356,
+      "percent_of_e2e": 96.2
     }
   ],
+  "other_percent_of_e2e": 0.7,
+  "excluded_requests": 0,
+  "skipped_cache_hits": 0,
   "dominant_stage": "Evaluation",
-  "optimize_first": "Evaluation is the largest share of a cache miss (p50 1328.554 ms, 100.0% of end-to-end). I would take that stage off the shopper's wait, or make it cheaper, before tuning the others."
+  "optimize_first": "Evaluation is the largest share of a cache miss (p50 6124.038 ms, 96.2% of end-to-end). I would run the judge after the answer is returned, or use a cheaper judge call before tuning the others."
 }

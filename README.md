@@ -821,3 +821,60 @@ API wrapper on PORT_BASE: `POST /api/kafka/recalls`, `GET /api/kafka/recalls/{re
 `X-Correlation-ID` header to choose the correlation_id; the wrapper forwards it unchanged.
 
 Step-by-step commands and the screenshot list are in `reports/hw08/HW8_PART1_TODO.md`.
+
+## Homework 10, Part 1
+
+The Streamlit page is a view over the Kafka service that HW8 and HW9 already built.
+Request count, error rate, and end-to-end latency are computed in
+`code/kafka_service/ops_metrics.py` from the lines `flow_log.log_flow` writes under
+`reports/hw08/logs/`. Cache hits and cache misses come from the HW9 measurement
+files, and the page states that those are a separate time window. A live question
+that passes `correlation_id` into `qa_ingress.answer_question` now records its
+cache hit or miss with the same `log_flow` call and the same correlation id.
+Trace lookup uses that id as `trace_id`.
+
+Part 2 and Part 3 results show up on the Evaluation page once these files exist:
+
+```
+reports/hw10/part2_evaluation.json
+reports/hw10/part3_judge_validation.json
+```
+
+```bash
+pip install -r code/ops_dashboard/requirements-dashboard.txt
+python scripts/verify_hw10_part1.py
+bash scripts/run_hw10_part1.sh
+# open http://localhost:8501
+```
+
+Part 2 scores the plan, draft, and final answer that share one correlation_id.
+The judge is a local GEval (Ollama, 1–5). It stops if the model does not answer within 30 seconds.
+`qwen3:8b` is used when `JUDGE_MODEL` or `SMOL_MODEL` is set; otherwise the judge is `llama3.2:3b`.
+
+```bash
+python scripts/run_hw10_part2.py
+# writes reports/hw10/part2_evaluation.json, then reload the Evaluation page
+```
+
+Part 3 compares that same judge with the frozen human labels in `reports/hw10/human_labels.csv`.
+The judge script only reads `eval_cases.json` and `human_labels.csv`. It does not rewrite them.
+
+```bash
+python scripts/run_hw10_part3.py
+# writes reports/hw10/part3_judge_validation.json, then reload the Evaluation page
+```
+
+Part 4 writes one span per stage for the same correlation_id. A cache hit stops after the lookup. A cache miss continues through the planner, writer, reviewer, and judge. The 50-miss latency table is on the Summary page after `python scripts/run_hw10_part4.py`.
+
+```bash
+python scripts/run_hw10_part4.py
+```
+
+`run_hw10_part4.py` runs the planner, writer, reviewer, and judge in-process. To follow one
+trace_id from the Redis cache lookup, through the Kafka topics, to the evaluator, start Redis,
+Kafka, `planner.py`, `writer.py`, and `reviewer.py`, then run:
+
+```bash
+python scripts/run_hw10_part4_kafka.py
+# writes reports/hw10/part4_latency.json, then restart the dashboard
+```

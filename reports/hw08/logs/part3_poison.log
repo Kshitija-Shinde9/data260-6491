@@ -8,3 +8,13 @@
 2026-11-02T04:34:26.187103Z | WRITER | RECEIVE  | corr=good-266491 <- s6491_tasks[0]@6
 2026-11-02T04:34:26.189712Z | WRITER | SEND     | corr=good-266491 -> s6491_drafts partition=0
 2026-11-02T04:34:26.191316Z | WRITER | COMMIT   | corr=good-266491 committed after success
+2026-11-16T19:48:58.145514Z | WRITER | READY    | listening on s6491_tasks[0], s6491_tasks[1]
+2026-11-16T19:49:00.664871Z | WRITER | RECEIVE  | corr=poison-266491 <- s6491_tasks[0]@37
+2026-11-16T19:49:00.665435Z | WRITER | RETRY    | corr=poison-266491 attempt=1/3 poison message
+2026-11-16T19:49:00.665668Z | WRITER | RETRY    | corr=poison-266491 attempt=2/3 poison message
+2026-11-16T19:49:00.665825Z | WRITER | RETRY    | corr=poison-266491 attempt=3/3 poison message
+2026-11-16T19:49:00.668868Z | WRITER | DEAD     | corr=poison-266491 -> s6491_dead_letter attempts=3
+2026-11-16T19:49:00.670558Z | WRITER | COMMIT   | corr=poison-266491 dead letter committed
+2026-11-16T19:49:01.175713Z | WRITER | RECEIVE  | corr=good-266491 <- s6491_tasks[0]@38
+2026-11-16T19:49:01.181106Z | WRITER | SEND     | corr=good-266491 -> s6491_drafts partition=0
+2026-11-16T19:49:01.184577Z | WRITER | COMMIT   | corr=good-266491 committed after success

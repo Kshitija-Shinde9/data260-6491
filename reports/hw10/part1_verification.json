@@ -1,7 +1,7 @@
 {
   "homework": "HW10",
   "part": 1,
-  "generated_at": "2026-11-16T17:36:01Z",
+  "generated_at": "2026-11-16T18:05:25Z",
   "sid4": 6491,
   "prefix": "s6491",
   "total_checks": 24,
@@ -109,12 +109,12 @@
     {
       "name": "evaluation file is absent until Part 2 writes it, or those scores load",
       "passed": true,
-      "detail": "absent"
+      "detail": "1 cases"
     },
     {
-      "name": "judge-validation file is absent until Part 3 writes it",
+      "name": "judge-validation file is absent until Part 3 writes it, or those scores load",
       "passed": true,
-      "detail": "reports/hw10/part3_judge_validation.json"
+      "detail": "spearman -0.13"
     },
     {
       "name": "cache hit and cache miss paths are different labels",
@@ -124,7 +124,7 @@
     {
       "name": "a line from flow_log.log_flow is the line the dashboard parses",
       "passed": true,
-      "detail": "2026-11-16T17:36:01.175659Z | CACHE  | LOOKUP   | corr=extend-check cache hit similarity=1.0000"
+      "detail": "2026-11-16T18:05:25.389256Z | CACHE  | LOOKUP   | corr=extend-check cache hit similarity=1.0000"
     },
     {
       "name": "dashboard log list is the list the Kafka service already saves",

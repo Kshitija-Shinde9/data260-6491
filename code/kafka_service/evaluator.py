@@ -266,3 +266,53 @@ def write_result(root: Path, document: dict) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
     return path
+
+
+def score_writer_draft(question: str, plan: list, draft: str, model: str | None = None) -> dict:
+    """Score one frozen writer draft with the same GEval criterion used in Part 2."""
+    model = model or judge_model_name()
+    steps = "\n".join(f"- {step}" for step in plan)
+    return score_criterion(
+        model,
+        CRITERIA["writer_helpfulness"]["name"],
+        CRITERIA["writer_helpfulness"]["steps"],
+        f"Question: {question}\nPlan:\n{steps}\nDraft: {draft}",
+    )
+
+
+def _average_ranks(values: list[float]) -> list[float]:
+    order = sorted(range(len(values)), key=lambda index: values[index])
+    ranks = [0.0] * len(values)
+    start = 0
+    while start < len(values):
+        end = start
+        while end + 1 < len(values) and values[order[end + 1]] == values[order[start]]:
+            end += 1
+        average = (start + end) / 2 + 1
+        for index in range(start, end + 1):
+            ranks[order[index]] = average
+        start = end + 1
+    return ranks
+
+
+def _pearson(left: list[float], right: list[float]) -> float | None:
+    count = len(left)
+    mean_left = sum(left) / count
+    mean_right = sum(right) / count
+    numerator = sum((x - mean_left) * (y - mean_right) for x, y in zip(left, right))
+    left_scale = sum((x - mean_left) ** 2 for x in left) ** 0.5
+    right_scale = sum((y - mean_right) ** 2 for y in right) ** 0.5
+    if left_scale == 0 or right_scale == 0:
+        return None
+    return numerator / (left_scale * right_scale)
+
+
+def spearman(human: list[float], judge: list[float]) -> float | None:
+    if len(human) != len(judge) or len(human) < 2:
+        return None
+    return _pearson(_average_ranks(human), _average_ranks(judge))
+
+
+def mean_absolute_difference(human: list[float], judge: list[float]) -> float:
+    gaps = [abs(left - right) for left, right in zip(human, judge)]
+    return sum(gaps) / len(gaps)

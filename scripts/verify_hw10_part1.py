@@ -113,10 +113,11 @@ def main() -> int:
         index.evaluation is None or bool(cases),
         "absent" if index.evaluation is None else f"{len(cases)} cases",
     )
+    judge_ready = index.judge is None or index.judge.get("spearman") is not None
     record(
-        "judge-validation file is absent until Part 3 writes it",
-        index.judge is None,
-        "reports/hw10/part3_judge_validation.json",
+        "judge-validation file is absent until Part 3 writes it, or those scores load",
+        judge_ready,
+        "absent" if index.judge is None else f"spearman {index.judge.get('spearman')}",
     )
 
     hit = parse_flow_line(

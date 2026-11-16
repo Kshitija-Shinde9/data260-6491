@@ -1,0 +1,206 @@
+{
+  "source": "kafka_service.planner.make_plan and kafka_service.writer.write_draft",
+  "note": "Frozen before the judge ran. The judge script does not rewrite this file.",
+  "cases": [
+    {
+      "case_id": "c01",
+      "question": "A 16oz bag of Trader Joe's organic frozen blueberries has a tear at the top seal and frost on the berries near the opening. What should the shopper do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat these blueberries. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c02",
+      "question": "The seal on my Trader Joe's frozen blueberries is open and the berries look frosty. Can I still eat them?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat these blueberries. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c03",
+      "question": "Kirkland Signature Trail Mix, 4lb, does not list peanuts, but I can see peanuts in the mix. What should I do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this an undeclared allergen.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this trail mix. Name the product the shopper is asking about. Call this an undeclared allergen. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c04",
+      "question": "My child has a peanut allergy and ate some of this trail mix before I saw the recall. What should we do with the rest of the bag?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this an undeclared allergen.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this trail mix. Name the product the shopper is asking about. Call this an undeclared allergen. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c05",
+      "question": "The Safeway Signature rotisserie chicken smells sour and the case felt warm. Should I eat it?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a spoiled or quality issue.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this chicken. Name the product the shopper is asking about. Call this a spoiled or quality issue. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c06",
+      "question": "I bought a Safeway rotisserie chicken that was sitting warm in the deli case. Is it safe?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a spoiled or quality issue.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this chicken. Name the product the shopper is asking about. Call this a spoiled or quality issue. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c07",
+      "question": "Are the Trader Joe's organic frozen blueberries recalled, and what do I do with the bag?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Pick the closest recall reason from the four types we use.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat these blueberries. Name the product the shopper is asking about. Pick the closest recall reason from the four types we use. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c08",
+      "question": "Can I eat the Kirkland trail mix if the label does not mention peanuts?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this an undeclared allergen.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this trail mix. Name the product the shopper is asking about. Call this an undeclared allergen. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c09",
+      "question": "The bag of Safeway rotisserie chicken is torn. What should the shopper do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this chicken. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c10",
+      "question": "Something in my fridge might be on a recall list. What should I do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Pick the closest recall reason from the four types we use.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this product. Name the product the shopper is asking about. Pick the closest recall reason from the four types we use. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c11",
+      "question": "The seal on a bag of frozen fruit is torn and I can see frost. What should I do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this product. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c12",
+      "question": "I bought a snack with peanuts and the bag does not list peanuts. What should I do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this an undeclared allergen.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this trail mix. Name the product the shopper is asking about. Call this an undeclared allergen. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c13",
+      "question": "The chicken smells spoiled and has been warm. Should anyone eat it?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a spoiled or quality issue.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this chicken. Name the product the shopper is asking about. Call this a spoiled or quality issue. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c14",
+      "question": "Trader Joe's blueberries have frost near a tear in the bag. What is the shopper supposed to do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat these blueberries. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c15",
+      "question": "The Costco trail mix may contain undeclared peanuts. How should a shopper handle the bag?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this an undeclared allergen.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this trail mix. Name the product the shopper is asking about. Call this an undeclared allergen. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c16",
+      "question": "Is the Safeway rotisserie chicken safe if it was warm when I picked it up?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a spoiled or quality issue.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this chicken. Name the product the shopper is asking about. Call this a spoiled or quality issue. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c17",
+      "question": "A bag of frozen berries is torn at the top. What should I do with it?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this product. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c18",
+      "question": "The label might be missing an allergen. What should the shopper do now?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this an undeclared allergen.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this product. Name the product the shopper is asking about. Call this an undeclared allergen. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c19",
+      "question": "My groceries smell off. Should I eat them or take them back?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a spoiled or quality issue.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat this product. Name the product the shopper is asking about. Call this a spoiled or quality issue. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    },
+    {
+      "case_id": "c20",
+      "question": "There is a recall for a 16oz frozen blueberry bag with a broken seal. What should the shopper do?",
+      "plan": [
+        "Name the product the shopper is asking about.",
+        "Call this a packaging / seal failure.",
+        "Tell the shopper not to eat it and to take it back to the store."
+      ],
+      "draft": "Do not eat these blueberries. Name the product the shopper is asking about. Call this a packaging / seal failure. Tell the shopper not to eat it and to take it back to the store. Take it back to the store and ask them to write up the recall."
+    }
+  ]
+}

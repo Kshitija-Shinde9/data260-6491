@@ -1,0 +1,204 @@
+{
+  "judge": {
+    "method": "GEval",
+    "criterion": "Writer helpfulness",
+    "model": "llama3.2:3b",
+    "provider": "local Ollama at http://localhost:11434",
+    "temperature": 0,
+    "scale": "1 very poor, 5 excellent",
+    "timeout_sec": 30,
+    "comparison_run": 1,
+    "cases_file": "reports/hw10/eval_cases.json",
+    "labels_file": "reports/hw10/human_labels.csv"
+  },
+  "spearman": -0.13,
+  "mean_absolute_difference": 1.2,
+  "repeatability": {
+    "runs": 3,
+    "scores_changed": 0,
+    "mean_absolute_change": 0.0,
+    "maximum_absolute_change": 0
+  },
+  "per_case": [
+    {
+      "case_id": "c01",
+      "human_label": 4,
+      "judge_run_1": 4,
+      "judge_run_2": 4,
+      "judge_run_3": 4,
+      "absolute_difference": 0,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c02",
+      "human_label": 4,
+      "judge_run_1": 4,
+      "judge_run_2": 4,
+      "judge_run_3": 4,
+      "absolute_difference": 0,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c03",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c04",
+      "human_label": 3,
+      "judge_run_1": 4,
+      "judge_run_2": 4,
+      "judge_run_3": 4,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c05",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c06",
+      "human_label": 4,
+      "judge_run_1": 4,
+      "judge_run_2": 4,
+      "judge_run_3": 4,
+      "absolute_difference": 0,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c07",
+      "human_label": 3,
+      "judge_run_1": 4,
+      "judge_run_2": 4,
+      "judge_run_3": 4,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c08",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c09",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c10",
+      "human_label": 2,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 3,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c11",
+      "human_label": 3,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 2,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c12",
+      "human_label": 2,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 3,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c13",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c14",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c15",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c16",
+      "human_label": 4,
+      "judge_run_1": 4,
+      "judge_run_2": 4,
+      "judge_run_3": 4,
+      "absolute_difference": 0,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c17",
+      "human_label": 3,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 2,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c18",
+      "human_label": 3,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 2,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c19",
+      "human_label": 3,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 2,
+      "max_abs_change": 0
+    },
+    {
+      "case_id": "c20",
+      "human_label": 4,
+      "judge_run_1": 5,
+      "judge_run_2": 5,
+      "judge_run_3": 5,
+      "absolute_difference": 1,
+      "max_abs_change": 0
+    }
+  ]
+}
